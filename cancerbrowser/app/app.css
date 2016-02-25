@@ -1,0 +1,19 @@
+/* Position the table in the centre horizontally */
+.cbtable table {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+/* Display the table cells as squares */
+.cbtable thead tr th,
+.cbtable tbody tr td,
+.cbtable tbody tr th {
+    width: 20px;
+    height: 20px;
+    padding: 0px;
+}
+
+.cbtable table {
+    table-layout: fixed;
+    width: auto;
+}
