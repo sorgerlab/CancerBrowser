@@ -1,7 +1,62 @@
 import React from 'react';
 
 export default class Table extends React.Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      cells: {
+        "47": {
+                "name": "184B5",
+                "lincs_id": "50576"
+        },
+        "48": {
+            "name": "AU565",
+            "lincs_id": "50091"
+        }
+      },
+      datasets: {
+        "1": { "name": "Dataset1" },
+        "2": { "name": "AU565" }
+      },
+      "cellsInDatasets": {
+        "1": {
+          "cells": [
+            47,
+            48,
+          ]
+        },
+        "2": {
+          "cells": [
+            47,
+          ]
+        },
+        "3": {
+          "cells": [
+            48,
+          ]
+        },
+        "4": {
+          "cells": []
+        }
+      }
+    }
+  }
+
   render() {
+
+    let rows = Object.keys(this.state.datasets).map(datasetId => {
+      return (
+        <tr key={datasetId}>
+          <th scope="row">{ this.state.datasets[datasetId].name }</th>
+          <td className="success"></td>
+          <td className="success"></td>
+          <td></td>
+        </tr>
+      );
+    });
+
     return (
 
       <div className="row">
@@ -10,31 +65,14 @@ export default class Table extends React.Component {
           <table className="table table-bordered">
             <thead>
               <tr>
-                <th>#</th>
+                <th>Datasets</th>
                 <th>X</th>
                 <th>Y</th>
                 <th>Z</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td className="success"></td>
-                <td className="success"></td>
-                <td className="success"></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td className="success"></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td></td>
-                <td></td>
-                <td className="success"></td>
-              </tr>
+              { rows }
             </tbody>
           </table>
         </div>

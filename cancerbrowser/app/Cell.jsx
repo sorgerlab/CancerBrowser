@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default class Cell extends React.Component {
   render() {
@@ -25,6 +26,10 @@ export default class Cell extends React.Component {
           <li><a href="#"><span className="badge">G</span> Growth I: Small Molecule Dose Responses</a></li>
           <li><a href="#"><span className="badge">G</span> Growth II: Density-Dependent Small Molecule Dose Responses</a></li>
           <li><a href="#"><span className="badge">M</span> Morphology I: Basal and Small Molecule-Induced Features</a></li>
+
+          <Link to="/Cell/Cube" className="btn btn-lg btn-default" role="button">Cube</Link>
+
+          {this.props.children}
         </ul>
     </div>
     );
