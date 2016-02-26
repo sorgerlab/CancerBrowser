@@ -1,0 +1,76 @@
+{
+    "datasets": {
+        "1": {
+            "id": 1,
+            "name": "Transcriptomics I: Basal and Small Molecule-Induced Profiles",
+            "category": "R",
+            "types": []
+        },
+        "2": {
+            "id": 2,
+            "name": "Proteomics I: Basal RTK Profiles",
+            "category": "P",
+            "types": []
+        },
+        "2": {
+            "id": 2,
+            "name": "Proteomics I: Basal RTK Profiles",
+            "category": "P",
+            "types": []
+        },
+        "3": {
+            "id": 3,
+            "name": "Proteomics II: Basal Total Proteomes",
+            "category": "P",
+            "types": []
+        },
+        "4": {
+            "id": 4,
+            "name": "Proteomics III: Basal Phosphoproteomes",
+            "category": "P",
+            "types": []
+        },
+        "5": {
+            "id": 5,
+            "name": "Proteomics III: Basal Phosphoproteomes",
+            "category": "P",
+            "types": []
+        },
+        "6": {
+            "id": 6,
+            "name": "Proteomics IV: Basal Cell Surface Proteomes",
+            "category": "P",
+            "types": []
+        },
+        "7": {
+            "id": 7,
+            "name": "Signaling I: Ligand-Induced pAKT Profiles",
+            "category": "S",
+            "types": []
+        },
+        "8": {
+            "id": 8,
+            "name": "Signaling II: Ligand-Induced pERK Profiles",
+            "category": "S",
+            "types": []
+        },
+        "9": {
+            "id": 9,
+            "name": "Growth I: Small Molecule Dose Responses",
+            "category": "G",
+            "types": []
+        },
+        "10": {
+            "id": 10,
+            "name": "Growth II: Density-Dependent Small Molecule Dose Responses",
+            "category": "G",
+            "types": []
+        },
+        "11": {
+            "id": 11,
+            "name": "Morphology I: Basal and Small Molecule-Induced Features",
+            "category": "M",
+            "types": []
+        }
+    }
+}

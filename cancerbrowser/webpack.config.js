@@ -37,6 +37,15 @@ module.exports = {
         }
       },
       {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+          plugins: ['transform-runtime'],
+          presets: ['es2015']
+        }
+      },
+      {
         test: /\.css$/, // Only .css files
         loader: 'style-loader!css-loader' // Run both loaders
       },

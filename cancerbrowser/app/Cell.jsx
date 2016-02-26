@@ -1,8 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { fetchDatasetsIfNeeded } from './actions';
 
-export default class Cell extends React.Component {
+class Cell extends React.Component {
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(fetchDatasetsIfNeeded());
+  }
+
   render() {
+    const { datasets, isFetching } = this.props;
+
+    let datasetItems;
+    if (datasets) {
+      datasetItems = Object.keys(datasets).map(datasetId => {
+        const dataset = datasets[datasetId];
+        return (
+          <li key={ dataset.id }><a href="#"><span className="badge">{ dataset.category }</span> { dataset.name }</a></li>
+        );
+      });
+    }
+
     return (
       <div>
         <h1>Cell</h1>
@@ -16,22 +36,36 @@ export default class Cell extends React.Component {
         </p>
         <p>Browse Data</p>
         <ul>
-          <li><a href="#"><span className="badge">R</span> Transcriptomics I: Basal and Small Molecule-Induced Profiles</a></li>
-          <li><a href="#"><span className="badge">P</span> Proteomics I: Basal RTK Profiles</a></li>
-          <li><a href="#"><span className="badge">P</span> Proteomics II: Basal Total Proteomes</a></li>
-          <li><a href="#"><span className="badge">P</span> Proteomics III: Basal Phosphoproteomes</a></li>
-          <li><a href="#"><span className="badge">P</span> Proteomics IV: Basal Cell Surface Proteomes</a></li>
-          <li><a href="#"><span className="badge">S</span> Signaling I: Ligand-Induced pAKT Profiles</a></li>
-          <li><a href="#"><span className="badge">S</span> Signaling II: Ligand-Induced pERK Profiles</a></li>
-          <li><a href="#"><span className="badge">G</span> Growth I: Small Molecule Dose Responses</a></li>
-          <li><a href="#"><span className="badge">G</span> Growth II: Density-Dependent Small Molecule Dose Responses</a></li>
-          <li><a href="#"><span className="badge">M</span> Morphology I: Basal and Small Molecule-Induced Features</a></li>
-
-          <Link to="/Cell/Cube" className="btn btn-lg btn-default" role="button">Cube</Link>
-
-          {this.props.children}
+          { datasetItems }
         </ul>
+
+        <Link to="/Cell/Cube" className="btn btn-lg btn-default" role="button">Cube</Link>
+        {this.props.children}
     </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  // const { datasets } = state;
+
+  if (state.datasets === undefined) {
+    console.log('It was undefined');
+  }
+
+  const {
+    isFetching,
+    items: datasets
+  } = state.datasets;
+
+  if (isFetching == true) {
+    console.log("It's fetching");
+  }
+
+  return {
+    datasets,
+    isFetching
+  }
+}
+
+export default connect(mapStateToProps)(Cell)
