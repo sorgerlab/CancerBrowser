@@ -1,0 +1,160 @@
+{
+    "cells": {
+        "47": {
+            "name": "184B5",
+            "lincs_id": "50576"
+        },
+        "48": {
+            "name": "AU565",
+            "lincs_id": "50091"
+        },
+        "49": {
+            "name": "BT-20",
+            "lincs_id": "50105"
+        },
+        "50": {
+            "name": "BT-474",
+            "lincs_id": "50106"
+        },
+        "51": {
+            "name": "BT-483",
+            "lincs_id": "50107"
+        },
+        "52": {
+            "name": "BT-549",
+            "lincs_id": "50108"
+        },
+        "53": {
+            "name": "CAMA-1",
+            "lincs_id": "50131"
+        },
+        "54": {
+            "name": "HCC1187",
+            "lincs_id": "50578"
+        },
+        "55": {
+            "name": "HCC1395",
+            "lincs_id": "50206"
+        },
+        "56": {
+            "name": "HCC1419",
+            "lincs_id": "50207"
+        },
+        "57": {
+            "name": "HCC1428",
+            "lincs_id": "50208"
+        },
+        "58": {
+            "name": "HCC1500",
+            "lincs_id": "50579"
+        },
+        "59": {
+            "name": "HCC1569",
+            "lincs_id": "50210"
+        },
+        "60": {
+            "name": "HCC1806",
+            "lincs_id": "50211"
+        },
+        "61": {
+            "name": "HCC1937",
+            "lincs_id": "50212"
+        },
+        "62": {
+            "name": "HCC1954",
+            "lincs_id": "50213"
+        },
+        "63": {
+            "name": "HCC202",
+            "lincs_id": "50214"
+        },
+        "64": {
+            "name": "HCC38",
+            "lincs_id": "50216"
+        },
+        "65": {
+            "name": "HCC70",
+            "lincs_id": "50219"
+        },
+        "66": {
+            "name": "Hs 578T",
+            "lincs_id": "50238"
+        },
+        "67": {
+            "name": "MCF 10A",
+            "lincs_id": "50583"
+        },
+        "68": {
+            "name": "MCF 10F",
+            "lincs_id": "50584"
+        },
+        "69": {
+            "name": "MCF12A",
+            "lincs_id": "51089"
+        },
+        "70": {
+            "name": "MCF7",
+            "lincs_id": "50029"
+        },
+        "71": {
+            "name": "MDA-MB-134-VI",
+            "lincs_id": "50327"
+        },
+        "72": {
+            "name": "MDA-MB-157",
+            "lincs_id": "50328"
+        },
+        "73": {
+            "name": "MDA-MB-175-VII",
+            "lincs_id": "50329"
+        },
+        "74": {
+            "name": "MDA-MB-231",
+            "lincs_id": "50058"
+        },
+        "75": {
+            "name": "MDA-MB-361",
+            "lincs_id": "50331"
+        },
+        "76": {
+            "name": "MDA-MB-415",
+            "lincs_id": "50332"
+        },
+        "77": {
+            "name": "MDA-MB-436",
+            "lincs_id": "50333"
+        },
+        "78": {
+            "name": "MDA-MB-453",
+            "lincs_id": "50334"
+        },
+        "79": {
+            "name": "MDA-MB-468",
+            "lincs_id": "50335"
+        },
+        "80": {
+            "name": "SK-BR-3",
+            "lincs_id": "50057"
+        },
+        "81": {
+            "name": "T47D",
+            "lincs_id": "50541"
+        },
+        "82": {
+            "name": "UACC-812",
+            "lincs_id": "50556"
+        },
+        "83": {
+            "name": "UACC-893",
+            "lincs_id": "50557"
+        },
+        "84": {
+            "name": "ZR-75-1",
+            "lincs_id": "50574"
+        },
+        "85": {
+            "name": "ZR-75-30",
+            "lincs_id": "50575"
+        }
+    }
+}

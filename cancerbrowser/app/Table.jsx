@@ -6,20 +6,6 @@ export default class Table extends React.Component {
     super();
 
     this.state = {
-      cells: {
-        "47": {
-                "name": "184B5",
-                "lincs_id": "50576"
-        },
-        "48": {
-            "name": "AU565",
-            "lincs_id": "50091"
-        }
-      },
-      datasets: {
-        "1": { "name": "Dataset1" },
-        "2": { "name": "AU565" }
-      },
       "cellsInDatasets": {
         "1": {
           "cells": [
@@ -46,10 +32,12 @@ export default class Table extends React.Component {
 
   render() {
 
-    let rows = Object.keys(this.state.datasets).map(datasetId => {
+    const { datasets, cells } = this.props;
+
+    let rows = Object.keys(datasets).map(datasetId => {
       return (
         <tr key={datasetId}>
-          <th scope="row">{ this.state.datasets[datasetId].name }</th>
+          <th scope="row">{ datasets[datasetId].name }</th>
           <td className="success"></td>
           <td className="success"></td>
           <td></td>

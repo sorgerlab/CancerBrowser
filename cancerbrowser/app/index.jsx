@@ -6,6 +6,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import thunkMiddleware from 'redux-thunk'
 import datasets from './reducers/datasets';
+import cells from './reducers/cells';
 import CancerBrowser from './CancerBrowser';
 import Home from './Home';
 import About from './About';
@@ -15,11 +16,10 @@ import Ligand from './Ligand';
 import Molecule from './Molecule';
 import Table from './Table';
 
-
-
 const store = createStore(
   combineReducers({
     datasets,
+    cells,
     routing: routerReducer
   }),
   undefined,

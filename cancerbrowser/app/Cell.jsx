@@ -1,17 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { fetchDatasetsIfNeeded } from './actions';
+import { fetchDatasetsIfNeeded, fetchCellsIfNeeded } from './actions';
 
 class Cell extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchDatasetsIfNeeded());
+    dispatch(fetchCellsIfNeeded());
   }
 
   render() {
-    const { datasets, isFetching } = this.props;
+    const { datasets, isFetchingDatasets,
+            cells, isFetchingCells } = this.props;
 
     let datasetItems;
     if (datasets) {
@@ -21,6 +23,17 @@ class Cell extends React.Component {
           <li key={ dataset.id }><a href="#"><span className="badge">{ dataset.category }</span> { dataset.name }</a></li>
         );
       });
+    }
+
+    let children;
+    if (this.props.children) {
+      children = React.cloneElement(
+        this.props.children,
+        {
+          datasets: this.props.datasets,
+          cells: this.props.cells
+        }
+      );
     }
 
     return (
@@ -40,31 +53,29 @@ class Cell extends React.Component {
         </ul>
 
         <Link to="/Cell/Cube" className="btn btn-lg btn-default" role="button">Cube</Link>
-        {this.props.children}
+        { children }
     </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  // const { datasets } = state;
-
-  if (state.datasets === undefined) {
-    console.log('It was undefined');
-  }
 
   const {
-    isFetching,
+    isFetching: isFetchingDatasets,
     items: datasets
   } = state.datasets;
 
-  if (isFetching == true) {
-    console.log("It's fetching");
-  }
+  const {
+    isFetching: isFetchingCells,
+    items: cells
+  } = state.cells;
 
   return {
     datasets,
-    isFetching
+    cells,
+    isFetchingDatasets,
+    isFetchingCells
   }
 }
 
