@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { fetchDatasetsIfNeeded, fetchCellsIfNeeded } from './actions';
+import {
+  fetchDatasetsIfNeeded,
+  fetchCellsIfNeeded,
+  fetchCellsInDatasetsIfNeeded
+} from './actions';
 
 class Cell extends React.Component {
 
@@ -9,11 +13,13 @@ class Cell extends React.Component {
     const { dispatch } = this.props;
     dispatch(fetchDatasetsIfNeeded());
     dispatch(fetchCellsIfNeeded());
+    dispatch(fetchCellsInDatasetsIfNeeded());
   }
 
   render() {
     const { datasets, isFetchingDatasets,
-            cells, isFetchingCells } = this.props;
+            cells, isFetchingCells,
+            cellsInDatasets, isFetchingCellsInDatasets } = this.props;
 
     let datasetItems;
     if (datasets) {
@@ -30,8 +36,9 @@ class Cell extends React.Component {
       children = React.cloneElement(
         this.props.children,
         {
-          datasets: this.props.datasets,
-          cells: this.props.cells
+          datasets: datasets,
+          cells: cells,
+          cellsInDatasets: cellsInDatasets
         }
       );
     }
@@ -71,11 +78,18 @@ function mapStateToProps(state) {
     items: cells
   } = state.cells;
 
+  const {
+    isFetching: isFetchingCellsInDatasets,
+    items: cellsInDatasets
+  } = state.cellsInDatasets;
+
   return {
     datasets,
     cells,
+    cellsInDatasets,
     isFetchingDatasets,
-    isFetchingCells
+    isFetchingCells,
+    isFetchingCellsInDatasets
   }
 }
 

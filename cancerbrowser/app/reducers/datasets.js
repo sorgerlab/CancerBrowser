@@ -1,7 +1,7 @@
 import { REQUEST_DATASETS, RECEIVE_DATASETS } from '../actions';
 
 function datasets(state = {
-  isFetching: false
+  isFetching: false,
 }, action) {
   switch (action.type) {
     case REQUEST_DATASETS:

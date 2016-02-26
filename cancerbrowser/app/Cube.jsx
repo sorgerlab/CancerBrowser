@@ -1,38 +1,9 @@
 import React from 'react';
 
-export default class Table extends React.Component {
-
-  constructor() {
-    super();
-
-    this.state = {
-      "cellsInDatasets": {
-        "1": {
-          "cells": [
-            47,
-            48,
-          ]
-        },
-        "2": {
-          "cells": [
-            47,
-          ]
-        },
-        "3": {
-          "cells": [
-            48,
-          ]
-        },
-        "4": {
-          "cells": []
-        }
-      }
-    }
-  }
+export default class Cube extends React.Component {
 
   render() {
-
-    const { datasets, cells } = this.props;
+    const { datasets, cells, cellsInDatasets } = this.props;
 
     let rows = Object.keys(datasets).map(datasetId => {
       return (
