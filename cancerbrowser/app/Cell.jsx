@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 import {
   fetchDatasetsIfNeeded,
   fetchCellsIfNeeded,
@@ -18,8 +20,30 @@ class Cell extends React.Component {
 
   render() {
     const { datasets, isFetchingDatasets,
-            cells, isFetchingCells,
+            cells, subtypes, isFetchingCells,
             cellsInDatasets, isFetchingCellsInDatasets } = this.props;
+
+    let cellOptions;
+    if (cells) {
+      cellOptions = Object.keys(cells).map(cellId => {
+        const cell = cells[cellId];
+        return {
+          value: cellId,
+          label: cell.name
+        };
+      })
+    }
+
+    let subtypeOptions;
+    if (subtypes) {
+      subtypeOptions = Object.keys(subtypes).map(subtypeId => {
+        const subtype = subtypes[subtypeId];
+        return {
+          value: subtypeId,
+          label: subtype
+        };
+      })
+    }
 
     let datasetItems;
     if (datasets) {
@@ -46,14 +70,27 @@ class Cell extends React.Component {
     return (
       <div>
         <h1>Cell</h1>
-        <div className="input-group">
-          <span className="input-group-addon" id="basic-addon1">Search</span>
-          <input type="text" className="form-control" placeholder="Search..." aria-describedby="basic-addon1" />
+
+        <div className="row">
+
+          <div className="col-md-4">
+            <Select
+                name="subtype_filter"
+                placeholder="Subtypes..."
+                options={ subtypeOptions }
+            />
+          </div>
+
+          <div className="col-md-4">
+            <Select
+                name="cell_filter"
+                placeholder="Cells..."
+                options={ cellOptions }
+            />
+          </div>
+
         </div>
-        <p>
-          <a className="btn btn-lg btn-default" href="#" role="button">by Name</a>
-          <a className="btn btn-lg btn-default" href="#" role="button">by Subtype</a>
-        </p>
+
         <p>Browse Data</p>
         <ul>
           { datasetItems }
@@ -75,7 +112,8 @@ function mapStateToProps(state) {
 
   const {
     isFetching: isFetchingCells,
-    items: cells
+    items: cells,
+    subtypes: subtypes
   } = state.cells;
 
   const {
@@ -86,6 +124,7 @@ function mapStateToProps(state) {
   return {
     datasets,
     cells,
+    subtypes,
     cellsInDatasets,
     isFetchingDatasets,
     isFetchingCells,

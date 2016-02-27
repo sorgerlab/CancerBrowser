@@ -11,7 +11,8 @@ function cells(state = {
     case RECEIVE_CELLS:
       return Object.assign({}, state, {
         isFetching: false,
-        items: action.cells
+        items: action.cells,
+        subtypes: action.subtypes
       });
     default:
       return state;

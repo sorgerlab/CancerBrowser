@@ -1,159 +1,205 @@
 {
+    "subtypes": {
+        "1": "A",
+        "2": "B",
+        "3": "C",
+        "4": "D",
+        "5": "E"
+    },
     "cells": {
         "47": {
             "name": "184B5",
+            "subtypes": [1, 2, 3],
             "lincs_id": "50576"
         },
         "48": {
             "name": "AU565",
+            "subtypes": [1, 2, 3],
             "lincs_id": "50091"
         },
         "49": {
             "name": "BT-20",
+            "subtypes": [1, 2, 3],
             "lincs_id": "50105"
         },
         "50": {
             "name": "BT-474",
+            "subtypes": [1, 2, 3],
             "lincs_id": "50106"
         },
         "51": {
             "name": "BT-483",
+            "subtypes": [1, 2, 3],
             "lincs_id": "50107"
         },
         "52": {
             "name": "BT-549",
+            "subtypes": [1],
             "lincs_id": "50108"
         },
         "53": {
             "name": "CAMA-1",
+            "subtypes": [1],
             "lincs_id": "50131"
         },
         "54": {
             "name": "HCC1187",
+            "subtypes": [1],
             "lincs_id": "50578"
         },
         "55": {
             "name": "HCC1395",
+            "subtypes": [2],
             "lincs_id": "50206"
         },
         "56": {
             "name": "HCC1419",
+            "subtypes": [4],
             "lincs_id": "50207"
         },
         "57": {
             "name": "HCC1428",
+            "subtypes": [5],
             "lincs_id": "50208"
         },
         "58": {
             "name": "HCC1500",
+            "subtypes": [5],
             "lincs_id": "50579"
         },
         "59": {
             "name": "HCC1569",
+            "subtypes": [5],
             "lincs_id": "50210"
         },
         "60": {
             "name": "HCC1806",
+            "subtypes": [5],
             "lincs_id": "50211"
         },
         "61": {
             "name": "HCC1937",
+            "subtypes": [5],
             "lincs_id": "50212"
         },
         "62": {
             "name": "HCC1954",
+            "subtypes": [5],
             "lincs_id": "50213"
         },
         "63": {
             "name": "HCC202",
+            "subtypes": [5],
             "lincs_id": "50214"
         },
         "64": {
             "name": "HCC38",
+            "subtypes": [5],
             "lincs_id": "50216"
         },
         "65": {
             "name": "HCC70",
+            "subtypes": [5],
             "lincs_id": "50219"
         },
         "66": {
             "name": "Hs 578T",
+            "subtypes": [5],
             "lincs_id": "50238"
         },
         "67": {
             "name": "MCF 10A",
+            "subtypes": [5],
             "lincs_id": "50583"
         },
         "68": {
             "name": "MCF 10F",
+            "subtypes": [5],
             "lincs_id": "50584"
         },
         "69": {
             "name": "MCF12A",
+            "subtypes": [5],
             "lincs_id": "51089"
         },
         "70": {
             "name": "MCF7",
+            "subtypes": [5],
             "lincs_id": "50029"
         },
         "71": {
             "name": "MDA-MB-134-VI",
+            "subtypes": [5],
             "lincs_id": "50327"
         },
         "72": {
             "name": "MDA-MB-157",
+            "subtypes": [5],
             "lincs_id": "50328"
         },
         "73": {
             "name": "MDA-MB-175-VII",
+            "subtypes": [5],
             "lincs_id": "50329"
         },
         "74": {
             "name": "MDA-MB-231",
+            "subtypes": [5],
             "lincs_id": "50058"
         },
         "75": {
             "name": "MDA-MB-361",
+            "subtypes": [5],
             "lincs_id": "50331"
         },
         "76": {
             "name": "MDA-MB-415",
+            "subtypes": [5],
             "lincs_id": "50332"
         },
         "77": {
             "name": "MDA-MB-436",
+            "subtypes": [5],
             "lincs_id": "50333"
         },
         "78": {
             "name": "MDA-MB-453",
+            "subtypes": [5],
             "lincs_id": "50334"
         },
         "79": {
             "name": "MDA-MB-468",
+            "subtypes": [5],
             "lincs_id": "50335"
         },
         "80": {
             "name": "SK-BR-3",
+            "subtypes": [5],
             "lincs_id": "50057"
         },
         "81": {
             "name": "T47D",
+            "subtypes": [5],
             "lincs_id": "50541"
         },
         "82": {
             "name": "UACC-812",
+            "subtypes": [5],
             "lincs_id": "50556"
         },
         "83": {
             "name": "UACC-893",
+            "subtypes": [5],
             "lincs_id": "50557"
         },
         "84": {
             "name": "ZR-75-1",
+            "subtypes": [5],
             "lincs_id": "50574"
         },
         "85": {
             "name": "ZR-75-30",
+            "subtypes": [5],
             "lincs_id": "50575"
         }
     }
