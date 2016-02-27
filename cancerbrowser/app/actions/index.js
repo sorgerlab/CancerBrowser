@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
+// Actions
 export const REQUEST_DATASETS = 'REQUEST_DATASETS';
 export const RECEIVE_DATASETS = 'RECEIVE_DATASETS';
 export const REQUEST_DATASET_DETAIL = 'REQUEST_DATASET_DETAIL';
@@ -8,8 +9,10 @@ export const REQUEST_CELLS = 'REQUEST_CELLS';
 export const RECEIVE_CELLS = 'RECEIVE_CELLS';
 export const REQUEST_CELLS_IN_DATASETS = 'REQUEST_CELLS_IN_DATASETS';
 export const RECEIVE_CELLS_IN_DATASETS = 'RECEIVE_CELLS_IN_DATASETS';
+export const CHANGE_CELL_FILTER = "CHANGE_CELL_FILTER";
+export const CHANGE_CELL_SUBTYPE_FILTER = "CHANGE_CELL_SUBTYPE_FILTER";
 
-// Actions
+// Action Creators
 function requestDatasets() {
   return {
     type: REQUEST_DATASETS
@@ -177,5 +180,19 @@ export function fetchCellsInDatasetsIfNeeded() {
     if (shouldFetchCellsInDatasets(getState())) {
       return dispatch(fetchCellsInDatasets());
     }
+  }
+}
+
+export function changeCellSubtypeFilter(subtype) {
+  return {
+    type: CHANGE_CELL_SUBTYPE_FILTER,
+    subtype: subtype
+  }
+}
+
+export function changeCellFilter(cell) {
+  return {
+    type: CHANGE_CELL_FILTER,
+    cell: cell
   }
 }

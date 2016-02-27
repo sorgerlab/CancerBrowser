@@ -9,6 +9,7 @@ import datasets from './reducers/datasets';
 import cells from './reducers/cells';
 import cellsInDatasets from './reducers/cellsInDatasets';
 import datasetDetail from './reducers/datasetDetail';
+import cellFilter from './reducers/cellFilter';
 import CancerBrowser from './CancerBrowser';
 import Home from './Home';
 import About from './About';
@@ -23,6 +24,7 @@ const store = createStore(
     datasets,
     cells,
     cellsInDatasets,
+    cellFilter,
     datasetDetail,
     routing: routerReducer
   }),

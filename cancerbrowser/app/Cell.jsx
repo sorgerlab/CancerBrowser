@@ -6,10 +6,18 @@ import 'react-select/dist/react-select.css';
 import {
   fetchDatasetsIfNeeded,
   fetchCellsIfNeeded,
-  fetchCellsInDatasetsIfNeeded
+  fetchCellsInDatasetsIfNeeded,
+  changeCellFilter,
+  changeCellSubtypeFilter
 } from './actions';
 
 class Cell extends React.Component {
+
+  constructor() {
+    super();
+    this.handleChangeSubtypeFilter = this.handleChangeSubtypeFilter.bind(this);
+    this.handleChangeCellFilter = this.handleChangeCellFilter.bind(this);
+  }
 
   componentDidMount() {
     const { dispatch } = this.props;
@@ -18,20 +26,41 @@ class Cell extends React.Component {
     dispatch(fetchCellsInDatasetsIfNeeded());
   }
 
+  handleChangeSubtypeFilter(value) {
+    const { dispatch } = this.props;
+    if (value) {
+      dispatch(changeCellSubtypeFilter(value.value));
+    } else {
+      dispatch(changeCellSubtypeFilter(undefined));
+    }
+  }
+
+  handleChangeCellFilter(value) {
+    const { dispatch } = this.props;
+    if (value) {
+      dispatch(changeCellFilter(value.value));
+    } else {
+      dispatch(changeCellFilter(undefined));
+    }
+  }
+
   render() {
     const { datasets, isFetchingDatasets,
             cells, subtypes, isFetchingCells,
-            cellsInDatasets, isFetchingCellsInDatasets } = this.props;
+            cellsInDatasets, isFetchingCellsInDatasets,
+            cellFilter, subtypeFilter } = this.props;
 
-    let cellOptions;
+    let filteredCellIds;
     if (cells) {
-      cellOptions = Object.keys(cells).map(cellId => {
-        const cell = cells[cellId];
-        return {
-          value: cellId,
-          label: cell.name
-        };
-      })
+      if (subtypeFilter) {
+        filteredCellIds = Object.keys(cells).filter(cellId => {
+          const cell = cells[cellId];
+          return (cell.subtypes.indexOf(subtypeFilter) !== -1);
+        });
+      } else {
+        // Do not filter out any cells
+        filteredCellIds = Object.keys(cells);
+      }
     }
 
     let subtypeOptions;
@@ -41,6 +70,17 @@ class Cell extends React.Component {
         return {
           value: subtypeId,
           label: subtype
+        };
+      })
+    }
+
+    let cellOptions;
+    if (filteredCellIds) {
+      cellOptions = filteredCellIds.map(cellId => {
+        const cell = cells[cellId];
+        return {
+          value: cellId,
+          label: cell.name
         };
       })
     }
@@ -78,6 +118,8 @@ class Cell extends React.Component {
                 name="subtype_filter"
                 placeholder="Subtypes..."
                 options={ subtypeOptions }
+                value={ subtypeFilter }
+                onChange={ this.handleChangeSubtypeFilter }
             />
           </div>
 
@@ -86,10 +128,14 @@ class Cell extends React.Component {
                 name="cell_filter"
                 placeholder="Cells..."
                 options={ cellOptions }
+                value={ cellFilter}
+                onChange={ this.handleChangeCellFilter }
             />
           </div>
 
         </div>
+
+
 
         <p>Browse Data</p>
         <ul>
@@ -121,6 +167,11 @@ function mapStateToProps(state) {
     items: cellsInDatasets
   } = state.cellsInDatasets;
 
+  const {
+    cell: cellFilter,
+    subtype: subtypeFilter
+  } = state.cellFilter;
+
   return {
     datasets,
     cells,
@@ -128,7 +179,9 @@ function mapStateToProps(state) {
     cellsInDatasets,
     isFetchingDatasets,
     isFetchingCells,
-    isFetchingCellsInDatasets
+    isFetchingCellsInDatasets,
+    cellFilter,
+    subtypeFilter
   }
 }
 
