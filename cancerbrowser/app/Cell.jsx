@@ -50,6 +50,12 @@ class Cell extends React.Component {
             cellsInDatasets, isFetchingCellsInDatasets,
             cellFilter, subtypeFilter } = this.props;
 
+    // TODO Tidy up, this is all very messy
+    // Probably a good idea to make default state for list variables to be
+    // empty lists. That way there would be a lot less checking for undefined
+    // variable. That will mean adding a way to check if the data should be
+    // loaded other than the variable being undefined.
+
     let filteredCellIds;
     if (cells) {
       if (subtypeFilter) {
@@ -85,9 +91,34 @@ class Cell extends React.Component {
       })
     }
 
+    let resultingCellIds;
+    if (cellFilter) {
+      resultingCellIds = [cellFilter];
+    } else if (filteredCellIds) {
+      resultingCellIds = filteredCellIds;
+    }
+
+    let filteredDatasetIds;
+    if (datasets && cellsInDatasets && (cellFilter || subtypeFilter)) {
+      filteredDatasetIds = Object.keys(datasets).filter(datasetId => {
+        const datasetCells = cellsInDatasets[datasetId];
+        if (!datasetCells) {
+          return false;
+        }
+        // Looks for the cells in this dataset in the major list
+        // TODO This especially is not optimal, probably precalculate these
+        // and serve them with the data or at least memoise
+        return datasetCells.filter(datasetCell => {
+          return (resultingCellIds.indexOf(datasetCell) != -1);
+        }).length > 0;
+      });
+    }
+
     let datasetItems;
+
     if (datasets) {
-      datasetItems = Object.keys(datasets).map(datasetId => {
+      let resultingDatasetIds = filteredDatasetIds || Object.keys(datasets);
+      datasetItems = resultingDatasetIds.map(datasetId => {
         const dataset = datasets[datasetId];
         return (
           <li key={ dataset.id }><a href="#"><span className="badge">{ dataset.category }</span> { dataset.name }</a></li>
