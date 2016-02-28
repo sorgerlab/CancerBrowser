@@ -114,10 +114,10 @@ class Cell extends React.Component {
       });
     }
 
+    let resultingDatasetIds;
     let datasetItems;
-
     if (datasets) {
-      let resultingDatasetIds = filteredDatasetIds || Object.keys(datasets);
+      resultingDatasetIds = filteredDatasetIds || Object.keys(datasets);
       datasetItems = resultingDatasetIds.map(datasetId => {
         const dataset = datasets[datasetId];
         return (
@@ -132,7 +132,9 @@ class Cell extends React.Component {
         this.props.children,
         {
           datasets: datasets,
+          resultingDatasetIds: resultingDatasetIds,
           cells: cells,
+          resultingCellIds: resultingCellIds,
           cellsInDatasets: cellsInDatasets
         }
       );
