@@ -126,6 +126,7 @@ class Cell extends React.Component {
           datasets: datasets,
           resultingDatasetIds: resultingDatasetIds,
           cells: cells,
+          subtypes: subtypes,
           resultingCellIds: resultingCellIds,
           cellsInDatasets: cellsInDatasets
         }

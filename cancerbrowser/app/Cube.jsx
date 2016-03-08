@@ -5,13 +5,30 @@ export default class Cube extends React.Component {
 
   render() {
 
-    const { datasets, resultingDatasetIds, cells, resultingCellIds, cellsInDatasets } = this.props;
+    const { datasets, resultingDatasetIds, cells, subtypes, resultingCellIds, cellsInDatasets } = this.props;
 
     let headers = resultingCellIds.map(cellId => {
       let cell = cells[cellId];
 
+      // TODO Ideally would use badges here, but the rotation is causing issues
+      // so just implemented as a string for now.
+      // let subtypeBadges = cell.subtypes.map(subtypeId => {
+      //   return (
+      //     <span key={ subtypeId } className="badge">{ subtypeId } </span>
+      //   );
+      // });
+      let subtypeBadges = "";
+      cell.subtypes.forEach(subtypeId => {
+        subtypeBadges = subtypeBadges + " " + subtypes[subtypeId];
+      });
+      subtypeBadges = cell.name + " " + subtypeBadges;
+
       return (
-        <th key={ cellId } className="rotate-45"><div><span>{ cell.name }</span></div></th>
+        <th key={ cellId } className="rotate-45">
+          <div>
+            <span>{ subtypeBadges }</span>
+          </div>
+        </th>
       )
     });
 
@@ -23,7 +40,7 @@ export default class Cube extends React.Component {
         if (cellsInDatasets[datasetId] && cellsInDatasets[datasetId].indexOf(cellId) != -1) {
           return (
             <td key={ cellId } className="success"></td>
-          )
+          );
         }
 
         return (
