@@ -6,11 +6,11 @@ export default class Cube extends React.Component {
 
     const { datasets, resultingDatasetIds, cells, resultingCellIds, cellsInDatasets } = this.props;
 
-    let columns = resultingCellIds.map(cellId => {
+    let headers = resultingCellIds.map(cellId => {
       let cell = cells[cellId];
 
       return (
-        <th key={ cellId }>{ cell.name }</th>
+        <th key={ cellId } className="rotate-45"><div><span>{ cell.name }</span></div></th>
       )
     });
 
@@ -43,11 +43,11 @@ export default class Cube extends React.Component {
       <div className="row">
         <div className="col-lg-1"></div>
         <div className="col-lg-10 cbtable">
-          <table className="table table-bordered">
+          <table className="table table-header-rotated">
             <thead>
               <tr>
-                <th>Datasets</th>
-                { columns }
+                <th key='datasets' className="rotate-45"><div><span>Datasets</span></div></th>
+                { headers }
               </tr>
             </thead>
             <tbody>
