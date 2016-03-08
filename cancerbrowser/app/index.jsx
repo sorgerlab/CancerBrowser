@@ -18,6 +18,7 @@ import Protein from './Protein';
 import Ligand from './Ligand';
 import Molecule from './Molecule';
 import Cube from './Cube';
+import List from './List';
 
 const store = createStore(
   combineReducers({
@@ -46,6 +47,7 @@ ReactDOM.render((
         <IndexRoute component={Home} />
         <Route path="about" component={About} />
         <Route path="cell" component={Cell}>
+          <IndexRoute component={List} />
           <Route path="cube" component={Cube} />
         </Route>
         <Route path="protein" component={Protein} />

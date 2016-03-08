@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
@@ -115,15 +114,8 @@ class Cell extends React.Component {
     }
 
     let resultingDatasetIds;
-    let datasetItems;
     if (datasets) {
       resultingDatasetIds = filteredDatasetIds || Object.keys(datasets);
-      datasetItems = resultingDatasetIds.map(datasetId => {
-        const dataset = datasets[datasetId];
-        return (
-          <li key={ dataset.id }><a href="#"><span className="badge">{ dataset.category }</span> { dataset.name }</a></li>
-        );
-      });
     }
 
     let children;
@@ -168,14 +160,6 @@ class Cell extends React.Component {
 
         </div>
 
-
-
-        <p>Browse Data</p>
-        <ul>
-          { datasetItems }
-        </ul>
-
-        <Link to="/Cell/Cube" className="btn btn-lg btn-default" role="button">Cube</Link>
         { children }
     </div>
     );

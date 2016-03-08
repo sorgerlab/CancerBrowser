@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default class Cube extends React.Component {
 
@@ -39,26 +40,28 @@ export default class Cube extends React.Component {
     });
 
     return (
+      <div>
+        <Link to="/Cell/" className="btn btn-lg btn-default" role="button">List</Link>
 
-      <div className="row">
-        <div className="col-lg-1"></div>
-        <div className="col-lg-10 cbtable">
-          <table className="table table-header-rotated">
-            <thead>
-              <tr>
-                <th key='datasets' className="rotate-45"><div><span>Datasets</span></div></th>
-                { headers }
-              </tr>
-            </thead>
-            <tbody>
-              { rows }
-            </tbody>
-          </table>
+        <div className="row">
+          <div className="col-lg-1"></div>
+          <div className="col-lg-10 cbtable">
+            <table className="table table-header-rotated">
+              <thead>
+                <tr>
+                  <th key='datasets' className="rotate-45"><div><span>Datasets</span></div></th>
+                  { headers }
+                </tr>
+              </thead>
+              <tbody>
+                { rows }
+              </tbody>
+            </table>
+          </div>
+          <div className="col-lg-1"></div>
         </div>
-        <div className="col-lg-1"></div>
+
       </div>
-
-
     );
   }
 }
