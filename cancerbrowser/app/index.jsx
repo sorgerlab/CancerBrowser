@@ -14,6 +14,7 @@ import CancerBrowser from './CancerBrowser';
 import Home from './Home';
 import About from './About';
 import Cell from './Cell';
+import CellDetail from './CellDetail';
 import Protein from './Protein';
 import Ligand from './Ligand';
 import Molecule from './Molecule';
@@ -49,6 +50,7 @@ ReactDOM.render((
         <Route path="cell" component={Cell}>
           <IndexRoute component={List} />
           <Route path="cube" component={Cube} />
+          <Route path="detail/:cellId" component={CellDetail} />
         </Route>
         <Route path="protein" component={Protein} />
         <Route path="molecule" component={Molecule} />

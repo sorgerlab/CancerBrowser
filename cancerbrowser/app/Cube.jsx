@@ -26,7 +26,7 @@ export default class Cube extends React.Component {
       return (
         <th key={ cellId } className="rotate-45">
           <div>
-            <span>{ subtypeBadges }</span>
+            <span><Link to={`/Cell/Detail/${cellId}`}>{ subtypeBadges }</Link></span>
           </div>
         </th>
       )
