@@ -7,50 +7,46 @@ export default class Cube extends React.Component {
 
     const { datasets, resultingDatasetIds, cells, subtypes, resultingCellIds, cellsInDatasets } = this.props;
 
-    let headers = resultingCellIds.map(cellId => {
-      let cell = cells[cellId];
-
-      // TODO Ideally would use badges here, but the rotation is causing issues
-      // so just implemented as a string for now.
-      // let subtypeBadges = cell.subtypes.map(subtypeId => {
-      //   return (
-      //     <span key={ subtypeId } className="badge">{ subtypeId } </span>
-      //   );
-      // });
-      let subtypeBadges = "";
-      cell.subtypes.forEach(subtypeId => {
-        subtypeBadges = subtypeBadges + " " + subtypes[subtypeId];
-      });
-      subtypeBadges = cell.name + " " + subtypeBadges;
-
-      return (
-        <th key={ cellId } className="rotate-45">
-          <div>
-            <span><Link to={`/Cell/Detail/${cellId}`}>{ subtypeBadges }</Link></span>
-          </div>
-        </th>
-      )
-    });
-
-    let rows = resultingDatasetIds.map(datasetId => {
+    // Headers are the datasets
+    let headers = resultingDatasetIds.map(datasetId => {
       let dataset = datasets[datasetId];
 
-      let columns = resultingCellIds.map(cellId => {
+      return (
+        <th key={ datasetId } className="rotate-45">
+          <div>
+            <span><Link to={`/Dataset/${datasetId}`}>{ dataset.name }</Link></span>
+          </div>
+        </th>
+      );
+    });
+
+
+    let rows = resultingCellIds.map(cellId => {
+      let cell = cells[cellId];
+
+      let subtypeBadges = cell.subtypes.map(subtypeId => {
+        const subtypeName = subtypes[subtypeId];
+        return (
+          <span key={ subtypeId } className="badge">{ subtypeName } </span>
+        );
+      });
+
+      let columns = resultingDatasetIds.map(datasetId => {
 
         if (cellsInDatasets[datasetId] && cellsInDatasets[datasetId].indexOf(cellId) != -1) {
           return (
-            <td key={ cellId } className="success"></td>
+            <td key={ datasetId } className="success"></td>
           );
         }
 
         return (
-          <td key={ cellId }></td>
+          <td key={ datasetId }></td>
         )
       });
 
       return (
-        <tr key={ datasetId }>
-          <th scope="row">{ dataset.name }</th>
+        <tr key={ cellId }>
+          <th scope="row">{ subtypeBadges }<Link to={`/Cell/Detail/${cellId}`}>{ cell.name }</Link></th>
           { columns }
         </tr>
       );
@@ -66,7 +62,7 @@ export default class Cube extends React.Component {
             <table className="table table-header-rotated">
               <thead>
                 <tr>
-                  <th key='datasets' className="rotate-45"><div><span>Datasets</span></div></th>
+                  <th></th>
                   { headers }
                 </tr>
               </thead>

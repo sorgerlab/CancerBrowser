@@ -20,6 +20,7 @@ import Ligand from './Ligand';
 import Molecule from './Molecule';
 import Cube from './Cube';
 import List from './List';
+import DatasetDetail from './DatasetDetail';
 
 const store = createStore(
   combineReducers({
@@ -49,12 +50,13 @@ ReactDOM.render((
         <Route path="about" component={About} />
         <Route path="cell" component={Cell}>
           <IndexRoute component={List} />
-          <Route path="cube" component={Cube} />
+          <Route path="Cube" component={Cube} />
           <Route path="detail/:cellId" component={CellDetail} />
         </Route>
         <Route path="protein" component={Protein} />
         <Route path="molecule" component={Molecule} />
         <Route path="ligand" component={Ligand} />
+        <Route path="Dataset/:datasetId" component={DatasetDetail} />
       </Route>
     </Router>
   </Provider>

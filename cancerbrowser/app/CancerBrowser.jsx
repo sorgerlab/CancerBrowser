@@ -19,7 +19,7 @@ export default class CancerBrowser extends React.Component {
         {this.props.children}
 
         <footer className="footer">
-          <p>© 2015 Company, Inc.</p>
+          <p>© 2016 Sorger Lab, Harvard Medical School</p>
         </footer>
 
       </div>

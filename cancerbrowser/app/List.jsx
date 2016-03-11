@@ -12,7 +12,10 @@ export default class List extends React.Component {
       datasetItems = resultingDatasetIds.map(datasetId => {
         const dataset = datasets[datasetId];
         return (
-          <li key={ dataset.id }><a href="#"><span className="badge">{ dataset.category }</span> { dataset.name }</a></li>
+          <li key={ dataset.id }>
+            <span className="badge">{ dataset.category }</span>
+            <Link to={`/Dataset/${datasetId}`}>{ dataset.name }</Link>
+          </li>
         );
       });
     }
