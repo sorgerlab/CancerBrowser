@@ -7,12 +7,12 @@ module.exports = {
     'bundle.min': [
       'bootstrap-webpack!./bootstrap.config.js',
       'babel-polyfill',
-      './app/index.jsx'
+      './client/index.jsx'
     ],
     'bundle': [
       'bootstrap-webpack!./bootstrap.config.js',
       'babel-polyfill',
-      './app/index.jsx'
+      './client/index.jsx'
     ],
   },
   output: {
