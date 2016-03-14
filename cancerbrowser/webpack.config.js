@@ -33,7 +33,7 @@ module.exports = {
         exclude: /node_modules/,
         query: {
           plugins: ['transform-runtime'],
-          presets: ['react', 'es2015']
+          presets: ['react', 'es2015', 'stage-0']
         }
       },
       {
@@ -42,7 +42,7 @@ module.exports = {
         exclude: /node_modules/,
         query: {
           plugins: ['transform-runtime'],
-          presets: ['es2015']
+          presets: ['es2015', 'stage-0']
         }
       },
       {
