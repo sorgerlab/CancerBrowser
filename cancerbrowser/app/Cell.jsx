@@ -9,8 +9,15 @@ import {
   changeCellFilter,
   changeCellSubtypeFilter
 } from './actions';
+import { fetchNeeds } from './utils/fetchData';
 
 class Cell extends React.Component {
+
+  static needs = [
+    fetchDatasetsIfNeeded,
+    fetchCellsIfNeeded,
+    fetchCellsInDatasetsIfNeeded
+  ];
 
   constructor() {
     super();
@@ -19,10 +26,7 @@ class Cell extends React.Component {
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchDatasetsIfNeeded());
-    dispatch(fetchCellsIfNeeded());
-    dispatch(fetchCellsInDatasetsIfNeeded());
+    fetchNeeds(this.props, Cell.needs);
   }
 
   handleChangeSubtypeFilter(value) {
