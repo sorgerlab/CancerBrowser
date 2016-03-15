@@ -8,8 +8,8 @@ import {
   fetchCellsInDatasetsIfNeeded,
   changeCellFilter,
   changeCellSubtypeFilter
-} from './actions';
-import { fetchNeeds } from './utils/fetchData';
+} from '../actions';
+import { fetchNeeds } from '../utils/fetchData';
 
 class Cell extends React.Component {
 

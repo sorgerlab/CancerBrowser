@@ -4,17 +4,21 @@ import React from 'react'
 
 import { Route, IndexRoute } from 'react-router';
 
-import CancerBrowser from '../CancerBrowser';
-import Home from '../Home';
-import About from '../About';
-import Cell from '../Cell';
-import CellDetail from '../CellDetail';
-import Protein from '../Protein';
-import Ligand from '../Ligand';
-import Molecule from '../Molecule';
-import Cube from '../Cube';
-import List from '../List';
-import DatasetDetail from '../DatasetDetail';
+
+
+import {
+  CancerBrowser,
+  Home,
+  About,
+  Cell,
+  CellDetail,
+  Protein,
+  Ligand,
+  Molecule,
+  Cube,
+  List,
+  DatasetDetail
+ } from '../components';
 
 export default (
   <Route path="/" component={CancerBrowser}>
