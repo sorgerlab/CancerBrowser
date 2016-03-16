@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, IndexLink } from 'react-router';
-import '../app.css';
+import '../../client/assets/app.css';
 
 export default class CancerBrowser extends React.Component {
   render() {

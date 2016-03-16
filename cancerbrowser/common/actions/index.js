@@ -12,6 +12,11 @@ export const RECEIVE_CELLS_IN_DATASETS = 'RECEIVE_CELLS_IN_DATASETS';
 export const CHANGE_CELL_FILTER = "CHANGE_CELL_FILTER";
 export const CHANGE_CELL_SUBTYPE_FILTER = "CHANGE_CELL_SUBTYPE_FILTER";
 
+// TODO The whole of the fetching needs to move to an API module
+// TODO In that API module, define a much better way to handle this part
+// of the hard coded URL.
+const DATA_SERVER = "http://localhost:3000";
+
 // Action Creators
 function requestDatasets() {
   return {
@@ -69,12 +74,16 @@ function receiveCellsInDatasets(json) {
 }
 
 // Helpers
-function fetchDatasets() {
+export function fetchDatasets() {
   return dispatch => {
     dispatch(requestDatasets())
-    return fetch('sampledata/datasets.json')
-      .then(req => req.json())
-      .then(json => dispatch(receiveDatasets(json)))
+    return fetch(
+      DATA_SERVER + '/sampledata/datasets.json'
+    ).then(
+      req => req.json()
+    ).then(
+      json => dispatch(receiveDatasets(json))
+    );
   }
 }
 
@@ -92,9 +101,13 @@ function shouldFetchDatasets(state) {
 function fetchDatasetDetail(datasetId) {
   return dispatch => {
     dispatch(requestDatasetDetail(datasetId))
-    return fetch('sampledata/dataset-' + datasetId + '.json')
-      .then(req => req.json())
-      .then(json => dispatch(receiveDatasetDetail(datasetId, json)))
+    return fetch(
+      DATA_SERVER + '/sampledata/dataset-' + datasetId + '.json'
+    ).then(
+      req => req.json()
+    ).then(
+      json => dispatch(receiveDatasetDetail(datasetId, json))
+    );
   }
 }
 
@@ -111,10 +124,14 @@ function shouldFetchDatasetDetail(state, datasetId) {
 
 function fetchCells() {
   return dispatch => {
-    dispatch(requestCells())
-    return fetch('sampledata/cells.json')
-      .then(req => req.json())
-      .then(json => dispatch(receiveCells(json.cells, json.subtypes)))
+    dispatch(requestCells());
+    return fetch(
+      DATA_SERVER + '/sampledata/cells.json'
+    ).then(
+      req => req.json()
+    ).then(
+      json => dispatch(receiveCells(json.cells, json.subtypes))
+    );
   }
 }
 
@@ -131,10 +148,14 @@ function shouldFetchCells(state) {
 
 function fetchCellsInDatasets() {
   return dispatch => {
-    dispatch(requestCellsInDatasets())
-    return fetch('sampledata/cellsInDatasets.json')
-      .then(req => req.json())
-      .then(json => dispatch(receiveCellsInDatasets(json)))
+    dispatch(requestCellsInDatasets());
+    return fetch(
+      DATA_SERVER + '/sampledata/cellsInDatasets.json'
+    ).then(
+      req => req.json()
+    ).then(
+      json => dispatch(receiveCellsInDatasets(json))
+    );
   }
 }
 
@@ -155,6 +176,8 @@ export function fetchDatasetsIfNeeded() {
   return (dispatch, getState) => {
     if (shouldFetchDatasets(getState())) {
       return dispatch(fetchDatasets());
+    } else {
+      return Promise.resolve();
     }
   }
 }

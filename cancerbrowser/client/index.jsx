@@ -17,7 +17,7 @@ window.$REDUX_DEVTOOL = false;
 let state = undefined;
 if ( window.$REDUX_STATE ) {
 
-	// 解開 server 預先傳來的資料包，稍後會放入 store 成為 initState
+  // Assign the prerendered state
 	state = window.$REDUX_STATE;
 
 	// begin marshalling data into Immutable types
