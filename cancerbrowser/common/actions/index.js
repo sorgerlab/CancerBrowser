@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
+import api from '../api';
+
 // Actions
 export const REQUEST_DATASETS = 'REQUEST_DATASETS';
 export const RECEIVE_DATASETS = 'RECEIVE_DATASETS';
@@ -11,11 +13,6 @@ export const REQUEST_CELLS_IN_DATASETS = 'REQUEST_CELLS_IN_DATASETS';
 export const RECEIVE_CELLS_IN_DATASETS = 'RECEIVE_CELLS_IN_DATASETS';
 export const CHANGE_CELL_FILTER = "CHANGE_CELL_FILTER";
 export const CHANGE_CELL_SUBTYPE_FILTER = "CHANGE_CELL_SUBTYPE_FILTER";
-
-// TODO The whole of the fetching needs to move to an API module
-// TODO In that API module, define a much better way to handle this part
-// of the hard coded URL.
-const DATA_SERVER = "http://localhost:3000";
 
 // Action Creators
 function requestDatasets() {
@@ -76,12 +73,8 @@ function receiveCellsInDatasets(json) {
 // Helpers
 export function fetchDatasets() {
   return dispatch => {
-    dispatch(requestDatasets())
-    return fetch(
-      DATA_SERVER + '/sampledata/datasets.json'
-    ).then(
-      req => req.json()
-    ).then(
+    dispatch(requestDatasets());
+    api.getDatasets().then(
       json => dispatch(receiveDatasets(json))
     );
   }
@@ -100,12 +93,8 @@ function shouldFetchDatasets(state) {
 
 function fetchDatasetDetail(datasetId) {
   return dispatch => {
-    dispatch(requestDatasetDetail(datasetId))
-    return fetch(
-      DATA_SERVER + '/sampledata/dataset-' + datasetId + '.json'
-    ).then(
-      req => req.json()
-    ).then(
+    dispatch(requestDatasetDetail(datasetId));
+    api.getDataset().then(
       json => dispatch(receiveDatasetDetail(datasetId, json))
     );
   }
@@ -125,11 +114,7 @@ function shouldFetchDatasetDetail(state, datasetId) {
 function fetchCells() {
   return dispatch => {
     dispatch(requestCells());
-    return fetch(
-      DATA_SERVER + '/sampledata/cells.json'
-    ).then(
-      req => req.json()
-    ).then(
+    api.getCells().then(
       json => dispatch(receiveCells(json.cells, json.subtypes))
     );
   }
@@ -149,11 +134,7 @@ function shouldFetchCells(state) {
 function fetchCellsInDatasets() {
   return dispatch => {
     dispatch(requestCellsInDatasets());
-    return fetch(
-      DATA_SERVER + '/sampledata/cellsInDatasets.json'
-    ).then(
-      req => req.json()
-    ).then(
+    api.getCellsInDatasets().then(
       json => dispatch(receiveCellsInDatasets(json))
     );
   }
