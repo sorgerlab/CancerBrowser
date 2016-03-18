@@ -1,6 +1,6 @@
 {
     "dataset": {
         "id": 1,
-        "stuff": ["a", "b", "c"]
+        "description": "Something about this dataset"
     }
 }

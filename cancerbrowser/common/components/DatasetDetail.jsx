@@ -19,9 +19,9 @@ class DatasetDetail extends React.Component {
   }
 
   render() {
-    let datasetDetail = "No details";
+    let datasetDetail = "No details for this dataset";
     if (this.props.datasetDetail) {
-      datasetDetail = this.props.datasetDetail.id
+      datasetDetail = this.props.datasetDetail.description
     }
 
     return (
