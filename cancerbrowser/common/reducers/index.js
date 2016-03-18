@@ -4,7 +4,7 @@ import { routerReducer } from 'react-router-redux';
 import datasets from './datasets';
 import cells from './cells';
 import cellsInDatasets from './cellsInDatasets';
-import datasetDetail from './datasetDetail';
+import datasetDetails from './datasetDetails';
 import cellFilter from './cellFilter';
 
 export default combineReducers({
@@ -12,6 +12,6 @@ export default combineReducers({
   cells,
   cellsInDatasets,
   cellFilter,
-  datasetDetail,
+  datasetDetails,
   routing: routerReducer
 });

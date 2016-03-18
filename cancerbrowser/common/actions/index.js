@@ -81,7 +81,7 @@ export function fetchDatasets() {
 }
 
 function shouldFetchDatasets(state) {
-  const datasets = state.datasets;
+  const { datasets } = state;
 
   if (!datasets.items) {
     return true
@@ -94,20 +94,38 @@ function shouldFetchDatasets(state) {
 function fetchDatasetDetail(datasetId) {
   return dispatch => {
     dispatch(requestDatasetDetail(datasetId));
-    api.getDataset().then(
+    api.getDataset(datasetId).then(
       json => dispatch(receiveDatasetDetail(datasetId, json))
     );
   }
 }
 
 function shouldFetchDatasetDetail(state, datasetId) {
+
+  const { datasetDetails } = state;
+
+  // If there are no datasetDetails at all
+  if (!datasetDetails) {
+    return true;
+  }
+
+  // If this particular datasetDetail does not exist
+  if (!datasetDetails.hasOwnProperty(datasetId)) {
+    return true;
+  }
+
   const datasetDetail = state.datasetDetails[datasetId];
 
-  if (!datasetDetail) {
-    return true;
-  } else if (datasetDetail.isFetching) {
+  // If this datasetDetail is already fetching
+  if (datasetDetail.isFetching) {
     return false;
   }
+
+  // If the datasetDetail exists, but is not populated
+  if (!datasetDetail.item) {
+    return true;
+  }
+
   return false;
 }
 
@@ -163,7 +181,7 @@ export function fetchDatasetsIfNeeded() {
   }
 }
 
-export function fetchDatasetDetailIfNeeded(datasetId) {
+export function fetchDatasetDetailIfNeeded({ datasetId }) {
   return (dispatch, getState) => {
     if (shouldFetchDatasetDetail(getState(), datasetId)) {
       return dispatch(fetchDatasetDetail(datasetId));
