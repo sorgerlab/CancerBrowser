@@ -2,8 +2,10 @@ import fetch from 'isomorphic-fetch';
 
 // TODO Need a much better way to handle this part
 // of the hard coded URL.
+// Server + Client mode
 // const DATA_SERVER = "http://localhost:3000";
-const DATA_SERVER = "http://localhost:8080";
+// Client only mode
+const DATA_SERVER = "";
 
 // Basic get all
 function getAll(filename) {
