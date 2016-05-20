@@ -44,8 +44,8 @@ module.exports = [
           exclude: /node_modules/,
           loader: 'babel-loader',
         },
-        { test: /\.css$/,
-          loader: 'style-loader!css-loader'
+        { test: /\.(css|scss)$/,
+          loader: 'style-loader!css-loader!sass-loader'
         },
         { test: /\.png$/,
           loader: "url-loader?limit=100000"
@@ -113,8 +113,8 @@ module.exports = [
           loader: 'json-loader'
         },
         {
-          test: /\.css$/,
-          loader: ExtractTextPlugin.extract("css-loader")
+          test: /\.(css|scss)$/,
+          loader: ExtractTextPlugin.extract('style-loader', "css-loader!sass-loader")
           // loader: ExtractTextPlugin.extract("css/locals?module")
           // loader: 'css/locals?module'
         },
