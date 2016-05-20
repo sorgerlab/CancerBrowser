@@ -32,6 +32,12 @@ module.exports = [
       path: './dist',
       filename: '[name].js'
     },
+    plugins: [
+      new webpack.optimize.UglifyJsPlugin({
+        include: /\.min\.js$/,
+        minimize: true
+      })
+    ],
     module: {
       loaders: [
         {
