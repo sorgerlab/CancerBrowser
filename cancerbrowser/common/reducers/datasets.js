@@ -1,8 +1,11 @@
 import { REQUEST_DATASETS, RECEIVE_DATASETS } from '../actions';
 
-function datasets(state = {
-  isFetching: false,
-}, action) {
+const INITIAL_STATE = {
+  isFetching: false
+};
+
+
+function datasets(state = INITIAL_STATE, action) {
   switch (action.type) {
     case REQUEST_DATASETS:
       return Object.assign({}, state, {

@@ -1,8 +1,10 @@
 import { REQUEST_CELLS, RECEIVE_CELLS } from '../actions';
 
-function cells(state = {
+const INITIAL_STATE = {
   isFetching: false
-}, action) {
+};
+
+function cells(state = INITIAL_STATE, action) {
   switch (action.type) {
     case REQUEST_CELLS:
       return Object.assign({}, state, {

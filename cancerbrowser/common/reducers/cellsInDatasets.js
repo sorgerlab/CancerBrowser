@@ -1,8 +1,10 @@
 import { REQUEST_CELLS_IN_DATASETS, RECEIVE_CELLS_IN_DATASETS } from '../actions';
 
-function cellsInDatasets(state = {
+const INITIAL_STATE = {
   isFetching: false
-}, action) {
+};
+
+function cellsInDatasets(state = INITIAL_STATE, action) {
   switch (action.type) {
     case REQUEST_CELLS_IN_DATASETS:
       return Object.assign({}, state, {

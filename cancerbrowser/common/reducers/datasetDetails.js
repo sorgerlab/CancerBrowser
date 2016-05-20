@@ -1,11 +1,11 @@
 import { REQUEST_DATASET_DETAIL, RECEIVE_DATASET_DETAIL } from '../actions';
 
-// TODO Condense these into one.
-
-function datasetDetail(state = {
-  // State is datasetDetails[datasetId]
+const INITIAL_STATE = {
   isFetching: false
-}, action) {
+};
+
+// TODO Condense these into one.
+function datasetDetail(state = INITIAL_STATE, action) {
   switch (action.type) {
     case REQUEST_DATASET_DETAIL:
       return Object.assign({}, state, {
@@ -21,8 +21,7 @@ function datasetDetail(state = {
   }
 }
 
-function datasetDetails(state = {
-}, action) {
+function datasetDetails(state = {}, action) {
   // State is datasetDetails
   switch (action.type) {
     case RECEIVE_DATASET_DETAIL:
@@ -31,7 +30,7 @@ function datasetDetails(state = {
         [action.datasetId]: datasetDetail(state[action.datasetId], action)
       });
     default:
-      return state
+      return state;
   }
 }
 
