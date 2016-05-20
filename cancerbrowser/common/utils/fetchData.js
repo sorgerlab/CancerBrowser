@@ -3,8 +3,8 @@ export default function fetchComponentData(dispatch, components, params) {
   const needs = components.reduce( (prev, current) => {
 
     return Object.keys(current).reduce( (acc, key) => {
-      return current[key].hasOwnProperty('needs') ? current[key].needs.concat(acc) : acc
-    }, prev)
+      return current[key].hasOwnProperty('needs') ? current[key].needs.concat(acc) : acc;
+    }, prev);
 
   }, []);
 
@@ -13,6 +13,6 @@ export default function fetchComponentData(dispatch, components, params) {
 }
 
 export function fetchNeeds( props, needs ){
-	const { params, dispatch } = props;
-	needs.map( need => dispatch(need(params)) )
+  const { params, dispatch } = props;
+  needs.map( need => dispatch(need(params)) );
 }

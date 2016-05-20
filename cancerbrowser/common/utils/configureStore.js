@@ -1,5 +1,5 @@
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import thunkMiddleware from 'redux-thunk'
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 // import createLogger from 'redux-logger';
 import combinedReducers from '../reducers';
 
@@ -22,7 +22,7 @@ let _createStore = createStore;
 // });
 
 const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware,
+  thunkMiddleware
   // logger,
 )(_createStore);
 
