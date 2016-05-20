@@ -18,12 +18,10 @@ module.exports = [
   {
     entry: {
       'bundle.min': [
-        'bootstrap-webpack!./bootstrap-client.config.js',
         'babel-polyfill',
         './client/index.jsx'
       ],
       'bundle': [
-        'bootstrap-webpack!./bootstrap-client.config.js',
         'babel-polyfill',
         './client/index.jsx'
       ]
@@ -79,7 +77,7 @@ module.exports = [
     plugins: [
       new ExtractTextPlugin("styles.css")
     ],
-    entry: ['bootstrap-webpack!./bootstrap-server.config.js','./server/server.jsx'],
+    entry: ['./server/server.jsx'],
     target: 'node',
     node: {
       console: false,
