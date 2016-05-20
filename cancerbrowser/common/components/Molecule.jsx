@@ -1,6 +1,7 @@
 import React from 'react';
 
-export default class Molecule extends React.Component {
+
+class Molecule extends React.Component {
   render() {
     return (
       <p>Specific page</p>
@@ -8,3 +9,5 @@ export default class Molecule extends React.Component {
     );
   }
 }
+
+export default Molecule;

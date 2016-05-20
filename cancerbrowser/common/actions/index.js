@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+// import fetch from 'isomorphic-fetch';
 
 import api from '../api';
 
@@ -11,28 +11,28 @@ export const REQUEST_CELLS = 'REQUEST_CELLS';
 export const RECEIVE_CELLS = 'RECEIVE_CELLS';
 export const REQUEST_CELLS_IN_DATASETS = 'REQUEST_CELLS_IN_DATASETS';
 export const RECEIVE_CELLS_IN_DATASETS = 'RECEIVE_CELLS_IN_DATASETS';
-export const CHANGE_CELL_FILTER = "CHANGE_CELL_FILTER";
-export const CHANGE_CELL_SUBTYPE_FILTER = "CHANGE_CELL_SUBTYPE_FILTER";
+export const CHANGE_CELL_FILTER = 'CHANGE_CELL_FILTER';
+export const CHANGE_CELL_SUBTYPE_FILTER = 'CHANGE_CELL_SUBTYPE_FILTER';
 
 // Action Creators
 function requestDatasets() {
   return {
     type: REQUEST_DATASETS
-  }
+  };
 }
 
 function receiveDatasets(json) {
   return {
     type: RECEIVE_DATASETS,
     datasets: json.datasets
-  }
+  };
 }
 
 function requestDatasetDetail(datasetId) {
   return {
     type: REQUEST_DATASET_DETAIL,
     datasetId
-  }
+  };
 }
 
 function receiveDatasetDetail(datasetId, json) {
@@ -40,13 +40,13 @@ function receiveDatasetDetail(datasetId, json) {
     type: RECEIVE_DATASET_DETAIL,
     datasetId,
     datasetDetail: json.dataset
-  }
+  };
 }
 
 function requestCells() {
   return {
     type: REQUEST_CELLS
-  }
+  };
 }
 
 function receiveCells(cells, subtypes) {
@@ -54,20 +54,20 @@ function receiveCells(cells, subtypes) {
     type: RECEIVE_CELLS,
     cells: cells,
     subtypes: subtypes
-  }
+  };
 }
 
 function requestCellsInDatasets() {
   return {
     type: REQUEST_CELLS_IN_DATASETS
-  }
+  };
 }
 
 function receiveCellsInDatasets(json) {
   return {
     type: RECEIVE_CELLS_IN_DATASETS,
     cellsInDatasets: json.cellsInDatasets
-  }
+  };
 }
 
 // Helpers
@@ -77,16 +77,16 @@ export function fetchDatasets() {
     api.getDatasets().then(
       json => dispatch(receiveDatasets(json))
     );
-  }
+  };
 }
 
 function shouldFetchDatasets(state) {
   const { datasets } = state;
 
   if (!datasets.items) {
-    return true
+    return true;
   } else if (datasets.isFetching) {
-    return false
+    return false;
   }
   return false;
 }
@@ -97,7 +97,7 @@ function fetchDatasetDetail(datasetId) {
     api.getDataset(datasetId).then(
       json => dispatch(receiveDatasetDetail(datasetId, json))
     );
-  }
+  };
 }
 
 function shouldFetchDatasetDetail(state, datasetId) {
@@ -135,16 +135,16 @@ function fetchCells() {
     api.getCells().then(
       json => dispatch(receiveCells(json.cells, json.subtypes))
     );
-  }
+  };
 }
 
 function shouldFetchCells(state) {
   const cells = state.cells;
 
   if (!cells.items) {
-    return true
+    return true;
   } else if (cells.isFetching) {
-    return false
+    return false;
   }
   return false;
 }
@@ -155,16 +155,16 @@ function fetchCellsInDatasets() {
     api.getCellsInDatasets().then(
       json => dispatch(receiveCellsInDatasets(json))
     );
-  }
+  };
 }
 
 function shouldFetchCellsInDatasets(state) {
   const cellsInDatasets = state.cellsInDatasets;
 
   if (!cellsInDatasets.items) {
-    return true
+    return true;
   } else if (cellsInDatasets.isFetching) {
-    return false
+    return false;
   }
   return false;
 }
@@ -178,7 +178,7 @@ export function fetchDatasetsIfNeeded() {
     } else {
       return Promise.resolve();
     }
-  }
+  };
 }
 
 export function fetchDatasetDetailIfNeeded({ datasetId }) {
@@ -186,7 +186,7 @@ export function fetchDatasetDetailIfNeeded({ datasetId }) {
     if (shouldFetchDatasetDetail(getState(), datasetId)) {
       return dispatch(fetchDatasetDetail(datasetId));
     }
-  }
+  };
 }
 
 export function fetchCellsIfNeeded() {
@@ -194,7 +194,7 @@ export function fetchCellsIfNeeded() {
     if (shouldFetchCells(getState())) {
       return dispatch(fetchCells());
     }
-  }
+  };
 }
 
 export function fetchCellsInDatasetsIfNeeded() {
@@ -202,19 +202,19 @@ export function fetchCellsInDatasetsIfNeeded() {
     if (shouldFetchCellsInDatasets(getState())) {
       return dispatch(fetchCellsInDatasets());
     }
-  }
+  };
 }
 
 export function changeCellSubtypeFilter(subtype) {
   return {
     type: CHANGE_CELL_SUBTYPE_FILTER,
     subtype: subtype
-  }
+  };
 }
 
 export function changeCellFilter(cell) {
   return {
     type: CHANGE_CELL_FILTER,
     cell: cell
-  }
+  };
 }

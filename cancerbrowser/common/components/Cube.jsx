@@ -1,7 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default class Cube extends React.Component {
+
+const propTypes = {
+  datasets: React.PropTypes.object,
+  resultingDatasetIds: React.PropTypes.array,
+  cells: React.PropTypes.object,
+  subtypes: React.PropTypes.object,
+  resultingCellIds: React.PropTypes.array,
+  cellsInDatasets: React.PropTypes.object
+};
+
+class Cube extends React.Component {
 
   render() {
 
@@ -41,7 +51,7 @@ export default class Cube extends React.Component {
 
         return (
           <td key={ datasetId }></td>
-        )
+        );
       });
 
       return (
@@ -78,3 +88,7 @@ export default class Cube extends React.Component {
     );
   }
 }
+
+Cube.propTypes = propTypes;
+
+export default Cube;

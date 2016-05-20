@@ -2,7 +2,16 @@ import React from 'react';
 import { Link, IndexLink } from 'react-router';
 import '../../client/assets/app.css';
 
-export default class CancerBrowser extends React.Component {
+const propTypes = {
+  children: React.PropTypes.object
+};
+
+
+class CancerBrowser extends React.Component {
+  /**
+  * Render out JSX for CancerBrowser.
+  * @return {ReactElement} JSX markup.
+  */
   render() {
     return (
       <div className="container">
@@ -26,5 +35,10 @@ export default class CancerBrowser extends React.Component {
     );
   }
 }
+
+CancerBrowser.propTypes = propTypes;
+
+export default CancerBrowser;
+
 
 // select db_reagent.facility_id, db_reagent.lincs_id, name FROM db_reagent JOIN db_reagentbatch ON db_reagent.id=db_reagentbatch.reagent_id JOIN db_dataset_cells ON db_reagentbatch.id=db_dataset_cells.cellbatch_id JOIN db_dataset ON db_dataset.id=db_dataset_cells.dataset_id WHERE db_dataset.facility_id='20137';

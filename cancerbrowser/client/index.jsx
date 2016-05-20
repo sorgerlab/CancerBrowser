@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
-import { Router, browserHistory, hashHistory } from 'react-router';
+import { Router, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 // import Immutable from 'immutable';
@@ -18,20 +18,20 @@ let state = undefined;
 if ( window.$REDUX_STATE ) {
 
   // Assign the prerendered state
-	state = window.$REDUX_STATE;
+  state = window.$REDUX_STATE;
 
-	// begin marshalling data into Immutable types
-	// state.products = new ProductState( {
-	// 	$fetched: document.location.pathname == '/',
-	// 	productsById: convertMapToImmutable( state.products.productsById, ProductRecord ),
-	// 	total: state.products.total,
-	// } );
+  // begin marshalling data into Immutable types
+  // state.products = new ProductState( {
+  //   $fetched: document.location.pathname == '/',
+  //   productsById: convertMapToImmutable( state.products.productsById, ProductRecord ),
+  //   total: state.products.total,
+  // } );
   //
-	// state.carts = new CartState( {
-	// 	cartsById: Immutable.List.of( ...state.carts.cartsById ),
-	// } );
+  // state.carts = new CartState( {
+  //   cartsById: Immutable.List.of( ...state.carts.cartsById ),
+  // } );
 
-	// console.log( 'server-rendering state restored: ', state );
+  // console.log( 'server-rendering state restored: ', state );
 }
 
 // TODO configureStore
@@ -50,4 +50,4 @@ ReactDOM.render(
     </Provider>
   ),
   document.getElementById('cancerBrowser')
-)
+);
