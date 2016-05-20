@@ -1,8 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default class CellDetail extends React.Component {
+const propTypes = {
+  cells: React.PropTypes.object,
+  routeParams: React.PropTypes.object
+};
 
+class CellDetail extends React.Component {
+
+  /**
+  * Render out JSX for CellDetail.
+  * @return {ReactElement} JSX markup.
+  */
   render() {
     const { cells, routeParams } = this.props;
     const cellId = routeParams.cellId;
@@ -34,3 +43,7 @@ export default class CellDetail extends React.Component {
     );
   }
 }
+
+CellDetail.propTypes = propTypes;
+
+export default CellDetail;

@@ -5,7 +5,7 @@ import fetch from 'isomorphic-fetch';
 // Server + Client mode
 // const DATA_SERVER = "http://localhost:3000/";
 // Client only mode
-const DATA_SERVER = "";
+const DATA_SERVER = '';
 
 // Basic get all
 function getAll(filename) {
@@ -15,7 +15,7 @@ function getAll(filename) {
     ).then(
       res => res.json()
     );
-  }
+  };
 }
 
 // Basic get specific
@@ -26,7 +26,7 @@ function getSpecific(filename) {
     ).then(
       res => res.json()
     );
-  }
+  };
 }
 
 export default {
@@ -34,4 +34,4 @@ export default {
   getDatasets: getAll('datasets'),
   getCellsInDatasets: getAll('cellsInDatasets'),
   getDataset: getSpecific('dataset')
-}
+};

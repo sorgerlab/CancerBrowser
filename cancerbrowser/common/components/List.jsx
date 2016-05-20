@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default class List extends React.Component {
+const propTypes = {
+  datasets: React.PropTypes.object,
+  resultingDatasetIds: React.PropTypes.array
+};
+
+class List extends React.Component {
 
   render() {
 
@@ -32,3 +37,7 @@ export default class List extends React.Component {
     );
   }
 }
+
+List.propTypes = propTypes;
+
+export default List;

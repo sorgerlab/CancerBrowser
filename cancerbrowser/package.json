@@ -4,7 +4,7 @@
   "description": "HMS Lincs Cancer Browser",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --progress --colors --inline --content-base dist/ --history-api-fallback"
   },
   "author": "Douglas P.W. Russell",
   "license": "MIT",
