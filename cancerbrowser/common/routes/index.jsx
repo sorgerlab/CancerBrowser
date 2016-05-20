@@ -1,35 +1,30 @@
 // TODO I am unsure why import of React is required here as it is not used
 // directly
-import React from 'react'
+import React from 'react';
 
 import { Route, IndexRoute } from 'react-router';
 
-import {
-  CancerBrowser,
-  Home,
-  About,
-  Cell,
-  CellDetail,
-  Protein,
-  Ligand,
-  Molecule,
-  Cube,
-  List,
-  DatasetDetail
- } from '../components';
+import App from '../containers/App';
+import CellLineBrowserPage from '../containers/CellLineBrowserPage';
+import CubeBrowserPage from '../containers/CubeBrowserPage';
+import DatasetDetailPage from '../containers/DatasetDetailPage';
+
+import Home from '../components/Home';
+import About from '../components/About';
+import CellLineDetail from '../components/CellLineDetail';
+import List from '../components/List';
+
+
 
 export default (
-  <Route path="/" component={CancerBrowser}>
+  <Route path="/" component={App}>
     <IndexRoute component={Home} />
     <Route path="about" component={About} />
-    <Route path="cell" component={Cell}>
+    <Route path="cell" component={CellLineBrowserPage}>
       <IndexRoute component={List} />
-      <Route path="Cube" component={Cube} />
-      <Route path="detail/:cellId" component={CellDetail} />
+      <Route path="Cube" component={CubeBrowserPage} />
+      <Route path="detail/:cellId" component={CellLineDetail} />
     </Route>
-    <Route path="protein" component={Protein} />
-    <Route path="molecule" component={Molecule} />
-    <Route path="ligand" component={Ligand} />
-    <Route path="Dataset/:datasetId" component={DatasetDetail} />
+    <Route path="Dataset/:datasetId" component={DatasetDetailPage} />
   </Route>
 );

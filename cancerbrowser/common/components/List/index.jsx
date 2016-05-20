@@ -28,7 +28,7 @@ class List extends React.Component {
 
     return (
       <div>
-        <Link to="/Cell/Cube" className="btn btn-lg btn-default" role="button">Cube</Link>
+        <Link to="/cell/Cube" className="btn btn-lg btn-default" role="button">Cube</Link>
 
         <ul>
           { datasetItems }
