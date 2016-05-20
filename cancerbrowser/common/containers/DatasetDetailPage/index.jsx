@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import { fetchDatasetDetailIfNeeded } from '../actions';
-import { fetchNeeds } from '../utils/fetchData';
+import { fetchDatasetDetailIfNeeded } from '../../actions';
+import { fetchNeeds } from '../../utils/fetchData';
 
-import * as actionCreators from '../actions';
+import * as actionCreators from '../../actions';
 import { bindActionCreators } from 'redux';
 
 class DatasetDetail extends React.Component {

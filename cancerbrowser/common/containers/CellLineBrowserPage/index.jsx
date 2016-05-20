@@ -8,10 +8,10 @@ import {
   fetchCellsInDatasetsIfNeeded,
   changeCellFilter,
   changeCellSubtypeFilter
-} from '../actions';
-import { fetchNeeds } from '../utils/fetchData';
+} from '../../actions';
+import { fetchNeeds } from '../../utils/fetchData';
 
-class Cell extends React.Component {
+class CellLineBrowserPage extends React.Component {
 
   static needs = [
     fetchDatasetsIfNeeded,
@@ -26,7 +26,7 @@ class Cell extends React.Component {
   }
 
   componentDidMount() {
-    fetchNeeds(this.props, Cell.needs);
+    fetchNeeds(this.props, CellLineBrowserPage.needs);
   }
 
   handleChangeSubtypeFilter(value) {
@@ -207,4 +207,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Cell)
+export default connect(mapStateToProps)(CellLineBrowserPage)
