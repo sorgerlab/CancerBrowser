@@ -5,7 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "start": "webpack-dev-server --progress --colors --inline --content-base dist/ --history-api-fallback --hot",
-    "build": "webpack --config webpack.config.build.js"
+    "build": "webpack --config webpack.config.build.js",
+    "lint": "eslint client common; true"
   },
   "author": "Douglas P.W. Russell",
   "license": "MIT",
