@@ -41,8 +41,16 @@ const propTypes = {
 };
 
 class FilterPanel extends React.Component {
+  handleFilterChange(filter, values) {
+    console.log('got filter change', filter, values);
+  }
+
   renderMultiSelectFilter(filter, values) {
-    return <MultiSelectList items={filter.values} values={values && values.values} />;
+    return (
+      <MultiSelectList items={filter.values}
+        values={values && values.values}
+        onChange={this.handleFilterChange.bind(this, filter)} />
+    );
   }
 
   renderSelectFilter(filter, values) {

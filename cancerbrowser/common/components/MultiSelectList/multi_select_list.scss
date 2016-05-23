@@ -1,5 +1,21 @@
+@import "../../assets/variables";
+
 .MultiSelectList {
   li {
     margin-bottom: 4px;
+    cursor: pointer;
+
+    &:hover {
+      color: $brand-primary;
+      font-weight: 400;
+    }
+
+    &.active {
+      background-color: $brand-primary;
+      color: #fff;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
   }
 }
