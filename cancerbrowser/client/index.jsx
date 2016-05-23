@@ -11,6 +11,8 @@ import configureStore from '../common/utils/configureStore';
 // import { ProductState, ProductRecord, CartState, convertMapToImmutable } from '../common/constants/Types';
 import routes from '../common/routes';
 
+import './assets/base.scss';
+
 // Enable/Disable Redux Devtools
 window.$REDUX_DEVTOOL = false;
 

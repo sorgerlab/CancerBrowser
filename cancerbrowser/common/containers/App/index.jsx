@@ -1,6 +1,5 @@
 
 import React from 'react';
-import '../../../client/assets/app.css';
 
 import TopNav from '../../components/TopNav';
 
