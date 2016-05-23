@@ -25,7 +25,7 @@ class App extends React.Component {
           {this.props.children}
         </div>
 
-        <footer className="footer">
+        <footer className="main-footer">
           <p>© 2016 Sorger Lab, Harvard Medical School</p>
         </footer>
 

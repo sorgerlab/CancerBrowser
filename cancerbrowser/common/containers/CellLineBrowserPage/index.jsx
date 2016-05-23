@@ -138,34 +138,39 @@ class CellLineBrowserPage extends React.Component {
     }
 
     return (
-      <div>
-        <h1>Cell</h1>
-
-        <div className="row">
-
-          <div className="col-md-4">
-            <Select
-                name="subtype_filter"
-                placeholder="Subtypes..."
-                options={ subtypeOptions }
-                value={ subtypeFilter }
-                onChange={ this.handleChangeSubtypeFilter }
-            />
-          </div>
-
-          <div className="col-md-4">
-            <Select
-                name="cell_filter"
-                placeholder="Cells..."
-                options={ cellOptions }
-                value={ cellFilter}
-                onChange={ this.handleChangeCellFilter }
-            />
-          </div>
-
+      <div className='page-with-sidebar page cell-line-browser-page'>
+        <div className='page-sidebar'>
+          <div>FilterGroups will be here</div>
         </div>
+        <div className='page-main'>
+          <h1>Cell</h1>
 
-        { children }
+          <div className="row">
+
+            <div className="col-md-4">
+              <Select
+                  name="subtype_filter"
+                  placeholder="Subtypes..."
+                  options={ subtypeOptions }
+                  value={ subtypeFilter }
+                  onChange={ this.handleChangeSubtypeFilter }
+              />
+            </div>
+
+            <div className="col-md-4">
+              <Select
+                  name="cell_filter"
+                  placeholder="Cells..."
+                  options={ cellOptions }
+                  value={ cellFilter}
+                  onChange={ this.handleChangeCellFilter }
+              />
+            </div>
+
+          </div>
+
+          { children }
+        </div>
     </div>
     );
   }

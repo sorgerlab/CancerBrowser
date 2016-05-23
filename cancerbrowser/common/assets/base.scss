@@ -4,3 +4,41 @@
 
 
 // Generic site-wide css here
+$page-sidebar-width: 250px;
+
+body {
+  font-weight: 300;
+}
+
+.page {
+  margin: 0 (-$grid-gutter-width/2);
+  min-height: 500px;
+}
+
+.page-with-sidebar {
+  position: relative;
+  padding-left: $page-sidebar-width;
+
+  .page-sidebar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: $page-sidebar-width;
+    background: #f6f6f6;
+    padding: 10px;
+  }
+
+  .page-main {
+    background: #fff;
+    padding: ($grid-gutter-width/2);
+    position: relative;
+  }
+}
+
+.main-footer {
+  border-top: 1px solid #e8e8e8;
+  text-align: center;
+  color: #ccc;
+  padding: 15px;
+}
