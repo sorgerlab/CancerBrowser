@@ -18,6 +18,7 @@ module.exports = [
   // Client build
   {
     plugins: [
+      // Note: the HtmlPlugin automatically adds the needed css and js to the html file
       new HtmlPlugin({
         template: './common/index.html',
         filename: 'index.html'
