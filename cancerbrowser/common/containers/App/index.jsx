@@ -16,16 +16,16 @@ class App extends React.Component {
   */
   render() {
     return (
-      <div className="container">
-        <div id='nav'>
+      <div className="container-fluid">
+        <div className='top-nav'>
           <TopNav />
         </div>
 
-        <div id='page-content'>
+        <div className='content'>
           {this.props.children}
         </div>
 
-        <footer className="footer">
+        <footer className="main-footer">
           <p>© 2016 Sorger Lab, Harvard Medical School</p>
         </footer>
 

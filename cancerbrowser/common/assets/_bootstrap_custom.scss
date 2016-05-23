@@ -5,7 +5,7 @@
  */
 
 // Core variables and mixins
-@import "./_bootstrap_variables";
+// @import "./_bootstrap_variables"; // included by generic variables file elsewhere
 @import "bootstrap3/stylesheets/bootstrap/mixins";
 
 // Reset and dependencies
@@ -28,8 +28,8 @@
 // @import "bootstrap3/stylesheets/bootstrap/dropdowns";
 // @import "bootstrap3/stylesheets/bootstrap/button-groups";
 // @import "bootstrap3/stylesheets/bootstrap/input-groups";
-// @import "bootstrap3/stylesheets/bootstrap/navs";
-// @import "bootstrap3/stylesheets/bootstrap/navbar";
+@import "bootstrap3/stylesheets/bootstrap/navs";
+@import "bootstrap3/stylesheets/bootstrap/navbar";
 // @import "bootstrap3/stylesheets/bootstrap/breadcrumbs";
 // @import "bootstrap3/stylesheets/bootstrap/pagination";
 // @import "bootstrap3/stylesheets/bootstrap/pager";

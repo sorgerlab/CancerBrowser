@@ -1,12 +1,12 @@
-
 import React from 'react';
 import NavLink from './NavLink';
 import { IndexLink } from 'react-router';
 
-// import './topnav.scss';
-
 const propTypes = {
 };
+
+import logoImage from '../../assets/img/hms_lincs_logo.png';
+import './top_nav.scss';
 
 /**
  * Top bar navigation component. Includes links to navigate around site.
@@ -19,15 +19,18 @@ class TopNav extends React.Component {
   render() {
     return (
       <div className="header clearfix">
+        <IndexLink className='navbar-brand' to='/'>
+          <img className='logo' src={logoImage} />
+          <span className='site-title'>HMS Cancer Browser</span>
+        </IndexLink>
         <nav>
           <ul className="nav nav-pills pull-right">
-            <li role="presentation" className="active"><IndexLink to="/">Home</IndexLink></li>
+            <li role="presentation"><IndexLink to="/">Home</IndexLink></li>
             <li role="presentation"><NavLink to="/cell_lines">Cell Lines</NavLink></li>
             <li role="presentation"><NavLink to="/drugs">Drugs</NavLink></li>
             <li role="presentation"><NavLink to="/about">About</NavLink></li>
           </ul>
         </nav>
-        <IndexLink to="/"><h3 className="text-muted">HMS LINCS Cancer Browser</h3></IndexLink>
       </div>
     );
   }
