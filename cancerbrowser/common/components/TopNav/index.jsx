@@ -24,11 +24,10 @@ class TopNav extends React.Component {
           <span className='site-title'>HMS Cancer Browser</span>
         </IndexLink>
         <nav>
-          <ul className="nav nav-pills pull-right">
-            <li role="presentation"><IndexLink to="/">Home</IndexLink></li>
+          <ul className="nav-links list-inline">
             <li role="presentation"><NavLink to="/cell_lines">Cell Lines</NavLink></li>
             <li role="presentation"><NavLink to="/drugs">Drugs</NavLink></li>
-            <li role="presentation"><NavLink to="/about">About</NavLink></li>
+            <li role="presentation"><NavLink to="/datasets">Datasets</NavLink></li>
           </ul>
         </nav>
       </div>
