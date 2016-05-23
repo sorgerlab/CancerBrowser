@@ -1,4 +1,5 @@
 import React from 'react';
+import MultiSelectList from '../MultiSelectList';
 
 import './filter_panel.scss';
 
@@ -41,7 +42,7 @@ const propTypes = {
 
 class FilterPanel extends React.Component {
   renderMultiSelectFilter(filter, values) {
-    return <div>MultiSelect: {JSON.stringify(values)}</div>;
+    return <MultiSelectList items={filter.values} values={values && values.values} />;
   }
 
   renderSelectFilter(filter, values) {
