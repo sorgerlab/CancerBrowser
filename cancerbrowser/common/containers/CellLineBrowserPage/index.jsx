@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import FilterPanel from '../../components/FilterPanel';
 
 import {
   fetchDatasetsIfNeeded,
@@ -59,6 +59,89 @@ function mapStateToProps(state) {
   };
 }
 
+// temporarily put these here to test until the api is set up to get them.
+const cellLineFilters = [
+  {
+    id: 'collection',
+    label: 'Collection',
+    type: 'multi-select',
+    values: [
+      { value: 'big6', label: 'Big 6', cellLines: [1,2,3,4,5,6] },
+      { value: 'icbp43', label: 'ICBP43', cellLines: [1,2,3,4,5,6,7,8,9,10] }
+    ]
+  }, {
+    id: 'receptorStatus',
+    label: 'Receptor Status',
+    type: 'multi-select',
+    values: [
+      { value: 'nm', label: 'NM', cellLines: [1,2,3,4,5,6] },
+      { value: 'her2amp', label: 'HER2amp', cellLines: [1,2,3,4,5,6] },
+      { value: 'tnbc', label: 'TNBC', cellLines: [1,2,3,4,5,6] },
+      { value: 'hrplus', label: 'HR+', cellLines: [1,2,3,4,5,6] }
+    ]
+  }, {
+    id: 'molecularSubtype',
+    label: 'Molecular Subtype',
+    type: 'multi-select',
+    values: [
+      { value: 'basal', label: 'Basal', cellLines: [1,2,3,4,5,6] },
+      { value: 'basalA', label: 'Basal A', cellLines: [1,2,3,4,5,6] },
+      { value: 'basalB', label: 'Basal B', cellLines: [1,2,3,4,5,6] },
+      { value: 'luminal', label: 'Luminal', cellLines: [1,2,3,4,5,6] },
+      { value: 'claudin', label: 'Low Claudin Status', cellLines: [1,2,3,4,5,6] }
+    ]
+  }, {
+    id: 'mutation',
+    label: 'Mutation Status',
+    type: 'multi-select',
+    values: [
+      { value: 'brca1wt', label: 'BRCA1 WT', cellLines: [1,2,3,4,5,6] },
+      { value: 'brca1mut', label: 'BRCA1 MUT', cellLines: [1,2,3,4,5,6] },
+      { value: 'brca2wt', label: 'BRCA2 WT', cellLines: [1,2,3,4,5,6] },
+      { value: 'brca2mut', label: 'BRCA2 MUT', cellLines: [1,2,3,4,5,6] },
+      { value: 'cdh1wt', label: 'CDH1 WT', cellLines: [1,2,3,4,5,6] },
+      { value: 'cdh1mut', label: 'CDH1 MUT', cellLines: [1,2,3,4,5,6] },
+      { value: 'map3k1wt', label: 'MAP3K1 WT', cellLines: [1,2,3,4,5,6] },
+      { value: 'map3k1mut', label: 'MAP3K1 MUT', cellLines: [1,2,3,4,5,6] },
+      { value: 'mll3wt', label: 'MLL3 WT', cellLines: [1,2,3,4,5,6] },
+      { value: 'mll3mut', label: 'MLL3 MUT', cellLines: [1,2,3,4,5,6] },
+      { value: 'pik3cawt', label: 'PIK3CA WT', cellLines: [1,2,3,4,5,6] },
+      { value: 'pik3camut', label: 'PIK3CA MUT', cellLines: [1,2,3,4,5,6] },
+      { value: 'ptenwt', label: 'PTEN WT', cellLines: [1,2,3,4,5,6] },
+      { value: 'ptenmut', label: 'PTEN MUT', cellLines: [1,2,3,4,5,6] },
+      { value: 'tp53wt', label: 'TP53 WT', cellLines: [1,2,3,4,5,6] },
+      { value: 'tp53mut', label: 'TP53 MUT', cellLines: [1,2,3,4,5,6] },
+      { value: 'gata3wt', label: 'GATA3 WT', cellLines: [1,2,3,4,5,6] },
+      { value: 'gata3mut', label: 'GATA3 MUT', cellLines: [1,2,3,4,5,6] },
+      { value: 'map2k4wt', label: 'MAP2K4 WT', cellLines: [1,2,3,4,5,6] },
+      { value: 'map2k4mut', label: 'MAP2K4 MUT', cellLines: [1,2,3,4,5,6] }
+    ]
+  }, {
+    id: 'malignancy',
+    label: 'Malignancy Status',
+    type: 'multi-select',
+    values: [
+      { value: 'malignant', label: 'Malignant', cellLines: [1,2,3,4,5,6] },
+      { value: 'nonmalignant', label: 'Non-malignant', cellLines: [1,2,3,4,5,6] }
+    ]
+  }, {
+    id: 'dataset',
+    label: 'Dataset',
+    type: 'multi-select',
+    values: [
+      { value: 'dataset1', label: 'Basal Receptor (RTK) Profile', cellLines: [1,2,3,4,5,6] },
+      { value: 'dataset2', label: 'Growth Factor-Induced pAKT/pERK Response', cellLines: [1,2,3,4,5,6] },
+      { value: 'dataset3', label: 'Basal Total Protein Mass Spectrometry', cellLines: [1,2,3,4,5,6] },
+      { value: 'dataset4', label: 'Basal Phosphoprotein Mass Spectrometry', cellLines: [1,2,3,4,5,6] },
+      { value: 'dataset5', label: 'Drug Dose-Response Growth Rate Profiling', cellLines: [1,2,3,4,5,6] }
+    ]
+  }
+];
+
+export default cellLineFilters;
+
+
+
 class CellLineBrowserPage extends React.Component {
 
   constructor() {
@@ -90,6 +173,25 @@ class CellLineBrowserPage extends React.Component {
     } else {
       dispatch(changeCellFilter(undefined));
     }
+  }
+
+  renderSidebar() {
+    const filterGroups = [{
+      id: 'cellLineFilters',
+      label: 'Cell Line Filters',
+      filters: cellLineFilters
+    }];
+
+    const activeFilters = [{
+      id: 'cellLineFilters',
+      values: [
+        { id: 'collection', values: ['big6'] }
+      ]
+    }];
+
+    return (
+      <FilterPanel filterGroups={filterGroups} values={activeFilters} />
+    );
   }
 
   render() {
@@ -185,34 +287,10 @@ class CellLineBrowserPage extends React.Component {
     return (
       <div className='page-with-sidebar page cell-line-browser-page'>
         <div className='page-sidebar'>
-          <div>FilterGroups will be here</div>
+          {this.renderSidebar()}
         </div>
         <div className='page-main'>
           <h1>Cell</h1>
-
-          <div className="row">
-
-            <div className="col-md-4">
-              <Select
-                  name="subtype_filter"
-                  placeholder="Subtypes..."
-                  options={ subtypeOptions }
-                  value={ subtypeFilter }
-                  onChange={ this.handleChangeSubtypeFilter }
-              />
-            </div>
-
-            <div className="col-md-4">
-              <Select
-                  name="cell_filter"
-                  placeholder="Cells..."
-                  options={ cellOptions }
-                  value={ cellFilter}
-                  onChange={ this.handleChangeCellFilter }
-              />
-            </div>
-          </div>
-
           { children }
         </div>
     </div>
