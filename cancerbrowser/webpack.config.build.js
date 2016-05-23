@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var path = require('path');
 var fs = require('fs');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlPlugin = require('html-webpack-plugin');
 
 var nodeModules = {};
 fs.readdirSync('node_modules')
@@ -16,12 +17,15 @@ fs.readdirSync('node_modules')
 module.exports = [
   // Client build
   {
+    plugins: [
+      // Note: the HtmlPlugin automatically adds the needed css and js to the html file
+      new HtmlPlugin({
+        template: './common/index.html',
+        filename: 'index.html'
+      })
+    ],
     entry: {
       'bundle.min': [
-        'babel-polyfill',
-        './client/index.jsx'
-      ],
-      'bundle': [
         'babel-polyfill',
         './client/index.jsx'
       ]
