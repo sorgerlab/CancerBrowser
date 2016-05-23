@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import 'react-select/dist/react-select.css';
 import FilterPanel from '../../components/FilterPanel';
+import PageLayout from '../../components/PageLayout';
 
 import {
   fetchDatasetsIfNeeded,
@@ -138,12 +139,7 @@ const cellLineFilters = [
   }
 ];
 
-export default cellLineFilters;
-
-
-
 class CellLineBrowserPage extends React.Component {
-
   constructor() {
     super();
     this.handleChangeSubtypeFilter = this.handleChangeSubtypeFilter.bind(this);
@@ -285,15 +281,10 @@ class CellLineBrowserPage extends React.Component {
     }
 
     return (
-      <div className='page-with-sidebar page cell-line-browser-page'>
-        <div className='page-sidebar'>
-          {this.renderSidebar()}
-        </div>
-        <div className='page-main'>
-          <h1>Cell</h1>
-          { children }
-        </div>
-    </div>
+      <PageLayout className="page-with-sidebar page CellLineBrowserPage" sidebar={this.renderSidebar()}>
+        <h1>Cell</h1>
+        {children}
+      </PageLayout>
     );
   }
 }

@@ -17,19 +17,28 @@ body {
 
 .page-with-sidebar {
   position: relative;
-  padding-left: $page-sidebar-width;
 
-  .page-sidebar {
+  .page-sidebar-bg {
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
     width: $page-sidebar-width;
     background: #f6f6f6;
-    padding: 10px;
+  }
+
+  .page-sidebar {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: $page-sidebar-width;
+    background: #f6f6f6;
+    padding: 10px 20px;
   }
 
   .page-main {
+    display: inline-block;
+    vertical-align: top;
     background: #fff;
     padding: ($grid-gutter-width/2);
     position: relative;
