@@ -1,0 +1,48 @@
+@import "../../assets/variables";
+
+.top-nav {
+  font-weight: 300;
+  border-bottom: 1px solid #eee;
+  margin: 0 (-$grid-gutter-width/2);
+
+  .logo {
+    height: 30px;
+    display: inline-block;
+    margin-right: 2em;
+  }
+
+  .site-title {
+    display: inline-block;
+    vertical-align: middle;
+    color: #aaa;
+    font-size: 2rem;
+  }
+
+  .navbar-brand {
+    margin-right: 3em;
+  }
+
+  .nav-links {
+    font-size: 2rem;
+    margin-bottom: 0;
+
+    a {
+      padding: 15px 20px 14px;
+      display: block;
+      border-bottom: 1px solid transparent;
+      color: #888;
+      text-decoration: none;
+
+      &.active {
+        color: $brand-primary;
+        font-weight: 400;
+      }
+
+      &:hover {
+        color: $brand-primary;
+        text-decoration: none;
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  }
+}
