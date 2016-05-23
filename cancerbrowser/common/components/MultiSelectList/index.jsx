@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import * as ImmutableUtils from '../../utils/ImmutableUtils';
 
 import './multi_select_list.scss';
 
@@ -55,9 +56,10 @@ class MultiSelectList extends React.Component {
     if (onChange) {
       let newValues;
       const valueIndex = values.indexOf(value);
+
       // remove if already there
       if (valueIndex !== -1) {
-        newValues = values.slice(0, valueIndex).concat(values.slice(valueIndex + 1));
+        newValues = ImmutableUtils.arrayRemove(values, valueIndex);
 
       // otherwise, add into the array
       } else {
