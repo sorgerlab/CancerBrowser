@@ -9,7 +9,7 @@ class Home extends React.Component {
         <h1>HMS LINCS Cancer Browser</h1>
         <p className="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
         <p>
-          <Link to="/Cell" className="btn btn-lg btn-default" role="button">Cell</Link>
+          <Link to="/cell_lines" className="btn btn-lg btn-default" role="button">Cell Lines</Link>
         </p>
 
       </div>

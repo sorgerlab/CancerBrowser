@@ -1,6 +1,6 @@
 import React from 'react';
 import NavLink from './NavLink';
-import { IndexLink, Link } from 'react-router';
+import { IndexLink } from 'react-router';
 
 const propTypes = {
 };
@@ -19,15 +19,16 @@ class TopNav extends React.Component {
   render() {
     return (
       <div className="header clearfix">
-        <Link className='navbar-brand' to='/'>
+        <IndexLink className='navbar-brand' to='/'>
           <img className='logo' src={logoImage} />
           <span className='site-title'>HMS Cancer Browser</span>
-        </Link>
+        </IndexLink>
         <nav>
-          <ul className="nav-links list-inline">
-            <li role="presentation"><NavLink to="/cell">Cell Lines</NavLink></li>
+          <ul className="nav nav-pills pull-right">
+            <li role="presentation"><IndexLink to="/">Home</IndexLink></li>
+            <li role="presentation"><NavLink to="/cell_lines">Cell Lines</NavLink></li>
             <li role="presentation"><NavLink to="/drugs">Drugs</NavLink></li>
-            <li role="presentation"><NavLink to="/datasets">Datasets</NavLink></li>
+            <li role="presentation"><NavLink to="/about">About</NavLink></li>
           </ul>
         </nav>
       </div>

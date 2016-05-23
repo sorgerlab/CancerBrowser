@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+
 import {
   fetchDatasetsIfNeeded,
   fetchCellsIfNeeded,
@@ -9,15 +10,56 @@ import {
   changeCellFilter,
   changeCellSubtypeFilter
 } from '../../actions';
-import { fetchNeeds } from '../../utils/fetchData';
+
+const propTypes = {
+  dispatch: React.PropTypes.func,
+  params: React.PropTypes.object,
+  children: React.PropTypes.object,
+  datasets: React.PropTypes.object,
+  subtypes: React.PropTypes.object,
+  cells: React.PropTypes.object,
+  cellsInDatasets: React.PropTypes.object,
+  cellFilter: React.PropTypes.string,
+  subtypeFilter: React.PropTypes.string
+};
+
+function mapStateToProps(state) {
+
+  const {
+    isFetching: isFetchingDatasets,
+    items: datasets
+  } = state.datasets;
+
+  const {
+    isFetching: isFetchingCells,
+    items: cells,
+    subtypes: subtypes
+  } = state.cells;
+
+  const {
+    isFetching: isFetchingCellsInDatasets,
+    items: cellsInDatasets
+  } = state.cellsInDatasets;
+
+  const {
+    cell: cellFilter,
+    subtype: subtypeFilter
+  } = state.cellFilter;
+
+  return {
+    datasets,
+    cells,
+    subtypes,
+    cellsInDatasets,
+    isFetchingDatasets,
+    isFetchingCells,
+    isFetchingCellsInDatasets,
+    cellFilter,
+    subtypeFilter
+  };
+}
 
 class CellLineBrowserPage extends React.Component {
-
-  static needs = [
-    fetchDatasetsIfNeeded,
-    fetchCellsIfNeeded,
-    fetchCellsInDatasetsIfNeeded
-  ];
 
   constructor() {
     super();
@@ -26,7 +68,10 @@ class CellLineBrowserPage extends React.Component {
   }
 
   componentDidMount() {
-    fetchNeeds(this.props, CellLineBrowserPage.needs);
+    const { params, dispatch } = this.props;
+    dispatch(fetchDatasetsIfNeeded(params));
+    dispatch(fetchCellsIfNeeded(params));
+    dispatch(fetchCellsInDatasetsIfNeeded(params));
   }
 
   handleChangeSubtypeFilter(value) {
@@ -48,9 +93,9 @@ class CellLineBrowserPage extends React.Component {
   }
 
   render() {
-    const { datasets, isFetchingDatasets,
-            cells, subtypes, isFetchingCells,
-            cellsInDatasets, isFetchingCellsInDatasets,
+    const { datasets,
+            cells, subtypes,
+            cellsInDatasets,
             cellFilter, subtypeFilter } = this.props;
 
     // TODO Tidy up, this is all very messy
@@ -80,7 +125,7 @@ class CellLineBrowserPage extends React.Component {
           value: subtypeId,
           label: subtype
         };
-      })
+      });
     }
 
     let cellOptions;
@@ -91,7 +136,7 @@ class CellLineBrowserPage extends React.Component {
           value: cellId,
           label: cell.name
         };
-      })
+      });
     }
 
     let resultingCellIds;
@@ -166,7 +211,6 @@ class CellLineBrowserPage extends React.Component {
                   onChange={ this.handleChangeCellFilter }
               />
             </div>
-
           </div>
 
           { children }
@@ -176,40 +220,6 @@ class CellLineBrowserPage extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+CellLineBrowserPage.propTypes = propTypes;
 
-  const {
-    isFetching: isFetchingDatasets,
-    items: datasets
-  } = state.datasets;
-
-  const {
-    isFetching: isFetchingCells,
-    items: cells,
-    subtypes: subtypes
-  } = state.cells;
-
-  const {
-    isFetching: isFetchingCellsInDatasets,
-    items: cellsInDatasets
-  } = state.cellsInDatasets;
-
-  const {
-    cell: cellFilter,
-    subtype: subtypeFilter
-  } = state.cellFilter;
-
-  return {
-    datasets,
-    cells,
-    subtypes,
-    cellsInDatasets,
-    isFetchingDatasets,
-    isFetchingCells,
-    isFetchingCellsInDatasets,
-    cellFilter,
-    subtypeFilter
-  }
-}
-
-export default connect(mapStateToProps)(CellLineBrowserPage)
+export default connect(mapStateToProps)(CellLineBrowserPage);

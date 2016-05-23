@@ -19,7 +19,7 @@ class List extends React.Component {
         return (
           <li key={ dataset.id }>
             <span className="badge">{ dataset.category }</span>
-            <Link to={`/Dataset/${datasetId}`}>{ dataset.name }</Link>
+            <Link to={`/dataset/${datasetId}`}>{ dataset.name }</Link>
           </li>
         );
       });
@@ -28,8 +28,6 @@ class List extends React.Component {
 
     return (
       <div>
-        <Link to="/cell/Cube" className="btn btn-lg btn-default" role="button">Cube</Link>
-
         <ul>
           { datasetItems }
         </ul>
