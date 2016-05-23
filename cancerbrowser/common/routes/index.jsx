@@ -1,17 +1,20 @@
-// TODO I am unsure why import of React is required here as it is not used
-// directly
 import React from 'react';
 
 import { Route, IndexRoute } from 'react-router';
 
 import App from '../containers/App';
+
 import CellLineBrowserPage from '../containers/CellLineBrowserPage';
-import CubeBrowserPage from '../containers/CubeBrowserPage';
+import CellLineDetailPage from '../containers/CellLineDetailPage';
+
+import DrugBrowserPage from '../containers/DrugBrowserPage';
+import DrugDetailPage from '../containers/DrugDetailPage';
+
 import DatasetDetailPage from '../containers/DatasetDetailPage';
 
 import Home from '../components/Home';
 import About from '../components/About';
-import CellLineDetail from '../components/CellLineDetail';
+
 import List from '../components/List';
 
 
@@ -19,12 +22,14 @@ import List from '../components/List';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
-    <Route path="about" component={About} />
-    <Route path="cell" component={CellLineBrowserPage}>
+    <Route path="cell_lines" component={CellLineBrowserPage}>
       <IndexRoute component={List} />
-      <Route path="Cube" component={CubeBrowserPage} />
-      <Route path="detail/:cellId" component={CellLineDetail} />
     </Route>
-    <Route path="Dataset/:datasetId" component={DatasetDetailPage} />
+    <Route path="/cell_line/:cellLineId" component={CellLineDetailPage} />
+    <Route path="/drugs" component={DrugBrowserPage} />
+    <Route path="/drug/:drugId" component={DrugDetailPage} />
+    <Route path="datasets" component={About} />
+    <Route path="/dataset/:datasetId" component={DatasetDetailPage} />
+    <Route path="about" component={About} />
   </Route>
 );

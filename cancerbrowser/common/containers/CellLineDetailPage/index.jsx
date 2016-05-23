@@ -6,7 +6,7 @@ const propTypes = {
   routeParams: React.PropTypes.object
 };
 
-class CellDetail extends React.Component {
+class CellDetailPage extends React.Component {
 
   /**
   * Render out JSX for CellDetail.
@@ -14,13 +14,12 @@ class CellDetail extends React.Component {
   */
   render() {
     const { cells, routeParams } = this.props;
-    const cellId = routeParams.cellId;
-    const cell = cells[cellId];
+    const cellLineId = routeParams.cellLineId;
+    const cell = cells[cellLineId];
 
     return (
       <div>
-        <Link to="/Cell/" className="btn btn-lg btn-default" role="button">List</Link>
-        <Link to="/Cell/Cube/" className="btn btn-lg btn-default" role="button">Cube</Link>
+        <Link to="/cell_line/" className="btn btn-lg btn-default" role="button">List</Link>
         <h1>{ cell.name }</h1>
         <p>General Information</p>
         <table>
@@ -44,6 +43,6 @@ class CellDetail extends React.Component {
   }
 }
 
-CellDetail.propTypes = propTypes;
+CellDetailPage.propTypes = propTypes;
 
-export default CellDetail;
+export default CellDetailPage;

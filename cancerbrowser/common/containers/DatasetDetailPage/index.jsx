@@ -1,27 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 
 import { fetchDatasetDetailIfNeeded } from '../../actions';
-import { fetchNeeds } from '../../utils/fetchData';
 
-import * as actionCreators from '../../actions';
-import { bindActionCreators } from 'redux';
+const propTypes = {
+  dispatch: React.PropTypes.func,
+  params: React.PropTypes.object,
+  datasetDetail: React.PropTypes.object
+};
 
-class DatasetDetail extends React.Component {
-
-  static needs = [
-    fetchDatasetDetailIfNeeded
-  ];
+class DatasetDetailPage extends React.Component {
 
   componentDidMount() {
-    fetchNeeds(this.props, DatasetDetail.needs);
+    this.props.dispatch(fetchDatasetDetailIfNeeded(this.props.params));
   }
 
   render() {
-    let datasetDetail = "No details for this dataset";
+    let datasetDetail = 'No details for this dataset';
     if (this.props.datasetDetail) {
-      datasetDetail = this.props.datasetDetail.description
+      datasetDetail = this.props.datasetDetail.description;
     }
 
     return (
@@ -36,18 +33,16 @@ class DatasetDetail extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log('mapStateToProps');
-  console.log(state);
   const datasetDetails = state.datasetDetails;
 
   return {
     datasetDetails
-  }
+  };
 }
 
 function mergeProps(stateProps, dispatchProps, ownProps) {
   const datasetDetails = stateProps.datasetDetails;
-  const datasetId = ownProps.routeParams.datasetId
+  const datasetId = ownProps.routeParams.datasetId;
   let item = undefined;
 
   if (datasetDetails && datasetDetails.hasOwnProperty(datasetId)) {
@@ -60,7 +55,9 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
 
   return Object.assign({}, dispatchProps, ownProps, {
     datasetDetail: item
-  })
+  });
 }
 
-export default connect(mapStateToProps, undefined, mergeProps)(DatasetDetail);
+DatasetDetailPage.propTypes = propTypes;
+
+export default connect(mapStateToProps, undefined, mergeProps)(DatasetDetailPage);
