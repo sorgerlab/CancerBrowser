@@ -13,4 +13,4 @@ function boundCallback(context, cache, callback, ...keys) {
   return cachedFunc;
 }
 
-export default boundCallback
+export default boundCallback;
