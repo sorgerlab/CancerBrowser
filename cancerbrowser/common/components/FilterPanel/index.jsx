@@ -1,6 +1,7 @@
 import React from 'react';
 import MultiSelectList from '../MultiSelectList';
-
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import boundCallback from '../../utils/boundCallback';
 import './filter_panel.scss';
 
 const propTypes = {
@@ -41,15 +42,21 @@ const propTypes = {
 };
 
 class FilterPanel extends React.Component {
-  handleFilterChange(filter, values) {
-    console.log('got filter change', filter, values);
+  constructor(props) {
+    super(props);
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    this.boundCallbacks = {};
   }
 
-  renderMultiSelectFilter(filter, values) {
+  handleFilterChange(filterIndex, groupIndex, newFilterValuesList) {
+    console.log('got filter change', filterIndex, groupIndex, newFilterValuesList);
+  }
+
+  renderMultiSelectFilter(filter, values, index, groupIndex) {
     return (
       <MultiSelectList items={filter.values}
         values={values && values.values}
-        onChange={this.handleFilterChange.bind(this, filter)} />
+        onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, index, groupIndex)} />
     );
   }
 
@@ -57,15 +64,15 @@ class FilterPanel extends React.Component {
     return <div>Select: {JSON.stringify(values)}</div>;
   }
 
-  renderFilter(filter, values, index) {
+  renderFilter(filter, values, index, groupIndex) {
     let filterElem;
 
     switch (filter.type) {
       case 'multi-select':
-        filterElem = this.renderMultiSelectFilter(filter, values);
+        filterElem = this.renderMultiSelectFilter(filter, values, index, groupIndex);
         break;
       case 'select':
-        filterElem = this.renderSelectFilter(filter, values);
+        filterElem = this.renderSelectFilter(filter, values, index, groupIndex);
         break;
     }
 
@@ -97,7 +104,7 @@ class FilterPanel extends React.Component {
               filterValues = filterGroupValues.values.find(filterValues => filterValues.id === filter.id);
             }
 
-            return this.renderFilter(filter, filterValues, i);
+            return this.renderFilter(filter, filterValues, i, index);
           })}
         </div>
       </div>
