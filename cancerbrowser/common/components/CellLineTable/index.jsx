@@ -3,15 +3,11 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Table, Column, Cell, ColumnGroup } from 'fixed-data-table';
 import SortableTableHeaderCell from '../SortableTableHeaderCell';
 
-import cellLines from '../../api/data/cell_lines.json';
-
-const mutationGenes = ['BRCA1', 'BRCA2', 'CDH1', 'MAP3K1', 'MLL3', 'PIK3CA', 'PTEN', 'TP53', 'GATA3', 'MAP2K4'];
-
-console.log('cell lines are', cellLines);
-
 const propTypes = {
+  data: React.PropTypes.array
 };
 
+const mutationGenes = ['BRCA1', 'BRCA2', 'CDH1', 'MAP3K1', 'MLL3', 'PIK3CA', 'PTEN', 'TP53', 'GATA3', 'MAP2K4'];
 
 /** A way to render options in react-select that includes a bar and count */
 class CellLineTable extends React.Component {
@@ -111,7 +107,7 @@ class CellLineTable extends React.Component {
   }
 
   render() {
-    const data = cellLines;
+    const { data } = this.props;
 
     return (
       <Table
@@ -120,7 +116,7 @@ class CellLineTable extends React.Component {
         rowHeight={40}
         headerHeight={40}
         groupHeaderHeight={40}
-        width={1600}
+        width={1200}
         height={1000}>
         {this.summaryViewColumns(data)}
 

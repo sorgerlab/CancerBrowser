@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import 'react-select/dist/react-select.css';
 import FilterPanel from '../../components/FilterPanel';
 import PageLayout from '../../components/PageLayout';
+import CellLineTable from '../../components/CellLineTable';
 
 import {
   fetchCellLinesIfNeeded
@@ -158,11 +159,9 @@ class CellLineBrowserPage extends React.Component {
 
   // TODO: replace with real table
   renderTable() {
-
+    const { filteredCellLines } = this.props;
     return (
-      <div>
-        {this.props.filteredCellLines.map((d) => <div>{d.CellLine}</div>)}
-      </div>
+      <CellLineTable data={filteredCellLines} />
     );
 
   }
