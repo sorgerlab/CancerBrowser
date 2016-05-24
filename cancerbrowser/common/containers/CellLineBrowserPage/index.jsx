@@ -135,7 +135,12 @@ const cellLineFilters = [
       { value: 'dataset3', label: 'Basal Total Protein Mass Spectrometry', cellLines: [1,2,3,4,5,6] },
       { value: 'dataset4', label: 'Basal Phosphoprotein Mass Spectrometry', cellLines: [1,2,3,4,5,6] },
       { value: 'dataset5', label: 'Drug Dose-Response Growth Rate Profiling', cellLines: [1,2,3,4,5,6] }
-    ]
+    ],
+    options: {
+      props: {
+        autocompleteThreshold: 0
+      }
+    }
   }
 ];
 

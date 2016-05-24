@@ -131,14 +131,21 @@ class FilterPanel extends React.Component {
   }
 
   renderMultiSelectFilter(filter, values, index, groupIndex) {
+    const { options = {} } = filter;
+    const { props } = options;
+
     return (
       <MultiSelectFilter items={filter.values}
         values={values && values.values}
-        onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, index, groupIndex)} />
+        onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, index, groupIndex)}
+        {...props} />
     );
   }
 
   renderSelectFilter(filter, values, index, groupIndex) {
+    const { options = {} } = filter;
+    const { props } = options;
+
     let value;
     if (values && values.values) {
       value = values.values[0];
@@ -146,7 +153,8 @@ class FilterPanel extends React.Component {
     return (
       <SelectFilter items={filter.values}
         value={value}
-        onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, index, groupIndex)} />
+        onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, index, groupIndex)}
+        {...props} />
     );
   }
 
