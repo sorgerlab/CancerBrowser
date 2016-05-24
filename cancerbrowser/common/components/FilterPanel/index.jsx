@@ -48,21 +48,21 @@ const propTypes = {
    * Optionally include the countMax key if the max value in the counts object
    * isn't what you want the max width to be set to.
    * e.g.
-    [
-      {
-        id: 'cellLineFilters',
-        counts: [{
-          id: 'collection',
+    {
+      cellLineFilters: {
+        collection: {
           counts: {
             big6: 6
             icbp43: 43
           },
           countMax: 49
-        }, ...]
-      }, ...
-    ];
+        },
+        ... (other filters)
+      },
+      ... (other filter groups)
+    }
    */
-  counts: React.PropTypes.array,
+  counts: React.PropTypes.object,
 
   // called whenever a filter changes
   onFilterChange: React.PropTypes.func
@@ -156,11 +156,11 @@ class FilterPanel extends React.Component {
     const { props } = options;
     const { counts, countMax } = (filterCounts || {});
 
-
     let value;
     if (values && values.values) {
       value = values.values[0];
     }
+
     return (
       <SelectFilter items={filter.values}
         value={value}
@@ -199,7 +199,7 @@ class FilterPanel extends React.Component {
     const { activeFilters, counts } = this.props;
 
     const activeFiltersForGroup = activeFilters[group.id];
-    const filterGroupCounts = counts.find(groupCounts => groupCounts.id === group.id);
+    const countsForGroup = counts[group.id];
 
     return (
       <div key={index} className='filter-panel-group'>
@@ -207,11 +207,12 @@ class FilterPanel extends React.Component {
         <div className='filter-panel-filters'>
           {group.filters.map((filter, i) => {
             let filterValues, filterCounts;
+
             if (activeFiltersForGroup) {
               filterValues = activeFiltersForGroup.find(activeFilter => activeFilter.id === filter.id);
             }
-            if (filterGroupCounts) {
-              filterCounts = filterGroupCounts.counts.find(filterCounts => filterCounts.id === filter.id);
+            if (countsForGroup) {
+              filterCounts = countsForGroup[filter.id];
             }
 
             return this.renderFilter(filter, filterValues, filterCounts, filter.id, group.id, i);
