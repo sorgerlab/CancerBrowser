@@ -5,8 +5,8 @@ import Select from 'react-select';
 const propTypes = {
   /* The list of items to render
     [
-      { value: 'big6', label: 'Big 6', cellLines: [...] },
-      { value: 'icbp43', label: 'ICBP43', cellLines: [...] }
+      { value: 'big6', label: 'Big 6' },
+      { value: 'icbp43', label: 'ICBP43' }
     ]
   */
   items: React.PropTypes.array.isRequired,
