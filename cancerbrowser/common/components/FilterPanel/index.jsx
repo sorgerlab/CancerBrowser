@@ -1,5 +1,6 @@
 import React from 'react';
 import MultiSelectFilter from '../MultiSelectFilter';
+import SelectFilter from '../SelectFilter';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import boundCallback from '../../utils/boundCallback';
 import * as ImmutableUtils from '../../utils/ImmutableUtils';
@@ -125,6 +126,7 @@ class FilterPanel extends React.Component {
       onFilterChange(newValues);
     }
 
+    console.log('[filter change]', newValues);
     return newValues;
   }
 
@@ -136,8 +138,16 @@ class FilterPanel extends React.Component {
     );
   }
 
-  renderSelectFilter(filter, values) {
-    return <div>Select: {JSON.stringify(values)}</div>;
+  renderSelectFilter(filter, values, index, groupIndex) {
+    let value;
+    if (values && values.values) {
+      value = values.values[0];
+    }
+    return (
+      <SelectFilter items={filter.values}
+        value={value}
+        onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, index, groupIndex)} />
+    );
   }
 
   renderFilter(filter, values, index, groupIndex) {
