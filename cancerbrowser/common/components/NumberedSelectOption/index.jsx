@@ -30,6 +30,12 @@ class NumberedSelectOption extends React.Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
 
+  /**
+   * Returns a d3 scale for getting bar widths representing the count value
+   * Requires the prop countMax to be set.
+   *
+   * @return {Function} A d3 scale
+   */
   getBarScale() {
     let { countMax } = this.props;
     const maxBarWidth = 32;
@@ -37,6 +43,11 @@ class NumberedSelectOption extends React.Component {
     return barScale;
   }
 
+  /**
+   * Renders the count portion of the item
+   *
+   * @return {React.Component}
+   */
   renderCount() {
     const { count } = this.props;
 
