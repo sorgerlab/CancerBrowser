@@ -185,7 +185,7 @@ class CellLineBrowserPage extends React.Component {
 
     const activeFilters = [{
       id: 'cellLineFilters',
-      values: [
+      activeFilters: [
         { id: 'collection', values: ['big6'] }
       ]
     }];
@@ -206,7 +206,7 @@ class CellLineBrowserPage extends React.Component {
 
 
     return (
-      <FilterPanel filterGroups={filterGroups} values={activeFilters} counts={counts} />
+      <FilterPanel filterGroups={filterGroups} activeFilters={activeFilters} counts={counts} />
     );
   }
 
