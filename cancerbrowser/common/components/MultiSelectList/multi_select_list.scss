@@ -1,20 +1,77 @@
 @import "../../assets/variables";
 
+$count-width: 60px;
+
 .MultiSelectList {
+  &.has-counts {
+    li {
+      padding-right: $count-width;
+    }
+  }
+
   li {
     margin-bottom: 4px;
     cursor: pointer;
+    position: relative;
+
+    .item-label {
+      display: inline-block;
+    }
+
+    .item-count {
+      white-space: nowrap;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: $count-width;
+    }
+
+    .item-count-value {
+      display: inline-block;
+      width: 23px;
+      text-align: right;
+      margin-right: 5px;
+      color: #ccc;
+    }
+
+    .item-count-bar {
+      height: 5px;
+      background-color: #ccc;
+      display: inline-block;
+      vertical-align: middle;
+      margin-top: -2px;
+    }
 
     &:hover {
-      color: $brand-primary;
-      font-weight: 400;
+      .item-label {
+        color: $brand-primary;
+        font-weight: 400;
+      }
+
+      .item-count-value {
+        color: #888;
+      }
+
+      .item-count-bar {
+        background-color: #888;
+      }
     }
 
     &.active {
-      background-color: $brand-primary;
-      color: #fff;
-      padding: 2px 4px;
-      border-radius: 4px;
+      .item-label {
+        background-color: $brand-primary;
+        color: #fff;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      .item-count-value {
+        color: $brand-primary;
+      }
+
+      .item-count-bar {
+        background-color: $brand-primary;
+      }
     }
 
   }

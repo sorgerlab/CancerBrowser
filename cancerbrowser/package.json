@@ -21,6 +21,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "classnames": "^2.2.5",
     "css-loader": "^0.23.1",
+    "d3": "^3.5.17",
     "eslint": "^2.4.0",
     "eslint-plugin-react": "^4.2.3",
     "exports-loader": "^0.6.3",

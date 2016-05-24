@@ -190,8 +190,23 @@ class CellLineBrowserPage extends React.Component {
       ]
     }];
 
+    const counts = [
+      {
+        id: 'cellLineFilters',
+        counts: [{
+          id: 'collection',
+          counts: {
+            big6: 6,
+            icbp43: 43
+          },
+          countMax: 43
+        }]
+      }
+    ];
+
+
     return (
-      <FilterPanel filterGroups={filterGroups} values={activeFilters} />
+      <FilterPanel filterGroups={filterGroups} values={activeFilters} counts={counts} />
     );
   }
 

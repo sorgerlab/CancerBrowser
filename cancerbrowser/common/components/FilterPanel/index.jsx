@@ -42,6 +42,28 @@ const propTypes = {
    */
   values: React.PropTypes.array,
 
+  /*
+   * The counts associated with filters, typically that match some query.
+   * They are grouped by filter group then filter.
+   * Optionally include the countMax key if the max value in the counts object
+   * isn't what you want the max width to be set to.
+   * e.g.
+    [
+      {
+        id: 'cellLineFilters',
+        counts: [{
+          id: 'collection',
+          counts: {
+            big6: 6
+            icbp43: 43
+          },
+          countMax: 49
+        }, ...]
+      }, ...
+    ];
+   */
+  counts: React.PropTypes.array,
+
   // called whenever a filter changes
   onFilterChange: React.PropTypes.func
 };
@@ -130,21 +152,25 @@ class FilterPanel extends React.Component {
     return newValues;
   }
 
-  renderMultiSelectFilter(filter, values, index, groupIndex) {
+  renderMultiSelectFilter(filter, values, filterCounts, index, groupIndex) {
     const { options = {} } = filter;
     const { props } = options;
+    const { counts, countMax } = (filterCounts || {});
 
     return (
       <MultiSelectFilter items={filter.values}
         values={values && values.values}
         onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, index, groupIndex)}
+        counts={counts} countMax={countMax}
         {...props} />
     );
   }
 
-  renderSelectFilter(filter, values, index, groupIndex) {
+  renderSelectFilter(filter, values, filterCounts, index, groupIndex) {
     const { options = {} } = filter;
     const { props } = options;
+    const { counts, countMax } = (filterCounts || {});
+
 
     let value;
     if (values && values.values) {
@@ -154,19 +180,20 @@ class FilterPanel extends React.Component {
       <SelectFilter items={filter.values}
         value={value}
         onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, index, groupIndex)}
+        counts={counts} countMax={countMax}
         {...props} />
     );
   }
 
-  renderFilter(filter, values, index, groupIndex) {
+  renderFilter(filter, values, counts, index, groupIndex) {
     let filterElem;
 
     switch (filter.type) {
       case 'multi-select':
-        filterElem = this.renderMultiSelectFilter(filter, values, index, groupIndex);
+        filterElem = this.renderMultiSelectFilter(filter, values, counts, index, groupIndex);
         break;
       case 'select':
-        filterElem = this.renderSelectFilter(filter, values, index, groupIndex);
+        filterElem = this.renderSelectFilter(filter, values, counts, index, groupIndex);
         break;
     }
 
@@ -184,21 +211,25 @@ class FilterPanel extends React.Component {
   }
 
   renderFilterGroup(group, index) {
-    const { values } = this.props;
+    const { values, counts } = this.props;
 
     const filterGroupValues = values.find(groupValues => groupValues.id === group.id);
+    const filterGroupCounts = counts.find(groupCounts => groupCounts.id === group.id);
 
     return (
       <div key={index} className='filter-panel-group'>
         <header>{group.label}</header>
         <div className='filter-panel-filters'>
           {group.filters.map((filter, i) => {
-            let filterValues;
+            let filterValues, filterCounts;
             if (filterGroupValues) {
               filterValues = filterGroupValues.values.find(filterValues => filterValues.id === filter.id);
             }
+            if (filterGroupCounts) {
+              filterCounts = filterGroupCounts.counts.find(filterCounts => filterCounts.id === filter.id);
+            }
 
-            return this.renderFilter(filter, filterValues, i, index);
+            return this.renderFilter(filter, filterValues, filterCounts, i, index);
           })}
         </div>
       </div>

@@ -17,15 +17,20 @@ const propTypes = {
   values: React.PropTypes.array,
 
   /*
-   * Mapping from items to render value to number match to show on the right
-   * Assumes min = 0 if not specified
+   * Mapping from items 'value' to count to show on the right
    * e.g.
    {
-      big6: { number: 6, max: 43, min: 0 },
-      icbp43: { number: 43, max: 43, min: 0 }
+      big6: 6,
+      icbp43: 43
    }
    */
-  numbers: React.PropTypes.object,
+  counts: React.PropTypes.object,
+
+  /*
+   * Number used as maximum count for scaling the bars that go along with counts
+   * If not provided, the max of the values provided is used
+   */
+  countMax: React.PropTypes.number,
 
   /*
    * Fired when the selected items change, typically by clicking an item
@@ -69,10 +74,10 @@ class MultiSelectFilter extends React.Component {
   }
 
   renderList() {
-    const { items, values, onChange, numbers } = this.props;
+    const { items, values, onChange, counts, countMax } = this.props;
 
     return (
-      <MultiSelectList items={items} values={values} numbers={numbers} onChange={onChange} />
+      <MultiSelectList items={items} values={values} counts={counts} countMax={countMax} onChange={onChange} />
     );
   }
 
