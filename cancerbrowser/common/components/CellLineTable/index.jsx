@@ -18,52 +18,66 @@ class CellLineTable extends React.Component {
   constructor(props) {
     super(props);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    this.handleSortChange = this.handleSortChange.bind(this);
+
+    this.state = {
+      sortDir: {}
+    };
   }
 
   cellLineColumn(data) {
+    const sortDir = this.state.sortDir.cellLine;
+
     return (
       <Column
-        key='cell-line'
+        key='cellLine'
+        columnKey='cellLine'
         cell={props => (
           <Cell {...props}>{data[props.rowIndex].CellLine}</Cell>
         )}
-        header={<SortableTableHeaderCell>Cell Line</SortableTableHeaderCell>}
+        header={<SortableTableHeaderCell onSortChange={this.handleSortChange} sortDir={sortDir}>Cell Line</SortableTableHeaderCell>}
         width={150} />
     );
   }
 
   receptorStatusColumn(data) {
+    const sortDir = this.state.sortDir.receptorStatus;
     return (
       <Column
-        key='receptor-status'
+        key='receptorStatus'
+        columnKey='receptorStatus'
         cell={props => (
           <Cell {...props}>{data[props.rowIndex].ReceptorStatus}</Cell>
         )}
-        header={<SortableTableHeaderCell>Receptor Status</SortableTableHeaderCell>}
+        header={<SortableTableHeaderCell onSortChange={this.handleSortChange} sortDir={sortDir}>Receptor Status</SortableTableHeaderCell>}
         width={150} />
     );
   }
 
   molecularSubtypeColumn(data) {
+    const sortDir = this.state.sortDir.molecularSubtype;
     return (
       <Column
-        key='molecular-subtype'
+        key='molecularSubtype'
+        columnKey='molecularSubtype'
         cell={props => (
           <Cell {...props}>{data[props.rowIndex].MolecularSubtype}</Cell>
         )}
-        header={<SortableTableHeaderCell>Molecular Subtype</SortableTableHeaderCell>}
+        header={<SortableTableHeaderCell onSortChange={this.handleSortChange} sortDir={sortDir}>Molecular Subtype</SortableTableHeaderCell>}
         width={200} />
     );
   }
 
   mutationStatusColumn(data, gene) {
+    const sortDir = this.state.sortDir.gene;
     return (
       <Column
         key={gene}
+        columnKey={gene}
         cell={props => (
           <Cell {...props}>{data[props.rowIndex][`${gene}`]}</Cell>
         )}
-        header={<SortableTableHeaderCell>{gene}</SortableTableHeaderCell>}
+        header={<SortableTableHeaderCell onSortChange={this.handleSortChange} sortDir={sortDir}>{gene}</SortableTableHeaderCell>}
         width={80} />
     );
   }
@@ -71,8 +85,8 @@ class CellLineTable extends React.Component {
   mutationStatusColumns(data) {
     return (
       <ColumnGroup
-        key={'mutation-status'}
-        header={<SortableTableHeaderCell>Mutation Status</SortableTableHeaderCell>}>
+        key='mutationStatus'
+        header={<Cell>Mutation Status</Cell>}>
         {mutationGenes.map(gene => this.mutationStatusColumn(data, gene))}
       </ColumnGroup>
     );
@@ -80,13 +94,20 @@ class CellLineTable extends React.Component {
 
   summaryViewColumns(data) {
     return [(
-      <ColumnGroup key={'non-mutation'}>
+      <ColumnGroup key={'nonMutation'}>
         {this.cellLineColumn(data)}
         {this.receptorStatusColumn(data)}
         {this.molecularSubtypeColumn(data)}
       </ColumnGroup>),
       this.mutationStatusColumns(data)
     ];
+  }
+
+  handleSortChange(columnKey, sortDir) {
+    console.log('sort!', columnKey, sortDir);
+    this.setState({
+      sortDir: { [columnKey]: sortDir}
+    });
   }
 
   render() {

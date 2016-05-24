@@ -6,7 +6,7 @@ export const SortDirections = { Asc: true, Desc: false };
 const propTypes = {
   sortDir: React.PropTypes.oneOf([SortDirections.Asc, SortDirections.Desc]),
   columnKey: React.PropTypes.string,
-  onChangeSort: React.PropTypes.func,
+  onSortChange: React.PropTypes.func,
   children: React.PropTypes.any
 };
 
@@ -14,7 +14,7 @@ class SortableTableHeaderCell extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleChangeSort = this.handleChangeSort.bind(this);
+    this.handleSortChange = this.handleSortChange.bind(this);
   }
 
   render() {
@@ -22,20 +22,20 @@ class SortableTableHeaderCell extends React.Component {
 
     return (
       <Cell {...props}>
-        <span onClick={this.handleChangeSort}>
+        <span onClick={this.handleSortChange}>
           {children}
           {sortDir == null ? null : (
-            <span className='sort-direction-icon'>(sortDir === SortDirections.Desc ? '↓' : '↑')</span>)}
+            <span className='sort-direction-icon'>{sortDir === SortDirections.Desc ? '↓' : '↑'}</span>)}
         </span>
       </Cell>
     );
   }
 
-  handleChangeSort(evt) {
-    const { columnKey, sortDir, onChangeSort } = this.props;
+  handleSortChange(evt) {
+    const { columnKey, sortDir, onSortChange } = this.props;
 
-    if (onChangeSort) {
-      onChangeSort(columnKey, !sortDir);
+    if (onSortChange) {
+      onSortChange(columnKey, !sortDir);
     }
 
     evt.preventDefault();
