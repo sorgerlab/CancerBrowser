@@ -56,6 +56,11 @@ class MultiSelectList extends React.Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
 
+  /**
+   * Callback when an item is clicked in the list
+   *
+   * @param {String} value The value of the item clicked
+   */
   handleClickItem(value) {
     const { onChange, values } = this.props;
 
@@ -76,6 +81,13 @@ class MultiSelectList extends React.Component {
     }
   }
 
+  /**
+   * Renders an item in the list
+   *
+   * @param {Object} item The item to be rendered (e.g. { label: '', value: '' })
+   * @param {Function} barScale A d3 scale for drawing the bars
+   * @param {Number} index The index of the item in the collection of items
+   */
   renderItem(item, barScale, index) {
     const { values, counts } = this.props;
 
@@ -102,6 +114,11 @@ class MultiSelectList extends React.Component {
     );
   }
 
+  /**
+   * Returns a d3 scale for getting bar widths representing the count value
+   *
+   * @return {Function} A d3 scale
+   */
   getBarScale() {
     let { countMax, counts } = this.props;
     if (!counts) {
