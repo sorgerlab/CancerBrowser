@@ -60,6 +60,11 @@ class MultiSelectFilter extends React.Component {
     this.handleAutocompleterChange = this.handleAutocompleterChange.bind(this);
   }
 
+  /**
+   * Callback when the autocompleter changes
+   *
+   * @param {Array} newValues An array of values that are selected in form  [{ value: '', label: '' }]
+   */
   handleAutocompleterChange(newValues) {
     const { onChange } = this.props;
 
@@ -68,6 +73,9 @@ class MultiSelectFilter extends React.Component {
     }
   }
 
+  /**
+   * Renders the autocompleter
+   */
   renderAutocompleter() {
     const { items, values, counts, countMax } = this.props;
 
@@ -88,6 +96,9 @@ class MultiSelectFilter extends React.Component {
     );
   }
 
+  /**
+   * Renders the list
+   */
   renderList() {
     const { items, values, onChange, counts, countMax } = this.props;
 
@@ -96,6 +107,10 @@ class MultiSelectFilter extends React.Component {
     );
   }
 
+  /**
+   * Renders the autocompleter if the number of items is above the set `autocompleteThreshold`
+   * Otherwise, it renders the list
+   */
   render() {
     const { items, autocompleteThreshold } = this.props;
 
