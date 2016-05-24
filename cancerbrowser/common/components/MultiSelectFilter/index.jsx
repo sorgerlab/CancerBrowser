@@ -1,7 +1,7 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import Select from 'react-select';
 import MultiSelectList from '../MultiSelectList';
-
 const propTypes = {
   /* The list of items to render
     [
@@ -48,12 +48,22 @@ class MultiSelectFilter extends React.Component {
   constructor(props) {
     super(props);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    this.handleAutocompleterChange = this.handleAutocompleterChange.bind(this);
+  }
+
+  handleAutocompleterChange(newValues) {
+    const { onChange } = this.props;
+
+    if (onChange) {
+      onChange(newValues.map(value => value.value));
+    }
   }
 
   renderAutocompleter() {
+    const { items, values } = this.props;
     return (
       <div>
-        Autocompleter TODO
+        <Select multi={true} options={items} value={values} onChange={this.handleAutocompleterChange} />
       </div>
     );
   }
