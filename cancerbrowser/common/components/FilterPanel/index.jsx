@@ -75,6 +75,15 @@ class FilterPanel extends React.Component {
     this.boundCallbacks = {};
   }
 
+  /**
+   * Callback for when filters change. Handles updating the filter values
+   * then fires onFilterChange with the new activeFilters object
+   *
+   * @param {String} filterId The ID of the filter (e.g., 'collection')
+   * @param {String} groupId The ID of the filter group (e.g., 'cellLineFilters')
+   * @param {Array} newFilterValuesList The array of new values for the given filter
+   * @return {Object} The new activeFilters object.
+   */
   handleFilterChange(filterId, groupId, newFilterValuesList) {
     const { activeFilters, onFilterChange } = this.props;
 
@@ -122,6 +131,7 @@ class FilterPanel extends React.Component {
       }
     }
 
+    // Integrate the updated filter group into the other activeFilters
     let newActiveFilters;
     if (activeFiltersForGroup === null) {
       newActiveFilters = _.omit(activeFilters, groupId);
@@ -129,6 +139,7 @@ class FilterPanel extends React.Component {
       newActiveFilters = Object.assign({}, activeFilters, { [groupId]: activeFiltersForGroup });
     }
 
+    // fire the callback
     if (onFilterChange) {
       onFilterChange(newActiveFilters);
     }
@@ -137,28 +148,45 @@ class FilterPanel extends React.Component {
     return newActiveFilters;
   }
 
-  renderMultiSelectFilter(filter, values, filterCounts, filterId, groupId) {
-    const { options = {} } = filter;
+  /**
+   * Renders a multiselect filter for filtering by multiple values
+   *
+   * @param {Object} filter The filter being rendered (e.g. { id: 'collection', values: [...]})
+   * @param {Array} activeValues The values actively set in the filter
+   * @param {Object} filterCounts The counts information for the filter (e.g. { counts: { big6: 6 }, countMax: 9 })
+   * @param {String} groupId The ID of the filter group
+   */
+  renderMultiSelectFilter(filter, activeValues, filterCounts, groupId) {
+    const { options = {}, id: filterId } = filter;
     const { props } = options;
     const { counts, countMax } = (filterCounts || {});
 
     return (
       <MultiSelectFilter items={filter.values}
-        values={values && values.values}
+        values={activeValues}
         onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, filterId, groupId)}
         counts={counts} countMax={countMax}
         {...props} />
     );
   }
 
-  renderSelectFilter(filter, values, filterCounts, filterId, groupId) {
-    const { options = {} } = filter;
+  /**
+   * Renders a select filter for filtering by a single value
+   *
+   * @param {Object} filter The filter being rendered (e.g. { id: 'collection', values: [...]})
+   * @param {Array} activeValues The values actively set in the filter
+   * @param {Object} filterCounts The counts information for the filter (e.g. { counts: { big6: 6 }, countMax: 9 })
+   * @param {String} groupId The ID of the filter group
+   */
+  renderSelectFilter(filter, activeValues, filterCounts, groupId) {
+    const { options = {}, id: filterId } = filter;
     const { props } = options;
     const { counts, countMax } = (filterCounts || {});
 
+    // this filter only has a single value
     let value;
-    if (values && values.values) {
-      value = values.values[0];
+    if (activeValues) {
+      value = activeValues[0];
     }
 
     return (
@@ -170,15 +198,26 @@ class FilterPanel extends React.Component {
     );
   }
 
-  renderFilter(filter, values, counts, filterId, groupId, index) {
+  /**
+   * Renders a filter based on the type of the filter
+   *
+   * @param {Object} filter The filter being rendered (e.g. { id: 'collection', values: [...]})
+   * @param {Object} activeValuesObj The values object from the active filter
+   * @param {Object} filterCounts The counts information for the filter (e.g. { counts: { big6: 6 }, countMax: 9 })
+   * @param {String} groupId The ID of the filter group
+   */
+  renderFilter(filter, activeValuesObj, filterCounts, groupId, index) {
     let filterElem;
+
+    // we only need the array of values, not the whole obj since we have the filter obj itself
+    const activeValues = activeValuesObj && activeValuesObj.values;
 
     switch (filter.type) {
       case 'multi-select':
-        filterElem = this.renderMultiSelectFilter(filter, values, counts, filterId, groupId);
+        filterElem = this.renderMultiSelectFilter(filter, activeValues, filterCounts, groupId);
         break;
       case 'select':
-        filterElem = this.renderSelectFilter(filter, values, counts, filterId, groupId);
+        filterElem = this.renderSelectFilter(filter, activeValues, filterCounts, groupId);
         break;
     }
 
@@ -195,6 +234,12 @@ class FilterPanel extends React.Component {
     );
   }
 
+  /**
+   * Renders a labeled group of filters
+   *
+   * @param {Object} group The filter group being rendered (e.g. { id: 'cellLineFilters', filters: [...]})
+   * @param {Number} index The index of the group in filterGroups
+   */
   renderFilterGroup(group, index) {
     const { activeFilters, counts } = this.props;
 
@@ -206,16 +251,16 @@ class FilterPanel extends React.Component {
         <header>{group.label}</header>
         <div className='filter-panel-filters'>
           {group.filters.map((filter, i) => {
-            let filterValues, filterCounts;
+            let activeValues, filterCounts;
 
             if (activeFiltersForGroup) {
-              filterValues = activeFiltersForGroup.find(activeFilter => activeFilter.id === filter.id);
+              activeValues = activeFiltersForGroup.find(activeFilter => activeFilter.id === filter.id);
             }
             if (countsForGroup) {
               filterCounts = countsForGroup[filter.id];
             }
 
-            return this.renderFilter(filter, filterValues, filterCounts, filter.id, group.id, i);
+            return this.renderFilter(filter, activeValues, filterCounts, filter.id, group.id, i);
           })}
         </div>
       </div>
