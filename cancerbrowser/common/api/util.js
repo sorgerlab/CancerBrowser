@@ -16,6 +16,7 @@ import _ from 'lodash';
  *
  * @param {Array} dataset Array of data objects
  * @param {Array} filterGroup Array of filter objects
+ * @return {Array} array of filtered data
  *
  */
 export function filterData(dataset, filterGroup) {
@@ -47,6 +48,7 @@ export function filterData(dataset, filterGroup) {
  *
  * @param {Array} row Object row of the data
  * @param {Array} filterGroup Array of filter objects
+ * @return {Array} array with true and false values.
  *
  */
 function getCategoricalMatches(row, filterGroup) {
