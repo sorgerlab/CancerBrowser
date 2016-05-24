@@ -62,6 +62,11 @@ module.exports = [
         { test: /\.png$/,
           loader: "url-loader?limit=100000"
         },
+        {
+          test: /\.json$/,
+          // exclude: /node_modules/,
+          loader: 'json-loader'
+        },
 
         // Bootstrap
         {
@@ -82,7 +87,7 @@ module.exports = [
       ]
     },
     resolve: {
-      extensions: ['', '.js', '.jsx', '.json']
+      extensions: ['', '.js', '.jsx']
     }
   },
 
