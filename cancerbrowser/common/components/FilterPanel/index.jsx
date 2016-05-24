@@ -3,7 +3,7 @@ import MultiSelectFilter from '../MultiSelectFilter';
 import SelectFilter from '../SelectFilter';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import boundCallback from '../../utils/boundCallback';
-import * as ImmutableUtils from '../../utils/ImmutableUtils';
+import * as ImmutableUtils from '../../utils/immutable_utils';
 import './filter_panel.scss';
 
 const propTypes = {

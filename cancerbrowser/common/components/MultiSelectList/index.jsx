@@ -2,7 +2,7 @@ import React from 'react';
 import d3 from 'd3';
 import classNames from 'classnames';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import * as ImmutableUtils from '../../utils/ImmutableUtils';
+import * as ImmutableUtils from '../../utils/immutable_utils';
 
 import './multi_select_list.scss';
 
