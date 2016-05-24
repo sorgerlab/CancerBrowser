@@ -87,6 +87,11 @@ class FilterPanel extends React.Component {
   handleFilterChange(filterId, groupId, newFilterValuesList) {
     const { activeFilters, onFilterChange } = this.props;
 
+    // for simplicity of interface, make all newFilterValuesList arrays
+    if (!_.isArray(newFilterValuesList)) {
+      newFilterValuesList = newFilterValuesList == null ? [] : [newFilterValuesList];
+    }
+
     // create a new object with this filter and its new values
     const newFilterValues = { id: filterId, values: newFilterValuesList };
 
