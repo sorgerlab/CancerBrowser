@@ -39,7 +39,10 @@ const propTypes = {
       }
     ];
    */
-  values: React.PropTypes.array
+  values: React.PropTypes.array,
+
+  // called whenever a filter changes
+  onFilterChange: React.PropTypes.func
 };
 
 class FilterPanel extends React.Component {
@@ -50,7 +53,7 @@ class FilterPanel extends React.Component {
   }
 
   handleFilterChange(filterIndex, groupIndex, newFilterValuesList) {
-    const { filterGroups, values } = this.props;
+    const { filterGroups, values, onFilterChange } = this.props;
 
     // kind of clunky, since the props values index doesn't match with filterGroups index
     const filterGroup = filterGroups[groupIndex];
@@ -118,6 +121,11 @@ class FilterPanel extends React.Component {
     }
 
     // TODO: fire filter change action with newValues
+    if (onFilterChange) {
+      onFilterChange(newValues);
+    }
+
+    return newValues;
   }
 
   renderMultiSelectFilter(filter, values, index, groupIndex) {
