@@ -260,7 +260,7 @@ class FilterPanel extends React.Component {
               filterCounts = countsForGroup[filter.id];
             }
 
-            return this.renderFilter(filter, activeValues, filterCounts, filter.id, group.id, i);
+            return this.renderFilter(filter, activeValues, filterCounts, group.id, i);
           })}
         </div>
       </div>
