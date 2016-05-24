@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --progress --colors --inline --content-base dist/ --history-api-fallback --hot",
     "build": "webpack --config webpack.config.build.js",
-    "lint": "eslint client common; true"
+    "lint": "eslint client common; true",
+    "test": "mocha --compilers js:babel-core/register --recursive; true"
   },
   "author": "Douglas P.W. Russell",
   "license": "MIT",
@@ -19,6 +20,9 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
+    "chai": "^3.5.0",
+    "css-loader": "^0.23.1",
+    "enzyme": "^2.3.0",
     "classnames": "^2.2.5",
     "css-loader": "^0.23.1",
     "d3": "^3.5.17",
@@ -34,6 +38,7 @@
     "less": "^2.6.0",
     "less-loader": "^2.2.2",
     "lodash": "^4.13.1",
+    "mocha": "^2.5.1",
     "node-sass": "^3.7.0",
     "react": "^15.0.0",
     "react-addons-pure-render-mixin": "^15.0.2",
@@ -50,5 +55,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
   }
 }

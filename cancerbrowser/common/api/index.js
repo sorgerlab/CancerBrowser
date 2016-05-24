@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
+import { getCellLines } from './cell_line';
+
 // TODO Need a much better way to handle this part
 // of the hard coded URL.
 // Server + Client mode
@@ -33,5 +35,6 @@ export default {
   getCells: getAll('cells'),
   getDatasets: getAll('datasets'),
   getCellsInDatasets: getAll('cellsInDatasets'),
-  getDataset: getSpecific('dataset')
+  getDataset: getSpecific('dataset'),
+  getCellLines: getCellLines
 };
