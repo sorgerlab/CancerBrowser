@@ -1,0 +1,24 @@
+.FilterPanel {
+  padding: 30px 0;
+  color: #666;
+
+  .filter-panel-group {
+    > header {
+      font-size: 1.4em;
+      margin-bottom: 10px;
+    }
+  }
+
+  .filter-panel-filters {
+    font-size: 0.85em;
+  }
+
+  .filter-panel-filter {
+    margin-bottom: 20px;
+
+    > header {
+      font-size: 1.1em;
+      font-weight: 400;
+    }
+  }
+}

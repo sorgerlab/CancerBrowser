@@ -1,0 +1,33 @@
+$count-width: 60px;
+
+.NumberedSelectOption {
+  position: relative;
+
+  .option-label {
+    display: inline-block;
+  }
+
+  .option-count {
+    white-space: nowrap;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: $count-width;
+  }
+
+  .option-count-value {
+    display: inline-block;
+    width: 23px;
+    text-align: right;
+    margin-right: 5px;
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .option-count-bar {
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -2px;
+  }
+}
