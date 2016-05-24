@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   isFetching: false
 };
 
-function cellsInDatasets(state = INITIAL_STATE, action) {
+function filters(state = INITIAL_STATE, action) {
   switch (action.type) {
     case CHANGE_ACTIVE_FILTERS:
       return Object.assign({}, state, {
@@ -19,4 +19,4 @@ function cellsInDatasets(state = INITIAL_STATE, action) {
   }
 }
 
-export default cellsInDatasets;
+export default filters;
