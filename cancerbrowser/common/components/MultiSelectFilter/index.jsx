@@ -2,6 +2,8 @@ import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Select from 'react-select';
 import MultiSelectList from '../MultiSelectList';
+import NumberedSelectOption from '../NumberedSelectOption';
+
 const propTypes = {
   /* The list of items to render
     [
@@ -65,11 +67,22 @@ class MultiSelectFilter extends React.Component {
   }
 
   renderAutocompleter() {
-    const { items, values } = this.props;
+    const { items, values, counts, countMax } = this.props;
+
+    let renderOption;
+    if (counts) {
+      renderOption = (option) => {
+        return <NumberedSelectOption option={option} count={counts[option.value]} countMax={countMax} />;
+      };
+    }
+
     return (
-      <div>
-        <Select multi={true} options={items} value={values} onChange={this.handleAutocompleterChange} />
-      </div>
+      <Select
+        multi={true}
+        options={items}
+        value={values}
+        optionRenderer={renderOption}
+        onChange={this.handleAutocompleterChange} />
     );
   }
 
