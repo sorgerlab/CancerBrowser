@@ -36,7 +36,7 @@ function fetchCellLines(filterGroups) {
 
 /**
  * Public function to acquire cell line data
- * and create action to store it. 
+ * and create action to store it.
  */
 export function fetchCellLinesIfNeeded(filterGroups) {
   return (dispatch, getState) => {
