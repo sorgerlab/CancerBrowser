@@ -115,6 +115,8 @@ const cellLineFilters = [
 class CellLineBrowserPage extends React.Component {
   constructor() {
     super();
+
+    this.onFilterChange = this.onFilterChange.bind(this);
   }
 
   componentDidMount() {
@@ -150,7 +152,7 @@ class CellLineBrowserPage extends React.Component {
         filterGroups={filterGroups}
         activeFilters={this.props.activeFilters}
         counts={counts}
-        onFilterChange={this.onFilterChange.bind(this)} />
+        onFilterChange={this.onFilterChange} />
     );
   }
 
