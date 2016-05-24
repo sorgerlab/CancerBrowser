@@ -5,59 +5,27 @@ import FilterPanel from '../../components/FilterPanel';
 import PageLayout from '../../components/PageLayout';
 
 import {
-  fetchDatasetsIfNeeded,
-  fetchCellsIfNeeded,
-  fetchCellsInDatasetsIfNeeded,
-  changeCellFilter,
-  changeCellSubtypeFilter
-} from '../../actions';
+  fetchCellLinesIfNeeded
+} from '../../actions/cell_line';
+
+import {
+  changeActiveFilters
+} from '../../actions/filter';
 
 const propTypes = {
   dispatch: React.PropTypes.func,
   params: React.PropTypes.object,
-  children: React.PropTypes.object,
-  datasets: React.PropTypes.object,
-  subtypes: React.PropTypes.object,
-  cells: React.PropTypes.object,
-  cellsInDatasets: React.PropTypes.object,
-  cellFilter: React.PropTypes.string,
-  subtypeFilter: React.PropTypes.string
+  filteredCellLines: React.PropTypes.array,
+  activeFilters: React.PropTypes.object
 };
 
 function mapStateToProps(state) {
 
-  const {
-    isFetching: isFetchingDatasets,
-    items: datasets
-  } = state.datasets;
-
-  const {
-    isFetching: isFetchingCells,
-    items: cells,
-    subtypes: subtypes
-  } = state.cells;
-
-  const {
-    isFetching: isFetchingCellsInDatasets,
-    items: cellsInDatasets
-  } = state.cellsInDatasets;
-
-  const {
-    cell: cellFilter,
-    subtype: subtypeFilter
-  } = state.cellFilter;
-
   return {
-    datasets,
-    cells,
-    subtypes,
-    cellsInDatasets,
-    isFetchingDatasets,
-    isFetchingCells,
-    isFetchingCellsInDatasets,
-    cellFilter,
-    subtypeFilter
+    filteredCellLines: state.cellLines.filtered,
+    activeFilters: state.filters.active
   };
+
 }
 
 // temporarily put these here to test until the api is set up to get them.
@@ -147,33 +115,17 @@ const cellLineFilters = [
 class CellLineBrowserPage extends React.Component {
   constructor() {
     super();
-    this.handleChangeSubtypeFilter = this.handleChangeSubtypeFilter.bind(this);
-    this.handleChangeCellFilter = this.handleChangeCellFilter.bind(this);
+
+    this.onFilterChange = this.onFilterChange.bind(this);
   }
 
   componentDidMount() {
-    const { params, dispatch } = this.props;
-    dispatch(fetchDatasetsIfNeeded(params));
-    dispatch(fetchCellsIfNeeded(params));
-    dispatch(fetchCellsInDatasetsIfNeeded(params));
+    this.props.dispatch(fetchCellLinesIfNeeded());
   }
 
-  handleChangeSubtypeFilter(value) {
-    const { dispatch } = this.props;
-    if (value) {
-      dispatch(changeCellSubtypeFilter(value.value));
-    } else {
-      dispatch(changeCellSubtypeFilter(undefined));
-    }
-  }
-
-  handleChangeCellFilter(value) {
-    const { dispatch } = this.props;
-    if (value) {
-      dispatch(changeCellFilter(value.value));
-    } else {
-      dispatch(changeCellFilter(undefined));
-    }
+  onFilterChange(newFilters) {
+    this.props.dispatch(changeActiveFilters(newFilters));
+    this.props.dispatch(fetchCellLinesIfNeeded(newFilters));
   }
 
   renderSidebar() {
@@ -182,12 +134,6 @@ class CellLineBrowserPage extends React.Component {
       label: 'Cell Line Filters',
       filters: cellLineFilters
     }];
-
-    const activeFilters = {
-      cellLineFilters: [
-        { id: 'collection', values: ['big6'] }
-      ]
-    };
 
     const counts = {
       cellLineFilters: {
@@ -202,104 +148,31 @@ class CellLineBrowserPage extends React.Component {
     };
 
     return (
-      <FilterPanel filterGroups={filterGroups} activeFilters={activeFilters} counts={counts} />
+      <FilterPanel
+        filterGroups={filterGroups}
+        activeFilters={this.props.activeFilters}
+        counts={counts}
+        onFilterChange={this.onFilterChange} />
     );
   }
 
+  // TODO: replace with real table
+  renderTable() {
+
+    return (
+      <div>
+        {this.props.filteredCellLines.map((d) => <div>{d.CellLine}</div>)}
+      </div>
+    );
+
+  }
+
   render() {
-    const { datasets,
-            cells, subtypes,
-            cellsInDatasets,
-            cellFilter, subtypeFilter } = this.props;
-
-    // TODO Tidy up, this is all very messy
-    // Probably a good idea to make default state for list variables to be
-    // empty lists. That way there would be a lot less checking for undefined
-    // variable. That will mean adding a way to check if the data should be
-    // loaded other than the variable being undefined.
-
-    let filteredCellIds;
-    if (cells) {
-      if (subtypeFilter) {
-        filteredCellIds = Object.keys(cells).filter(cellId => {
-          const cell = cells[cellId];
-          return (cell.subtypes.indexOf(subtypeFilter) !== -1);
-        });
-      } else {
-        // Do not filter out any cells
-        filteredCellIds = Object.keys(cells);
-      }
-    }
-
-    let subtypeOptions;
-    if (subtypes) {
-      subtypeOptions = Object.keys(subtypes).map(subtypeId => {
-        const subtype = subtypes[subtypeId];
-        return {
-          value: subtypeId,
-          label: subtype
-        };
-      });
-    }
-
-    let cellOptions;
-    if (filteredCellIds) {
-      cellOptions = filteredCellIds.map(cellId => {
-        const cell = cells[cellId];
-        return {
-          value: cellId,
-          label: cell.name
-        };
-      });
-    }
-
-    let resultingCellIds;
-    if (cellFilter) {
-      resultingCellIds = [cellFilter];
-    } else if (filteredCellIds) {
-      resultingCellIds = filteredCellIds;
-    }
-
-    let filteredDatasetIds;
-    if (datasets && cellsInDatasets && (cellFilter || subtypeFilter)) {
-      filteredDatasetIds = Object.keys(datasets).filter(datasetId => {
-        const datasetCells = cellsInDatasets[datasetId];
-        if (!datasetCells) {
-          return false;
-        }
-        // Looks for the cells in this dataset in the major list
-        // TODO This especially is not optimal, probably precalculate these
-        // and serve them with the data or at least memoise
-        return datasetCells.filter(datasetCell => {
-          return (resultingCellIds.indexOf(datasetCell) != -1);
-        }).length > 0;
-      });
-    }
-
-    let resultingDatasetIds;
-    if (datasets) {
-      resultingDatasetIds = filteredDatasetIds || Object.keys(datasets);
-    }
-
-    let children;
-    if (this.props.children) {
-      children = React.cloneElement(
-        this.props.children,
-        {
-          datasets: datasets,
-          resultingDatasetIds: resultingDatasetIds,
-          cells: cells,
-          subtypes: subtypes,
-          resultingCellIds: resultingCellIds,
-          cellsInDatasets: cellsInDatasets
-        }
-      );
-    }
 
     return (
       <PageLayout className="page-with-sidebar page CellLineBrowserPage" sidebar={this.renderSidebar()}>
         <h1>Cell</h1>
-        {children}
+        {this.renderTable()}
       </PageLayout>
     );
   }
