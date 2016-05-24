@@ -1,4 +1,6 @@
 import React from 'react';
+import CellLineTable from '../../components/CellLineTable';
+import PageLayout from '../../components/PageLayout';
 
 const propTypes = {
 };
@@ -21,8 +23,10 @@ class DrugBrowserPage extends React.Component {
    */
   render() {
     return (
-      <div className='DrugBrowser'>
-      </div>
+      <PageLayout className="DrugBrowserPage">
+        <h1>Drugs</h1>
+        <CellLineTable />
+      </PageLayout>
     );
   }
 }
