@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import MultiSelectFilter from '../MultiSelectFilter';
 import SelectFilter from '../SelectFilter';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -32,16 +33,14 @@ const propTypes = {
    */
   filterGroups: React.PropTypes.array,
 
-  /* activeFilters contains the active filters for each filter group. It is of the form:
-    [
-      {
-        id: 'configure',
-        activeFilters: [{ id: 'parameter', values: ['perkFold'] }]
-      },
-      ... (next filter group)
-    ];
+  /* activeFilters contains the active filters for each filter group. It is of the form
+   * where each filterGroup id is a key mapping to an array of active filters:
+    {
+      configure: [{ id: 'parameter', values: ['perkFold'] }, ...(other active filter values)],
+      cellLineFilters: []
+    }
    */
-  activeFilters: React.PropTypes.array,
+  activeFilters: React.PropTypes.object,
 
   /*
    * The counts associated with filters, typically that match some query.
@@ -76,40 +75,31 @@ class FilterPanel extends React.Component {
     this.boundCallbacks = {};
   }
 
-  handleFilterChange(filterIndex, groupIndex, newFilterValuesList) {
-    const { filterGroups, activeFilters, onFilterChange } = this.props;
-
-    // kind of clunky, since the props values index doesn't match with filterGroups index
-    const filterGroup = filterGroups[groupIndex];
-    const { id: groupId } = filterGroup;
-    const { id: filterId } = filterGroup.filters[filterIndex];
+  handleFilterChange(filterId, groupId, newFilterValuesList) {
+    const { activeFilters, onFilterChange } = this.props;
 
     // create a new object with this filter and its new values
     const newFilterValues = { id: filterId, values: newFilterValuesList };
 
     // find the active filters for the group
-    const activeFiltersForGroupIndex = activeFilters.findIndex(groupValues => groupValues.id === groupId);
-    let activeFiltersForGroup = activeFiltersForGroupIndex === -1 ? undefined : activeFilters[activeFiltersForGroupIndex];
+    let activeFiltersForGroup = activeFilters[groupId];
     let activeFiltersFilterIndex;
 
     // find the index of the filter inside the group's active filters
     if (activeFiltersForGroup) {
-      activeFiltersFilterIndex = activeFiltersForGroup.activeFilters.findIndex(activeFilter => activeFilter.id === filterId);
+      activeFiltersFilterIndex = activeFiltersForGroup.findIndex(activeFilter => activeFilter.id === filterId);
     }
 
     // if we have no set values for this filter, remove it
     if (!newFilterValuesList.length) {
       if (activeFiltersForGroup) {
         // this was the only filter set, remove the whole group
-        if (activeFiltersForGroup.activeFilters.length === 1) {
+        if (activeFiltersForGroup.length === 1) {
           activeFiltersForGroup = null;
 
         // there were multiple filters set, remove just this one
         } else {
-          activeFiltersForGroup = {
-            id: groupId,
-            values: ImmutableUtils.arrayRemove(activeFiltersForGroup.activeFilters, activeFiltersFilterIndex)
-          };
+          activeFiltersForGroup = ImmutableUtils.arrayRemove(activeFiltersForGroup, activeFiltersFilterIndex);
         }
       }
 
@@ -117,43 +107,37 @@ class FilterPanel extends React.Component {
     } else {
       // group did not have values before, so create the group level initialized with this value
       if (!activeFiltersForGroup) {
-        activeFiltersForGroup = { id: groupId, activeFilters: [newFilterValues] };
+        activeFiltersForGroup = [newFilterValues];
 
       // this group had values before
       } else {
         // replace the existing values
         if (activeFiltersFilterIndex !== -1) {
-          activeFiltersForGroup = {
-            id: groupId,
-            activeFilters: ImmutableUtils.arraySet(activeFiltersForGroup.activeFilters, activeFiltersFilterIndex, newFilterValues)
-          };
+          activeFiltersForGroup = ImmutableUtils.arraySet(activeFiltersForGroup, activeFiltersFilterIndex, newFilterValues);
 
         // add new values
         } else {
-          activeFiltersForGroup = { id: groupId, activeFilters: activeFiltersForGroup.activeFilters.concat(newFilterValues) };
+          activeFiltersForGroup = activeFiltersForGroup.concat(newFilterValues);
         }
       }
     }
 
-    let newValues;
+    let newActiveFilters;
     if (activeFiltersForGroup === null) {
-      newValues = ImmutableUtils.arrayRemove(activeFilters, activeFiltersForGroupIndex);
-    } else if (activeFiltersForGroupIndex === -1) {
-      newValues = activeFilters.concat(activeFiltersForGroup);
+      newActiveFilters = _.omit(activeFilters, groupId);
     } else {
-      newValues = ImmutableUtils.arraySet(activeFilters, activeFiltersForGroupIndex, activeFiltersForGroup);
+      newActiveFilters = Object.assign({}, activeFilters, { [groupId]: activeFiltersForGroup });
     }
 
-    // TODO: fire filter change action with newValues
     if (onFilterChange) {
-      onFilterChange(newValues);
+      onFilterChange(newActiveFilters);
     }
 
-    console.log('[filter change]', newValues);
-    return newValues;
+    console.log('[filter change]', newActiveFilters);
+    return newActiveFilters;
   }
 
-  renderMultiSelectFilter(filter, values, filterCounts, index, groupIndex) {
+  renderMultiSelectFilter(filter, values, filterCounts, filterId, groupId) {
     const { options = {} } = filter;
     const { props } = options;
     const { counts, countMax } = (filterCounts || {});
@@ -161,13 +145,13 @@ class FilterPanel extends React.Component {
     return (
       <MultiSelectFilter items={filter.values}
         values={values && values.values}
-        onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, index, groupIndex)}
+        onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, filterId, groupId)}
         counts={counts} countMax={countMax}
         {...props} />
     );
   }
 
-  renderSelectFilter(filter, values, filterCounts, index, groupIndex) {
+  renderSelectFilter(filter, values, filterCounts, filterId, groupId) {
     const { options = {} } = filter;
     const { props } = options;
     const { counts, countMax } = (filterCounts || {});
@@ -180,21 +164,21 @@ class FilterPanel extends React.Component {
     return (
       <SelectFilter items={filter.values}
         value={value}
-        onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, index, groupIndex)}
+        onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, filterId, groupId)}
         counts={counts} countMax={countMax}
         {...props} />
     );
   }
 
-  renderFilter(filter, values, counts, index, groupIndex) {
+  renderFilter(filter, values, counts, filterId, groupId, index) {
     let filterElem;
 
     switch (filter.type) {
       case 'multi-select':
-        filterElem = this.renderMultiSelectFilter(filter, values, counts, index, groupIndex);
+        filterElem = this.renderMultiSelectFilter(filter, values, counts, filterId, groupId);
         break;
       case 'select':
-        filterElem = this.renderSelectFilter(filter, values, counts, index, groupIndex);
+        filterElem = this.renderSelectFilter(filter, values, counts, filterId, groupId);
         break;
     }
 
@@ -214,7 +198,7 @@ class FilterPanel extends React.Component {
   renderFilterGroup(group, index) {
     const { activeFilters, counts } = this.props;
 
-    const activeFiltersForGroup = activeFilters.find(groupValues => groupValues.id === group.id);
+    const activeFiltersForGroup = activeFilters[group.id];
     const filterGroupCounts = counts.find(groupCounts => groupCounts.id === group.id);
 
     return (
@@ -224,13 +208,13 @@ class FilterPanel extends React.Component {
           {group.filters.map((filter, i) => {
             let filterValues, filterCounts;
             if (activeFiltersForGroup) {
-              filterValues = activeFiltersForGroup.activeFilters.find(activeFilter => activeFilter.id === filter.id);
+              filterValues = activeFiltersForGroup.find(activeFilter => activeFilter.id === filter.id);
             }
             if (filterGroupCounts) {
               filterCounts = filterGroupCounts.counts.find(filterCounts => filterCounts.id === filter.id);
             }
 
-            return this.renderFilter(filter, filterValues, filterCounts, i, index);
+            return this.renderFilter(filter, filterValues, filterCounts, filter.id, group.id, i);
           })}
         </div>
       </div>
