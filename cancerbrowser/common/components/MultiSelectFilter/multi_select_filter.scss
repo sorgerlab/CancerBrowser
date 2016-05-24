@@ -1,0 +1,30 @@
+@import "../../assets/variables";
+
+$icon-width: 20px;
+.MultiSelectFilter {
+
+  // style the chiclets
+  .Select-value {
+    position: relative;
+    padding-right: $icon-width;
+    color: #fff;
+    background: $brand-primary;
+    border: none;
+    border-radius: 4px;
+
+    .Select-value-icon {
+      position: absolute;
+      right: 0;
+      width: $icon-width;
+      border: none;
+      font-weight: 600;
+      border-radius: 0 4px 4px 0;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+        color: #fff;
+
+      }
+    }
+  }
+}

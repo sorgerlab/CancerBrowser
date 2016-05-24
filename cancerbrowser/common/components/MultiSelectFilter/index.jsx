@@ -4,6 +4,8 @@ import Select from 'react-select';
 import MultiSelectList from '../MultiSelectList';
 import NumberedSelectOption from '../NumberedSelectOption';
 
+import './multi_select_filter.scss';
+
 const propTypes = {
   /* The list of items to render
     [
