@@ -1,5 +1,5 @@
 import React from 'react';
-import MultiSelectList from '../MultiSelectList';
+import MultiSelectFilter from '../MultiSelectFilter';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import boundCallback from '../../utils/boundCallback';
 import * as ImmutableUtils from '../../utils/ImmutableUtils';
@@ -130,7 +130,7 @@ class FilterPanel extends React.Component {
 
   renderMultiSelectFilter(filter, values, index, groupIndex) {
     return (
-      <MultiSelectList items={filter.values}
+      <MultiSelectFilter items={filter.values}
         values={values && values.values}
         onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, index, groupIndex)} />
     );
