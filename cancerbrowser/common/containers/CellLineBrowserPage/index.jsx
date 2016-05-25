@@ -161,7 +161,7 @@ class CellLineBrowserPage extends React.Component {
 
     return (
       <div>
-        {this.props.filteredCellLines.map((d) => <div>{d.cellLine}</div>)}
+        {this.props.filteredCellLines.map((d) => <div>{d.cellLine.label}</div>)}
       </div>
     );
 

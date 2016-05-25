@@ -57,7 +57,7 @@ function getCategoricalMatches(row, filterGroup) {
     var possibleValues = _.flatten([filter.values]);
     // see if any of the data values are in the filter values
     _.flatten([row[filter.id]]).forEach(function(value) {
-      if(_.includes(possibleValues, value)) {
+      if(_.includes(possibleValues, value.value)) {
         matched = true;
       }
     });
