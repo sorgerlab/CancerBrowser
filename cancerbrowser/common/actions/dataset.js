@@ -3,6 +3,8 @@ import api from '../api';
 
 export const REQUEST_DATASETS = 'REQUEST_DATASETS';
 export const RECEIVE_DATASETS = 'RECEIVE_DATASETS';
+export const RECEIVE_DATASET_INFO = 'RECEIVE_DATASET_INFO';
+
 export const REQUEST_DATASET_DETAIL = 'REQUEST_DATASET_DETAIL';
 export const RECEIVE_DATASET_DETAIL = 'RECEIVE_DATASET_DETAIL';
 
@@ -13,10 +15,10 @@ function requestDatasets() {
   };
 }
 
-function receiveDatasets(json) {
+function receiveDatasets(datasets) {
   return {
     type: RECEIVE_DATASETS,
-    datasets: json.datasets
+    datasets: datasets
   };
 }
 
@@ -24,6 +26,13 @@ function requestDatasetDetail(datasetId) {
   return {
     type: REQUEST_DATASET_DETAIL,
     datasetId
+  };
+}
+
+function receiveDatasetInfo(datasetInfo) {
+  return {
+    type: RECEIVE_DATASET_INFO,
+    datasetInfo: datasetInfo
   };
 }
 
@@ -40,10 +49,11 @@ export function fetchDatasets() {
   return dispatch => {
     dispatch(requestDatasets());
     api.getDatasets().then(
-      json => dispatch(receiveDatasets(json))
+      data => dispatch(receiveDatasets(data))
     );
   };
 }
+
 
 
 function fetchDatasetDetail(datasetId) {
@@ -86,6 +96,15 @@ function shouldFetchDatasetDetail(state, datasetId) {
 
 
 // Action Creators (Functions when using thunk)
+
+export function fetchDatasetInfo({ datasetId }) {
+  return dispatch => {
+    dispatch(requestDatasets());
+    api.getDatasets().then(
+      data => dispatch(receiveDatasetInfo(data[datasetId]))
+    );
+  };
+}
 
 export function fetchDatasetDetailIfNeeded({ datasetId }) {
   return (dispatch, getState) => {

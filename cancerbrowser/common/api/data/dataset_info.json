@@ -1,8 +1,37 @@
 {
-  "receptor_profiling": {
-    "id": "receptor_profiling",
+  "receptor_profile": {
+    "id": "receptor_profile",
+    "label": "Basal Receptor (RTK) Profile",
     "filename": "receptor_profiling_with_thresholds.tsv",
     "cell_line_id": "Cell Line Name",
     "text_fields": ["Cell Line HMSLID", "Cell Line Name"]
+  },
+  "growth_factor_packt_perk": {
+    "id": "growth_factor_packt_perk",
+    "label": "Growth Factor-Induced pAKT/pERK Response",
+    "filename": "pERK-pAKT_fold_change.tsv",
+    "cell_line_id": "Cell Line Name",
+    "text_fields": ["Cell Line HMS LINCS ID", "Cell Line Name", "Protein HMS LINCS ID", "Protein Name"]
+  },
+  "basal_total": {
+    "id": "basal_total",
+    "label": "Basal Total Protein Mass Spectrometry",
+    "filename": "basal_total_proteome-numerical_view.tsv",
+    "cell_line_id": "Total protein by cell line",
+    "text_fields": ["Total protein by cell line"]
+  },
+  "basal_phospho": {
+    "id": "basal_phospho",
+    "label": "Basal Phosphoprotein Mass Spectrometry",
+    "filename": "basal_phosphoproteome-numerical_view.tsv",
+    "cell_line_id": "Phosphosite by cell line",
+    "text_fields": ["Phosphosite by cell line"]
+  },
+  "drug_dose_response": {
+    "id":"drug_dose_response",
+    "label": "Drug Dose-Response Growth Rate Profiling",
+    "filename": "dose_response-GR.tsv",
+    "cell_line_id": "cell_line",
+    "text_fields": ["cell_line", "small_molecule"]
   }
 }

@@ -1,7 +1,8 @@
 import { REQUEST_DATASETS, RECEIVE_DATASETS } from '../actions/dataset';
 
 const INITIAL_STATE = {
-  isFetching: false
+  isFetching: false,
+  items: {}
 };
 
 

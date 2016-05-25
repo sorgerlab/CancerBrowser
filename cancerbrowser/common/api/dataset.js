@@ -5,6 +5,13 @@ import datasetInfo from './data/dataset_info.json';
 
 const DATA_PATH = '/data/datasets/';
 
+export function getDatasets() {
+
+  return new Promise(function(resolve) {
+    resolve(datasetInfo);
+  });
+
+}
 
 export function getDataset(datasetId) {
   return new Promise(function(resolve, reject) {
