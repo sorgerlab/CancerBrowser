@@ -50,7 +50,7 @@ function getMutations(row) {
       mutations.push(mutation);
     }
   });
-  return mutations;
+  return mutations.sort(d3.ascending);
 }
 
 function getSubtypes(subtypeString) {
