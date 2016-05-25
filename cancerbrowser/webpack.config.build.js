@@ -52,16 +52,15 @@ module.exports = [
           exclude: /node_modules/,
           loader: 'babel-loader',
         },
+        {
+          test: /\.json$/,
+          loader: 'json-loader'
+        },
         { test: /\.(css|scss)$/,
           loader: 'style-loader!css-loader!sass-loader'
         },
         { test: /\.png$/,
           loader: "url-loader?limit=100000"
-        },
-        {
-          test: /\.json$/,
-          // exclude: /node_modules/,
-          loader: 'json-loader'
         },
 
         // Bootstrap

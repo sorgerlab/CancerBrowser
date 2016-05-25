@@ -4,45 +4,8 @@
 
 
 // Generic site-wide css here
-$page-sidebar-width: 250px;
-
 body {
   font-weight: 300;
-}
-
-.page {
-  margin: 0 (-$grid-gutter-width/2);
-  min-height: 500px;
-}
-
-.page-with-sidebar {
-  position: relative;
-
-  .page-sidebar-bg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: $page-sidebar-width;
-    background: #f6f6f6;
-  }
-
-  .page-sidebar {
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    width: $page-sidebar-width;
-    background: #f6f6f6;
-    padding: 10px 20px;
-  }
-
-  .page-main {
-    display: inline-block;
-    vertical-align: top;
-    background: #fff;
-    padding: ($grid-gutter-width/2);
-    position: relative;
-  }
 }
 
 .main-footer {
@@ -50,4 +13,13 @@ body {
   text-align: center;
   color: #ccc;
   padding: 15px;
+}
+
+.clickable-icon {
+  cursor: pointer;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
 }

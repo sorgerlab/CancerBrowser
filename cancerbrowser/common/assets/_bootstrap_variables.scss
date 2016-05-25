@@ -32,7 +32,7 @@ $body-bg:               #fff !default;
 $text-color:            $gray-dark !default;
 
 //** Global textual link color.
-$link-color:            $brand-primary !default;
+$link-color:            #36A8C1 !default;
 //** Link hover color set via `darken()` function.
 $link-hover-color:      darken($link-color, 15%) !default;
 //** Link hover decoration.
@@ -461,8 +461,8 @@ $pagination-hover-bg:                  $gray-lighter !default;
 $pagination-hover-border:              #ddd !default;
 
 $pagination-active-color:              #fff !default;
-$pagination-active-bg:                 $brand-primary !default;
-$pagination-active-border:             $brand-primary !default;
+$pagination-active-bg:                 $link-color !default;
+$pagination-active-border:             $link-color !default;
 
 $pagination-disabled-color:            $gray-light !default;
 $pagination-disabled-bg:               #fff !default;

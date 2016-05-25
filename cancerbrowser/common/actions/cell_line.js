@@ -1,6 +1,7 @@
 import api from '../api';
 
 export const SET_FILTERED_CELL_LINES = 'SET_FILTERED_CELL_LINES';
+export const CHANGE_CELL_LINE_VIEW = 'CHANGE_CELL_LINE_VIEW';
 
 /**
  * Action creator for setting filtered cell lines
@@ -43,5 +44,16 @@ export function fetchCellLinesIfNeeded(filterGroups) {
     if (shouldFetchCellLines(getState())) {
       return dispatch(fetchCellLines(filterGroups));
     }
+  };
+}
+
+
+/**
+ * Action creator for changing the cell line view the table shows
+ */
+export function changeCellLineView(cellLineView) {
+  return {
+    type: CHANGE_CELL_LINE_VIEW,
+    cellLineView: cellLineView
   };
 }

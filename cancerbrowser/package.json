@@ -21,11 +21,10 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
-    "css-loader": "^0.23.1",
-    "enzyme": "^2.3.0",
     "classnames": "^2.2.5",
     "css-loader": "^0.23.1",
     "d3": "^3.5.17",
+    "enzyme": "^2.3.0",
     "eslint": "^2.4.0",
     "eslint-plugin-react": "^4.2.3",
     "exports-loader": "^0.6.3",
@@ -42,7 +41,9 @@
     "node-sass": "^3.7.0",
     "react": "^15.0.0",
     "react-addons-pure-render-mixin": "^15.0.2",
+    "pbeshai/react-data-components": "^0.6.0",
     "react-dom": "^15.0.0",
+    "react-fa": "^4.1.1",
     "react-redux": "^4.4.0",
     "react-router": "^2.0.0",
     "react-router-redux": "^4.0.0",
@@ -56,6 +57,5 @@
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
