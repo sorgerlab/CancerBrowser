@@ -250,9 +250,19 @@ class FilterPanel extends React.Component {
       return null;
     }
 
+    const hasActiveFilters = activeValuesObj && activeValuesObj.values.length;
+
     return (
       <div key={index} className='filter-panel-filter'>
-        <header>{filter.label}</header>
+        <header>
+          {filter.label}
+          {hasActiveFilters ? (
+            <Icon name='close'
+              title={`Reset ${filter.label}`}
+              className='reset-filter-control clickable-icon'
+              onClick={boundCallback(this, this.boundCallbacks, this.handleFilterChange, filter.id, groupId, null)} />
+            ) : null}
+        </header>
         <div>{filterElem}</div>
       </div>
     );
