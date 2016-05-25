@@ -3,14 +3,31 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classNames from 'classnames';
 import { DataMixin, Table, Pagination } from 'react-data-components';
 
+// Note many of these properties are matched to react-data-components/DataTable
 const propTypes = {
+  // An array of table row data to begin with (before sorting)
   initialData: React.PropTypes.array,
+
+  /* the initial size of a page (currently no support for changing page sizes, so this will be
+   * the only page size used */
   initialPageLength: React.PropTypes.number,
+
+  // how to initially sort the table e.g. { prop: 'cellLine', order: 'descending' }
   initialSortBy: React.PropTypes.object,
+
+  // the column definitions for the table: an array of objects matching DataTable expectation
   columns: React.PropTypes.array,
+
+  // the properties in the data rows that uniquely identify the rows
   keys: React.PropTypes.array,
+
+  // the class name for the table
   className: React.PropTypes.string,
+
+  // a function from row -> props object applied to <tr> elements
   buildRowOptions: React.PropTypes.func,
+
+  // whether or not to paginate
   paginate: React.PropTypes.bool
 };
 
@@ -30,6 +47,8 @@ class SortableTable extends React.Component {
     this.state = DataMixin.getInitialState.call(this);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+
+    // add in the DataMixin functions since ES6 classes do not support mixins
     this.componentWillReceiveProps = DataMixin.componentWillReceiveProps.bind(this);
     this.componentWillMount = DataMixin.componentWillMount.bind(this);
     this.onSort = DataMixin.onSort.bind(this);
@@ -39,7 +58,14 @@ class SortableTable extends React.Component {
     this.onPageLengthChange = DataMixin.onPageLengthChange.bind(this);
   }
 
-  renderPagination(page) {
+  /**
+   * Render the pager above the table if pagination is enabled and there is
+   * more than one page.
+   *
+   * @param {Object} page Output from DataMixin.buildPage
+   * @return {React.Component}
+   */
+  renderPager(page) {
     const { paginate } = this.props;
 
     if (!paginate || page.totalPages < 2) {
@@ -69,7 +95,7 @@ class SortableTable extends React.Component {
 
     return (
       <div className={classNames('SortableTable', className)}>
-        {this.renderPagination(page)}
+        {this.renderPager(page)}
         <TableNoThWidth
           className="table table-bordered"
           dataArray={data}

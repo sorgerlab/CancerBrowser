@@ -23,6 +23,7 @@ function commaListLabelRenderer(val) {
   return val.map(item => item.label).join(', ');
 }
 
+/** Define all table columns here */
 const allColumns = {
   cellLine: {
     prop: 'cellLine',
@@ -54,6 +55,7 @@ const allColumns = {
   }
 };
 
+// Summary column set
 const summaryColumns = [
   allColumns.cellLine,
   allColumns.receptorStatus,
@@ -62,31 +64,38 @@ const summaryColumns = [
   allColumns.dataset
 ];
 
+// Generate mutation columns for each gene
 const mutationGenesColumns = mutationGenes.map(gene => ({
   prop: gene,
   title: gene
 }));
 
+// Mutations column set
 const mutationColumns = [
   allColumns.cellLine,
   ...mutationGenesColumns,
   allColumns.dataset
 ];
 
+// Datasets column set
 const datasetColumns = [
   allColumns.cellLine
   // TODO add these in
 ];
 
 
-const Views = {
+// Define all available views here
+export const Views = {
   Mutations: 'mutations',
   Summary: 'summary',
   Datasets: 'datasets'
 };
 
 const propTypes = {
+  /** An array of cell lines to render as table rows */
   data: React.PropTypes.array,
+
+  /** Decides what column set to use. One of Views defined above */
   view: React.PropTypes.oneOf(Object.keys(Views).map(key => Views[key]))
 };
 
@@ -100,6 +109,7 @@ class CellLineTable extends React.Component {
     super(props);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
+
   render() {
     const { data, view } = this.props;
 
