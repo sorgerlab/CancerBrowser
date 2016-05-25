@@ -3,49 +3,10 @@
 @import "bootstrap_custom";
 @import "fixed-data-table.css";
 
-// Generic site-wide css here
-$page-sidebar-width: 250px;
 
+// Generic site-wide css here
 body {
   font-weight: 300;
-}
-
-.page {
-  margin: 0 (-$grid-gutter-width/2);
-  min-height: 500px;
-}
-
-.page-with-sidebar {
-  position: relative;
-  white-space: nowrap;
-
-  .page-sidebar-bg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: $page-sidebar-width;
-    background: #f6f6f6;
-  }
-
-  .page-sidebar {
-    white-space: normal;
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    width: $page-sidebar-width;
-    background: #f6f6f6;
-    padding: 10px 20px;
-  }
-
-  .page-main {
-    white-space: normal;
-    display: inline-block;
-    vertical-align: top;
-    background: #fff;
-    padding: ($grid-gutter-width/2);
-    position: relative;
-  }
 }
 
 .main-footer {

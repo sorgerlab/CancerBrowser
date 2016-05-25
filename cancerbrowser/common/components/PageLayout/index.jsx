@@ -1,6 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import './page_layout.scss';
+
 const propTypes = {
   sidebar: React.PropTypes.any,
   children: React.PropTypes.any,

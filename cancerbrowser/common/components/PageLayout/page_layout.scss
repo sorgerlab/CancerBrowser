@@ -1,0 +1,30 @@
+@import "../../assets/variables";
+
+$page-sidebar-width: 250px;
+
+.page {
+  margin: 0 (-$grid-gutter-width/2);
+  min-height: 500px;
+}
+
+.page-with-sidebar {
+  position: relative;
+  min-height: 800px;
+  padding-left: $page-sidebar-width;
+
+  .page-sidebar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: $page-sidebar-width;
+    background: #f6f6f6;
+    padding: 10px 20px;
+  }
+
+  .page-main {
+    position: relative;
+    background: #fff;
+    padding: ($grid-gutter-width/2);
+  }
+}
