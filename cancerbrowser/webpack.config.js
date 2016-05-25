@@ -22,7 +22,8 @@ module.exports = [
       new HtmlPlugin({
         template: './common/index.html',
         filename: 'index.html'
-      })
+      }),
+      new ExtractTextPlugin('styles.css')
     ],
     devtool: 'source-map',
     entry: {
@@ -52,7 +53,7 @@ module.exports = [
           loader: 'json-loader'
         },
         { test: /\.(css|scss)$/,
-          loader: 'style-loader!css-loader!sass-loader'
+          loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
         },
         { test: /\.png$/,
           loader: "url-loader?limit=100000"
