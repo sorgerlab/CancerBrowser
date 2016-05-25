@@ -9,29 +9,43 @@ const propTypes = {
 
 const mutationGenes = ['BRCA1', 'BRCA2', 'CDH1', 'MAP3K1', 'MLL3', 'PIK3CA', 'PTEN', 'TP53', 'GATA3', 'MAP2K4'];
 
+
+function labelRenderer(val) {
+  return val.label;
+}
+
+function listLabelRenderer(val) {
+  return (
+    <ul className='list-inline'>
+      {val.map((item, i) => <li key={i}>{item.label}</li>)}
+    </ul>
+  );
+}
+
+function commaListLabelRenderer(val) {
+  return val.map(item => item.label).join(', ');
+}
+
 const allColumns = {
   cellLine: {
     prop: 'cellLine',
-    title: 'Cell Line'
+    title: 'Cell Line',
+    render: labelRenderer
   },
   receptorStatus: {
     prop: 'receptorStatus',
-    title: 'Receptor Status'
+    title: 'Receptor Status',
+    render: labelRenderer
   },
   molecularSubtype: {
     prop: 'molecularSubtype',
-    title: 'Molecular Subtype'
+    title: 'Molecular Subtype',
+    render: commaListLabelRenderer
   },
   mutationStatusSummary: {
     prop: 'mutation',
     title: 'Mutation Status',
-    render(val) {
-      return (
-        <ul className='list-inline'>
-          {val.map((gene, i) => <li key={i}>{gene}</li>)}
-        </ul>
-      );
-    }
+    render: listLabelRenderer
   },
   dataset: {
     title: 'Dataset',
@@ -64,7 +78,7 @@ class CellLineTable extends React.Component {
     return (
       <SortableTable
         className="CellLineTable"
-        keys={['cellLine']}
+        keys={['id']}
         columns={columnSet}
         initialData={data}
         initialPageLength={30}
