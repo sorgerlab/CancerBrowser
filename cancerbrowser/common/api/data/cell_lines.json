@@ -69,7 +69,8 @@
         "value": "map2k4nodata",
         "label": "MAP2K4 No data"
       }
-    ]
+    ],
+    "id": "184b5"
   },
   {
     "BRCA1": "WT",
@@ -137,7 +138,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "au-565"
   },
   {
     "BRCA1": "WT",
@@ -205,7 +207,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "bt-20"
   },
   {
     "BRCA1": "WT",
@@ -273,7 +276,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "bt-474"
   },
   {
     "BRCA1": "WT",
@@ -341,7 +345,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "bt-483"
   },
   {
     "BRCA1": "WT",
@@ -413,7 +418,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "bt-549"
   },
   {
     "BRCA1": "WT",
@@ -481,7 +487,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "cama-1"
   },
   {
     "BRCA1": "WT",
@@ -544,7 +551,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "du4475"
   },
   {
     "BRCA1": "WT",
@@ -616,7 +624,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hcc38"
   },
   {
     "BRCA1": "WT",
@@ -684,7 +693,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hcc70"
   },
   {
     "BRCA1": "WT",
@@ -752,7 +762,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hcc202"
   },
   {
     "BRCA1": "WT",
@@ -820,7 +831,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hcc1187"
   },
   {
     "BRCA1": "MUT",
@@ -892,7 +904,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hcc1395"
   },
   {
     "BRCA1": "WT",
@@ -960,7 +973,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hcc1419"
   },
   {
     "BRCA1": "WT",
@@ -1028,7 +1042,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hcc1428"
   },
   {
     "BRCA1": "WT",
@@ -1096,7 +1111,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hcc1500"
   },
   {
     "BRCA1": "WT",
@@ -1164,7 +1180,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hcc1569"
   },
   {
     "BRCA1": "WT",
@@ -1232,7 +1249,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hcc1599"
   },
   {
     "BRCA1": "WT",
@@ -1300,7 +1318,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hcc1806"
   },
   {
     "BRCA1": "MUT*",
@@ -1368,7 +1387,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hcc1937"
   },
   {
     "BRCA1": "WT",
@@ -1436,7 +1456,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hcc1954"
   },
   {
     "BRCA1": "WT",
@@ -1504,7 +1525,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hcc2157"
   },
   {
     "BRCA1": "WT",
@@ -1572,7 +1594,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hcc2218"
   },
   {
     "BRCA1": "WT",
@@ -1644,7 +1667,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "hs578t"
   },
   {
     "BRCA1": "WT",
@@ -1712,7 +1736,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "mcf7"
   },
   {
     "BRCA1": "No data",
@@ -1784,7 +1809,8 @@
         "value": "map2k4nodata",
         "label": "MAP2K4 No data"
       }
-    ]
+    ],
+    "id": "mcf10a"
   },
   {
     "BRCA1": "No data",
@@ -1856,7 +1882,8 @@
         "value": "map2k4nodata",
         "label": "MAP2K4 No data"
       }
-    ]
+    ],
+    "id": "mcf10f"
   },
   {
     "BRCA1": "No data",
@@ -1928,7 +1955,8 @@
         "value": "map2k4nodata",
         "label": "MAP2K4 No data"
       }
-    ]
+    ],
+    "id": "mcf-12a"
   },
   {
     "BRCA1": "WT",
@@ -1996,7 +2024,8 @@
         "value": "map2k4mut",
         "label": "MAP2K4 MUT"
       }
-    ]
+    ],
+    "id": "mda-mb-134-vi"
   },
   {
     "BRCA1": "WT",
@@ -2068,7 +2097,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "mda-mb-157"
   },
   {
     "BRCA1": "WT",
@@ -2136,7 +2166,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "mda-mb-175-vii"
   },
   {
     "BRCA1": "WT",
@@ -2208,7 +2239,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "mda-mb-231"
   },
   {
     "BRCA1": "WT",
@@ -2276,7 +2308,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "mda-mb-361"
   },
   {
     "BRCA1": "WT",
@@ -2344,7 +2377,8 @@
         "value": "map2k4mut",
         "label": "MAP2K4 MUT"
       }
-    ]
+    ],
+    "id": "mda-mb-415"
   },
   {
     "BRCA1": "MUT",
@@ -2416,7 +2450,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "mda-mb-436"
   },
   {
     "BRCA1": "WT",
@@ -2484,7 +2519,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "mda-mb-453"
   },
   {
     "BRCA1": "WT",
@@ -2552,7 +2588,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "mda-mb-468"
   },
   {
     "BRCA1": "WT",
@@ -2620,7 +2657,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "sk-br-3"
   },
   {
     "BRCA1": "WT",
@@ -2688,7 +2726,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "t47d"
   },
   {
     "BRCA1": "WT",
@@ -2756,7 +2795,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "uacc-812"
   },
   {
     "BRCA1": "WT",
@@ -2824,7 +2864,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "uacc-893"
   },
   {
     "BRCA1": "WT",
@@ -2892,7 +2933,8 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "zr-75-1"
   },
   {
     "BRCA1": "WT",
@@ -2960,6 +3002,7 @@
         "value": "map2k4wt",
         "label": "MAP2K4 WT"
       }
-    ]
+    ],
+    "id": "zr-75-30"
   }
 ]

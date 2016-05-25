@@ -15,11 +15,17 @@ class CellDetailPage extends React.Component {
   render() {
     const { cells, routeParams } = this.props;
     const cellLineId = routeParams.cellLineId;
-    const cell = cells[cellLineId];
+
+    let cell;
+    if (cells) {
+      cell = cells[cellLineId];
+    } else {
+      cell = {};
+    }
 
     return (
       <div>
-        <Link to="/cell_line/" className="btn btn-lg btn-default" role="button">List</Link>
+        <Link to="/cell_lines" className="btn btn-lg btn-default" role="button">Cell Line Browser</Link>
         <h1>{ cell.name }</h1>
         <p>General Information</p>
         <table>
