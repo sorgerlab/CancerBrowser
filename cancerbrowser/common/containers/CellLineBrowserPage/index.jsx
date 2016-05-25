@@ -6,7 +6,8 @@ import PageLayout from '../../components/PageLayout';
 import CellLineTable from '../../components/CellLineTable';
 
 import {
-  fetchCellLinesIfNeeded
+  fetchCellLinesIfNeeded,
+  changeCellLineView
 } from '../../actions/cell_line';
 
 import {
@@ -17,16 +18,16 @@ const propTypes = {
   dispatch: React.PropTypes.func,
   params: React.PropTypes.object,
   filteredCellLines: React.PropTypes.array,
-  activeFilters: React.PropTypes.object
+  activeFilters: React.PropTypes.object,
+  cellLineView: React.PropTypes.string
 };
 
 function mapStateToProps(state) {
-
   return {
+    cellLineView: state.cellLines.cellLineView,
     filteredCellLines: state.cellLines.filtered,
     activeFilters: state.filters.active
   };
-
 }
 
 // temporarily put these here to test until the api is set up to get them.
@@ -114,10 +115,11 @@ const cellLineFilters = [
 ];
 
 class CellLineBrowserPage extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.onFilterChange = this.onFilterChange.bind(this);
+    this.onCellLineViewChange = this.onCellLineViewChange.bind(this);
   }
 
   componentDidMount() {
@@ -127,6 +129,11 @@ class CellLineBrowserPage extends React.Component {
   onFilterChange(newFilters) {
     this.props.dispatch(changeActiveFilters(newFilters));
     this.props.dispatch(fetchCellLinesIfNeeded(newFilters));
+  }
+
+  onCellLineViewChange(evt) {
+    const newView = evt.target.value;
+    this.props.dispatch(changeCellLineView(newView));
   }
 
   renderSidebar() {
@@ -159,9 +166,19 @@ class CellLineBrowserPage extends React.Component {
 
   // TODO: replace with real table
   renderTable() {
-    const { filteredCellLines } = this.props;
+    const { filteredCellLines, cellLineView } = this.props;
+    console.log('-> render table', cellLineView);
     return (
-      <CellLineTable data={filteredCellLines} />
+      <div>
+        <div className='form-inline'>
+          <select className='form-control' onChange={this.onCellLineViewChange}>
+            <option value='summary'>Summary</option>
+            <option value='mutations'>Mutation Status</option>
+            <option value='datasets'>Datasets</option>
+          </select>
+        </div>
+        <CellLineTable data={filteredCellLines} view={cellLineView} />
+      </div>
     );
   }
 

@@ -1,5 +1,5 @@
 
-import { SET_FILTERED_CELL_LINES } from '../actions/cell_line';
+import { SET_FILTERED_CELL_LINES, CHANGE_CELL_LINE_VIEW } from '../actions/cell_line';
 
 const INITIAL_STATE = {
   filtered: [],
@@ -13,6 +13,13 @@ function cellLines(state = INITIAL_STATE, action) {
         isFetching: false,
         filtered: action.cellLines
       });
+
+    case CHANGE_CELL_LINE_VIEW:
+    console.log('got change cell line view in reducer');
+      return Object.assign({}, state, {
+        cellLineView: action.cellLineView
+      });
+
     default:
       return state;
   }
