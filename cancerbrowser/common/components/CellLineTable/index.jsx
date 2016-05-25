@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import SortableTable from '../SortableTable';
 import { Icon } from 'react-fa';
@@ -26,7 +27,9 @@ const allColumns = {
   cellLine: {
     prop: 'cellLine',
     title: 'Cell Line',
-    render: labelRenderer
+    render(val) {
+      return <Link to={`/cell_line/${val.value}`}>{val.label}</Link>;
+    }
   },
   receptorStatus: {
     prop: 'receptorStatus',
