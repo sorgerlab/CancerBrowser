@@ -12,7 +12,6 @@ export function getCellLines(filterGroups = {}) {
     var filteredCellLines = _.clone(cellLinesData);
     Object.keys(filterGroups).forEach(function(key) {
       var filterGroup = filterGroups[key];
-      console.log(filterGroup);
       filteredCellLines = filterData(filteredCellLines, filterGroup);
     });
     resolve(filteredCellLines);
