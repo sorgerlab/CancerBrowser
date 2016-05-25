@@ -3,12 +3,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import SortableTable from '../SortableTable';
 import { Icon } from 'react-fa';
 
-const propTypes = {
-  data: React.PropTypes.array
-};
-
+// TODO: get this from the shared location
 const mutationGenes = ['BRCA1', 'BRCA2', 'CDH1', 'MAP3K1', 'MLL3', 'PIK3CA', 'PTEN', 'TP53', 'GATA3', 'MAP2K4'];
-
 
 function labelRenderer(val) {
   return val.label;
@@ -63,6 +59,38 @@ const summaryColumns = [
   allColumns.dataset
 ];
 
+const mutationGenesColumns = mutationGenes.map(gene => ({
+  prop: gene,
+  title: gene
+}));
+
+const mutationColumns = [
+  allColumns.cellLine,
+  ...mutationGenesColumns,
+  allColumns.dataset
+];
+
+const datasetColumns = [
+  allColumns.cellLine
+  // TODO add these in
+];
+
+
+const Views = {
+  Mutations: 'mutations',
+  Summary: 'summary',
+  Datasets: 'datasets'
+};
+
+const propTypes = {
+  data: React.PropTypes.array,
+  view: React.PropTypes.oneOf(Object.keys(Views).map(key => Views[key]))
+};
+
+const defaultProps = {
+  view: Views.Summary
+};
+
 /** A way to render options in react-select that includes a bar and count */
 class CellLineTable extends React.Component {
   constructor(props) {
@@ -70,10 +98,16 @@ class CellLineTable extends React.Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
   render() {
-    const { data } = this.props;
+    const { data, view } = this.props;
 
     let columnSet;
-    columnSet = summaryColumns;
+    if (view === Views.Mutations) {
+      columnSet = mutationColumns;
+    } else if (view === Views.Datasets) {
+      columnSet = datasetColumns;
+    } else {
+      columnSet = summaryColumns;
+    }
 
     return (
       <SortableTable
@@ -90,5 +124,6 @@ class CellLineTable extends React.Component {
 }
 
 CellLineTable.propTypes = propTypes;
+CellLineTable.defaultProps = defaultProps;
 
 export default CellLineTable;
