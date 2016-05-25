@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 import { getCellLines } from './cell_line';
+import { getDataset } from './dataset';
 
 // TODO Need a much better way to handle this part
 // of the hard coded URL.
@@ -20,21 +21,10 @@ function getAll(filename) {
   };
 }
 
-// Basic get specific
-function getSpecific(filename) {
-  return (id) => {
-    return fetch(
-      DATA_SERVER + 'sampledata/' + filename + '-' + id + '.json'
-    ).then(
-      res => res.json()
-    );
-  };
-}
-
 export default {
   getCells: getAll('cells'),
   getDatasets: getAll('datasets'),
   getCellsInDatasets: getAll('cellsInDatasets'),
-  getDataset: getSpecific('dataset'),
-  getCellLines: getCellLines
+  getCellLines: getCellLines,
+  getDataset: getDataset
 };

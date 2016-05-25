@@ -7,38 +7,41 @@ import {
 describe('CellLine API', function() {
   it('filters cell lines with one filterGroup', function() {
     var filterGroups = [
-      [{id:'MolecularSubtype', values:['Basal A']}]
+      [{id:'molecularSubtype', values:['basala']}]
     ];
 
-    var results = getCellLines(filterGroups);
+    return getCellLines(filterGroups).then(function(results) {
+      assert.equal(results.length, 10);
+    });
 
-    assert.equal(results.length, 10);
 
   });
 
   it('filters cell lines with multilple filters', function() {
     var filterGroups = [
       [
-        {id:'MolecularSubtype', values:['Basal A']},
-        {id:'BRCA2', values:['MUT']}
+        {id:'molecularSubtype', values:['basala']},
+        {id:'mutation', values:['brca2mut']}
       ]
     ];
 
-    var results = getCellLines(filterGroups);
+    return getCellLines(filterGroups).then(function(results) {
+      assert.equal(results.length, 3);
+    });
 
-    assert.equal(results.length, 3);
 
   });
 
   it('filters cell lines with multilple filterGroups', function() {
     var filterGroups = [
-      [{id:'MolecularSubtype', values:['Basal A']}],
-      [{id:'BRCA2', values:['MUT']}]
+      [{id:'molecularSubtype', values:['basala']}],
+      [{id:'mutation', values:['brca2mut']}]
     ];
 
-    var results = getCellLines(filterGroups);
+    return getCellLines(filterGroups).then(function(results) {
+      assert.equal(results.length, 3);
+    });
 
-    assert.equal(results.length, 3);
 
   });
 });
