@@ -164,7 +164,6 @@ class CellLineBrowserPage extends React.Component {
     );
   }
 
-  // TODO: replace with real table
   renderTable() {
     const { filteredCellLines, cellLineView } = this.props;
 
