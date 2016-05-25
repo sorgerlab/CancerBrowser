@@ -30,8 +30,8 @@ function mapStateToProps(state) {
   };
 }
 
-// temporarily put these here to test until the api is set up to get them.
-const cellLineFilters = [
+// The definition of the filter group used for the Cell Line Filters
+export const cellLineFilters = [
   {
     id: 'collection',
     label: 'Collection',
@@ -59,7 +59,8 @@ const cellLineFilters = [
       { value: 'basala', label: 'Basal A' },
       { value: 'basalb', label: 'Basal B' },
       { value: 'luminal', label: 'Luminal' },
-      { value: 'claudinlow', label: 'Low Claudin Status' }
+      { value: 'claudinlow', label: 'Claudin low' },
+      { value: 'nonmalignant', label: 'Non malignant' }
     ]
   }, {
     id: 'mutation',
@@ -86,14 +87,6 @@ const cellLineFilters = [
       { value: 'gata3mut', label: 'GATA3 MUT' },
       { value: 'map2k4wt', label: 'MAP2K4 WT' },
       { value: 'map2k4mut', label: 'MAP2K4 MUT' }
-    ]
-  }, {
-    id: 'malignancy',
-    label: 'Malignancy Status',
-    type: 'multi-select',
-    values: [
-      { value: 'malignant', label: 'Malignant' },
-      { value: 'nonmalignant', label: 'Non-malignant' }
     ]
   }, {
     id: 'dataset',
