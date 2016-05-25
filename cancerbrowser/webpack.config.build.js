@@ -2,16 +2,17 @@
 var webpack = require('webpack');
 var path = require('path');
 var fs = require('fs');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var nodeModules = {};
 fs.readdirSync('node_modules')
     .filter(function(x) {
-        return ['.bin'].indexOf(x) === -1;
+      return ['.bin'].indexOf(x) === -1;
     })
     .forEach(function(mod) {
-        nodeModules[mod] = 'commonjs ' + mod;
+      nodeModules[mod] = 'commonjs ' + mod;
     });
 
 module.exports = [
@@ -22,7 +23,15 @@ module.exports = [
       new HtmlPlugin({
         template: './common/index.html',
         filename: 'index.html'
-      })
+      }),
+
+      new webpack.optimize.UglifyJsPlugin({
+        include: /\.min\.js$/,
+        minimize: true
+      }),
+      new CopyWebpackPlugin([
+        { from: 'data', to: 'data' }
+      ])
     ],
     entry: {
       'bundle.min': [
@@ -34,12 +43,6 @@ module.exports = [
       path: './dist',
       filename: '[name].js'
     },
-    plugins: [
-      new webpack.optimize.UglifyJsPlugin({
-        include: /\.min\.js$/,
-        minimize: true
-      })
-    ],
     module: {
       loaders: [
         {
@@ -50,7 +53,7 @@ module.exports = [
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
+          loader: 'babel-loader'
         },
         {
           test: /\.json$/,
@@ -60,7 +63,7 @@ module.exports = [
           loader: 'style-loader!css-loader!sass-loader'
         },
         { test: /\.png$/,
-          loader: "url-loader?limit=100000"
+          loader: 'url-loader?limit=100000'
         },
 
         // Bootstrap
@@ -89,7 +92,10 @@ module.exports = [
   // Server build
   {
     plugins: [
-      new ExtractTextPlugin("styles.css")
+      new ExtractTextPlugin('styles.css'),
+      new CopyWebpackPlugin([
+        { from: 'data', to: 'data' }
+      ])
     ],
     entry: ['./server/server.jsx'],
     target: 'node',
@@ -99,11 +105,11 @@ module.exports = [
       process: false,
       Buffer: false,
       __filename: false,
-      __dirname: false,
+      __dirname: false
     },
     output: {
       path: './dist',
-      filename: 'server.js',
+      filename: 'server.js'
     },
     externals: nodeModules,
 
@@ -112,12 +118,12 @@ module.exports = [
         {
           test: /\.jsx$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
+          loader: 'babel-loader'
         },
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
+          loader: 'babel-loader'
         },
         {
           test: /\.json$/,
@@ -126,13 +132,13 @@ module.exports = [
         },
         {
           test: /\.(css|scss)$/,
-          loader: ExtractTextPlugin.extract('style-loader', "css-loader!sass-loader")
-          // loader: ExtractTextPlugin.extract("css/locals?module")
+          loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
+          // loader: ExtractTextPlugin.extract('css/locals?module')
           // loader: 'css/locals?module'
         },
         {
           test: /\.png$/,
-          loader: "url-loader?limit=100000"
+          loader: 'url-loader?limit=100000'
         },
 
         // Bootstrap
