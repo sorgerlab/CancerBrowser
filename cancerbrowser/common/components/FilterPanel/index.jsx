@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import { Icon } from 'react-fa';
 import MultiSelectFilter from '../MultiSelectFilter';
 import SelectFilter from '../SelectFilter';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -73,6 +74,24 @@ class FilterPanel extends React.Component {
     super(props);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.boundCallbacks = {};
+  }
+
+  /**
+   * Resets all filters in a given filter group.
+   * Used as a callback from clicking an X next to the filter group header
+   *
+   * @param {String} groupId The ID of the filter group (e.g., 'cellLineFilters')
+   * @return {Object} the new activeFilters object
+   */
+  resetFilterGroup(groupId) {
+    const { activeFilters, onFilterChange } = this.props;
+    const newActiveFilters = _.omit(activeFilters, groupId);
+
+    if (onFilterChange) {
+      onFilterChange(newActiveFilters);
+    }
+
+    return newActiveFilters;
   }
 
   /**
@@ -251,9 +270,19 @@ class FilterPanel extends React.Component {
     const activeFiltersForGroup = activeFilters[group.id];
     const countsForGroup = counts[group.id];
 
+    const hasActiveFilters = activeFiltersForGroup && activeFiltersForGroup.length;
+
     return (
       <div key={index} className='filter-panel-group'>
-        <header>{group.label}</header>
+        <header>
+          {group.label}
+          {hasActiveFilters ? (
+            <Icon name='close'
+              title={`Reset ${group.label}`}
+              className='reset-group-control clickable-icon'
+              onClick={boundCallback(this, this.boundCallbacks, this.resetFilterGroup, group.id)} />
+            ) : null}
+        </header>
         <div className='filter-panel-filters'>
           {group.filters.map((filter, i) => {
             let activeValues, filterCounts;
