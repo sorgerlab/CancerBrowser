@@ -9,9 +9,6 @@ var filename = process.argv[2];
 // TODO: specify output filename?
 var outputFilename = './cell_lines.json';
 
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
 
 function lowerFirstLetter(string) {
   return string.charAt(0).toLowerCase() + string.slice(1);
@@ -29,7 +26,7 @@ Object.prototype.renameProperty = function (oldName, newName) {
   }
   return this;
 };
-
+// BRCA1,BRCA2,CDH1,MAP3K1,MLL3,PIK3CA,PTEN,TP53,GATA3*,MAP2K4
 var GENES = [
   'BRCA1',
   'BRCA2',
@@ -53,38 +50,51 @@ function getMutations(row) {
       mutations.push(mutation);
     }
   });
-  return mutations
+  return mutations;
+}
+
+function getSubtypes(subtypeString) {
+  if(subtypeString.toLowerCase() == 'no data') {
+    return [];
+  } else {
+    return _.split(subtypeString,',').map((s) => {
+      return _.trim(s).replace(' ', '').toLowerCase();
+    });
+  }
 }
 
 
 fs.readFile(filename, 'utf8', function(error, data) {
-  // TODO: remove white space from titles
 
   // TODO: remove '*' from titles and cells
 
-  // TODO: mutations include 'NA' - what to do with that?
+  // TODO: mutations include 'No data' - what to do with that?
 
   data = d3.csv.parse(data);
 
   data.forEach(function(d) {
 
     Object.keys(d).forEach(function(k) {
+      var newKey = k.replace('*', '');
+      d.renameProperty(k, newKey);
+      k = newKey;
 
       if(!_.includes(GENES, k)) {
-
         var newValue = d[k].toLowerCase();
         newValue = newValue.replace('+','plus');
         newValue = newValue.replace(' ','');
-        var newKey = lowerFirstLetter(k);
+        //TODO: save if the mutation has an * somewhere, for display.
+        newValue = newValue.replace('*', '');
+        newKey = lowerFirstLetter(k);
+        newKey = newKey.replace(' ','');
         d.renameProperty(k, newKey);
         d[newKey] = newValue;
-
-        d.mutation = getMutations(d);
-
       }
 
     });
 
+    d.mutation = getMutations(d);
+    d.molecularSubtype = getSubtypes(d.molecularSubtype);
   });
   fs.writeFileSync(outputFilename, JSON.stringify(data, null, 2));
 });

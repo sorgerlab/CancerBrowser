@@ -1,16 +1,21 @@
 [
   {
-    "BRCA1": "NA",
-    "BRCA2": "NA",
-    "CDH1": "NA",
-    "MAP3K1": "NA",
-    "MLL3": "NA",
-    "PIK3CA": "NA",
-    "PTEN": "NA",
-    "TP53": "NA",
-    "GATA3": "NA",
-    "MAP2K4": "NA",
+    "BRCA1": "No data",
+    "BRCA2": "No data",
+    "CDH1": "No data",
+    "MAP3K1": "No data",
+    "MLL3": "No data",
+    "PIK3CA": "No data",
+    "PTEN": "No data",
+    "TP53": "No data",
+    "MAP2K4": "No data",
     "cellLine": "184b5",
+    "receptorStatus": "nm",
+    "molecularSubtype": [
+      "nonmalignant",
+      "basal"
+    ],
+    "GATA3": "No data",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -22,10 +27,7 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "nm",
-    "molecularSubtype": "basal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -36,9 +38,13 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "au-565",
+    "receptorStatus": "her2amp",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -50,10 +56,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "her2amp",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -64,9 +67,13 @@
     "PIK3CA": "MUT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "bt-20",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "basala"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2mut",
@@ -78,10 +85,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "basala",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -92,9 +96,13 @@
     "PIK3CA": "MUT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "bt-474",
+    "receptorStatus": "her2amp",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2mut",
@@ -106,10 +114,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "her2amp",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -120,9 +125,13 @@
     "PIK3CA": "MUT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "MUT",
     "MAP2K4": "WT",
     "cellLine": "bt-483",
+    "receptorStatus": "hrplus",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "MUT*",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -132,12 +141,9 @@
       "pik3camut",
       "ptenwt",
       "tp53mut",
-      "gata3mut",
+      "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "hrplus",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -148,9 +154,14 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "WT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "bt-549",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "claudinlow",
+      "basalb"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -162,10 +173,7 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "basalb",
-    "claudinStatus": "low"
+    ]
   },
   {
     "BRCA1": "WT",
@@ -176,9 +184,13 @@
     "PIK3CA": "WT",
     "PTEN": "MUT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "cama-1",
+    "receptorStatus": "hrplus",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -190,10 +202,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "hrplus",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -204,9 +213,13 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "WT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "du4475",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "nodata"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -218,10 +231,7 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "na",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -232,9 +242,14 @@
     "PIK3CA": "MUT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "hcc38",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "claudinlow",
+      "basalb"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -246,10 +261,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "basalb",
-    "claudinStatus": "low"
+    ]
   },
   {
     "BRCA1": "WT",
@@ -260,9 +272,13 @@
     "PIK3CA": "WT",
     "PTEN": "MUT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "hcc70",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "basala"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -274,10 +290,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "basala",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -288,9 +301,13 @@
     "PIK3CA": "MUT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "hcc202",
+    "receptorStatus": "her2amp",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -302,10 +319,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "her2amp",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -316,9 +330,13 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "WT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "hcc1187",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "basala"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -330,10 +348,7 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "basala",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "MUT",
@@ -344,9 +359,14 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "hcc1395",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "claudinlow",
+      "basalb"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1mut",
       "brca2mut",
@@ -358,10 +378,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "basalb",
-    "claudinStatus": "low"
+    ]
   },
   {
     "BRCA1": "WT",
@@ -372,9 +389,13 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "hcc1419",
+    "receptorStatus": "her2amp",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -386,10 +407,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "her2amp",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -400,9 +418,13 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "WT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "hcc1428",
+    "receptorStatus": "hrplus",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -414,10 +436,7 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "hrplus",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -428,9 +447,13 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "WT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "hcc1500",
+    "receptorStatus": "hrplus",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -442,10 +465,7 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "hrplus",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -456,9 +476,13 @@
     "PIK3CA": "WT",
     "PTEN": "MUT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "hcc1569",
+    "receptorStatus": "her2amp",
+    "molecularSubtype": [
+      "basala"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2mut",
@@ -470,10 +494,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "her2amp",
-    "molecularSubtype": "basala",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -484,9 +505,13 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "hcc1599",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "basala"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2mut",
@@ -498,10 +523,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "basala",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -512,9 +534,13 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "WT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "hcc1806",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "basala"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -526,38 +552,36 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "basala",
-    "claudinStatus": ""
+    ]
   },
   {
-    "BRCA1": "MUT",
+    "BRCA1": "MUT*",
     "BRCA2": "WT",
     "CDH1": "WT",
     "MAP3K1": "WT",
     "MLL3": "WT",
     "PIK3CA": "WT",
-    "PTEN": "MUT",
-    "TP53": "MUT",
-    "GATA3": "WT",
+    "PTEN": "MUT*",
+    "TP53": "MUT*",
     "MAP2K4": "WT",
     "cellLine": "hcc1937",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "basala"
+    ],
+    "GATA3": "WT",
     "mutation": [
-      "brca1mut",
+      "brca1wt",
       "brca2wt",
       "cdh1wt",
       "map3k1wt",
       "mll3wt",
       "pik3cawt",
-      "ptenmut",
-      "tp53mut",
+      "ptenwt",
+      "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "basala",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -568,9 +592,13 @@
     "PIK3CA": "MUT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "hcc1954",
+    "receptorStatus": "her2amp",
+    "molecularSubtype": [
+      "basala"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -582,10 +610,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "her2amp",
-    "molecularSubtype": "basala",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -596,9 +621,13 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "hcc2157",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "basala"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -610,10 +639,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "basala",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -624,9 +650,13 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "WT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "hcc2218",
+    "receptorStatus": "her2amp",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -638,10 +668,7 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "her2amp",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -652,9 +679,14 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "hs578t",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "claudinlow",
+      "basalb"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -666,10 +698,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "basalb",
-    "claudinStatus": "low"
+    ]
   },
   {
     "BRCA1": "WT",
@@ -680,9 +709,13 @@
     "PIK3CA": "MUT",
     "PTEN": "WT",
     "TP53": "WT",
-    "GATA3": "MUT",
     "MAP2K4": "WT",
     "cellLine": "mcf7",
+    "receptorStatus": "hrplus",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "MUT*",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -692,25 +725,27 @@
       "pik3camut",
       "ptenwt",
       "tp53wt",
-      "gata3mut",
+      "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "hrplus",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
-    "BRCA1": "NA",
-    "BRCA2": "NA",
-    "CDH1": "NA",
-    "MAP3K1": "NA",
-    "MLL3": "NA",
-    "PIK3CA": "NA",
-    "PTEN": "NA",
-    "TP53": "NA",
-    "GATA3": "NA",
-    "MAP2K4": "NA",
+    "BRCA1": "No data",
+    "BRCA2": "No data",
+    "CDH1": "No data",
+    "MAP3K1": "No data",
+    "MLL3": "No data",
+    "PIK3CA": "No data",
+    "PTEN": "No data",
+    "TP53": "No data",
+    "MAP2K4": "No data",
     "cellLine": "mcf10a",
+    "receptorStatus": "nm",
+    "molecularSubtype": [
+      "nonmalignant",
+      "basal"
+    ],
+    "GATA3": "No data",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -722,23 +757,25 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "nm",
-    "molecularSubtype": "basalb",
-    "claudinStatus": ""
+    ]
   },
   {
-    "BRCA1": "NA",
-    "BRCA2": "NA",
-    "CDH1": "NA",
-    "MAP3K1": "NA",
-    "MLL3": "NA",
-    "PIK3CA": "NA",
-    "PTEN": "NA",
-    "TP53": "NA",
-    "GATA3": "NA",
-    "MAP2K4": "NA",
+    "BRCA1": "No data",
+    "BRCA2": "No data",
+    "CDH1": "No data",
+    "MAP3K1": "No data",
+    "MLL3": "No data",
+    "PIK3CA": "No data",
+    "PTEN": "No data",
+    "TP53": "No data",
+    "MAP2K4": "No data",
     "cellLine": "mcf10f",
+    "receptorStatus": "nm",
+    "molecularSubtype": [
+      "nonmalignant",
+      "basal"
+    ],
+    "GATA3": "No data",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -750,23 +787,25 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "nm",
-    "molecularSubtype": "na",
-    "claudinStatus": ""
+    ]
   },
   {
-    "BRCA1": "NA",
-    "BRCA2": "NA",
-    "CDH1": "NA",
-    "MAP3K1": "NA",
-    "MLL3": "NA",
-    "PIK3CA": "NA",
-    "PTEN": "NA",
-    "TP53": "NA",
-    "GATA3": "NA",
-    "MAP2K4": "NA",
+    "BRCA1": "No data",
+    "BRCA2": "No data",
+    "CDH1": "No data",
+    "MAP3K1": "No data",
+    "MLL3": "No data",
+    "PIK3CA": "No data",
+    "PTEN": "No data",
+    "TP53": "No data",
+    "MAP2K4": "No data",
     "cellLine": "mcf-12a",
+    "receptorStatus": "nm",
+    "molecularSubtype": [
+      "nonmalignant",
+      "basal"
+    ],
+    "GATA3": "No data",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -778,10 +817,7 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "nm",
-    "molecularSubtype": "basalb",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -792,9 +828,13 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "WT",
-    "GATA3": "WT",
     "MAP2K4": "MUT",
     "cellLine": "mda-mb-134-vi",
+    "receptorStatus": "hrplus",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -806,66 +846,66 @@
       "tp53wt",
       "gata3wt",
       "map2k4mut"
-    ],
-    "receptorStatus": "hrplus",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
     "BRCA2": "WT",
     "CDH1": "WT",
-    "MAP3K1": "MUT",
+    "MAP3K1": "MUT*",
     "MLL3": "WT",
     "PIK3CA": "WT",
     "PTEN": "WT",
-    "TP53": "MUT",
-    "GATA3": "WT",
+    "TP53": "MUT*",
     "MAP2K4": "WT",
     "cellLine": "mda-mb-157",
-    "mutation": [
-      "brca1wt",
-      "brca2wt",
-      "cdh1wt",
-      "map3k1mut",
-      "mll3wt",
-      "pik3cawt",
-      "ptenwt",
-      "tp53mut",
-      "gata3wt",
-      "map2k4wt"
-    ],
     "receptorStatus": "tnbc",
-    "molecularSubtype": "basalb",
-    "claudinStatus": "low"
-  },
-  {
-    "BRCA1": "WT",
-    "BRCA2": "WT",
-    "CDH1": "WT",
-    "MAP3K1": "WT",
-    "MLL3": "MUT",
-    "PIK3CA": "WT",
-    "PTEN": "WT",
-    "TP53": "WT",
+    "molecularSubtype": [
+      "claudinlow",
+      "basalb"
+    ],
     "GATA3": "WT",
-    "MAP2K4": "WT",
-    "cellLine": "mda-mb-175-vii",
     "mutation": [
       "brca1wt",
       "brca2wt",
       "cdh1wt",
       "map3k1wt",
-      "mll3mut",
+      "mll3wt",
       "pik3cawt",
       "ptenwt",
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
+    ]
+  },
+  {
+    "BRCA1": "WT",
+    "BRCA2": "WT",
+    "CDH1": "WT",
+    "MAP3K1": "WT",
+    "MLL3": "MUT*",
+    "PIK3CA": "WT",
+    "PTEN": "WT",
+    "TP53": "WT",
+    "MAP2K4": "WT",
+    "cellLine": "mda-mb-175-vii",
     "receptorStatus": "hrplus",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
+    "mutation": [
+      "brca1wt",
+      "brca2wt",
+      "cdh1wt",
+      "map3k1wt",
+      "mll3wt",
+      "pik3cawt",
+      "ptenwt",
+      "tp53wt",
+      "gata3wt",
+      "map2k4wt"
+    ]
   },
   {
     "BRCA1": "WT",
@@ -876,9 +916,14 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "mda-mb-231",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "claudinlow",
+      "basalb"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -890,10 +935,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "basalb",
-    "claudinStatus": "low"
+    ]
   },
   {
     "BRCA1": "WT",
@@ -904,9 +946,13 @@
     "PIK3CA": "MUT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "mda-mb-361",
+    "receptorStatus": "her2amp",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2mut",
@@ -918,10 +964,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "her2amp",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -932,9 +975,13 @@
     "PIK3CA": "WT",
     "PTEN": "MUT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "MUT",
     "cellLine": "mda-mb-415",
+    "receptorStatus": "hrplus",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -946,10 +993,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4mut"
-    ],
-    "receptorStatus": "hrplus",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "MUT",
@@ -960,9 +1004,14 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "WT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "mda-mb-436",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "claudinlow",
+      "basalb"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1mut",
       "brca2wt",
@@ -974,10 +1023,7 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "basalb",
-    "claudinStatus": "low"
+    ]
   },
   {
     "BRCA1": "WT",
@@ -988,9 +1034,13 @@
     "PIK3CA": "MUT",
     "PTEN": "MUT",
     "TP53": "WT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "mda-mb-453",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -1002,10 +1052,7 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -1016,9 +1063,13 @@
     "PIK3CA": "WT",
     "PTEN": "MUT",
     "TP53": "WT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "mda-mb-468",
+    "receptorStatus": "tnbc",
+    "molecularSubtype": [
+      "basala"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -1030,10 +1081,7 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "tnbc",
-    "molecularSubtype": "basala",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -1044,9 +1092,13 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "sk-br-3",
+    "receptorStatus": "her2amp",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -1058,10 +1110,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "her2amp",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -1072,9 +1121,13 @@
     "PIK3CA": "MUT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "t47d",
+    "receptorStatus": "hrplus",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -1086,10 +1139,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "hrplus",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -1100,9 +1150,13 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "WT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "uacc-812",
+    "receptorStatus": "her2amp",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -1114,10 +1168,7 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "her2amp",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -1128,9 +1179,13 @@
     "PIK3CA": "MUT",
     "PTEN": "WT",
     "TP53": "MUT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "uacc-893",
+    "receptorStatus": "her2amp",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -1142,10 +1197,7 @@
       "tp53mut",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "her2amp",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -1156,9 +1208,13 @@
     "PIK3CA": "WT",
     "PTEN": "MUT",
     "TP53": "WT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "zr-75-1",
+    "receptorStatus": "hrplus",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2wt",
@@ -1170,10 +1226,7 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
-    ],
-    "receptorStatus": "hrplus",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    ]
   },
   {
     "BRCA1": "WT",
@@ -1184,9 +1237,13 @@
     "PIK3CA": "WT",
     "PTEN": "WT",
     "TP53": "WT",
-    "GATA3": "WT",
     "MAP2K4": "WT",
     "cellLine": "zr-75-30",
+    "receptorStatus": "her2amp",
+    "molecularSubtype": [
+      "luminal"
+    ],
+    "GATA3": "WT",
     "mutation": [
       "brca1wt",
       "brca2mut",
@@ -1198,9 +1255,34 @@
       "tp53wt",
       "gata3wt",
       "map2k4wt"
+    ]
+  },
+  {
+    "BRCA1": "",
+    "BRCA2": "",
+    "CDH1": "",
+    "MAP3K1": "",
+    "MLL3": "",
+    "PIK3CA": "",
+    "PTEN": "",
+    "TP53": "",
+    "cellLine": "",
+    "receptorStatus": "",
+    "molecularSubtype": [
+      ""
     ],
-    "receptorStatus": "her2amp",
-    "molecularSubtype": "luminal",
-    "claudinStatus": ""
+    "GATA3": "",
+    "mutation": [
+      "brca1wt",
+      "brca2wt",
+      "cdh1wt",
+      "map3k1wt",
+      "mll3wt",
+      "pik3cawt",
+      "ptenwt",
+      "tp53wt",
+      "gata3wt",
+      "map2k4wt"
+    ]
   }
 ]
