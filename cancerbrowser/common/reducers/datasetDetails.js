@@ -1,4 +1,4 @@
-import { REQUEST_DATASET_DETAIL, RECEIVE_DATASET_DETAIL } from '../actions';
+import { REQUEST_DATASET_DETAIL, RECEIVE_DATASET_DETAIL } from '../actions/dataset';
 
 const INITIAL_STATE = {
   isFetching: false
