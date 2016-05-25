@@ -16,6 +16,13 @@ const propTypes = {
 
 const defaultProps = DataMixin.getDefaultProps();
 
+// react-data-components Table caches the th width so the table doesn't change as you page
+// but this is undesirable behaviour at least for when we change views, so we can get rid of
+// it by making componentDidMount a no-op.
+class TableNoThWidth extends Table {
+  componentDidMount() {}
+}
+
 /** A way to render options in react-select that includes a bar and count */
 class SortableTable extends React.Component {
   constructor(props) {
@@ -63,7 +70,7 @@ class SortableTable extends React.Component {
     return (
       <div className={classNames('SortableTable', className)}>
         {this.renderPagination(page)}
-        <Table
+        <TableNoThWidth
           className="table table-bordered"
           dataArray={data}
           columns={columns}
