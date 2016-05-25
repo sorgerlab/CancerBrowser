@@ -17,6 +17,7 @@ body {
 
 .page-with-sidebar {
   position: relative;
+  white-space: nowrap;
 
   .page-sidebar-bg {
     position: absolute;
@@ -28,6 +29,7 @@ body {
   }
 
   .page-sidebar {
+    white-space: normal;
     position: relative;
     display: inline-block;
     vertical-align: top;
@@ -37,6 +39,7 @@ body {
   }
 
   .page-main {
+    white-space: normal;
     display: inline-block;
     vertical-align: top;
     background: #fff;
