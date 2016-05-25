@@ -1,0 +1,8 @@
+{
+  "receptor_profiling": {
+    "id": "receptor_profiling",
+    "filename": "receptor_profiling_with_thresholds.tsv",
+    "cell_line_id": "Cell Line Name",
+    "text_fields": ["Cell Line HMSLID", "Cell Line Name"]
+  }
+}

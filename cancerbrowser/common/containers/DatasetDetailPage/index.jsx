@@ -1,36 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchDatasetDetailIfNeeded } from '../../actions';
+import { fetchDatasetDetailIfNeeded } from '../../actions/dataset';
 
 const propTypes = {
   dispatch: React.PropTypes.func,
   params: React.PropTypes.object,
-  datasetDetail: React.PropTypes.object
+  datasetDetail: React.PropTypes.array
 };
-
-class DatasetDetailPage extends React.Component {
-
-  componentDidMount() {
-    this.props.dispatch(fetchDatasetDetailIfNeeded(this.props.params));
-  }
-
-  render() {
-    let datasetDetail = 'No details for this dataset';
-    if (this.props.datasetDetail) {
-      datasetDetail = this.props.datasetDetail.description;
-    }
-
-    return (
-      <div>
-        <h1>Dataset Details</h1>
-
-        { datasetDetail }
-
-      </div>
-    );
-  }
-}
 
 function mapStateToProps(state) {
   const datasetDetails = state.datasetDetails;
@@ -57,6 +34,31 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     datasetDetail: item
   });
 }
+
+class DatasetDetailPage extends React.Component {
+
+  componentDidMount() {
+    this.props.dispatch(fetchDatasetDetailIfNeeded(this.props.params));
+  }
+
+  render() {
+    let datasetDetail = 'No details for this dataset';
+    if (this.props.datasetDetail) {
+      datasetDetail = Object.keys(this.props.datasetDetail[0]).join(', ');
+    }
+
+    return (
+      <div>
+        <h1>Dataset Details</h1>
+
+        { datasetDetail }
+
+      </div>
+    );
+  }
+}
+
+
 
 DatasetDetailPage.propTypes = propTypes;
 
