@@ -25,6 +25,6 @@ $page-sidebar-width: 250px;
   .page-main {
     position: relative;
     background: #fff;
-    padding: ($grid-gutter-width/2);
+    padding: ($grid-gutter-width/2) (($grid-gutter-width/2) + 10px);
   }
 }
