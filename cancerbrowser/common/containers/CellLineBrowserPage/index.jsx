@@ -55,10 +55,10 @@ const cellLineFilters = [
     type: 'multi-select',
     values: [
       { value: 'basal', label: 'Basal' },
-      { value: 'basalA', label: 'Basal A' },
-      { value: 'basalB', label: 'Basal B' },
+      { value: 'basala', label: 'Basal A' },
+      { value: 'basalb', label: 'Basal B' },
       { value: 'luminal', label: 'Luminal' },
-      { value: 'claudin', label: 'Low Claudin Status' }
+      { value: 'claudinlow', label: 'Low Claudin Status' }
     ]
   }, {
     id: 'mutation',
