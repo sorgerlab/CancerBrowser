@@ -69,7 +69,11 @@ class MultiSelectFilter extends React.Component {
     const { onChange } = this.props;
 
     if (onChange) {
-      onChange(newValues.map(value => value.value));
+      if (newValues) {
+        onChange(newValues.map(value => value.value));
+      } else {
+        onChange(newValues);
+      }
     }
   }
 
