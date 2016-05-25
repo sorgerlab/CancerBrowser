@@ -62,6 +62,12 @@ $count-width: 60px;
     }
 
     &.active {
+      &:hover {
+        .item-label {
+          background-color: darken($brand-primary, 10%);
+        }
+      }
+
       .item-label {
         background-color: $brand-primary;
         color: #fff;
