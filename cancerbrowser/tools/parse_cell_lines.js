@@ -97,6 +97,9 @@ fs.readFile(filename, 'utf8', function(error, data) {
 
     d.mutation = getMutations(d);
     d.molecularSubtype = getSubtypes(d.molecularSubtype.label);
+
+    // pull up cellLine.value to be the ID
+    d.id = d.cellLine.value;
   });
   fs.writeFileSync(outputFilename, JSON.stringify(data, null, 2));
 });
