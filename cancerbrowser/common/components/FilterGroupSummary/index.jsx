@@ -1,8 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
 import { Icon } from 'react-fa';
-import MultiSelectFilter from '../MultiSelectFilter';
-import SelectFilter from '../SelectFilter';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import boundCallback from '../../utils/boundCallback';
 import * as ImmutableUtils from '../../utils/immutable_utils';
@@ -44,6 +41,32 @@ class FilterGroupSummary extends React.Component {
     this.boundCallbacks = {};
   }
 
+  /**
+   * Resets an active filter
+   *
+   * @param {Number} activeFilterIndex the index of the filter in activeFilters prop
+   * @return {Array} the new active filters
+   */
+  handleResetFilter(activeFilterIndex) {
+    const { activeFilters, onFilterChange } = this.props;
+
+    const newActiveFilters = ImmutableUtils.arrayRemove(activeFilters, activeFilterIndex);
+    if (onFilterChange) {
+      onFilterChange(newActiveFilters);
+    }
+
+    return newActiveFilters;
+  }
+
+  /**
+   * Renders a filter
+   *
+   * @param {Object} activeFilter The active filter to render
+   * @param {Object} filter The filter definition to use for labels
+   * @param {Number} index the index of the filter in activeFilters prop
+   *
+   * @return {React.Component}
+   */
   renderFilter(activeFilter, filter, index) {
     const activeValueLabels = activeFilter.values.map(value => {
       const filterValue = filter.values.find(v => v.value === value);
@@ -55,7 +78,8 @@ class FilterGroupSummary extends React.Component {
       <div key={index} className='active-filter'>
         <span className='filter-label'>{filter.label}</span>
         <span className='filter-values'>{valueString}</span>
-        <Icon name='close' className='filter-remove-control' />
+        <Icon name='close' className='filter-remove-control'
+          onClick={boundCallback(this, this.boundCallbacks, this.handleResetFilter, index)} />
       </div>
     );
   }
