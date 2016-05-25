@@ -163,7 +163,6 @@ class CellLineBrowserPage extends React.Component {
     return (
       <CellLineTable data={filteredCellLines} />
     );
-
   }
 
   render() {
