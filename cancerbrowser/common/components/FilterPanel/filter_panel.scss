@@ -2,6 +2,15 @@
   padding: 30px 0;
   color: #666;
 
+  .reset-group-control {
+    margin-left: 8px;
+    font-size: 18px;
+  }
+
+  .reset-filter-control {
+    margin-left: 8px;
+  }
+
   .filter-panel-group {
     > header {
       font-size: 1.4em;
@@ -19,6 +28,7 @@
     > header {
       font-size: 1.1em;
       font-weight: 400;
+      margin-bottom: 4px;
     }
   }
 }
