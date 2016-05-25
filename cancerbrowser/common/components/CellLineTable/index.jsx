@@ -1,8 +1,8 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Table, Column, Cell, ColumnGroup } from 'fixed-data-table';
+import { Icon } from 'react-fa';
 import SortableTableHeaderCell from '../SortableTableHeaderCell';
-
 const propTypes = {
   data: React.PropTypes.array
 };
@@ -28,11 +28,15 @@ class CellLineTable extends React.Component {
       <Column
         key='cellLine'
         columnKey='cellLine'
+        width={150}
+        header={(
+          <SortableTableHeaderCell onSortChange={this.handleSortChange} sortDir={sortDir}>
+            Cell Line
+          </SortableTableHeaderCell>
+        )}
         cell={props => (
           <Cell {...props}>{data[props.rowIndex].CellLine}</Cell>
-        )}
-        header={<SortableTableHeaderCell onSortChange={this.handleSortChange} sortDir={sortDir}>Cell Line</SortableTableHeaderCell>}
-        width={150} />
+        )} />
     );
   }
 
@@ -42,11 +46,15 @@ class CellLineTable extends React.Component {
       <Column
         key='receptorStatus'
         columnKey='receptorStatus'
+        width={150}
+        header={(
+          <SortableTableHeaderCell onSortChange={this.handleSortChange} sortDir={sortDir}>
+            Receptor Status
+          </SortableTableHeaderCell>
+        )}
         cell={props => (
           <Cell {...props}>{data[props.rowIndex].ReceptorStatus}</Cell>
-        )}
-        header={<SortableTableHeaderCell onSortChange={this.handleSortChange} sortDir={sortDir}>Receptor Status</SortableTableHeaderCell>}
-        width={150} />
+        )} />
     );
   }
 
@@ -56,46 +64,89 @@ class CellLineTable extends React.Component {
       <Column
         key='molecularSubtype'
         columnKey='molecularSubtype'
+        width={200}
+        header={(
+          <SortableTableHeaderCell onSortChange={this.handleSortChange} sortDir={sortDir}>
+            Molecular Subtype
+          </SortableTableHeaderCell>
+        )}
         cell={props => (
           <Cell {...props}>{data[props.rowIndex].MolecularSubtype}</Cell>
-        )}
-        header={<SortableTableHeaderCell onSortChange={this.handleSortChange} sortDir={sortDir}>Molecular Subtype</SortableTableHeaderCell>}
-        width={200} />
+        )} />
     );
   }
 
   mutationStatusColumn(data, gene) {
-    const sortDir = this.state.sortDir.gene;
+    const sortDir = this.state.sortDir[gene];
+
     return (
       <Column
         key={gene}
         columnKey={gene}
+        width={80}
+        header={(
+          <SortableTableHeaderCell onSortChange={this.handleSortChange} sortDir={sortDir}>
+            {gene}
+          </SortableTableHeaderCell>
+        )}
         cell={props => (
           <Cell {...props}>{data[props.rowIndex][`${gene}`]}</Cell>
-        )}
-        header={<SortableTableHeaderCell onSortChange={this.handleSortChange} sortDir={sortDir}>{gene}</SortableTableHeaderCell>}
-        width={80} />
+        )} />
     );
   }
 
-  mutationStatusColumns(data) {
+  mutationStatusSummaryColumn(data) {
+    const sortDir = this.state.sortDir.mutationStatusSummary;
+
     return (
-      <ColumnGroup
-        key='mutationStatus'
-        header={<Cell>Mutation Status</Cell>}>
-        {mutationGenes.map(gene => this.mutationStatusColumn(data, gene))}
-      </ColumnGroup>
+      <Column
+        key='mutationStatusSummary'
+        columnKey='mutationStatusSummary'
+        width={520}
+        header={(
+          <SortableTableHeaderCell onSortChange={this.handleSortChange} sortDir={sortDir}>
+            Mutation Status
+          </SortableTableHeaderCell>
+        )}
+        cell={props => (
+          <Cell {...props}>
+            <ul className='list-inline'>
+              {mutationGenes.map(gene => <li key={gene} style={{ width: 50 }}>{data[props.rowIndex][`${gene}`]}</li>)}
+            </ul>
+          </Cell>
+        )} />
     );
   }
+
+  datasetColumn(data) {
+    // TODO: this should be a dropdown menu of short links to the dastaset
+    // landing pages that are available for the given cell line
+    return (
+      <Column
+        key='dataset'
+        columnKey='dataset'
+        width={80}
+        header={(
+          <Cell>
+            Dataset
+          </Cell>
+        )}
+        cell={props => (
+          <Cell {...props}>
+            <Icon name='bar-chart' />
+          </Cell>
+        )} />
+    );
+  }
+
 
   summaryViewColumns(data) {
-    return [(
-      <ColumnGroup key={'nonMutation'}>
-        {this.cellLineColumn(data)}
-        {this.receptorStatusColumn(data)}
-        {this.molecularSubtypeColumn(data)}
-      </ColumnGroup>),
-      this.mutationStatusColumns(data)
+    return [
+      this.cellLineColumn(data),
+      this.receptorStatusColumn(data),
+      this.molecularSubtypeColumn(data),
+      this.mutationStatusSummaryColumn(data),
+      this.datasetColumn(data)
     ];
   }
 
@@ -109,15 +160,19 @@ class CellLineTable extends React.Component {
   render() {
     const { data } = this.props;
 
+    const rowHeight = 40;
+    const headerHeight = 40;
+    const height = rowHeight * data.length + headerHeight + 2;
+
     return (
       <Table
         className="CellLineTable"
         rowsCount={data.length}
-        rowHeight={40}
-        headerHeight={40}
+        rowHeight={rowHeight}
+        headerHeight={headerHeight}
         groupHeaderHeight={40}
         width={1200}
-        height={1000}>
+        height={height}>
         {this.summaryViewColumns(data)}
 
       </Table>
