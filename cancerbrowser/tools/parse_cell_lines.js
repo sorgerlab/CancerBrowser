@@ -44,10 +44,11 @@ function getMutations(row) {
   var mutations = [];
   GENES.forEach(function(gene) {
     if(_.has(row, gene)) {
-      var mutType = row[gene] == 'MUT' ? 'mut' : 'wt';
+      var mutType = row[gene] ? row[gene].toLowerCase().replace(' ', '') : '';
+
       var mutation = gene.toLowerCase() + mutType;
 
-      mutations.push(mutation);
+      mutations.push({value: mutation, label: gene + ' ' + row[gene]});
     }
   });
   return mutations.sort(d3.ascending);
@@ -58,7 +59,7 @@ function getSubtypes(subtypeString) {
     return [];
   } else {
     return _.split(subtypeString,',').map((s) => {
-      return _.trim(s).replace(' ', '').toLowerCase();
+      return {label: _.trim(s), value:_.trim(s).replace(' ', '').toLowerCase()};
     });
   }
 }
@@ -80,6 +81,8 @@ fs.readFile(filename, 'utf8', function(error, data) {
       k = newKey;
 
       if(!_.includes(GENES, k)) {
+        var originalValue = d[k];
+
         var newValue = d[k].toLowerCase();
         newValue = newValue.replace('+','plus');
         newValue = newValue.replace(' ','');
@@ -88,13 +91,12 @@ fs.readFile(filename, 'utf8', function(error, data) {
         newKey = lowerFirstLetter(k);
         newKey = newKey.replace(' ','');
         d.renameProperty(k, newKey);
-        d[newKey] = newValue;
+        d[newKey] = {value: newValue, label: originalValue};
       }
-
     });
 
     d.mutation = getMutations(d);
-    d.molecularSubtype = getSubtypes(d.molecularSubtype);
+    d.molecularSubtype = getSubtypes(d.molecularSubtype.label);
   });
   fs.writeFileSync(outputFilename, JSON.stringify(data, null, 2));
 });
