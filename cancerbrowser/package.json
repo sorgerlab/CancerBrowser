@@ -43,6 +43,7 @@
     "react": "^15.0.0",
     "react-addons-pure-render-mixin": "^15.0.2",
     "react-dom": "^15.0.0",
+    "react-fa": "^4.1.1",
     "react-redux": "^4.4.0",
     "react-router": "^2.0.0",
     "react-router-redux": "^4.0.0",
