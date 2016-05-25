@@ -15,7 +15,6 @@ function cellLines(state = INITIAL_STATE, action) {
       });
 
     case CHANGE_CELL_LINE_VIEW:
-    console.log('got change cell line view in reducer');
       return Object.assign({}, state, {
         cellLineView: action.cellLineView
       });

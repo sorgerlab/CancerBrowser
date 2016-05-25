@@ -167,7 +167,7 @@ class CellLineBrowserPage extends React.Component {
   // TODO: replace with real table
   renderTable() {
     const { filteredCellLines, cellLineView } = this.props;
-    console.log('-> render table', cellLineView);
+
     return (
       <div>
         <div className='form-inline'>

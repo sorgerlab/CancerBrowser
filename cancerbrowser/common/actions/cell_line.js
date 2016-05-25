@@ -52,7 +52,6 @@ export function fetchCellLinesIfNeeded(filterGroups) {
  * Action creator for changing the cell line view the table shows
  */
 export function changeCellLineView(cellLineView) {
-  console.log('created action change cell line view', cellLineView);
   return {
     type: CHANGE_CELL_LINE_VIEW,
     cellLineView: cellLineView
