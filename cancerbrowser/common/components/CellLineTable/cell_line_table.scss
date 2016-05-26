@@ -9,7 +9,7 @@ $cell-muted-color: #bbb;
     background-color: $cell-alternate-fill;
   }
 
-  .no-data {
+  .no-data, .mutation-no-data {
     color: $cell-muted-color;
   }
 
