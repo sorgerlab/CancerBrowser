@@ -11,9 +11,9 @@ describe('API Util', function() {
   it('filters data with string attributes ', function() {
 
     var data = [
-      {id:'first', attribute:'correct'},
-      {id:'second', attribute:'incorrect'},
-      {id:'third', attribute:'valid'}
+      {id:'first', attribute: {value: 'correct'}},
+      {id:'second', attribute: {value: 'incorrect'}},
+      {id:'third', attribute: {value: 'valid'}}
     ];
 
     var filters = [
@@ -29,9 +29,9 @@ describe('API Util', function() {
   it('filters data with array attributes ', function() {
 
     var data = [
-      {id:'first', attribute:['incorrect']},
-      {id:'second', attribute:['correct', 'another']},
-      {id:'third', attribute:'valid'}
+      {id:'first', attribute:[{value:'incorrect'}]},
+      {id:'second', attribute:[{value:'correct'}, {value:'another'}]},
+      {id:'third', attribute:{value:'valid'}}
     ];
 
     var filters = [
@@ -47,9 +47,9 @@ describe('API Util', function() {
   it('filters with multiple filter groups', function() {
 
     var data = [
-      {id:'first', attribute:['incorrect'], location:'london'},
-      {id:'second', attribute:['correct', 'another'], location:'new york'},
-      {id:'third', attribute:'valid', location:'paris'}
+      {id:'first', attribute:[{value:'incorrect'}], location:{value:'london'}},
+      {id:'second', attribute:[{value:'correct'}, {value:'another'}], location:{value:'new york'}},
+      {id:'third', attribute:{value:'valid'}, location:{value:'paris'}}
     ];
 
     var filters = [
@@ -65,9 +65,9 @@ describe('API Util', function() {
 
   it('doesnt filter data when no filter or filter is empty', function() {
     var data = [
-      {id:'first', attribute:['incorrect']},
-      {id:'second', attribute:['correct', 'another']},
-      {id:'third', attribute:'valid'}
+      {id:'first', attribute:[{value:'incorrect'}]},
+      {id:'second', attribute:[{value:'correct'}, {value:'another'}]},
+      {id:'third', attribute:{value:'valid'}}
     ];
     var results = filterData(data);
     assert.equal(results.length, 3);
@@ -78,9 +78,9 @@ describe('API Util', function() {
 
   it('filters data when attribute not present on data', function() {
     var data = [
-      {id:'first', attribute:['incorrect']},
-      {id:'second', notattribute:['correct', 'another']},
-      {id:'third', attribute:'valid'}
+      {id:'first', attribute:[{value:'incorrect'}]},
+      {id:'second', notattribute:[{value:'correct'}, {value:'another'}]},
+      {id:'third', attribute:{value:'valid'}}
     ];
 
     var filters = [

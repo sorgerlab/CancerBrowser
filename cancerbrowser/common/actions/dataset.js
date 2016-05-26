@@ -100,8 +100,8 @@ function shouldFetchDatasetDetail(state, datasetId) {
 export function fetchDatasetInfo({ datasetId }) {
   return dispatch => {
     dispatch(requestDatasets());
-    api.getDatasets().then(
-      data => dispatch(receiveDatasetInfo(data[datasetId]))
+    api.getDatasetInfo(datasetId).then(
+      data => dispatch(receiveDatasetInfo(data))
     );
   };
 }

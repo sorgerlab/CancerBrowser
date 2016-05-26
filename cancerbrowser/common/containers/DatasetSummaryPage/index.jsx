@@ -10,6 +10,12 @@ const propTypes = {
   datasets: React.PropTypes.object
 };
 
+/**
+ * Function to map state values to component props
+ * @param {Object} state Current redux state tree data store.
+ * @return {Object} where keys are prop attributes
+ *  and values are where to get them from the state
+ */
 function mapStateToProps(state) {
   const datasets = state.datasets.items;
 
@@ -19,7 +25,7 @@ function mapStateToProps(state) {
 }
 
 /**
- * Container component for contents of Company page content.
+ * Container component for contents of Dataset Summary page content.
  */
 class DatasetSummaryPage extends React.Component {
 
@@ -30,6 +36,10 @@ class DatasetSummaryPage extends React.Component {
     this.props.dispatch(fetchDatasets());
   }
 
+  /**
+   * Render individual dataset.
+   * @return {ReactElement} JSX markup.
+   */
   renderDataset(key) {
     let dataset = this.props.datasets[key];
 
