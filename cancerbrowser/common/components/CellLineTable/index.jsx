@@ -102,21 +102,38 @@ const datasetColumns = [
   // TODO add these in
 ];
 
-// function for searching the table column labels as opposed to assuming
-// all the values are strings.
-function labelContainsIgnoreCase(needle, cellData) {
-  let haystack;
+
+// helper function to normalize a string for search comparison by lower casing and trimming
+function normalizeString(str) {
+  return String(str).toLowerCase().trim();
+}
+
+/* function for searching the table column labels as opposed to assuming
+ * all the values are strings.
+ *
+ * @param {String} query The string to search for in the cell data
+ * @param {Object|Array|String|Number} cellData the data corresponding to the cell
+ *
+ * @return {Boolean} true if query is found in the cell data, false otherwise
+ */
+function labelContainsIgnoreCase(query, cellData) {
+  // normalize the query
+  const normalizedQuery = normalizeString(query);
+
+  let match;
+  // If the cellData is an object with a label, use that as the string to search in
   if (cellData && cellData.label) {
-    haystack = cellData.label;
+    match = normalizeString(cellData.label).indexOf(normalizedQuery) !== -1;
+
+  // If the cell data is an array, check if the match happens in any element
   } else if (_.isArray(cellData)) {
-    haystack = cellData.map(item => item.label).join('/#--#/');
+    match = cellData.some(item => labelContainsIgnoreCase(normalizedQuery, item));
+  // otherwise just treat the cellData as the string to search in (default case)
   } else {
-    haystack = cellData;
+    match = normalizeString(cellData).indexOf(normalizedQuery) !== -1;
   }
 
-  needle = String(needle).toLowerCase().trim();
-  haystack = String(haystack).toLowerCase().trim();
-  return haystack.indexOf(needle) >= 0;
+  return match;
 }
 
 // Define all available views here
