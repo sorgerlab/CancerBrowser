@@ -44,7 +44,7 @@ const allColumns = {
   molecularSubtype: {
     prop: 'molecularSubtype',
     title: 'Molecular Subtype',
-    render: commaListLabelRenderer
+    render: labelRenderer
   },
   mutationStatusSummary: {
     prop: 'mutation',
