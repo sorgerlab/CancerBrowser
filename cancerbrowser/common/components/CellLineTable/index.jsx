@@ -3,8 +3,10 @@ import _ from 'lodash';
 import { Link } from 'react-router';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
-import SortableTable from '../SortableTable';
 import { Icon } from 'react-fa';
+
+import SortableTable from '../SortableTable';
+import CellLineGlyph from '../CellLineGlyph';
 
 import './cell_line_table.scss';
 
@@ -28,9 +30,23 @@ const allColumns = {
     // so we provide sortValue
     sortValue: (val) => val.label,
     render(val) {
-      return <Link to={`/cell_line/${val.value}`}>{val.label}</Link>;
+      return (
+        <Link to={`/cell_line/${val.value}`}>{val.label}</Link>
+      );
+    },
+    className: 'cell-line-td'
+  },
+
+  cellLineGlyph: {
+    title: '',
+    className: 'cell-line-td',
+    render(val, row) {
+      return (
+        <CellLineGlyph cellLine={row} />
+      );
     }
   },
+
   receptorStatus: {
     prop: 'receptorStatus',
     title: 'Receptor Status',
@@ -95,6 +111,7 @@ const allColumns = {
 // Summary column set
 const summaryColumns = [
   allColumns.cellLine,
+  allColumns.cellLineGlyph,
   allColumns.receptorStatus,
   allColumns.molecularSubtype,
   allColumns.mutationStatusSummary,
@@ -117,13 +134,15 @@ const mutationGenesColumns = mutationGenes.map(gene => ({
 // Mutations column set
 const mutationColumns = [
   allColumns.cellLine,
+  allColumns.cellLineGlyph,
   ...mutationGenesColumns,
   allColumns.dataset
 ];
 
 // Datasets column set
 const datasetColumns = [
-  allColumns.cellLine
+  allColumns.cellLine,
+  allColumns.cellLineGlyph
   // TODO add these in
 ];
 
