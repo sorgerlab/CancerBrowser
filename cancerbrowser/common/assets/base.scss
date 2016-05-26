@@ -40,10 +40,28 @@ h1 {
   }
 }
 
-
 .small-label {
   font-size: 14px;
   font-weight: 400;
   color: #888;
   margin-bottom: 6px;
 }
+
+
+// override btn styling
+.btn-default {
+  border-bottom: 3px solid $btn-default-border;
+
+  &.active {
+    border-bottom: 3px solid darken($btn-default-bg, 10%);
+  }
+}
+.btn-primary {
+  border-bottom: 3px solid $btn-primary-border;
+
+  &.active {
+    border-bottom: 3px solid darken($btn-primary-bg, 10%);
+  }
+}
+
+
