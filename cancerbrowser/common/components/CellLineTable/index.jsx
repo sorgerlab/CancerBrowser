@@ -4,6 +4,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import SortableTable from '../SortableTable';
 import { Icon } from 'react-fa';
 
+import './cell_line_table.scss';
+
 // TODO: get this from the shared location
 const mutationGenes = ['BRCA1', 'BRCA2', 'CDH1', 'MAP3K1', 'MLL3', 'PIK3CA', 'PTEN', 'TP53', 'GATA3', 'MAP2K4'];
 
@@ -67,7 +69,14 @@ const summaryColumns = [
 // Generate mutation columns for each gene
 const mutationGenesColumns = mutationGenes.map(gene => ({
   prop: gene,
-  title: gene
+  title: gene,
+  className(val) {
+    if (val) {
+      return `mutation-${val.toLowerCase().replace(/ /g, '-')}`;
+    } else {
+      return 'mutation-no-data';
+    }
+  }
 }));
 
 // Mutations column set

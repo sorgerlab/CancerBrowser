@@ -1,0 +1,12 @@
+$cell-alternate-fill: #f4f4f4;
+$cell-muted-color: #aaa;
+
+.CellLineTable {
+  .mutation-mut {
+    background-color: $cell-alternate-fill;
+  }
+
+  .mutation-no-data {
+    color: $cell-muted-color;
+  }
+}
