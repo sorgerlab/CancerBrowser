@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import { Link } from 'react-router';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 import SortableTable from '../SortableTable';
 import { Icon } from 'react-fa';
 
@@ -53,7 +54,14 @@ const allColumns = {
   dataset: {
     title: 'Dataset',
     render() {
-      return <Icon name='bar-chart' />;
+      return (
+        <DropdownButton bsStyle='default' pullRight bsSize='sm'
+            title={<Icon name='bar-chart' title='Explore Datasets' />}>
+          <MenuItem eventKey="1">Dataset 1</MenuItem>
+          <MenuItem eventKey="2">Dataset 2</MenuItem>
+          <MenuItem eventKey="3">Dataset 3</MenuItem>
+        </DropdownButton>
+      );
     }
   }
 };
