@@ -13,20 +13,20 @@
       "value": "184b5",
       "label": "184B5"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "nm",
       "label": "NM"
     },
-    "molecularSubtype": [
-      {
-        "label": "Non malignant",
-        "value": "nonmalignant"
-      },
-      {
-        "label": "Basal",
-        "value": "basal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "nonmalignantbasal",
+      "label": "Non malignant, Basal"
+    },
     "GATA3": "No data",
     "mutation": [
       {
@@ -86,16 +86,20 @@
       "value": "au-565",
       "label": "AU-565"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "her2amp",
       "label": "HER2amp"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -155,16 +159,24 @@
       "value": "bt-20",
       "label": "BT-20"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      },
+      {
+        "label": "Core 6",
+        "value": "core6"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Basal A",
-        "value": "basala"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "basala",
+      "label": "Basal A"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -224,16 +236,20 @@
       "value": "bt-474",
       "label": "BT-474"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "her2amp",
       "label": "HER2amp"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -293,16 +309,20 @@
       "value": "bt-483",
       "label": "BT-483"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "hrplus",
       "label": "HR+"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "MUT*",
     "mutation": [
       {
@@ -362,20 +382,20 @@
       "value": "bt-549",
       "label": "BT-549"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Claudin low",
-        "value": "claudinlow"
-      },
-      {
-        "label": "Basal B",
-        "value": "basalb"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "claudinlowbasalb",
+      "label": "Claudin low, Basal B"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -435,16 +455,20 @@
       "value": "cama-1",
       "label": "CAMA-1"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "hrplus",
       "label": "HR+"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -504,11 +528,20 @@
       "value": "du4475",
       "label": "DU4475"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [],
+    "molecularSubtype": {
+      "value": "nodata",
+      "label": "No data"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -568,20 +601,20 @@
       "value": "hcc38",
       "label": "HCC38"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Claudin low",
-        "value": "claudinlow"
-      },
-      {
-        "label": "Basal B",
-        "value": "basalb"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "claudinlowbasalb",
+      "label": "Claudin low, Basal B"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -641,16 +674,20 @@
       "value": "hcc70",
       "label": "HCC70"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Basal A",
-        "value": "basala"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "basala",
+      "label": "Basal A"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -710,16 +747,20 @@
       "value": "hcc202",
       "label": "HCC202"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "her2amp",
       "label": "HER2amp"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -779,16 +820,20 @@
       "value": "hcc1187",
       "label": "HCC1187"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Basal A",
-        "value": "basala"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "basala",
+      "label": "Basal A"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -848,20 +893,20 @@
       "value": "hcc1395",
       "label": "HCC1395"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Claudin low",
-        "value": "claudinlow"
-      },
-      {
-        "label": "Basal B",
-        "value": "basalb"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "claudinlowbasalb",
+      "label": "Claudin low, Basal B"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -921,16 +966,20 @@
       "value": "hcc1419",
       "label": "HCC1419"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "her2amp",
       "label": "HER2amp"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -990,16 +1039,20 @@
       "value": "hcc1428",
       "label": "HCC1428"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "hrplus",
       "label": "HR+"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -1059,16 +1112,20 @@
       "value": "hcc1500",
       "label": "HCC1500"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "hrplus",
       "label": "HR+"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -1128,16 +1185,20 @@
       "value": "hcc1569",
       "label": "HCC1569"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "her2amp",
       "label": "HER2amp"
     },
-    "molecularSubtype": [
-      {
-        "label": "Basal A",
-        "value": "basala"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "basala",
+      "label": "Basal A"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -1197,16 +1258,20 @@
       "value": "hcc1599",
       "label": "HCC1599"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Basal A",
-        "value": "basala"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "basala",
+      "label": "Basal A"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -1266,16 +1331,20 @@
       "value": "hcc1806",
       "label": "HCC1806"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Basal A",
-        "value": "basala"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "basala",
+      "label": "Basal A"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -1335,16 +1404,20 @@
       "value": "hcc1937",
       "label": "HCC1937"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Basal A",
-        "value": "basala"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "basala",
+      "label": "Basal A"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -1404,16 +1477,20 @@
       "value": "hcc1954",
       "label": "HCC1954"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "her2amp",
       "label": "HER2amp"
     },
-    "molecularSubtype": [
-      {
-        "label": "Basal A",
-        "value": "basala"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "basala",
+      "label": "Basal A"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -1473,16 +1550,20 @@
       "value": "hcc2157",
       "label": "HCC2157"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Basal A",
-        "value": "basala"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "basala",
+      "label": "Basal A"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -1542,16 +1623,20 @@
       "value": "hcc2218",
       "label": "HCC2218"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "her2amp",
       "label": "HER2amp"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -1611,20 +1696,24 @@
       "value": "hs578t",
       "label": "Hs 578T"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      },
+      {
+        "label": "Core 6",
+        "value": "core6"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Claudin low",
-        "value": "claudinlow"
-      },
-      {
-        "label": "Basal B",
-        "value": "basalb"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "claudinlowbasalb",
+      "label": "Claudin low, Basal B"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -1684,16 +1773,24 @@
       "value": "mcf7",
       "label": "MCF7"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      },
+      {
+        "label": "Core 6",
+        "value": "core6"
+      }
+    ],
     "receptorStatus": {
       "value": "hrplus",
       "label": "HR+"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "MUT*",
     "mutation": [
       {
@@ -1753,20 +1850,24 @@
       "value": "mcf10a",
       "label": "MCF 10A"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      },
+      {
+        "label": "Core 6",
+        "value": "core6"
+      }
+    ],
     "receptorStatus": {
       "value": "nm",
       "label": "NM"
     },
-    "molecularSubtype": [
-      {
-        "label": "Non malignant",
-        "value": "nonmalignant"
-      },
-      {
-        "label": "Basal",
-        "value": "basal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "nonmalignantbasal",
+      "label": "Non malignant, Basal"
+    },
     "GATA3": "No data",
     "mutation": [
       {
@@ -1826,20 +1927,20 @@
       "value": "mcf10f",
       "label": "MCF 10F"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "nm",
       "label": "NM"
     },
-    "molecularSubtype": [
-      {
-        "label": "Non malignant",
-        "value": "nonmalignant"
-      },
-      {
-        "label": "Basal",
-        "value": "basal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "nonmalignantbasal",
+      "label": "Non malignant, Basal"
+    },
     "GATA3": "No data",
     "mutation": [
       {
@@ -1899,20 +2000,20 @@
       "value": "mcf-12a",
       "label": "MCF-12A"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "nm",
       "label": "NM"
     },
-    "molecularSubtype": [
-      {
-        "label": "Non malignant",
-        "value": "nonmalignant"
-      },
-      {
-        "label": "Basal",
-        "value": "basal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "nonmalignantbasal",
+      "label": "Non malignant, Basal"
+    },
     "GATA3": "No data",
     "mutation": [
       {
@@ -1972,16 +2073,20 @@
       "value": "mda-mb-134-vi",
       "label": "MDA-MB-134-VI"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "hrplus",
       "label": "HR+"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -2041,20 +2146,20 @@
       "value": "mda-mb-157",
       "label": "MDA-MB-157"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Claudin low",
-        "value": "claudinlow"
-      },
-      {
-        "label": "Basal B",
-        "value": "basalb"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "claudinlowbasalb",
+      "label": "Claudin low, Basal B"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -2114,16 +2219,20 @@
       "value": "mda-mb-175-vii",
       "label": "MDA-MB-175-VII"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "hrplus",
       "label": "HR+"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -2183,20 +2292,24 @@
       "value": "mda-mb-231",
       "label": "MDA-MB-231"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      },
+      {
+        "label": "Core 6",
+        "value": "core6"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Claudin low",
-        "value": "claudinlow"
-      },
-      {
-        "label": "Basal B",
-        "value": "basalb"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "claudinlowbasalb",
+      "label": "Claudin low, Basal B"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -2256,16 +2369,20 @@
       "value": "mda-mb-361",
       "label": "MDA-MB-361"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "her2amp",
       "label": "HER2amp"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -2325,16 +2442,20 @@
       "value": "mda-mb-415",
       "label": "MDA-MB-415"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "hrplus",
       "label": "HR+"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -2394,20 +2515,20 @@
       "value": "mda-mb-436",
       "label": "MDA-MB-436"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Claudin low",
-        "value": "claudinlow"
-      },
-      {
-        "label": "Basal B",
-        "value": "basalb"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "claudinlowbasalb",
+      "label": "Claudin low, Basal B"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -2467,16 +2588,20 @@
       "value": "mda-mb-453",
       "label": "MDA-MB-453"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -2536,16 +2661,20 @@
       "value": "mda-mb-468",
       "label": "MDA-MB-468"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "tnbc",
       "label": "TNBC"
     },
-    "molecularSubtype": [
-      {
-        "label": "Basal A",
-        "value": "basala"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "basala",
+      "label": "Basal A"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -2605,16 +2734,24 @@
       "value": "sk-br-3",
       "label": "SK-BR-3"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      },
+      {
+        "label": "Core 6",
+        "value": "core6"
+      }
+    ],
     "receptorStatus": {
       "value": "her2amp",
       "label": "HER2amp"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -2674,16 +2811,20 @@
       "value": "t47d",
       "label": "T47D"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "hrplus",
       "label": "HR+"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -2743,16 +2884,20 @@
       "value": "uacc-812",
       "label": "UACC-812"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "her2amp",
       "label": "HER2amp"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -2812,16 +2957,20 @@
       "value": "uacc-893",
       "label": "UACC-893"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "her2amp",
       "label": "HER2amp"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -2881,16 +3030,20 @@
       "value": "zr-75-1",
       "label": "ZR-75-1"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "hrplus",
       "label": "HR+"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {
@@ -2950,16 +3103,20 @@
       "value": "zr-75-30",
       "label": "ZR-75-30"
     },
+    "collection": [
+      {
+        "label": "ICBP43",
+        "value": "icbp43"
+      }
+    ],
     "receptorStatus": {
       "value": "her2amp",
       "label": "HER2amp"
     },
-    "molecularSubtype": [
-      {
-        "label": "Luminal",
-        "value": "luminal"
-      }
-    ],
+    "molecularSubtype": {
+      "value": "luminal",
+      "label": "Luminal"
+    },
     "GATA3": "WT",
     "mutation": [
       {

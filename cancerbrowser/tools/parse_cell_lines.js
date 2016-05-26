@@ -54,11 +54,11 @@ function getMutations(row) {
   return mutations.sort(d3.ascending);
 }
 
-function getSubtypes(subtypeString) {
+function getSubtypes(subtypeString, delim) {
   if(subtypeString.toLowerCase() == 'no data') {
     return [];
   } else {
-    return _.split(subtypeString,',').map((s) => {
+    return _.split(subtypeString, delim).map((s) => {
       return {label: _.trim(s), value:_.trim(s).replace(' ', '').toLowerCase()};
     });
   }
@@ -85,7 +85,8 @@ fs.readFile(filename, 'utf8', function(error, data) {
 
         var newValue = d[k].toLowerCase();
         newValue = newValue.replace('+','plus');
-        newValue = newValue.replace(' ','');
+        newValue = newValue.replace(/\s/g,'');
+        newValue = newValue.replace(/,/g,'');
         //TODO: save if the mutation has an * somewhere, for display.
         newValue = newValue.replace('*', '');
         newKey = lowerFirstLetter(k);
@@ -96,7 +97,7 @@ fs.readFile(filename, 'utf8', function(error, data) {
     });
 
     d.mutation = getMutations(d);
-    d.molecularSubtype = getSubtypes(d.molecularSubtype.label);
+    d.collection = getSubtypes(d.collection.label, ';');
 
     // pull up cellLine.value to be the ID
     d.id = d.cellLine.value;

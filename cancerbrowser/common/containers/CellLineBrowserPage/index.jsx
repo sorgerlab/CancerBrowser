@@ -47,8 +47,8 @@ export const cellLineFilters = [
     label: 'Collection',
     type: 'multi-select',
     values: [
-      { value: 'big6', label: 'Big 6' },
-      { value: 'icbp43', label: 'ICBP43' }
+      { value: 'icbp43', label: 'ICBP43' },
+      { value: 'core6', label: 'Core 6' }
     ]
   }, {
     id: 'receptorStatus',
@@ -64,13 +64,11 @@ export const cellLineFilters = [
     id: 'molecularSubtype',
     label: 'Molecular Subtype',
     type: 'multi-select',
-    values: [
-      { value: 'basal', label: 'Basal' },
-      { value: 'basala', label: 'Basal A' },
-      { value: 'basalb', label: 'Basal B' },
+    values:[
+      { value: 'nonmalignantbasal', label: 'Non malignant, Basal' },
       { value: 'luminal', label: 'Luminal' },
-      { value: 'claudinlow', label: 'Claudin low' },
-      { value: 'nonmalignant', label: 'Non malignant' }
+      { value: 'basala', label: 'Basal A' },
+      { value: 'claudinlowbasalb', label: 'Claudin low, Basal B' }
     ]
   }, {
     id: 'mutation',
