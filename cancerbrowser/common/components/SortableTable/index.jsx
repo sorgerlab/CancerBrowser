@@ -74,7 +74,7 @@ function sortValueSort({ prop, order }, data, columns) {
   } else if (column && column.render) {
     getValue = row => column.render(row[prop], row);
   } else {
-    row => row[prop];
+    getValue = row => row[prop];
   }
 
   const sortedData = _.sortBy(data, getValue);
