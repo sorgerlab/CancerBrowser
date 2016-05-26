@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import 'react-select/dist/react-select.css';
 import FilterPanel from '../../components/FilterPanel';
+import FilterGroupSummary from '../../components/FilterGroupSummary';
 import PageLayout from '../../components/PageLayout';
 import CellLineTable from '../../components/CellLineTable';
 
@@ -107,12 +108,19 @@ export const cellLineFilters = [
   }
 ];
 
+const filterGroups = [{
+  id: 'cellLineFilters',
+  label: 'Cell Line Filters',
+  filters: cellLineFilters
+}];
+
 class CellLineBrowserPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.onFilterChange = this.onFilterChange.bind(this);
     this.onCellLineViewChange = this.onCellLineViewChange.bind(this);
+    this.onCellLineFilterChange = this.onCellLineFilterChange.bind(this);
   }
 
   componentDidMount() {
@@ -124,18 +132,21 @@ class CellLineBrowserPage extends React.Component {
     this.props.dispatch(fetchCellLinesIfNeeded(newFilters));
   }
 
+  onCellLineFilterChange(newCellLineFilters) {
+    const { activeFilters } = this.props;
+    const newActiveFilters = Object.assign({}, activeFilters, { cellLineFilters: newCellLineFilters });
+
+    this.props.dispatch(changeActiveFilters(newActiveFilters));
+    this.props.dispatch(fetchCellLinesIfNeeded(newActiveFilters));
+  }
+
   onCellLineViewChange(evt) {
     const newView = evt.target.value;
     this.props.dispatch(changeCellLineView(newView));
   }
 
   renderSidebar() {
-    const filterGroups = [{
-      id: 'cellLineFilters',
-      label: 'Cell Line Filters',
-      filters: cellLineFilters
-    }];
-
+    // TODO: this needs to come from an API
     const counts = {
       cellLineFilters: {
         collection: {
@@ -157,6 +168,11 @@ class CellLineBrowserPage extends React.Component {
     );
   }
 
+  /**
+   * Renders the cell line table and view by controls
+   *
+   * @return {React.Component}
+   */
   renderTable() {
     const { filteredCellLines, cellLineView } = this.props;
 
@@ -174,11 +190,33 @@ class CellLineBrowserPage extends React.Component {
     );
   }
 
+    /**
+   * Renders the filter summary for cell line filters
+   *
+   * @return {React.Component}
+   */
+  renderFilterSummary() {
+    const { activeFilters } = this.props;
+
+    const cellLineActiveFilters = activeFilters && activeFilters.cellLineFilters;
+    const cellLineFilterGroup = filterGroups.find(filterGroup => filterGroup.id === 'cellLineFilters');
+
+    return (
+      <div className='cell-line-filters-summary'>
+        <FilterGroupSummary
+          filterGroup={cellLineFilterGroup}
+          activeFilters={cellLineActiveFilters}
+          onFilterChange={this.onCellLineFilterChange} />
+      </div>
+    );
+  }
+
   render() {
 
     return (
       <PageLayout className="page-with-sidebar page CellLineBrowserPage" sidebar={this.renderSidebar()}>
-        <h1>Cell</h1>
+        <h1>Cell Lines</h1>
+        {this.renderFilterSummary()}
         {this.renderTable()}
       </PageLayout>
     );
