@@ -189,7 +189,7 @@ class CellLineTable extends React.Component {
         keys={keys}
         columns={columnSet}
         initialData={data}
-        initialPageLength={30}
+        initialPageLength={100}
         paginate={true}
         searchable={true}
         initialSortBy={initialSortBy}
