@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import 'react-select/dist/react-select.css';
+import { ButtonGroup, Button } from 'react-bootstrap';
+import classNames from 'classnames';
+
 import FilterPanel from '../../components/FilterPanel';
 import FilterGroupSummary from '../../components/FilterGroupSummary';
 import PageLayout from '../../components/PageLayout';
@@ -21,6 +24,10 @@ const propTypes = {
   filteredCellLines: React.PropTypes.array,
   activeFilters: React.PropTypes.object,
   cellLineView: React.PropTypes.string
+};
+
+const defaultProps = {
+  cellLineView: 'summary'
 };
 
 function mapStateToProps(state) {
@@ -140,8 +147,7 @@ class CellLineBrowserPage extends React.Component {
     this.props.dispatch(fetchCellLinesIfNeeded(newActiveFilters));
   }
 
-  onCellLineViewChange(evt) {
-    const newView = evt.target.value;
+  onCellLineViewChange(newView) {
     this.props.dispatch(changeCellLineView(newView));
   }
 
@@ -178,12 +184,24 @@ class CellLineBrowserPage extends React.Component {
 
     return (
       <div>
-        <div className='form-inline'>
-          <select className='form-control' onChange={this.onCellLineViewChange}>
-            <option value='summary'>Summary</option>
-            <option value='mutations'>Mutation Status</option>
-            <option value='datasets'>Datasets</option>
-          </select>
+        <div className='cell-line-view-controls'>
+          <label className='small-label'>View By</label>
+          <div>
+            <ButtonGroup>
+              <Button className={classNames({ active: cellLineView === 'summary' })}
+                 onClick={this.onCellLineViewChange.bind(this, 'summary')}>
+                Summary
+              </Button>
+              <Button className={classNames({ active: cellLineView === 'mutations' })}
+                  onClick={this.onCellLineViewChange.bind(this, 'mutations')}>
+                Mutation Status
+              </Button>
+              <Button className={classNames({ active: cellLineView === 'datasets' })}
+                 onClick={this.onCellLineViewChange.bind(this, 'datasets')}>
+                Datasets
+              </Button>
+            </ButtonGroup>
+          </div>
         </div>
         <CellLineTable data={filteredCellLines} view={cellLineView} />
       </div>
@@ -223,6 +241,7 @@ class CellLineBrowserPage extends React.Component {
   }
 }
 
+CellLineBrowserPage.defaultProps = defaultProps;
 CellLineBrowserPage.propTypes = propTypes;
 
 export default connect(mapStateToProps)(CellLineBrowserPage);

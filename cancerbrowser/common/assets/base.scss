@@ -8,6 +8,10 @@ body {
   font-weight: 300;
 }
 
+h1 {
+  margin-bottom: 22px;
+}
+
 .main-footer {
   border-top: 1px solid #e8e8e8;
   text-align: center;
@@ -34,4 +38,12 @@ body {
   > tbody > tr:first-child > td {
     border-top: 0;
   }
+}
+
+
+.small-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: #888;
+  margin-bottom: 6px;
 }

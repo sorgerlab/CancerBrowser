@@ -93,7 +93,7 @@ class FilterGroupSummary extends React.Component {
 
     return (
       <div className="FilterGroupSummary">
-        <header>
+        <header className='small-label'>
           {filterGroup.label}
         </header>
         <div className='active-filters'>
