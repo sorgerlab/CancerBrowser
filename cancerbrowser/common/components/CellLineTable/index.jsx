@@ -17,7 +17,7 @@ function labelRenderer(val) {
 
 function listLabelRenderer(val) {
   return (
-    <ul className='list-inline'>
+    <ul className='list-inline label-list'>
       {val.map((item, i) => <li key={i}>{item.label}</li>)}
     </ul>
   );
