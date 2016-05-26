@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from 'react-fa';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import boundCallback from '../../utils/boundCallback';
+import createCachedPartial from '../../utils/createCachedPartial';
 import * as ImmutableUtils from '../../utils/immutable_utils';
 import './filter_group_summary.scss';
 
@@ -38,7 +38,7 @@ class FilterGroupSummary extends React.Component {
   constructor(props) {
     super(props);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.boundCallbacks = {};
+    this.partial = createCachedPartial(this);
   }
 
   /**
@@ -79,7 +79,7 @@ class FilterGroupSummary extends React.Component {
         <span className='filter-label'>{filter.label}</span>
         <span className='filter-values'>{valueString}</span>
         <Icon name='close' className='filter-remove-control'
-          onClick={boundCallback(this, this.boundCallbacks, this.handleResetFilter, index)} />
+          onClick={this.partial(this.handleResetFilter, index)} />
       </div>
     );
   }

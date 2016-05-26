@@ -4,7 +4,7 @@ import { Icon } from 'react-fa';
 import MultiSelectFilter from '../MultiSelectFilter';
 import SelectFilter from '../SelectFilter';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import boundCallback from '../../utils/boundCallback';
+import createCachedPartial from '../../utils/createCachedPartial';
 import * as ImmutableUtils from '../../utils/immutable_utils';
 import './filter_panel.scss';
 
@@ -73,7 +73,7 @@ class FilterPanel extends React.Component {
   constructor(props) {
     super(props);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.boundCallbacks = {};
+    this.partial = createCachedPartial(this);
   }
 
   /**
@@ -188,7 +188,7 @@ class FilterPanel extends React.Component {
     return (
       <MultiSelectFilter items={filter.values}
         values={activeValues}
-        onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, filterId, groupId)}
+        onChange={this.partial(this.handleFilterChange, filterId, groupId)}
         counts={counts} countMax={countMax}
         {...props} />
     );
@@ -216,7 +216,7 @@ class FilterPanel extends React.Component {
     return (
       <SelectFilter items={filter.values}
         value={value}
-        onChange={boundCallback(this, this.boundCallbacks, this.handleFilterChange, filterId, groupId)}
+        onChange={this.partial(this.handleFilterChange, filterId, groupId)}
         counts={counts} countMax={countMax}
         {...props} />
     );
@@ -260,7 +260,7 @@ class FilterPanel extends React.Component {
             <Icon name='close'
               title={`Reset ${filter.label}`}
               className='reset-filter-control clickable-icon'
-              onClick={boundCallback(this, this.boundCallbacks, this.handleFilterChange, filter.id, groupId, null)} />
+              onClick={this.partial(this.handleFilterChange, filter.id, groupId, null)} />
             ) : null}
         </header>
         <div>{filterElem}</div>
@@ -290,7 +290,7 @@ class FilterPanel extends React.Component {
             <Icon name='close'
               title={`Reset ${group.label}`}
               className='reset-group-control clickable-icon'
-              onClick={boundCallback(this, this.boundCallbacks, this.resetFilterGroup, group.id)} />
+              onClick={this.partial(this.resetFilterGroup, group.id)} />
             ) : null}
         </header>
         <div className='filter-panel-filters'>
