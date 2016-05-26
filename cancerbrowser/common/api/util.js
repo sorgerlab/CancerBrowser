@@ -66,3 +66,41 @@ function getCategoricalMatches(row, filterGroup) {
 
   return matches;
 }
+
+/**
+ * Provides counts for each filter group in the allFilterGroup
+ *
+ * @param {Array} data array of data to match to
+ * @param {Object} filter groups for the cell line data.
+ *
+ */
+export function countMatchedFilterGroups(data, allFilterGroups) {
+  var allCounts = {};
+  Object.keys(allFilterGroups).forEach(function(key) {
+    var filterGroup = allFilterGroups[key];
+    var filterGroupCounts = {};
+    filterGroup.filters.forEach(function(filter) {
+      filterGroupCounts[filter.id] = {};
+      filterGroupCounts[filter.id]['counts'] = countMatchedFilterData(data, filter);
+
+    });
+    allCounts[filterGroup.id] = filterGroupCounts;
+  });
+
+  return allCounts;
+}
+
+/**
+ * Provides counts for how many values match
+ *
+ */
+function countMatchedFilterData(data, filter) {
+  var filterCounts = {};
+  filter.values.forEach(function(value) {
+    var fakeFilterGroup = [{id:filter.id, values:value.value}];
+    var results = filterData(data, fakeFilterGroup);
+    filterCounts[value.value] = results.length;
+  });
+
+  return filterCounts;
+}

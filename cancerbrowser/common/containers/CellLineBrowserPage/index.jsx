@@ -23,7 +23,8 @@ const propTypes = {
   params: React.PropTypes.object,
   filteredCellLines: React.PropTypes.array,
   activeFilters: React.PropTypes.object,
-  cellLineView: React.PropTypes.string
+  cellLineView: React.PropTypes.string,
+  cellLineCounts: React.PropTypes.object
 };
 
 const defaultProps = {
@@ -34,7 +35,8 @@ function mapStateToProps(state) {
   return {
     cellLineView: state.cellLines.cellLineView,
     filteredCellLines: state.cellLines.filtered,
-    activeFilters: state.filters.active
+    activeFilters: state.filters.active,
+    cellLineCounts: state.cellLines.counts
   };
 }
 
@@ -131,12 +133,12 @@ class CellLineBrowserPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchCellLinesIfNeeded());
+    this.props.dispatch(fetchCellLinesIfNeeded({}, filterGroups));
   }
 
   onFilterChange(newFilters) {
     this.props.dispatch(changeActiveFilters(newFilters));
-    this.props.dispatch(fetchCellLinesIfNeeded(newFilters));
+    this.props.dispatch(fetchCellLinesIfNeeded(newFilters, filterGroups));
   }
 
   onCellLineFilterChange(newCellLineFilters) {
@@ -144,32 +146,24 @@ class CellLineBrowserPage extends React.Component {
     const newActiveFilters = Object.assign({}, activeFilters, { cellLineFilters: newCellLineFilters });
 
     this.props.dispatch(changeActiveFilters(newActiveFilters));
-    this.props.dispatch(fetchCellLinesIfNeeded(newActiveFilters));
+    this.props.dispatch(fetchCellLinesIfNeeded(newActiveFilters, filterGroups));
   }
 
   onCellLineViewChange(newView) {
     this.props.dispatch(changeCellLineView(newView));
   }
 
+  /**
+   * Renders the cell line filter side bar
+   *
+   * @return {React.Component}
+   */
   renderSidebar() {
-    // TODO: this needs to come from an API
-    const counts = {
-      cellLineFilters: {
-        collection: {
-          counts: {
-            big6: 6,
-            icbp43: 43
-          },
-          countMax: 43
-        }
-      }
-    };
-
     return (
       <FilterPanel
         filterGroups={filterGroups}
         activeFilters={this.props.activeFilters}
-        counts={counts}
+        counts={this.props.cellLineCounts}
         onFilterChange={this.onFilterChange} />
     );
   }
