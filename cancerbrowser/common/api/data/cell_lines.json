@@ -70,7 +70,17 @@
         "label": "MAP2K4 No data"
       }
     ],
-    "id": "184b5"
+    "id": "184b5",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -143,7 +153,8 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "au-565"
+    "id": "au-565",
+    "dataset": []
   },
   {
     "BRCA1": "WT",
@@ -220,7 +231,21 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "bt-20"
+    "id": "bt-20",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      },
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -293,7 +318,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "bt-474"
+    "id": "bt-474",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -366,7 +401,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "bt-483"
+    "id": "bt-483",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -439,7 +484,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "bt-549"
+    "id": "bt-549",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -512,7 +567,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "cama-1"
+    "id": "cama-1",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -585,7 +650,8 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "du4475"
+    "id": "du4475",
+    "dataset": []
   },
   {
     "BRCA1": "WT",
@@ -658,7 +724,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hcc38"
+    "id": "hcc38",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -731,7 +807,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hcc70"
+    "id": "hcc70",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -804,7 +890,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hcc202"
+    "id": "hcc202",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -877,7 +973,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hcc1187"
+    "id": "hcc1187",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "MUT",
@@ -950,7 +1056,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hcc1395"
+    "id": "hcc1395",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -1023,7 +1139,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hcc1419"
+    "id": "hcc1419",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -1096,7 +1222,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hcc1428"
+    "id": "hcc1428",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -1169,7 +1305,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hcc1500"
+    "id": "hcc1500",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -1242,7 +1388,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hcc1569"
+    "id": "hcc1569",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -1315,7 +1471,8 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hcc1599"
+    "id": "hcc1599",
+    "dataset": []
   },
   {
     "BRCA1": "WT",
@@ -1388,7 +1545,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hcc1806"
+    "id": "hcc1806",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "MUT*",
@@ -1461,7 +1628,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hcc1937"
+    "id": "hcc1937",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -1534,7 +1711,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hcc1954"
+    "id": "hcc1954",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -1607,7 +1794,8 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hcc2157"
+    "id": "hcc2157",
+    "dataset": []
   },
   {
     "BRCA1": "WT",
@@ -1680,7 +1868,8 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hcc2218"
+    "id": "hcc2218",
+    "dataset": []
   },
   {
     "BRCA1": "WT",
@@ -1757,7 +1946,8 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "hs578t"
+    "id": "hs578t",
+    "dataset": []
   },
   {
     "BRCA1": "WT",
@@ -1834,7 +2024,21 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "mcf7"
+    "id": "mcf7",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      },
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "BRCA1": "No data",
@@ -1911,7 +2115,8 @@
         "label": "MAP2K4 No data"
       }
     ],
-    "id": "mcf10a"
+    "id": "mcf10a",
+    "dataset": []
   },
   {
     "BRCA1": "No data",
@@ -1984,7 +2189,8 @@
         "label": "MAP2K4 No data"
       }
     ],
-    "id": "mcf10f"
+    "id": "mcf10f",
+    "dataset": []
   },
   {
     "BRCA1": "No data",
@@ -2057,7 +2263,8 @@
         "label": "MAP2K4 No data"
       }
     ],
-    "id": "mcf-12a"
+    "id": "mcf-12a",
+    "dataset": []
   },
   {
     "BRCA1": "WT",
@@ -2130,7 +2337,17 @@
         "label": "MAP2K4 MUT"
       }
     ],
-    "id": "mda-mb-134-vi"
+    "id": "mda-mb-134-vi",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -2203,7 +2420,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "mda-mb-157"
+    "id": "mda-mb-157",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -2276,7 +2503,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "mda-mb-175-vii"
+    "id": "mda-mb-175-vii",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -2353,7 +2590,21 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "mda-mb-231"
+    "id": "mda-mb-231",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      },
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -2426,7 +2677,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "mda-mb-361"
+    "id": "mda-mb-361",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -2499,7 +2760,17 @@
         "label": "MAP2K4 MUT"
       }
     ],
-    "id": "mda-mb-415"
+    "id": "mda-mb-415",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "MUT",
@@ -2572,7 +2843,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "mda-mb-436"
+    "id": "mda-mb-436",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -2645,7 +2926,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "mda-mb-453"
+    "id": "mda-mb-453",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -2718,7 +3009,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "mda-mb-468"
+    "id": "mda-mb-468",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -2795,7 +3096,21 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "sk-br-3"
+    "id": "sk-br-3",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      },
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -2868,7 +3183,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "t47d"
+    "id": "t47d",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -2941,7 +3266,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "uacc-812"
+    "id": "uacc-812",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -3014,7 +3349,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "uacc-893"
+    "id": "uacc-893",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -3087,7 +3432,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "zr-75-1"
+    "id": "zr-75-1",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -3160,6 +3515,16 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "zr-75-30"
+    "id": "zr-75-30",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_packt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   }
 ]
