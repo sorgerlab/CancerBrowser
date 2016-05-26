@@ -82,7 +82,7 @@ export function countMatchedFilterGroups(data, allFilterGroups) {
     filterGroup.filters.forEach(function(filter) {
       filterGroupCounts[filter.id] = {};
       filterGroupCounts[filter.id]['counts'] = countMatchedFilterData(data, filter);
-
+      filterGroupCounts[filter.id]['countMax'] = data.length;
     });
     allCounts[filterGroup.id] = filterGroupCounts;
   });
