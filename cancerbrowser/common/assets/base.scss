@@ -23,3 +23,15 @@ body {
     opacity: 1;
   }
 }
+
+
+.table {
+  > thead > tr > th {
+    font-weight: 400;
+    border-bottom: 1px solid #aaa;
+  }
+
+  > tbody > tr:first-child > td {
+    border-top: 0;
+  }
+}
