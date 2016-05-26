@@ -1,6 +1,5 @@
 // webpack.config.js
 var webpack = require('webpack');
-var path = require('path');
 var fs = require('fs');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlPlugin = require('html-webpack-plugin');
@@ -26,7 +25,8 @@ module.exports = [
       }),
       new CopyWebpackPlugin([
         { from: 'data', to: 'data' }
-      ])
+      ]),
+      new webpack.DefinePlugin({'window.__DEVELOPMENT__': true})
     ],
     devtool: 'source-map',
     entry: {
@@ -90,7 +90,8 @@ module.exports = [
       new ExtractTextPlugin('styles.css'),
       new CopyWebpackPlugin([
         { from: 'data', to: 'data' }
-      ])
+      ]),
+      new webpack.DefinePlugin({'window.__DEVELOPMENT__': true})
     ],
     entry: ['./server/server.jsx'],
     target: 'node',
