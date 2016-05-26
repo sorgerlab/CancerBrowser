@@ -3,6 +3,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classNames from 'classnames';
 import { DataMixin, Table, Pagination } from 'react-data-components';
 
+import './sortable_table.scss';
+
 // Note many of these properties are matched to react-data-components/DataTable
 const propTypes = {
   // An array of table row data to begin with (before sorting)
@@ -21,8 +23,11 @@ const propTypes = {
   // the properties in the data rows that uniquely identify the rows
   keys: React.PropTypes.array,
 
-  // the class name for the table
+  // the class name for the table container
   className: React.PropTypes.string,
+
+  // the class name for the table tag itself
+  tableClassName: React.PropTypes.string,
 
   // a function from row -> props object applied to <tr> elements
   buildRowOptions: React.PropTypes.func,
@@ -83,7 +88,7 @@ class SortableTable extends React.Component {
   }
 
   render() {
-    const { columns, keys, buildRowOptions, className, paginate } = this.props;
+    const { columns, keys, buildRowOptions, className, tableClassName, paginate } = this.props;
 
     let data, page;
     if (paginate) {
@@ -97,7 +102,7 @@ class SortableTable extends React.Component {
       <div className={classNames('SortableTable', className)}>
         {this.renderPager(page)}
         <TableNoThWidth
-          className="table table-bordered"
+          className={classNames('table', tableClassName)}
           dataArray={data}
           columns={columns}
           keys={keys}

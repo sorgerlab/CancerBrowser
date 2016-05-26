@@ -1,0 +1,61 @@
+@import "../../assets/variables";
+
+.SortableTable {
+   th {
+    cursor: pointer;
+    white-space: nowrap;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    > span:first-child {
+      white-space: normal;
+    }
+
+    // need this to prevent the sort icon wrapping beneath
+    span {
+      display: inline-block;
+    }
+  }
+
+  .table > thead > tr > th {
+    // ensure we have enough space for the sort icon
+    padding-right: 22px;
+  }
+
+  .sort-icon {
+    // float: right;
+    color: hsl(20, 0%, 70%);
+  }
+
+  .empty-cell {
+    font-style: italic;
+    color: darkgray;
+    cursor: default;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+  }
+
+  .sort-icon {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    // margin-right: -16px;
+    margin-left: 8px;
+    margin-top: 3px;
+  }
+  .sort-ascending:before  { content: '\f0de'; }
+  .sort-descending:before { content: '\f0dd'; }
+  .sort-none:before  { content: '\f0dc'; }
+
+  .sort-ascending, .sort-descending {
+    color: $link-color;
+  }
+}
+
+
