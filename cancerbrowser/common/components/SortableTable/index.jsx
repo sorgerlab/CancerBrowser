@@ -60,6 +60,9 @@ class SortableTable extends React.Component {
     super(props);
     this.id = sortableTableIds++;
     this.state = DataMixin.getInitialState.call(this);
+    // prevent React warning about uncontrolled/controlled components due to this
+    // value being initially undefined
+    this.state.filterValues.globalSearch = '';
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
 
