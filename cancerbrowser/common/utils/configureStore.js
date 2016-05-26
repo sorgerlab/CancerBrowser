@@ -11,7 +11,7 @@ export default function configureStore(initialState = undefined) {
       applyMiddleware(
         thunkMiddleware // lets us dispatch() functions
       ),
-      (window.__DEVELOPMENT__ && window.devToolsExtension) ? window.devToolsExtension() : f => f
+      (window.devToolsExtension) ? window.devToolsExtension() : f => f
     )
   );
   return store;
