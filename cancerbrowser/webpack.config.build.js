@@ -24,7 +24,11 @@ module.exports = [
         template: './common/index.html',
         filename: 'index.html'
       }),
-
+      new webpack.DefinePlugin({
+        'process.env':{
+          'NODE_ENV': JSON.stringify('production')
+        }
+      }),
       new webpack.optimize.UglifyJsPlugin({
         include: /\.min\.js$/,
         minimize: true
@@ -93,6 +97,11 @@ module.exports = [
   {
     plugins: [
       new ExtractTextPlugin('styles.css'),
+      new webpack.DefinePlugin({
+        'process.env':{
+          'NODE_ENV': JSON.stringify('production')
+        }
+      }),
       new CopyWebpackPlugin([
         { from: 'data', to: 'data' }
       ])
