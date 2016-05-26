@@ -8,6 +8,10 @@ body {
   font-weight: 300;
 }
 
+h1 {
+  margin-bottom: 22px;
+}
+
 .main-footer {
   border-top: 1px solid #e8e8e8;
   text-align: center;
@@ -23,3 +27,41 @@ body {
     opacity: 1;
   }
 }
+
+
+.table {
+  > thead > tr > th {
+    font-weight: 400;
+    border-bottom: 1px solid #aaa;
+  }
+
+  > tbody > tr:first-child > td {
+    border-top: 0;
+  }
+}
+
+.small-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+
+// override btn styling
+.btn-default {
+  border-bottom: 3px solid $btn-default-border;
+
+  &.active {
+    border-bottom: 3px solid darken($btn-default-bg, 10%);
+  }
+}
+.btn-primary {
+  border-bottom: 3px solid $btn-primary-border;
+
+  &.active {
+    border-bottom: 3px solid darken($btn-primary-bg, 10%);
+  }
+}
+
+

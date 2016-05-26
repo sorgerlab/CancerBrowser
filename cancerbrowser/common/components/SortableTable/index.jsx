@@ -1,7 +1,9 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classNames from 'classnames';
-import { DataMixin, Table, Pagination } from 'react-data-components';
+import { DataMixin, Table, Pagination, SearchField } from 'react-data-components';
+
+import './sortable_table.scss';
 
 // Note many of these properties are matched to react-data-components/DataTable
 const propTypes = {
@@ -15,21 +17,33 @@ const propTypes = {
   // how to initially sort the table e.g. { prop: 'cellLine', order: 'descending' }
   initialSortBy: React.PropTypes.object,
 
+  // Object mapping filter names to functions 'globalSearch' key is used for main search
+  // e.g. filters: { globalSearch: { filter: containsIgnoreCase }}
+  filters: React.PropTypes.object,
+
   // the column definitions for the table: an array of objects matching DataTable expectation
   columns: React.PropTypes.array,
 
   // the properties in the data rows that uniquely identify the rows
   keys: React.PropTypes.array,
 
-  // the class name for the table
+  // the class name for the table container
   className: React.PropTypes.string,
+
+  // the class name for the table tag itself
+  tableClassName: React.PropTypes.string,
 
   // a function from row -> props object applied to <tr> elements
   buildRowOptions: React.PropTypes.func,
 
   // whether or not to paginate
-  paginate: React.PropTypes.bool
+  paginate: React.PropTypes.bool,
+
+  // whether or not to have a search field
+  searchable: React.PropTypes.bool
 };
+
+let sortableTableIds = 0;
 
 const defaultProps = DataMixin.getDefaultProps();
 
@@ -44,7 +58,9 @@ class TableNoThWidth extends Table {
 class SortableTable extends React.Component {
   constructor(props) {
     super(props);
+    this.id = sortableTableIds++;
     this.state = DataMixin.getInitialState.call(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 
@@ -56,6 +72,30 @@ class SortableTable extends React.Component {
     this.buildPage = DataMixin.buildPage.bind(this);
     this.onChangePage = DataMixin.onChangePage.bind(this);
     this.onPageLengthChange = DataMixin.onPageLengthChange.bind(this);
+  }
+
+  handleSearchChange(evt) {
+    this.onFilter('globalSearch', evt.target.value);
+  }
+
+  renderSearch() {
+    const { searchable } = this.props;
+
+    if (!searchable) {
+      return null;
+    }
+
+    return (
+      <div className='search-container'>
+        <input
+          className='form-control'
+          type="search"
+          value={this.state.filterValues.globalSearch || ''} // || '' prevents switching to an uncontrolled component on undefined/null
+          onChange={this.handleSearchChange}
+          placeholder="Search the table..."
+        />
+      </div>
+    );
   }
 
   /**
@@ -83,7 +123,7 @@ class SortableTable extends React.Component {
   }
 
   render() {
-    const { columns, keys, buildRowOptions, className, paginate } = this.props;
+    const { columns, keys, buildRowOptions, className, tableClassName, paginate } = this.props;
 
     let data, page;
     if (paginate) {
@@ -95,9 +135,10 @@ class SortableTable extends React.Component {
 
     return (
       <div className={classNames('SortableTable', className)}>
+        {this.renderSearch()}
         {this.renderPager(page)}
         <TableNoThWidth
-          className="table table-bordered"
+          className={classNames('table', tableClassName)}
           dataArray={data}
           columns={columns}
           keys={keys}

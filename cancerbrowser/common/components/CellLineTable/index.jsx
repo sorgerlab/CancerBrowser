@@ -1,8 +1,12 @@
 import React from 'react';
+import _ from 'lodash';
 import { Link } from 'react-router';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 import SortableTable from '../SortableTable';
 import { Icon } from 'react-fa';
+
+import './cell_line_table.scss';
 
 // TODO: get this from the shared location
 const mutationGenes = ['BRCA1', 'BRCA2', 'CDH1', 'MAP3K1', 'MLL3', 'PIK3CA', 'PTEN', 'TP53', 'GATA3', 'MAP2K4'];
@@ -13,7 +17,7 @@ function labelRenderer(val) {
 
 function listLabelRenderer(val) {
   return (
-    <ul className='list-inline'>
+    <ul className='list-inline label-list'>
       {val.map((item, i) => <li key={i}>{item.label}</li>)}
     </ul>
   );
@@ -49,8 +53,16 @@ const allColumns = {
   },
   dataset: {
     title: 'Dataset',
-    render() {
-      return <Icon name='bar-chart' />;
+    render(val, row) {
+      return (
+        <DropdownButton bsStyle='default' pullRight bsSize='sm'
+            id={`dataset-dropdown-${row.id}`} // ID is apparently needed for accessibility
+            title={<Icon name='bar-chart' title='Explore Datasets' />}>
+          <MenuItem eventKey="1">Dataset 1</MenuItem>
+          <MenuItem eventKey="2">Dataset 2</MenuItem>
+          <MenuItem eventKey="3">Dataset 3</MenuItem>
+        </DropdownButton>
+      );
     }
   }
 };
@@ -67,7 +79,14 @@ const summaryColumns = [
 // Generate mutation columns for each gene
 const mutationGenesColumns = mutationGenes.map(gene => ({
   prop: gene,
-  title: gene
+  title: gene,
+  className(val) {
+    if (val) {
+      return `mutation-${val.toLowerCase().replace(/ /g, '-')}`;
+    } else {
+      return 'mutation-no-data';
+    }
+  }
 }));
 
 // Mutations column set
@@ -83,6 +102,39 @@ const datasetColumns = [
   // TODO add these in
 ];
 
+
+// helper function to normalize a string for search comparison by lower casing and trimming
+function normalizeString(str) {
+  return String(str).toLowerCase().trim();
+}
+
+/* function for searching the table column labels as opposed to assuming
+ * all the values are strings.
+ *
+ * @param {String} query The string to search for in the cell data
+ * @param {Object|Array|String|Number} cellData the data corresponding to the cell
+ *
+ * @return {Boolean} true if query is found in the cell data, false otherwise
+ */
+function labelContainsIgnoreCase(query, cellData) {
+  // normalize the query
+  const normalizedQuery = normalizeString(query);
+
+  let match;
+  // If the cellData is an object with a label, use that as the string to search in
+  if (cellData && cellData.label) {
+    match = normalizeString(cellData.label).indexOf(normalizedQuery) !== -1;
+
+  // If the cell data is an array, check if the match happens in any element
+  } else if (_.isArray(cellData)) {
+    match = cellData.some(item => labelContainsIgnoreCase(normalizedQuery, item));
+  // otherwise just treat the cellData as the string to search in (default case)
+  } else {
+    match = normalizeString(cellData).indexOf(normalizedQuery) !== -1;
+  }
+
+  return match;
+}
 
 // Define all available views here
 export const Views = {
@@ -103,6 +155,16 @@ const defaultProps = {
   view: Views.Summary
 };
 
+
+// specify these props here so they do not get recreated each render() breaking shouldComponentUpdate
+const filters = {
+  globalSearch: {
+    filter: labelContainsIgnoreCase
+  }
+};
+const initialSortBy = { prop: 'cellLine', order: 'descending' };
+const keys = ['id'];
+
 /** A way to render options in react-select that includes a bar and count */
 class CellLineTable extends React.Component {
   constructor(props) {
@@ -121,16 +183,17 @@ class CellLineTable extends React.Component {
     } else {
       columnSet = summaryColumns;
     }
-
     return (
       <SortableTable
         className="CellLineTable"
-        keys={['id']}
+        keys={keys}
         columns={columnSet}
         initialData={data}
         initialPageLength={30}
         paginate={true}
-        initialSortBy={{ prop: 'cellLine', order: 'descending' }}
+        searchable={true}
+        initialSortBy={initialSortBy}
+        filters={filters}
       />
     );
   }

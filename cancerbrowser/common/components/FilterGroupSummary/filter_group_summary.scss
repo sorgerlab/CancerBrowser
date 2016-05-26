@@ -2,17 +2,9 @@
 
 .FilterGroupSummary {
   display: inline-block;
-  background: #f6f6f6;
-  padding: 6px 10px 4px 10px;
-  border-radius: 4px;
   margin-bottom: 10px;
   font-size: 0.85em;
   color: #888;
-
-  header {
-    font-weight: 400;
-    margin-bottom: 6px;
-  }
 
   .active-filter {
     display: inline-block;
