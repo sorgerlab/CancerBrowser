@@ -60,10 +60,6 @@ class SortableTable extends React.Component {
     super(props);
     this.id = sortableTableIds++;
     this.state = DataMixin.getInitialState.call(this);
-    // prevent React warning about uncontrolled/controlled components due to this
-    // value being initially undefined
-    this.state.filterValues.globalSearch = '';
-
     this.handleSearchChange = this.handleSearchChange.bind(this);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
@@ -94,7 +90,7 @@ class SortableTable extends React.Component {
         <input
           className='form-control'
           type="search"
-          value={this.state.filterValues.globalSearch}
+          value={this.state.filterValues.globalSearch || ''} // || '' prevents switching to an uncontrolled component on undefined/null
           onChange={this.handleSearchChange}
           placeholder="Search the table..."
         />
