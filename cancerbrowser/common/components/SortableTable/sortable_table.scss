@@ -56,6 +56,12 @@
   .sort-ascending, .sort-descending {
     color: $link-color;
   }
+
+  .search-container {
+    float: left;
+    width: 300px;
+    margin: 22px 0; // matches .pagination
+  }
 }
 
 

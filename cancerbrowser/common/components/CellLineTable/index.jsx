@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { Link } from 'react-router';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import SortableTable from '../SortableTable';
@@ -92,6 +93,22 @@ const datasetColumns = [
   // TODO add these in
 ];
 
+// function for searching the table column labels as opposed to assuming
+// all the values are strings.
+function labelContainsIgnoreCase(needle, cellData) {
+  let haystack;
+  if (cellData && cellData.label) {
+    haystack = cellData.label;
+  } else if (_.isArray(cellData)) {
+    haystack = cellData.map(item => item.label).join('/#--#/');
+  } else {
+    haystack = cellData;
+  }
+
+  needle = String(needle).toLowerCase().trim();
+  haystack = String(haystack).toLowerCase().trim();
+  return haystack.indexOf(needle) >= 0;
+}
 
 // Define all available views here
 export const Views = {
@@ -112,6 +129,16 @@ const defaultProps = {
   view: Views.Summary
 };
 
+
+// specify these props here so they do not get recreated each render() breaking shouldComponentUpdate
+const filters = {
+  globalSearch: {
+    filter: labelContainsIgnoreCase
+  }
+};
+const initialSortBy = { prop: 'cellLine', order: 'descending' };
+const keys = ['id'];
+
 /** A way to render options in react-select that includes a bar and count */
 class CellLineTable extends React.Component {
   constructor(props) {
@@ -130,16 +157,17 @@ class CellLineTable extends React.Component {
     } else {
       columnSet = summaryColumns;
     }
-
     return (
       <SortableTable
         className="CellLineTable"
-        keys={['id']}
+        keys={keys}
         columns={columnSet}
         initialData={data}
         initialPageLength={30}
         paginate={true}
-        initialSortBy={{ prop: 'cellLine', order: 'descending' }}
+        searchable={true}
+        initialSortBy={initialSortBy}
+        filters={filters}
       />
     );
   }
