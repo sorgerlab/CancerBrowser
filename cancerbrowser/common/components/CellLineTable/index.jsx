@@ -53,9 +53,10 @@ const allColumns = {
   },
   dataset: {
     title: 'Dataset',
-    render() {
+    render(val, row) {
       return (
         <DropdownButton bsStyle='default' pullRight bsSize='sm'
+            id={`dataset-dropdown-${row.id}`} // ID is apparently needed for accessibility
             title={<Icon name='bar-chart' title='Explore Datasets' />}>
           <MenuItem eventKey="1">Dataset 1</MenuItem>
           <MenuItem eventKey="2">Dataset 2</MenuItem>
