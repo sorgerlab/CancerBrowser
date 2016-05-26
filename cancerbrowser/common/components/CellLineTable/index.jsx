@@ -24,6 +24,9 @@ const allColumns = {
   cellLine: {
     prop: 'cellLine',
     title: 'Cell Line',
+    // since render doesn't result in a simple string, we can't use it for sorting
+    // so we provide sortValue
+    sortValue: (val) => val.label,
     render(val) {
       return <Link to={`/cell_line/${val.value}`}>{val.label}</Link>;
     }

@@ -2,7 +2,10 @@
 
 .SortableTable {
    th {
-    cursor: pointer;
+
+    &[aria-sort] {
+      cursor: pointer;
+    }
     white-space: nowrap;
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -18,7 +21,7 @@
     }
   }
 
-  .table > thead > tr > th {
+  .table > thead > tr > th[aria-sort] {
     // ensure we have enough space for the sort icon
     padding-right: 22px;
   }

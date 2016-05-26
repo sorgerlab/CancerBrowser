@@ -1,7 +1,8 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import _ from 'lodash';
 import classNames from 'classnames';
-import { DataMixin, Table, Pagination, SearchField } from 'react-data-components';
+import { DataMixin, Table, Pagination } from 'react-data-components';
 
 import './sortable_table.scss';
 
@@ -40,12 +41,53 @@ const propTypes = {
   paginate: React.PropTypes.bool,
 
   // whether or not to have a search field
-  searchable: React.PropTypes.bool
+  searchable: React.PropTypes.bool,
+
+  // function to use for sorting. takes sortByValues (prop, order),
+  // the data to sort as args, and the column definitions
+  sort: React.PropTypes.func
 };
 
 let sortableTableIds = 0;
 
-const defaultProps = DataMixin.getDefaultProps();
+/**
+ * A function that uses the sortValue or render function configured on
+ * the column if it is available, otherwise reads the prop from the row
+ * data.
+ *
+ * @param {Object} {prop, order} prop is the key for the cell's value in the data
+ *                               order is ascending or descending
+ * @param {Array} data The array of data to sort
+ * @param {columns} columns The columns configuration for SortableTable
+ *
+ * @return {Array} The sorted data
+ */
+function sortValueSort({ prop, order }, data, columns) {
+  const column = columns.find(col => col.prop === prop);
+
+  // if sort value is configured, use it to get the value from the row
+  // otherwise, use the render function if provided
+  // if nothing provided, just use the value
+  let getValue;
+  if (column && column.sortValue) {
+    getValue = row => column.sortValue(row[prop], row);
+  } else if (column && column.render) {
+    getValue = row => column.render(row[prop], row);
+  } else {
+    row => row[prop];
+  }
+
+  const sortedData = _.sortBy(data, getValue);
+  if (order === 'descending') {
+    sortedData.reverse();
+  }
+
+  return sortedData;
+}
+
+const defaultProps = Object.assign({}, DataMixin.getDefaultProps(), {
+  sort: sortValueSort
+});
 
 // react-data-components Table caches the th width so the table doesn't change as you page
 // but this is undesirable behaviour at least for when we change views, so we can get rid of
@@ -61,13 +103,13 @@ class SortableTable extends React.Component {
     this.id = sortableTableIds++;
     this.state = DataMixin.getInitialState.call(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
+    this.onSort = this.onSort.bind(this);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 
     // add in the DataMixin functions since ES6 classes do not support mixins
     this.componentWillReceiveProps = DataMixin.componentWillReceiveProps.bind(this);
     this.componentWillMount = DataMixin.componentWillMount.bind(this);
-    this.onSort = DataMixin.onSort.bind(this);
     this.onFilter = DataMixin.onFilter.bind(this);
     this.buildPage = DataMixin.buildPage.bind(this);
     this.onChangePage = DataMixin.onChangePage.bind(this);
@@ -78,6 +120,10 @@ class SortableTable extends React.Component {
     this.onFilter('globalSearch', evt.target.value);
   }
 
+  /**
+   * Renders the search bar which enables filtering the table based on
+   * matching substrings in any of the columns
+   */
   renderSearch() {
     const { searchable } = this.props;
 
@@ -120,6 +166,22 @@ class SortableTable extends React.Component {
         onChangePage={this.onChangePage}
       />
     );
+  }
+
+  /**
+   * Handler for when a header is clicked to sort the data
+   *
+   * @param {Object} sortBy Object with { prop, order } where prop maps to a key
+   *                        in the data, and order is ascending or descending
+   */
+  onSort(sortBy) {
+    const { sort, columns } = this.props;
+    const { data } = this.state;
+
+    this.setState({
+      sortBy,
+      data: sort(sortBy, data, columns)
+    });
   }
 
   render() {
