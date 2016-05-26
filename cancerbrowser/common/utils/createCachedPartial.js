@@ -28,7 +28,7 @@ function createCachedPartial(context) {
     //     function foo(a /* {bar} */, b) { ... }
     /* Also won't work if you are sharing a cache for multiple functions with the same name
      * in which case, multiple 'createCachedPartial' function calls should be made */
-    const funcStr = `${func.toString()}`;
+    const funcStr = func.toString();
     const strKey = `${funcStr.substring(9, funcStr.indexOf('{'))}${JSON.stringify(keys)}`;
 
     let cachedFunc = cache[strKey];
