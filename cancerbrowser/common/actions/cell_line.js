@@ -2,6 +2,7 @@ import api from '../api';
 
 export const SET_FILTERED_CELL_LINES = 'SET_FILTERED_CELL_LINES';
 export const CHANGE_CELL_LINE_VIEW = 'CHANGE_CELL_LINE_VIEW';
+export const SET_CELL_LINE_COUNTS = 'SET_CELL_LINE_COUNTS';
 
 /**
  * Action creator for setting filtered cell lines
@@ -10,6 +11,16 @@ function setFilteredCellLines(cellLines) {
   return {
     type: SET_FILTERED_CELL_LINES,
     cellLines: cellLines
+  };
+}
+
+/**
+ * Action creator for setting filtered cell lines
+ */
+function setCellLineCounts(counts) {
+  return {
+    type: SET_CELL_LINE_COUNTS,
+    counts: counts
   };
 }
 
@@ -27,11 +38,16 @@ function shouldFetchCellLines(state) {
  * Helper function to get cellines given a set of filterGroups
  * @return {Function}
  */
-function fetchCellLines(filterGroups) {
+function fetchCellLines(filterGroups, allFilterGroups) {
   return dispatch => {
-    api.getCellLines(filterGroups).then(
-      json => dispatch(setFilteredCellLines(json))
-    );
+    api.getCellLines(filterGroups)
+    .then((data) => {
+      dispatch(setFilteredCellLines(data));
+      return data;
+    })
+    //TODO: should this be split into 2 different action creators?
+    .then(data => api.getCellLineCounts(data, allFilterGroups))
+    .then(counts => dispatch(setCellLineCounts(counts)));
   };
 }
 
@@ -39,10 +55,10 @@ function fetchCellLines(filterGroups) {
  * Public function to acquire cell line data
  * and create action to store it.
  */
-export function fetchCellLinesIfNeeded(filterGroups) {
+export function fetchCellLinesIfNeeded(activeFilterGroups, allFilterGroups) {
   return (dispatch, getState) => {
     if (shouldFetchCellLines(getState())) {
-      return dispatch(fetchCellLines(filterGroups));
+      return dispatch(fetchCellLines(activeFilterGroups, allFilterGroups));
     }
   };
 }
