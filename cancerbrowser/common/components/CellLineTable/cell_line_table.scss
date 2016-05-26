@@ -1,5 +1,5 @@
 $cell-alternate-fill: #f4f4f4;
-$cell-muted-color: #aaa;
+$cell-muted-color: #bbb;
 
 .CellLineTable {
   .table > tbody > tr > td {
@@ -9,7 +9,7 @@ $cell-muted-color: #aaa;
     background-color: $cell-alternate-fill;
   }
 
-  .mutation-no-data {
+  .no-data {
     color: $cell-muted-color;
   }
 

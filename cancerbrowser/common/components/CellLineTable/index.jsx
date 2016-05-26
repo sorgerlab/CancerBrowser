@@ -15,14 +15,6 @@ function labelRenderer(val) {
   return val.label;
 }
 
-function listLabelRenderer(val) {
-  return (
-    <ul className='list-inline label-list'>
-      {val.map((item, i) => <li key={i}>{item.label}</li>)}
-    </ul>
-  );
-}
-
 function commaListLabelRenderer(val) {
   return val.map(item => item.label).join(', ');
 }
@@ -49,7 +41,37 @@ const allColumns = {
   mutationStatusSummary: {
     prop: 'mutation',
     title: 'Mutation Status',
-    render: listLabelRenderer
+
+    /**
+     * Render:
+     *  - "No data" if there is no mutation data,
+     *  - "All WT" if all genes are wild type
+     *  - Otherwise a comma separated list of mutated genes
+     *
+     * @param {Array} array of mutated gene values
+     * @return {String}
+     */
+    render(val) {
+      if (/nodata$/.test(val[0].value)) {
+        return 'No data';
+      }
+
+      const mutations = val.filter(gene => /mut$/.test(gene.value));
+
+      if (!mutations.length) {
+        return 'All WT';
+      }
+
+      // take just the gene names, comma separated
+      return mutations.map(gene => gene.label.split(' ')[0]).join(', ');
+    },
+
+    // sets the class to no-data if there is no gene data
+    className(val) {
+      if (/nodata$/.test(val[0].value)) {
+        return 'no-data';
+      }
+    }
   },
   dataset: {
     title: 'Dataset',
@@ -84,7 +106,7 @@ const mutationGenesColumns = mutationGenes.map(gene => ({
     if (val) {
       return `mutation-${val.toLowerCase().replace(/ /g, '-')}`;
     } else {
-      return 'mutation-no-data';
+      return 'no-data';
     }
   }
 }));
