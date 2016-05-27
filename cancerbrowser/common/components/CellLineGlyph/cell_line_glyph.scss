@@ -11,9 +11,29 @@ $mutation-darken-amount: 0.15;
   .gene-letter {
     fill: #bbb;
     font-size: 10px;
+    pointer-events: none;
+  }
+
+  .receptor-status-label, .gene-name {
+    font-size: 10px;
+  }
+
+  .highlight {
+    pointer-events: none; // this prevents losing highlight if hovering over the letter
+
+    tspan {
+      font-weight: 400;
+
+      &.no-data {
+        fill: #bbb;
+        font-weight: 300;
+      }
+    }
   }
 
   line {
+    transition: .1s stroke;
+    pointer-events: none;
     stroke: #888;
     stroke-width: 1px;
 
@@ -23,13 +43,16 @@ $mutation-darken-amount: 0.15;
     }
   }
 
-
   &.receptor-status-nm {
     line {
       stroke: $nm-color;
       &.mutation {
         stroke: darken($nm-color, $mutation-darken-amount);
       }
+    }
+
+    .receptor-status-label, .gene-name {
+      fill: $nm-color;
     }
   }
 
@@ -40,6 +63,10 @@ $mutation-darken-amount: 0.15;
         stroke: darken($her2amp-color, $mutation-darken-amount);
       }
     }
+
+    .receptor-status-label, .gene-name {
+      fill: $her2amp-color;
+    }
   }
 
   &.receptor-status-tnbc {
@@ -49,6 +76,10 @@ $mutation-darken-amount: 0.15;
         stroke: darken($tnbc-color, $mutation-darken-amount);
       }
     }
+
+    .receptor-status-label, .gene-name {
+      fill: $tnbc-color;
+     }
   }
 
   &.receptor-status-hrplus {
@@ -56,6 +87,20 @@ $mutation-darken-amount: 0.15;
       stroke: $hrplus-color;
       &.mutation {
         stroke: darken($hrplus-color, $mutation-darken-amount);
+      }
+    }
+
+    .receptor-status-label, .gene-name {
+      fill: $hrplus-color;
+    }
+  }
+
+  &.has-highlight .not-highlighted {
+    line {
+      stroke: #ddd;
+
+      &.mutation {
+        stroke: darken(#ddd, $mutation-darken-amount);
       }
     }
   }
