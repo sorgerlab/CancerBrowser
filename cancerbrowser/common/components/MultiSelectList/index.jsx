@@ -1,7 +1,7 @@
 import React from 'react';
 import d3 from 'd3';
 import classNames from 'classnames';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import shallowCompare from 'react-addons-shallow-compare';
 import * as ImmutableUtils from '../../utils/immutable_utils';
 
 import './multi_select_list.scss';
@@ -53,7 +53,10 @@ const defaultProps = {
 class MultiSelectList extends React.Component {
   constructor(props) {
     super(props);
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
   }
 
   /**
