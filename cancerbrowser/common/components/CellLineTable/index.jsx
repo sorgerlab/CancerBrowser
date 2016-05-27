@@ -17,10 +17,6 @@ function labelRenderer(val) {
   return val.label;
 }
 
-function commaListLabelRenderer(val) {
-  return val.map(item => item.label).join(', ');
-}
-
 /** Define all table columns here */
 const allColumns = {
   cellLine: {
@@ -139,12 +135,44 @@ const mutationColumns = [
   allColumns.dataset
 ];
 
-// Datasets column set
-const datasetColumns = [
-  allColumns.cellLine,
-  allColumns.cellLineGlyph
-  // TODO add these in
-];
+// need to use a function for these since datasets is a prop of the table.
+function getDatasetColumns(datasets) {
+  // Generate the columns for each dataset
+  const hasDatasetColumns = Object.keys(datasets).map(datasetId => {
+    const dataset = datasets[datasetId];
+    return {
+      prop: 'dataset',
+      title: dataset.label,
+      sortVal(val) {
+        const datasetValue = val.find(d => d.value === datasetId);
+        return !!datasetValue;
+      },
+      render(val) {
+        if (val.find(d => d.value === datasetId)) {
+          return <Link to={`/dataset/${datasetId}`}><Icon name='bar-chart'/></Link>;
+        }
+
+        return '';
+      },
+      className(val) {
+        if (val.find(d => d.value === datasetId)) {
+          return 'dataset-col has-dataset';
+        } else {
+          return 'dataset-col no-data';
+        }
+      }
+    };
+  });
+
+  // Datasets column set
+  const datasetColumns = [
+    allColumns.cellLine,
+    allColumns.cellLineGlyph,
+    ...hasDatasetColumns
+  ];
+
+  return datasetColumns;
+}
 
 
 // helper function to normalize a string for search comparison by lower casing and trimming
@@ -192,11 +220,15 @@ const propTypes = {
   data: React.PropTypes.array,
 
   /** Decides what column set to use. One of Views defined above */
-  view: React.PropTypes.oneOf(Object.keys(Views).map(key => Views[key]))
+  view: React.PropTypes.oneOf(Object.keys(Views).map(key => Views[key])),
+
+  /** The object representing all datasets in the browser { datasetId: datasetDefinition } */
+  datasets: React.PropTypes.object
 };
 
 const defaultProps = {
-  view: Views.Summary
+  view: Views.Summary,
+  datasets: {}
 };
 
 
@@ -217,13 +249,13 @@ class CellLineTable extends React.Component {
   }
 
   render() {
-    const { data, view } = this.props;
+    const { data, view, datasets } = this.props;
 
     let columnSet;
     if (view === Views.Mutations) {
       columnSet = mutationColumns;
     } else if (view === Views.Datasets) {
-      columnSet = datasetColumns;
+      columnSet = getDatasetColumns(datasets);
     } else {
       columnSet = summaryColumns;
     }
