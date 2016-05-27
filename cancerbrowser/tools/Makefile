@@ -3,7 +3,13 @@ cell_lines:
 	./parse_cell_lines.js cell_lines.csv
 	./add_datasets_to_cell_lines.js ./cell_lines.json ../common/api/data/dataset_info.json
 
-copy_cell_lines:
-	cp cell_lines.json ../common/api/data/
+move_cell_lines:
+	mv cell_lines.json ../common/api/data/
 
-all: cell_lines copy_cell_lines
+drugs:
+	./parse_drugs.js drugs.csv
+
+move_drugs:
+	mv drugs.json ../common/api/data/
+
+all: cell_lines move_cell_lines drugs move_drugs
