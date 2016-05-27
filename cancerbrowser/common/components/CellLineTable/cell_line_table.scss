@@ -5,7 +5,12 @@ $cell-muted-color: #bbb;
   .table > tbody > tr > td {
     vertical-align: middle;
   }
-  .mutation-mut {
+
+  .dataset-col {
+    text-align: center;
+  }
+
+  .mutation-mut, .has-dataset {
     background-color: $cell-alternate-fill;
   }
 
@@ -19,5 +24,11 @@ $cell-muted-color: #bbb;
 
   .cell-line-td {
     white-space: nowrap;
+  }
+
+  .dataset-count {
+    font-weight: bold;
+    margin-right: 8px;
+
   }
 }
