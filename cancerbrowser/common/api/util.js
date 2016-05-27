@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export const DATA_PATH = '/data/datasets/';
+export const DATA_PATH = '/data/';
 
 /**
  * Filter a given row based dataset based on the categorical filters provided.

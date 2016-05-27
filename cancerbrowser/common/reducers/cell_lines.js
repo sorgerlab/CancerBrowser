@@ -1,10 +1,15 @@
 
-import { SET_FILTERED_CELL_LINES, CHANGE_CELL_LINE_VIEW, SET_CELL_LINE_COUNTS } from '../actions/cell_line';
+import {
+  SET_FILTERED_CELL_LINES,
+  CHANGE_CELL_LINE_VIEW,
+  SET_CELL_LINE_COUNTS,
+  SET_CELL_LINE_INFO } from '../actions/cell_line';
 
 const INITIAL_STATE = {
   filtered: [],
   isFetching: false,
-  counts: {}
+  counts: {},
+  info: {}
 };
 
 function cellLines(state = INITIAL_STATE, action) {
@@ -23,6 +28,11 @@ function cellLines(state = INITIAL_STATE, action) {
     case SET_CELL_LINE_COUNTS:
       return Object.assign({}, state, {
         counts: action.counts
+      });
+
+    case SET_CELL_LINE_INFO:
+      return Object.assign({}, state, {
+        info: action.info
       });
 
     default:

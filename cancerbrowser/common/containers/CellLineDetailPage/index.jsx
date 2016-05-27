@@ -1,38 +1,48 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import {
+  fetchCellLineInfoIfNeeded
+} from '../../actions/cell_line';
+
 const propTypes = {
-  cells: React.PropTypes.object,
-  routeParams: React.PropTypes.object
+  dispatch: React.PropTypes.func,
+  cellLineInfo: React.PropTypes.object,
+  params: React.PropTypes.object
 };
 
-class CellDetailPage extends React.Component {
+function mapStateToProps(state) {
+  return {
+    cellLineInfo: state.cellLines.info
+  };
+}
+
+class CellLineDetailPage extends React.Component {
+
+  componentDidMount() {
+    const cellLineId = this.props.params.cellLineId;
+    this.props.dispatch(fetchCellLineInfoIfNeeded(cellLineId));
+  }
 
   /**
   * Render out JSX for CellDetail.
   * @return {ReactElement} JSX markup.
   */
   render() {
-    const { cells, routeParams } = this.props;
-    const cellLineId = routeParams.cellLineId;
 
-    let cell;
-    if (cells) {
-      cell = cells[cellLineId];
-    } else {
-      cell = {};
-    }
+    const cellLine = this.props.cellLineInfo;
 
     return (
       <div>
         <Link to="/cell_lines" className="btn btn-lg btn-default" role="button">Cell Line Browser</Link>
-        <h1>{ cell.name }</h1>
+        <h1>{ cellLine.name }</h1>
         <p>General Information</p>
         <table>
           <tbody>
             <tr>
               <td>Clinical subtype</td>
-              <td>TNBC</td>
+            <td>{ cellLine['Details of Cell Type'] }</td>
             </tr>
             <tr>
               <td>Transcription Subtype</td>
@@ -40,7 +50,7 @@ class CellDetailPage extends React.Component {
             </tr>
             <tr>
               <td>HMS LINCS ID</td>
-              <td>{ cell.lincs_id }</td>
+            <td>{ cellLine.lincs_id }</td>
             </tr>
           </tbody>
         </table>
@@ -49,6 +59,6 @@ class CellDetailPage extends React.Component {
   }
 }
 
-CellDetailPage.propTypes = propTypes;
+CellLineDetailPage.propTypes = propTypes;
 
-export default CellDetailPage;
+export default connect(mapStateToProps)(CellLineDetailPage);

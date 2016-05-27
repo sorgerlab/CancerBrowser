@@ -40,14 +40,13 @@ export function getCellLineInfo(cellLineId) {
 
     var path = DATA_PATH + 'cell_line_info.csv';
 
+    // TODO: store after inital load.
     d3.csv(path, function(error, data) {
       if(error) {
         reject(error);
       } else {
 
-        var cellLinesByName = d3.nest()
-          .key(function(row) { return row['Name'].toLowerCase(); })
-          .entries(data);
+        var cellLinesByName = _.keyBy(data, function(row) { return row['Name'].toLowerCase(); });
 
         var cellLine = cellLinesByName[cellLineId];
 

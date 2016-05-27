@@ -40,7 +40,7 @@ export function getDataset(datasetId) {
     if(datasetInfo[datasetId]) {
       var info = datasetInfo[datasetId];
 
-      var path = DATA_PATH + info.filename;
+      var path = DATA_PATH + 'datasets/' + info.filename;
 
       d3.tsv(path, function(error, data) {
         if(error) {

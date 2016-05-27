@@ -3,6 +3,7 @@ import api from '../api';
 export const SET_FILTERED_CELL_LINES = 'SET_FILTERED_CELL_LINES';
 export const CHANGE_CELL_LINE_VIEW = 'CHANGE_CELL_LINE_VIEW';
 export const SET_CELL_LINE_COUNTS = 'SET_CELL_LINE_COUNTS';
+export const SET_CELL_LINE_INFO = 'SET_CELL_LINE_INFO';
 
 /**
  * Action creator for setting filtered cell lines
@@ -21,6 +22,16 @@ function setCellLineCounts(counts) {
   return {
     type: SET_CELL_LINE_COUNTS,
     counts: counts
+  };
+}
+
+/**
+ * Action creator for setting cell line info
+ */
+function setCellLineInfo(info) {
+  return {
+    type: SET_CELL_LINE_INFO,
+    info
   };
 }
 
@@ -63,6 +74,38 @@ export function fetchCellLinesIfNeeded(activeFilterGroups, allFilterGroups) {
   };
 }
 
+/**
+ * Helper function to determine if the
+ * cell line info need to be acquired.
+ * Right now always returns true.
+ * @return true
+ */
+function shouldFetchCellLineInfo(cellLineId, state) {
+  return true;
+}
+
+/**
+ * Helper function to get cellines given a set of filterGroups
+ * @return {Function}
+ */
+function fetchCellLineInfo(cellLineId) {
+  return dispatch => {
+    api.getCellLineInfo(cellLineId)
+    .then((data) => dispatch(setCellLineInfo(data)) );
+  };
+}
+
+/**
+ * Public function to acquire cell line data
+ * and create action to store it.
+ */
+export function fetchCellLineInfoIfNeeded(cellLineId) {
+  return (dispatch, getState) => {
+    if (shouldFetchCellLineInfo(cellLineId, getState())) {
+      return dispatch(fetchCellLineInfo(cellLineId));
+    }
+  };
+}
 
 /**
  * Action creator for changing the cell line view the table shows
