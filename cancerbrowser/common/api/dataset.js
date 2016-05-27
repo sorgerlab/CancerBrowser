@@ -1,9 +1,10 @@
 import d3 from 'd3';
 // import fetch from 'isomorphic-fetch';
 
+import { DATA_PATH } from './util';
+
 import datasetInfo from './data/dataset_info.json';
 
-const DATA_PATH = '/data/datasets/';
 
 /** Returns Promise that resolves to information about
  * each dataset in an Object where
