@@ -101,11 +101,12 @@ export const cellLineFilters = [
     label: 'Dataset',
     type: 'multi-select',
     values: [
-      { value: 'dataset1', label: 'Basal Receptor (RTK) Profile' },
-      { value: 'dataset2', label: 'Growth Factor-Induced pAKT/pERK Response' },
-      { value: 'dataset3', label: 'Basal Total Protein Mass Spectrometry' },
-      { value: 'dataset4', label: 'Basal Phosphoprotein Mass Spectrometry' },
-      { value: 'dataset5', label: 'Drug Dose-Response Growth Rate Profiling' }
+
+      { value: 'receptor_profile', label: 'Basal Receptor (RTK) Profile' },
+      { value: 'growth_factor_packt_perk', label: 'Growth Factor-Induced pAKT/pERK Response' },
+      { value: 'basal_total', label: 'Basal Total Protein Mass Spectrometry' },
+      { value: 'basal_phospho', label: 'Basal Phosphoprotein Mass Spectrometry' },
+      { value: 'drug_dose_response', label: 'Drug Dose-Response Growth Rate Profiling' }
     ],
     options: {
       props: {
