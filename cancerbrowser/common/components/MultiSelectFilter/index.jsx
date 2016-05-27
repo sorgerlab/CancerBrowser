@@ -1,5 +1,5 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import shallowCompare from 'react-addons-shallow-compare';
 import Select from 'react-select';
 import MultiSelectList from '../MultiSelectList';
 import NumberedSelectOption from '../NumberedSelectOption';
@@ -56,8 +56,11 @@ const defaultProps = {
 class MultiSelectFilter extends React.Component {
   constructor(props) {
     super(props);
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.handleAutocompleterChange = this.handleAutocompleterChange.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
   }
 
   /**
