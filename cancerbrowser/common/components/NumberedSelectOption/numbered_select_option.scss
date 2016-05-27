@@ -2,9 +2,10 @@ $count-width: 60px;
 
 .NumberedSelectOption {
   position: relative;
+  padding-right: $count-width;
 
   .option-label {
-    display: inline-block;
+    display: block;
   }
 
   .option-count {
