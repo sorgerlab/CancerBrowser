@@ -1,5 +1,6 @@
 
 import { getCellLines, getCellLineCounts } from './cell_line';
+import { getDrugs, getDrugCounts } from './drug';
 import { getDataset, getDatasets, getDatasetInfo } from './dataset';
 
 export default {
@@ -7,5 +8,7 @@ export default {
   getDatasetInfo,
   getDataset,
   getCellLines,
-  getCellLineCounts
+  getCellLineCounts,
+  getDrugs,
+  getDrugCounts
 };
