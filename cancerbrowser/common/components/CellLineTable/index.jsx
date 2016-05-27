@@ -71,7 +71,7 @@ const allColumns = {
         return 'No data';
       }
 
-      const mutations = val.filter(gene => /mut$/.test(gene.value));
+      const mutations = val.filter(gene => /mut(\*)?$/.test(gene.value));
 
       if (!mutations.length) {
         return 'All WT';
