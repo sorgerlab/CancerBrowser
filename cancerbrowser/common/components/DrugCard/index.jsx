@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import _ from 'lodash';
 import { Link } from 'react-router';
 import shallowCompare from 'react-addons-shallow-compare';
@@ -27,12 +28,46 @@ class DrugCard extends React.Component {
     return shallowCompare(this, nextProps, nextState);
   }
 
+  renderDrugClass(drugClass) {
+    if (!drugClass) {
+      return null;
+    }
+
+    const classLetter = drugClass.value.charAt(0);
+
+    return (
+      <div className='drug-class'>{classLetter}</div>
+    );
+  }
+
+  renderDrugDetails(data) {
+    const target = data.nominalTarget && data.nominalTarget.label || 'Target';
+
+    return (
+      <div className='drug-details'>
+        <div className='drug-name'>
+          <Link to={`/drugs/${data.id}`}>{data.name.label}</Link>
+        </div>
+        <div className='drug-target'>
+          {target}
+        </div>
+        <div className='drug-datasets'>
+          <Icon name='bar-chart'/>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const { data } = this.props;
 
+    console.log(data.class);
+
     return (
       <div className='DrugCard'>
-        {`[${data.name.value}]`}
+        <div className='drug-diagram'/>
+        {this.renderDrugClass(data.class)}
+        {this.renderDrugDetails(data)}
       </div>
     );
   }

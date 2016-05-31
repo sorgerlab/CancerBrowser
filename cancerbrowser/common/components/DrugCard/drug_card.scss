@@ -1,3 +1,38 @@
-.DrugCard {
+$drug-diagram-width: 80px;
 
+.DrugCard {
+  position: relative;
+  width: 240px;
+  height: 100px;
+  display: inline-block;
+  margin: 0 4px 4px 0;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 10px;
+  padding-left: 20px + $drug-diagram-width;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  background: #fff;
+
+  .drug-class {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 12px;
+    background: #aaa;
+    color: #fff;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
+
+  .drug-diagram {
+    background: #eee;
+    width: $drug-diagram-width;
+    height: 80px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
 }
