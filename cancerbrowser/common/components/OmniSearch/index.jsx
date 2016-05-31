@@ -44,26 +44,27 @@ class OmniSearch extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.cellLines && nextProps.drugs) {
-      this.setState(
-        {
-          combinedData: [
-            {
-              label: 'Cell Lines',
-              id: 'cell_line',
-              searchAttrs: ['id'],
-              values: nextProps.cellLines
-            },
-            {
-              label: 'Drugs',
-              id: 'drug',
-              searchAttrs: ['id'],
-              values: nextProps.drugs
-            }
-          ]
-        });
-
-      this.setState({suggestions: this.getSuggestions('')});
+    if(nextProps.cellLines && nextProps.drugs &&
+      (nextProps.cellLines !== this.props.cellLines || nextProps.drugs !== this.props.drugs)) {
+      const newState = {};
+      Object.assign(newState, {
+        combinedData: [
+          {
+            label: 'Cell Lines',
+            id: 'cell_line',
+            searchAttrs: ['id'],
+            values: nextProps.cellLines
+          },
+          {
+            label: 'Drugs',
+            id: 'drug',
+            searchAttrs: ['id'],
+            values: nextProps.drugs
+          }
+        ]
+      });
+      Object.assign(newState, {suggestions: this.getSuggestions('')});
+      this.setState(newState);
     }
   }
 
@@ -76,7 +77,7 @@ class OmniSearch extends React.Component {
   * @param {Object} event change event
   * @param {String} newValue
   */
-  onChange(event, { newValue }) {
+  onChange(event, {newValue}) {
     this.setState({
       value: newValue
     });
@@ -91,7 +92,7 @@ class OmniSearch extends React.Component {
     this.setState({value: ''});
     const suggestionId = suggestion.id;
     const suggestionType = this.state.combinedData[sectionIndex].id;
-    var path = `/${suggestionType}/${suggestionId}`;
+    const path = `/${suggestionType}/${suggestionId}`;
     this.context.router.push(path);
   }
 

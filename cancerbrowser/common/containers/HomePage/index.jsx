@@ -44,10 +44,11 @@ class HomePage extends React.Component {
    *
    */
   renderSearch() {
+    const { cellLines, drugs} = this.props;
     return (
-      < OmniSearch
-        cellLines = {this.props.cellLines}
-        drugs = {this.props.drugs}
+      <OmniSearch
+        cellLines = {cellLines}
+        drugs = {drugs}
       />
     );
   }
