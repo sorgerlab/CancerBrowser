@@ -43,6 +43,9 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
   });
 }
 
+/**
+ * React container for DatasetDetails page.
+ */
 class DatasetDetailPage extends React.Component {
 
   componentDidMount() {
@@ -50,43 +53,16 @@ class DatasetDetailPage extends React.Component {
     this.props.dispatch(fetchDatasetInfo(this.props.params));
   }
 
-  renderTable() {
-    let columnSet = [];
-    let data = [];
-    if(this.props.datasetDetail) {
-      columnSet = Object.keys(this.props.datasetDetail[0]).map((k) => {
-        return {prop: k, title: k, render(val) { return val; }};
-      });
-      data = this.props.datasetDetail;
-    }
-    return (
-      <SortableTable
-        className="CellLineTable"
-        keys={[this.props.datasetInfo.cell_line_id]}
-        initialData={data}
-        columns={columnSet}
-        initialPageLength={30}
-        paginate={true}
-        initialSortBy={{ prop: 'cellLine', order: 'descending' }}
-      />
-    );
-  }
-
   render() {
-
+    console.log(this.props.datasetDetail);
     return (
       <div>
         <h1>{this.props.datasetInfo.label}</h1>
-
-        {this.renderTable()}
-
 
       </div>
     );
   }
 }
-
-
 
 DatasetDetailPage.propTypes = propTypes;
 
