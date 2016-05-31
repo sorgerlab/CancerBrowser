@@ -32,6 +32,7 @@ class CellLineDetailPage extends React.Component {
   render() {
 
     const cellLine = this.props.cellLineInfo;
+    console.log(cellLine);
 
     return (
       <div>

@@ -5,7 +5,8 @@ import d3 from 'd3';
 import {
   DATA_PATH,
   filterData,
-  countMatchedFilterGroups } from './util';
+  countMatchedFilterGroups,
+  mergeData } from './util';
 
 
 //TODO async load cell line data.
@@ -30,31 +31,55 @@ export function getCellLines(filterGroups = {}) {
   });
 }
 
-/** Returns Promise that resolves to information about
- * particular cell line.
- * @param {String} id of cell line to get
- * @return {Promise} cell line info object
+/**
+ * Returns Promise which resolves to array of all cell line info values
+ * merged with the cell line data.
+ *
+ * Cell line info is merged as `info` attribute of cell line data.
+ *
+ * @return {Array} filtered set of cell line data
  */
-export function getCellLineInfo(cellLineId) {
-  return new Promise(function(resolve, reject) {
+export function getCellLineInfos() {
+  return getCellLines().then(function(allCellLines) {
+    return new Promise(function(resolve, reject) {
 
-    var path = DATA_PATH + 'cell_line_info.csv';
+      let path = DATA_PATH + 'cell_line_info.csv';
 
-    // TODO: store after inital load.
-    d3.csv(path, function(error, data) {
-      if(error) {
-        reject(error);
-      } else {
-
-        var cellLinesByName = _.keyBy(data, function(row) { return row['Name'].toLowerCase(); });
-
-        var cellLine = cellLinesByName[cellLineId];
-
-        if(cellLine) {
-          resolve(cellLine);
+      // TODO: store after inital load.
+      d3.csv(path, function(error, data) {
+        if(error) {
+          reject(error);
         } else {
-          reject('cell line not found ' + cellLineId);
+
+          // add consistent ID value for matching.
+          data.forEach((d) => d.id = d['Cell Line'].toLowerCase());
+
+          let results = mergeData(allCellLines, data, 'id', 'id', 'info');
+          resolve(results);
         }
+      });
+    });
+  });
+}
+
+
+/** Returns Promise that resolves to information about
+* particular cell line.
+* @param {String} id of cell line to get
+* @return {Promise} cell line info object
+*/
+export function getCellLineInfo(cellLineId) {
+  return getCellLineInfos().then(function(allCellLineInfos) {
+    return new Promise(function(resolve, reject) {
+
+      var cellLinesByName = _.keyBy(allCellLineInfos, 'id');
+
+      var cellLine = cellLinesByName[cellLineId];
+
+      if(cellLine) {
+        resolve(cellLine);
+      } else {
+        reject('cell line not found ' + cellLineId);
       }
     });
   });
