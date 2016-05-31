@@ -1,11 +1,7 @@
 import React from 'react';
-import _ from 'lodash';
-import { Link } from 'react-router';
 import shallowCompare from 'react-addons-shallow-compare';
-import { DropdownButton, MenuItem } from 'react-bootstrap';
-import { Icon } from 'react-fa';
 
-import SortableTable from '../SortableTable';
+import DrugCard from '../DrugCard';
 
 import './drug_cards.scss';
 
@@ -18,8 +14,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  groupBy: 'class',
-  datasets: {}
+  groupBy: 'class'
 };
 
 /**
@@ -87,7 +82,7 @@ class DrugCards extends React.Component {
         </header>
         <div className='card-group-cards'>
           {group.map((drug, i) => {
-            return <div key={i}>{drug.name.value}</div>;
+            return <DrugCard key={i} data={drug} />;
           })}
         </div>
       </div>
