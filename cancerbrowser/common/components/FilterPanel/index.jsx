@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { Icon } from 'react-fa';
 import MultiSelectFilter from '../MultiSelectFilter';
 import SelectFilter from '../SelectFilter';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import shallowCompare from 'react-addons-shallow-compare';
 import createCachedPartial from '../../utils/createCachedPartial';
 import * as ImmutableUtils from '../../utils/immutable_utils';
 import './filter_panel.scss';
@@ -72,8 +72,11 @@ const propTypes = {
 class FilterPanel extends React.Component {
   constructor(props) {
     super(props);
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.partial = createCachedPartial(this);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
   }
 
   /**

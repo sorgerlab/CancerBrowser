@@ -13,19 +13,14 @@ import DrugDetailPage from '../containers/DrugDetailPage';
 import DatasetDetailPage from '../containers/DatasetDetailPage';
 import DatasetSummaryPage from '../containers/DatasetSummaryPage';
 
-import Home from '../components/Home';
+import HomePage from '../containers/HomePage';
 import About from '../components/About';
-
-import List from '../components/List';
-
 
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={Home} />
-    <Route path="cell_lines" component={CellLineBrowserPage}>
-      <IndexRoute component={List} />
-    </Route>
+    <IndexRoute component={HomePage} />
+    <Route path="cell_lines" component={CellLineBrowserPage} />
     <Route path="/cell_line/:cellLineId" component={CellLineDetailPage} />
     <Route path="/drugs" component={DrugBrowserPage} />
     <Route path="/drug/:drugId" component={DrugDetailPage} />

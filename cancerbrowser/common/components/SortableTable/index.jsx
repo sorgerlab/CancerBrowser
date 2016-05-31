@@ -1,5 +1,5 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import shallowCompare from 'react-addons-shallow-compare';
 import _ from 'lodash';
 import classNames from 'classnames';
 import { DataMixin, Table, Pagination } from 'react-data-components';
@@ -105,8 +105,6 @@ class SortableTable extends React.Component {
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.onSort = this.onSort.bind(this);
 
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-
     // add in the DataMixin functions since ES6 classes do not support mixins
     this.componentWillReceiveProps = DataMixin.componentWillReceiveProps.bind(this);
     this.componentWillMount = DataMixin.componentWillMount.bind(this);
@@ -114,6 +112,10 @@ class SortableTable extends React.Component {
     this.buildPage = DataMixin.buildPage.bind(this);
     this.onChangePage = DataMixin.onChangePage.bind(this);
     this.onPageLengthChange = DataMixin.onPageLengthChange.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
   }
 
   handleSearchChange(evt) {

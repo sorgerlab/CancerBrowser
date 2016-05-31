@@ -9,6 +9,8 @@ import FilterGroupSummary from '../../components/FilterGroupSummary';
 import PageLayout from '../../components/PageLayout';
 import CellLineTable from '../../components/CellLineTable';
 
+import { fetchDatasets } from '../../actions/dataset';
+
 import {
   fetchCellLinesIfNeeded,
   changeCellLineView
@@ -24,7 +26,8 @@ const propTypes = {
   filteredCellLines: React.PropTypes.array,
   activeFilters: React.PropTypes.object,
   cellLineView: React.PropTypes.string,
-  cellLineCounts: React.PropTypes.object
+  cellLineCounts: React.PropTypes.object,
+  datasets: React.PropTypes.object
 };
 
 const defaultProps = {
@@ -36,7 +39,8 @@ function mapStateToProps(state) {
     cellLineView: state.cellLines.cellLineView,
     filteredCellLines: state.cellLines.filtered,
     activeFilters: state.filters.active,
-    cellLineCounts: state.cellLines.counts
+    cellLineCounts: state.cellLines.counts,
+    datasets: state.datasets.items
   };
 }
 
@@ -133,6 +137,7 @@ class CellLineBrowserPage extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(fetchCellLinesIfNeeded({}, filterGroups));
+    this.props.dispatch(fetchDatasets());
   }
 
   onFilterChange(newFilters) {
@@ -173,7 +178,7 @@ class CellLineBrowserPage extends React.Component {
    * @return {React.Component}
    */
   renderTable() {
-    const { filteredCellLines, cellLineView } = this.props;
+    const { filteredCellLines, cellLineView, datasets } = this.props;
 
     return (
       <div>
@@ -196,7 +201,7 @@ class CellLineBrowserPage extends React.Component {
             </ButtonGroup>
           </div>
         </div>
-        <CellLineTable data={filteredCellLines} view={cellLineView} />
+        <CellLineTable data={filteredCellLines} view={cellLineView} datasets={datasets} />
       </div>
     );
   }

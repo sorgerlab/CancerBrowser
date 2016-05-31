@@ -64,4 +64,8 @@ h1 {
   }
 }
 
+// override bootstrap dropdown menu font wieght
+.dropdown-menu > li > a {
+  font-weight: 300;
+}
 
