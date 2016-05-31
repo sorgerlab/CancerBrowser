@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+export const DATA_PATH = '/data/';
+
 /**
  * Filter a given row based dataset based on the categorical filters provided.
  *
@@ -103,4 +105,46 @@ function countMatchedFilterData(data, filter) {
   });
 
   return filterCounts;
+}
+
+/**
+ * Merges two datasets based on a set of keys.
+ * Performs a Left Merge - where every value in leftData
+ * will be present in the new dataset and the values from
+ * rightData will be added if found.
+ * Data from rightData will be merged into leftData under its `namespace` attribute.
+ *
+ * @param {Array} leftData Array of values to serve as base data.
+ * @param {Array} rightData Array of values to serve as additional data.
+ * @param {String} leftKey Accessor into elements of leftData to serve as key
+ *                 to match data on.
+ * @param {String|Function} rightKey Accessor into elements of rightData to serve as key
+ *                 to match data on.
+ * @param {String|Function} namespace to put on leftData values where attributes of rightData
+ *                 are added.
+ * @return {Array} Array of objects with every object from leftData and
+ *                 data from rightData appended to these objects if found.
+ */
+export function mergeData(leftData, rightData, leftKey, rightKey, namespace) {
+
+  let leftKeyed = _.keyBy(leftData, leftKey);
+  let rightKeyed = _.keyBy(rightData, rightKey);
+
+  let results = _.keys(leftKeyed).map(function(key) {
+
+    var data = _.cloneDeep(leftKeyed[key]);
+    // the namespace attribute will contain an empty object
+    // if match is not found in rightData.
+    data[namespace] = {};
+
+    var rightValues = _.get(rightKeyed, key);
+
+    if(rightValues) {
+      data[namespace] = _.cloneDeep(rightValues);
+    }
+
+    return data;
+  });
+
+  return results;
 }

@@ -171,7 +171,6 @@ class FilterPanel extends React.Component {
       onFilterChange(newActiveFilters);
     }
 
-    console.log('[filter change]', newActiveFilters);
     return newActiveFilters;
   }
 
