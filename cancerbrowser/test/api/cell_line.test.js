@@ -1,7 +1,8 @@
 import { assert } from 'chai';
 
 import {
-  getCellLines
+  getCellLines,
+  getCellLineInfo
 } from '../../common/api/cell_line';
 
 describe('CellLine API', function() {
@@ -41,6 +42,19 @@ describe('CellLine API', function() {
     return getCellLines(filterGroups).then(function(results) {
       assert.equal(results.length, 3);
     });
+
+
+  });
+});
+
+describe('CellLineInfo API', function() {
+  it('gets info for a particular cell line', function() {
+
+    // let cellLineId = 'bt-20';
+
+    // return getCellLineInfo(cellLineId).then(function(results) {
+    //   assert.equal(results.length, 3);
+    // });
 
 
   });
