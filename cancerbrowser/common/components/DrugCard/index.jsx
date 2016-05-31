@@ -18,6 +18,13 @@ const propTypes = {
 const defaultProps = {
 };
 
+const drugClassConfig = {
+  '00-preclinical': 'P',
+  '10-phase1': '1',
+  '20-phase2': '2',
+  '30-phase3': '3',
+  '40-approved': 'A'
+};
 
 /** Render a single drug card */
 class DrugCard extends React.Component {
@@ -34,10 +41,12 @@ class DrugCard extends React.Component {
       return null;
     }
 
-    const classLetter = drugClass.value.charAt(0);
+    const classLetter = drugClassConfig[drugClass.value] || '?';
 
     return (
-      <div className='drug-class'>{classLetter}</div>
+      <div title={drugClass.label} className={classNames('drug-class', `drug-class-${drugClass.value}`)}>
+        {classLetter}
+      </div>
     );
   }
 
@@ -61,8 +70,6 @@ class DrugCard extends React.Component {
 
   render() {
     const { data } = this.props;
-
-    console.log(data.class);
 
     return (
       <div className='DrugCard'>
