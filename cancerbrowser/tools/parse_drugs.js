@@ -64,7 +64,10 @@ fs.readFile(filename, 'utf8', function(error, data) {
       parentTargets: [],
       class: labelValue(d['Class'], classValues),
       synonyms: _.compact(_.split(d['Synonyms'], ';')),
-      searchIndexOnlyNames: _.compact(_.split(d['Search-index-only names'], ';'))
+      searchIndexOnlyNames: _.compact(_.split(d['Search-index-only names'], ';')),
+
+      // temporarily hard-code a dataset in
+      dataset: [{ value: 'drug_dose_response', label: 'Drug Dose-Response Growth Rate Profiling' }]
     };
   });
 
