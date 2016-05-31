@@ -41,11 +41,11 @@ export function getDrugFilters() {
       label: 'Class',
       type: 'multi-select',
       values: [
-        { value: 'preclinical', label: 'Preclinical' },
-        { value: 'phase1', label: 'Phase 1' },
-        { value: 'phase2', label: 'Phase 2' },
-        { value: 'phase3', label: 'Phase 3' },
-        { value: 'approved', label: 'Approved' }
+        { value: '00-preclinical', label: 'Preclinical' },
+        { value: '10-phase1', label: 'Phase 1' },
+        { value: '20-phase2', label: 'Phase 2' },
+        { value: '30-phase3', label: 'Phase 3' },
+        { value: '40-approved', label: 'Approved' }
       ]
     }, {
       id: 'target',

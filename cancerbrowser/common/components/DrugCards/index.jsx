@@ -69,11 +69,19 @@ class DrugCards extends React.Component {
     return shallowCompare(this, nextProps, nextState);
   }
 
-  renderGroup(group, index) {
+  /**
+   * Renders each group of drugs
+   *
+   * @param {Array} group An array of drugs
+   * @param {Number} key React render key
+   *
+   * @return {React.Component}
+   */
+  renderGroup(group, key) {
     const { groupBy } = this.props;
     const header = groupHeader(group, groupBy);
     return (
-      <div key={index} className='card-group'>
+      <div key={key} className='card-group'>
         <header>
           <h3>{header}</h3>
         </header>
@@ -89,14 +97,14 @@ class DrugCards extends React.Component {
   render() {
     const { data, groupBy } = this.props;
 
-
-    console.log('data= ', data);
     const groups = labelValueGroupBy(data, groupBy);
-    console.log('groups = ', groups);
+
+    // sort the groups
+    const orderedGroupKeys = Object.keys(groups).sort();
 
     return (
       <div className='DrugCards'>
-        {Object.keys(groups).map((key, index) => this.renderGroup(groups[key], index))}
+        {orderedGroupKeys.map((key, index) => this.renderGroup(groups[key], index))}
       </div>
     );
   }

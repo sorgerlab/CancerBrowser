@@ -22,18 +22,30 @@ function normalize(str) {
   return _.trim(str).replace(/[\s-]/g, '').toLowerCase();
 }
 
-function labelValue(str) {
-  const trimmed = _.trim(str);
+function labelValue(str, valueOverrides) {
+  var label = _.trim(str);
 
-  if (trimmed.length === 0) {
+  if (label.length === 0) {
     return null;
   }
 
-  return {
-    label: trimmed,
-    value: normalize(str)
-  };
+  var value = normalize(str);
+
+  if (valueOverrides && valueOverrides[value]) {
+    value = valueOverrides[value];
+  }
+
+  return { label, value };
 }
+
+// overrides to the value that enable proper sort with no effort
+const classValues = {
+  'preclinical': '00-preclinical',
+  'phase1': '10-phase1',
+  'phase2': '20-phase2',
+  'phase3': '30-phase3',
+  'approved': '40-approved'
+};
 
 var filename = process.argv[2];
 
@@ -50,7 +62,7 @@ fs.readFile(filename, 'utf8', function(error, data) {
       name: labelValue(d['Name']),
       nominalTarget: labelValue(d['Nominal target / Pathway']),
       parentTargets: [],
-      class: labelValue(d['Class']),
+      class: labelValue(d['Class'], classValues),
       synonyms: _.compact(_.split(d['Synonyms'], ';')),
       searchIndexOnlyNames: _.compact(_.split(d['Search-index-only names'], ';'))
     };
