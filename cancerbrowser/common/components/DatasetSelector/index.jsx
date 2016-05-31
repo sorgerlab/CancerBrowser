@@ -3,7 +3,7 @@ import shallowCompare from 'react-addons-shallow-compare';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 import { Icon } from 'react-fa';
 
-// import './cell_line_table.scss';
+import './dataset_selector.scss';
 
 const propTypes = {
   /** Array of datasets [{value, label}] to render in the list */
@@ -34,7 +34,11 @@ class DatasetSelector extends React.Component {
 
     // show a dropdown button with all datasets that are available
     return (
-      <DropdownButton bsStyle='default' pullRight bsSize='sm'
+      <DropdownButton
+          pullRight
+          bsStyle='default'
+          bsSize='sm'
+          className='DatasetSelector'
           id={`dataset-dropdown-${this.id}`} // ID is apparently needed for accessibility
           title={(
             <span className='dataset-dropdown'>
