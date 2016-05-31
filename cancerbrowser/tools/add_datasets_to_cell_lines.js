@@ -37,12 +37,20 @@ Object.keys(datasetInfo).forEach(function(key) {
   // convert to tsv
   data = d3.tsv.parse(data);
 
-  // pull out all the unique cell line names.
-  // we convert to lowercase here to match the id values of our
-  //  cell_lines.json data.
-  var cellLinesInDataset = data.map(d => d[info.cell_line_id].split(' ')[0].toLowerCase());
+  // Some of our datasets have the cell lines as column names instead of
+  // attributes, so I have manually encoded this in our dataset info
+  var cellLinesInDataset = info.cell_lines;
 
-  cellLinesInDataset = _.uniq(cellLinesInDataset);
+  // if this isn't the case, then we can extract it from our datasets
+
+  if(!cellLinesInDataset)  {
+    // pull out all the unique cell line names.
+    // we convert to lowercase here to match the id values of our
+    //  cell_lines.json data.
+    cellLinesInDataset = data.map(d => d[info.cell_line_id].split(' ')[0].toLowerCase());
+
+    cellLinesInDataset = _.uniq(cellLinesInDataset);
+  }
 
 
   // for each cell line,
