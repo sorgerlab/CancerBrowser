@@ -56,7 +56,7 @@ class DrugCard extends React.Component {
     return (
       <div className='drug-details'>
         <div className='drug-name'>
-          <Link to={`/drugs/${data.id}`}>{data.name.label}</Link>
+          <Link to={`/drug/${data.id}`}>{data.name.label}</Link>
         </div>
         <div className='drug-target'>
           {target}
