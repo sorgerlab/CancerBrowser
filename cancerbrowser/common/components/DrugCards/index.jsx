@@ -1,6 +1,6 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
-
+import * as StringUtils from '../../utils/string_utils';
 import DrugCard from '../DrugCard';
 
 import './drug_cards.scss';
@@ -78,7 +78,10 @@ class DrugCards extends React.Component {
     return (
       <div key={key} className='card-group'>
         <header>
-          <h3>{header}</h3>
+          <h3>
+            {header}
+            <span className='group-count'>{`${group.length} ${StringUtils.plural(group, 'drug')}`}</span>
+          </h3>
         </header>
         <div className='card-group-cards'>
           {group.map((drug, i) => {
