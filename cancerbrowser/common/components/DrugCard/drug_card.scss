@@ -1,0 +1,82 @@
+$drug-diagram-width: 80px;
+$preclinical-color: rgba(180, 180, 180, 0.5); // rgba 0.5 gives nier looking circles
+$phase1-color: rgba(73, 156, 83, 0.5);
+$phase2-color: rgba(20, 127, 189, 0.5);
+$phase3-color: rgba(109, 73, 156, 0.5);
+$approved-color: rgba(199, 155, 29, 0.5);
+
+.DrugCard {
+  position: relative;
+  width: 240px;
+  height: 100px;
+  display: inline-block;
+  margin: 0 10px 10px 0;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 10px;
+  padding-left: 20px + $drug-diagram-width;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  background: #fff;
+
+  .drug-class {
+    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 11px;
+    background: #fff;
+    border: 1px solid rgba(156, 156, 156, 0.5);
+    color: rgba(156, 156, 156, 0.5);
+    cursor: default;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+
+    &.drug-class-00-preclinical {
+      border-color: $preclinical-color;
+      color: rgba($preclinical-color, 1);
+    }
+    &.drug-class-10-phase1 {
+      border-color: $phase1-color;
+      color: rgba($phase1-color, 1);
+    }
+    &.drug-class-20-phase2 {
+      border-color: $phase2-color;
+      color: rgba($phase2-color, 1);
+    }
+    &.drug-class-30-phase3 {
+      border-color: $phase3-color;
+      color: rgba($phase3-color, 1);
+    }
+    &.drug-class-40-approved {
+      border-color: $approved-color;
+      color: rgba($approved-color, 1);
+    }
+}
+
+  .drug-diagram {
+    background-color: #fff;
+    background-image: url(../../assets/img/sample_drug.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: $drug-diagram-width;
+    height: 80px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+
+  .drug-name {
+    font-size: 1.1em;
+  }
+
+  .drug-target {
+    font-size: 0.85em;
+    color: #888;
+  }
+
+  .drug-datasets {
+    margin-top: 6px;
+  }
+}

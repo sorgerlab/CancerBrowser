@@ -296,7 +296,7 @@ class FilterPanel extends React.Component {
             ) : null}
         </header>
         <div className='filter-panel-filters'>
-          {group.filters.map((filter, i) => {
+          {group.filters && group.filters.map((filter, i) => {
             let activeValues, filterCounts;
 
             if (activeFiltersForGroup) {

@@ -1,0 +1,18 @@
+.DatasetSelector {
+  .dataset-count {
+    font-weight: bold;
+    margin-right: 8px;
+  }
+
+  &.btn-xs {
+    .dataset-count {
+      font-weight: normal;
+      font-size: 0.85em;
+      margin-right: 6px;
+    }
+
+    .fa-bar-chart {
+      font-size: 0.85em;
+    }
+  }
+}

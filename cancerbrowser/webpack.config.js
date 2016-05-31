@@ -27,7 +27,7 @@ module.exports = [
         { from: 'data', to: 'data' }
       ])
     ],
-    devtool: 'source-map',
+    devtool: 'eval-cheap-module-source-map',
     entry: {
       'bundle': [
         'babel-polyfill',

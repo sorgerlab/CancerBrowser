@@ -1,5 +1,6 @@
 
-import { SET_FILTERED_DRUGS, CHANGE_DRUG_VIEW, SET_DRUG_COUNTS } from '../actions/drug';
+import { SET_FILTERED_DRUGS, CHANGE_DRUG_VIEW, SET_DRUG_COUNTS,
+  SET_DRUG_FILTERS } from '../actions/drug';
 
 const INITIAL_STATE = {
   filtered: [],
@@ -23,6 +24,11 @@ function drugs(state = INITIAL_STATE, action) {
     case SET_DRUG_COUNTS:
       return Object.assign({}, state, {
         counts: action.counts
+      });
+
+    case SET_DRUG_FILTERS:
+      return Object.assign({}, state, {
+        drugFilters: action.drugFilters
       });
 
     default:
