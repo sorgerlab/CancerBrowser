@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import FilterPanel from '../../components/FilterPanel';
 import FilterGroupSummary from '../../components/FilterGroupSummary';
 import PageLayout from '../../components/PageLayout';
+import DrugCards from '../../components/DrugCards';
 
 
 import {
@@ -142,7 +143,7 @@ class DrugBrowserPage extends React.Component {
           </div>
         </div>
         <div className='drug-cards'>
-          Cards here. {drugView}
+          <DrugCards data={filteredDrugs} groupBy={drugView} />
         </div>
       </div>
     );
