@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --progress --colors --inline --content-base dist/ --history-api-fallback --hot",
     "build": "NODE_ENV='production' webpack --config webpack.config.build.js",
     "lint": "eslint client common; true",
-    "test": "mocha --compilers js:babel-core/register --recursive; true",
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive; true",
     "deploy": "gh-pages-deploy"
   },
   "gh-pages-deploy": {
