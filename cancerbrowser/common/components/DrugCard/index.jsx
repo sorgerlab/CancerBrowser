@@ -6,6 +6,7 @@ import shallowCompare from 'react-addons-shallow-compare';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 import { Icon } from 'react-fa';
 
+import DatasetSelector from '../DatasetSelector';
 
 import './drug_card.scss';
 
@@ -52,7 +53,7 @@ class DrugCard extends React.Component {
           {target}
         </div>
         <div className='drug-datasets'>
-          <Icon name='bar-chart'/>
+          <DatasetSelector datasets={data.datasets} />
         </div>
       </div>
     );
