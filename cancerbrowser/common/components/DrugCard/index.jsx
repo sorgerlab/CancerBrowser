@@ -62,7 +62,7 @@ class DrugCard extends React.Component {
           {target}
         </div>
         <div className='drug-datasets'>
-          <DatasetSelector datasets={data.datasets} />
+          <DatasetSelector datasets={data.dataset} bsSize='xs' />
         </div>
       </div>
     );

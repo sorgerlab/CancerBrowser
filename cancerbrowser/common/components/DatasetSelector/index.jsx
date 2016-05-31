@@ -10,6 +10,11 @@ const propTypes = {
   datasets: React.PropTypes.object
 };
 
+const defaultProps = {
+  bsSize: 'sm',
+  bsStyle: 'default',
+  pullRight: true
+};
 
 // needed for accessibility
 let datasetSelectorId = 0;
@@ -26,7 +31,7 @@ class DatasetSelector extends React.Component {
   }
 
   render() {
-    const { datasets } = this.props;
+    const { datasets, ...other } = this.props;
     // only show the dropdown if data is available
     if (!datasets || !datasets.length) {
       return null;
@@ -35,9 +40,7 @@ class DatasetSelector extends React.Component {
     // show a dropdown button with all datasets that are available
     return (
       <DropdownButton
-          pullRight
-          bsStyle='default'
-          bsSize='sm'
+          {...other}
           className='DatasetSelector'
           id={`dataset-dropdown-${this.id}`} // ID is apparently needed for accessibility
           title={(
@@ -52,5 +55,6 @@ class DatasetSelector extends React.Component {
 }
 
 DatasetSelector.propTypes = propTypes;
+DatasetSelector.defaultProps = defaultProps;
 
 export default DatasetSelector;
