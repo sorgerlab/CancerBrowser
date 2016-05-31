@@ -46,8 +46,8 @@ class OmniSearch extends React.Component {
   componentWillReceiveProps(nextProps) {
     if(nextProps.cellLines && nextProps.drugs &&
       (nextProps.cellLines !== this.props.cellLines || nextProps.drugs !== this.props.drugs)) {
-      const newState = {};
-      Object.assign(newState, {
+
+      this.setState({
         combinedData: [
           {
             label: 'Cell Lines',
@@ -61,10 +61,9 @@ class OmniSearch extends React.Component {
             searchAttrs: ['id'],
             values: nextProps.drugs
           }
-        ]
+        ],
+        suggestions: this.getSuggestions('')
       });
-      Object.assign(newState, {suggestions: this.getSuggestions('')});
-      this.setState(newState);
     }
   }
 
@@ -106,9 +105,9 @@ class OmniSearch extends React.Component {
     if(search.length > 0) {
 
       return this.state.combinedData.map(function(data) {
-        var filteredData = _.clone(data);
+        let filteredData = _.clone(data);
         filteredData.values = filteredData.values.filter(function(value) {
-          var found = false;
+          let found = false;
           data.searchAttrs.forEach(function(attr) {
             if(value[attr].toLowerCase().includes(search)) {
               found = true;
