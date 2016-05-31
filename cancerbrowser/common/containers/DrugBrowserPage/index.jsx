@@ -10,7 +10,8 @@ import PageLayout from '../../components/PageLayout';
 
 import {
   fetchDrugsIfNeeded,
-  changeDrugView
+  changeDrugView,
+  fetchDrugFilters
 } from '../../actions/drug';
 
 import {
@@ -23,7 +24,8 @@ const propTypes = {
   filteredDrugs: React.PropTypes.array,
   activeFilters: React.PropTypes.object,
   drugView: React.PropTypes.string,
-  drugCounts: React.PropTypes.object
+  drugCounts: React.PropTypes.object,
+  drugFilters: React.PropTypes.array
 };
 
 const defaultProps = {
@@ -35,42 +37,20 @@ function mapStateToProps(state) {
     drugView: state.drugs.drugView,
     filteredDrugs: state.drugs.filtered,
     activeFilters: state.filters.active,
-    drugCounts: state.drugs.counts
+    drugCounts: state.drugs.counts,
+    drugFilters: state.drugs.drugFilters
   };
 }
 
-
-// The definition of the filter group used for the Drug ilters
-export const drugFilters = [
-  {
-    id: 'class',
-    label: 'Class',
-    type: 'multi-select',
-    values: [
-      { value: 'preclinical', label: 'Preclinical' },
-      { value: 'phase1', label: 'Phase 1' },
-      { value: 'phase2', label: 'Phase 2' },
-      { value: 'phase3', label: 'Phase 3' },
-      { value: 'approved', label: 'Approved' }
-    ]
-  }, {
-    id: 'target',
-    label: 'Target / Pathway',
-    type: 'multi-select',
-    values: [
-      { value: 'nm', label: 'NM' },
-      { value: 'her2amp', label: 'HER2amp' },
-      { value: 'tnbc', label: 'TNBC' },
-      { value: 'hrplus', label: 'HR+' }
-    ]
-  }
-];
-
-const filterGroups = [{
-  id: 'drugFilters',
-  label: 'Drug Filters',
-  filters: drugFilters
-}];
+// create the filter groups using the externally provided drugFilters definition
+// since we need to make use of all drug data to generate the proper definition
+function createFilterGroups(drugFilters) {
+  return [{
+    id: 'drugFilters',
+    label: 'Drug Filters',
+    filters: drugFilters
+  }];
+}
 
 /**
  * Container component for contents of Drug Browser page content.
@@ -79,29 +59,42 @@ class DrugBrowserPage extends React.Component {
   constructor(props) {
     super(props);
 
+    this.filterGroups = createFilterGroups(props.drugFilters);
+
     this.onFilterChange = this.onFilterChange.bind(this);
     this.onDrugViewChange = this.onDrugViewChange.bind(this);
     this.onDrugFilterChange = this.onDrugFilterChange.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.drugFilters !== nextProps.drugFilters) {
+      this.filterGroups = createFilterGroups(nextProps.drugFilters);
+    }
   }
 
   /**
    * Callback function called after this component has been mounted.
    */
   componentDidMount() {
-    this.props.dispatch(fetchDrugsIfNeeded({}, {}));
+    const { dispatch } = this.props;
+
+    dispatch(fetchDrugsIfNeeded({}, {}));
+    dispatch(fetchDrugFilters());
   }
 
   onFilterChange(newFilters) {
-    this.props.dispatch(changeActiveFilters(newFilters));
-    this.props.dispatch(fetchDrugsIfNeeded(newFilters, filterGroups));
+    const { dispatch } = this.props;
+
+    dispatch(changeActiveFilters(newFilters));
+    dispatch(fetchDrugsIfNeeded(newFilters, this.filterGroups));
   }
 
   onDrugFilterChange(newDrugFilters) {
-    const { activeFilters } = this.props;
+    const { dispatch, activeFilters } = this.props;
     const newActiveFilters = Object.assign({}, activeFilters, { drugFilters: newDrugFilters });
 
-    this.props.dispatch(changeActiveFilters(newActiveFilters));
-    this.props.dispatch(fetchDrugsIfNeeded(newActiveFilters, filterGroups));
+    dispatch(changeActiveFilters(newActiveFilters));
+    dispatch(fetchDrugsIfNeeded(newActiveFilters, this.filterGroups));
   }
 
   onDrugViewChange(newView) {
@@ -116,7 +109,7 @@ class DrugBrowserPage extends React.Component {
   renderSidebar() {
     return (
       <FilterPanel
-        filterGroups={filterGroups}
+        filterGroups={this.filterGroups}
         activeFilters={this.props.activeFilters}
         counts={this.props.drugCounts}
         onFilterChange={this.onFilterChange} />
@@ -164,7 +157,7 @@ class DrugBrowserPage extends React.Component {
     const { activeFilters } = this.props;
 
     const drugActiveFilters = activeFilters && activeFilters.drugFilters;
-    const drugFilterGroup = filterGroups.find(filterGroup => filterGroup.id === 'drugFilters');
+    const drugFilterGroup = this.filterGroups.find(filterGroup => filterGroup.id === 'drugFilters');
 
     return (
       <div className='drug-filters-summary'>
@@ -182,8 +175,6 @@ class DrugBrowserPage extends React.Component {
    * @return {ReactElement} JSX markup.
    */
   render() {
-    console.log(this.props.filteredDrugs);
-
     return (
       <PageLayout className="DrugBrowserPage" sidebar={this.renderSidebar()}>
         <h1>Drugs</h1>

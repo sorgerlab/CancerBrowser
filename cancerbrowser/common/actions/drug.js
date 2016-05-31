@@ -3,6 +3,7 @@ import api from '../api';
 export const SET_FILTERED_DRUGS = 'SET_FILTERED_DRUGS';
 export const CHANGE_DRUG_VIEW = 'CHANGE_DRUG_VIEW';
 export const SET_DRUG_COUNTS = 'SET_DRUG_COUNTS';
+export const SET_DRUG_FILTERS = 'SET_DRUG_FILTERS';
 
 /**
  * Action creator for setting filtered cell lines
@@ -71,5 +72,25 @@ export function changeDrugView(drugView) {
   return {
     type: CHANGE_DRUG_VIEW,
     drugView
+  };
+}
+
+/**
+ * Action creator for setting drug filter definition and autocomplete values
+ */
+export function setDrugFilters(drugFilters) {
+  return {
+    type: SET_DRUG_FILTERS,
+    drugFilters
+  };
+}
+
+/**
+ * Public function to get drug filter definition based on the drug data
+ */
+export function fetchDrugFilters() {
+  return dispatch => {
+    const drugFilters = api.getDrugFilters();
+    return dispatch(setDrugFilters(drugFilters));
   };
 }
