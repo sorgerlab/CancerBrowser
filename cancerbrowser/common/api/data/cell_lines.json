@@ -242,6 +242,14 @@
         "label": "Growth Factor-Induced pAKT/pERK Response"
       },
       {
+        "value": "basal_total",
+        "label": "Basal Total Protein Mass Spectrometry"
+      },
+      {
+        "value": "basal_phospho",
+        "label": "Basal Phosphoprotein Mass Spectrometry"
+      },
+      {
         "value": "drug_dose_response",
         "label": "Drug Dose-Response Growth Rate Profiling"
       }
@@ -493,6 +501,14 @@
       {
         "value": "growth_factor_packt_perk",
         "label": "Growth Factor-Induced pAKT/pERK Response"
+      },
+      {
+        "value": "basal_total",
+        "label": "Basal Total Protein Mass Spectrometry"
+      },
+      {
+        "value": "basal_phospho",
+        "label": "Basal Phosphoprotein Mass Spectrometry"
       }
     ]
   },
@@ -733,6 +749,14 @@
       {
         "value": "growth_factor_packt_perk",
         "label": "Growth Factor-Induced pAKT/pERK Response"
+      },
+      {
+        "value": "basal_total",
+        "label": "Basal Total Protein Mass Spectrometry"
+      },
+      {
+        "value": "basal_phospho",
+        "label": "Basal Phosphoprotein Mass Spectrometry"
       }
     ]
   },
@@ -816,6 +840,14 @@
       {
         "value": "growth_factor_packt_perk",
         "label": "Growth Factor-Induced pAKT/pERK Response"
+      },
+      {
+        "value": "basal_total",
+        "label": "Basal Total Protein Mass Spectrometry"
+      },
+      {
+        "value": "basal_phospho",
+        "label": "Basal Phosphoprotein Mass Spectrometry"
       }
     ]
   },
@@ -1554,6 +1586,14 @@
       {
         "value": "growth_factor_packt_perk",
         "label": "Growth Factor-Induced pAKT/pERK Response"
+      },
+      {
+        "value": "basal_total",
+        "label": "Basal Total Protein Mass Spectrometry"
+      },
+      {
+        "value": "basal_phospho",
+        "label": "Basal Phosphoprotein Mass Spectrometry"
       }
     ]
   },
@@ -1947,7 +1987,16 @@
       }
     ],
     "id": "hs578t",
-    "dataset": []
+    "dataset": [
+      {
+        "value": "basal_total",
+        "label": "Basal Total Protein Mass Spectrometry"
+      },
+      {
+        "value": "basal_phospho",
+        "label": "Basal Phosphoprotein Mass Spectrometry"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -2035,6 +2084,14 @@
         "label": "Growth Factor-Induced pAKT/pERK Response"
       },
       {
+        "value": "basal_total",
+        "label": "Basal Total Protein Mass Spectrometry"
+      },
+      {
+        "value": "basal_phospho",
+        "label": "Basal Phosphoprotein Mass Spectrometry"
+      },
+      {
         "value": "drug_dose_response",
         "label": "Drug Dose-Response Growth Rate Profiling"
       }
@@ -2116,7 +2173,16 @@
       }
     ],
     "id": "mcf10a",
-    "dataset": []
+    "dataset": [
+      {
+        "value": "basal_total",
+        "label": "Basal Total Protein Mass Spectrometry"
+      },
+      {
+        "value": "basal_phospho",
+        "label": "Basal Phosphoprotein Mass Spectrometry"
+      }
+    ]
   },
   {
     "BRCA1": "No data",
