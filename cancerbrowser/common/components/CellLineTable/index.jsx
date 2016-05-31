@@ -6,6 +6,7 @@ import { DropdownButton, MenuItem } from 'react-bootstrap';
 import { Icon } from 'react-fa';
 
 import SortableTable from '../SortableTable';
+import DatasetSelector from '../DatasetSelector';
 import CellLineGlyph from '../CellLineGlyph';
 
 import './cell_line_table.scss';
@@ -91,23 +92,9 @@ const allColumns = {
   dataset: {
     prop: 'dataset',
     title: 'Dataset',
-    render(val, row) {
-      // only show the dropdown if data is available
-      if (!val || !val.length) {
-        return null;
-      }
-
-      // show a dropdown button with all datasets that are available
+    render(val) {
       return (
-        <DropdownButton bsStyle='default' pullRight bsSize='sm'
-            id={`dataset-dropdown-${row.id}`} // ID is apparently needed for accessibility
-            title={(
-              <span className='dataset-dropdown'>
-                <span className='dataset-count'>{val.length}</span>
-                <Icon name='bar-chart' title='Explore Datasets' />
-              </span>)}>
-          {val.map((dataset, i) => <MenuItem key={i} eventKey={dataset.value}>{dataset.label}</MenuItem>)}
-        </DropdownButton>
+        <DatasetSelector datasets={val} />
       );
     }
   }
