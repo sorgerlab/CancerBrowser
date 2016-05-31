@@ -1,21 +1,75 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-class Home extends React.Component {
+import OmniSearch from '../../components/OmniSearch';
+
+import {
+  fetchCellLinesIfNeeded
+} from '../../actions/cell_line';
+
+import {
+  fetchDrugsIfNeeded
+} from '../../actions/drug';
+
+
+const propTypes = {
+  dispatch: React.PropTypes.func,
+  cellLines: React.PropTypes.array,
+  drugs: React.PropTypes.array
+};
+
+
+/**
+ *
+ */
+function mapStateToProps(state) {
+  return {
+    cellLines: state.cellLines.filtered,
+    drugs: state.drugs.filtered
+  };
+}
+
+class HomePage extends React.Component {
+
+  /**
+   *
+   */
+  componentDidMount() {
+    this.props.dispatch(fetchCellLinesIfNeeded({}, {}));
+    this.props.dispatch(fetchDrugsIfNeeded({}, {}));
+  }
+
+  /**
+   *
+   */
+  renderSearch() {
+    const { cellLines, drugs} = this.props;
+    return (
+      <OmniSearch
+        cellLines = {cellLines}
+        drugs = {drugs}
+      />
+    );
+  }
+
+
+  /**
+   *
+   */
   render() {
     return (
-
-      <div className="jumbotron">
+      <div className="HomePage">
         <h1>HMS LINCS Cancer Browser</h1>
-        <p className="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p>
-          <Link to="/cell_lines" className="btn btn-lg btn-default" role="button">Cell Lines</Link>
-        </p>
+        {this.renderSearch()}
 
+        <Link to="/cell_lines" className="btn btn-lg btn-default" role="button">Cell Line Browser</Link>
+        <Link to="/drugs" className="btn btn-lg btn-default" role="button">Drug Browser</Link>
       </div>
-
     );
   }
 }
 
-export default Home;
+HomePage.propTypes = propTypes;
+
+export default connect(mapStateToProps)(HomePage);
