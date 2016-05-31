@@ -5,12 +5,12 @@ $drug-diagram-width: 80px;
   width: 240px;
   height: 100px;
   display: inline-block;
-  margin: 0 4px 4px 0;
+  margin: 0 10px 10px 0;
   border: 1px solid #eee;
   border-radius: 4px;
   padding: 10px;
   padding-left: 20px + $drug-diagram-width;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
   background: #fff;
 
   .drug-class {
@@ -28,11 +28,23 @@ $drug-diagram-width: 80px;
   }
 
   .drug-diagram {
-    background: #eee;
+    background-color: #fff;
+    background-image: url(../../assets/img/sample_drug.png);
+    background-repeat: no-repeat;
+    background-position: center;
     width: $drug-diagram-width;
     height: 80px;
     position: absolute;
     left: 10px;
     top: 10px;
+  }
+
+  .drug-name {
+    font-size: 1.1em;
+  }
+
+  .drug-target {
+    font-size: 0.85em;
+    color: #888;
   }
 }
