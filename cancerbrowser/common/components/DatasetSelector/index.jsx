@@ -7,7 +7,11 @@ import './dataset_selector.scss';
 
 const propTypes = {
   /** Array of datasets [{value, label}] to render in the list */
-  datasets: React.PropTypes.object
+  datasets: React.PropTypes.array
+};
+
+const contextTypes = {
+  router: React.PropTypes.object
 };
 
 const defaultProps = {
@@ -24,10 +28,16 @@ class DatasetSelector extends React.Component {
   constructor(props) {
     super(props);
     this.id = datasetSelectorId++;
+
+    this.handleDatasetSelect = this.handleDatasetSelect.bind(this);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
+  }
+
+  handleDatasetSelect(datasetId) {
+    this.context.router.push(`/dataset/${datasetId}`);
   }
 
   render() {
@@ -41,6 +51,7 @@ class DatasetSelector extends React.Component {
     return (
       <DropdownButton
           {...other}
+          onSelect={this.handleDatasetSelect}
           className='DatasetSelector'
           id={`dataset-dropdown-${this.id}`} // ID is apparently needed for accessibility
           title={(
@@ -54,6 +65,7 @@ class DatasetSelector extends React.Component {
   }
 }
 
+DatasetSelector.contextTypes = contextTypes;
 DatasetSelector.propTypes = propTypes;
 DatasetSelector.defaultProps = defaultProps;
 
