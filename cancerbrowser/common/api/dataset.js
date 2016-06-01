@@ -15,7 +15,7 @@ import datasetInfo from './data/dataset_info.json';
  * each attribute is a dataset key.
  * @return {Promise} datasets info
  */
-export function getDatasets() {
+export function getDatasetsInfo() {
   return new Promise(function(resolve) {
     resolve(datasetInfo);
   });
@@ -27,7 +27,7 @@ export function getDatasets() {
  * @return {Promise} datasets info object
  */
 export function getDatasetInfo(datasetId) {
-  return getDatasets()
+  return getDatasetsInfo()
     .then(datasets => datasets[datasetId]);
 }
 
@@ -42,9 +42,9 @@ export function getDatasetInfo(datasetId) {
 export function getDataset(datasetId, format) {
   return new Promise(function(resolve, reject) {
     if(datasetInfo[datasetId]) {
-      var info = datasetInfo[datasetId];
+      const info = datasetInfo[datasetId];
 
-      var path = DATA_PATH + 'datasets/' + info.filename;
+      const path = DATA_PATH + 'datasets/' + info.filename;
 
       d3.tsv(path, function(error, data) {
         if(error) {
@@ -145,7 +145,7 @@ function transformReceptorData(dataset) {
     row.id = row['Cell Line Name'].toLowerCase();
     row.label = row['Cell Line Name'];
 
-    var measurements = [];
+    const measurements = [];
     _.keys(row).forEach(function(key, index) {
       // if log is in the key, then it is a measurement
       if(key.includes('log')) {

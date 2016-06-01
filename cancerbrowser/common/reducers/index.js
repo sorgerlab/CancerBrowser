@@ -7,11 +7,8 @@ import drugs from './drugs';
 import filters from './filters';
 import receptors from './receptors';
 
-import datasetDetails from './datasetDetails';
-
 export default combineReducers({
   datasets,
-  datasetDetails,
   cellLines,
   drugs,
   filters,

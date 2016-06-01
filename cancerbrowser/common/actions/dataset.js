@@ -1,115 +1,100 @@
 import api from '../api';
 
 
-export const REQUEST_DATASETS = 'REQUEST_DATASETS';
-export const RECEIVE_DATASETS = 'RECEIVE_DATASETS';
-export const RECEIVE_DATASET_INFO = 'RECEIVE_DATASET_INFO';
+export const REQUEST_DATASETS_INFO = 'REQUEST_DATASETS_INFO';
+export const RECEIVE_DATASETS_INFO = 'RECEIVE_DATASETS_INFO';
 
-export const REQUEST_DATASET_DETAIL = 'REQUEST_DATASET_DETAIL';
-export const RECEIVE_DATASET_DETAIL = 'RECEIVE_DATASET_DETAIL';
+export const REQUEST_DATASET = 'REQUEST_DATASET';
+export const RECEIVE_DATASET = 'RECEIVE_DATASET';
 
 // Action Creators
-function requestDatasets() {
+function requestDatasetsInfo() {
   return {
-    type: REQUEST_DATASETS
+    type: REQUEST_DATASETS_INFO
   };
 }
 
-function receiveDatasets(datasets) {
+function receiveDatasetsInfo(datasets) {
   return {
-    type: RECEIVE_DATASETS,
+    type: RECEIVE_DATASETS_INFO,
     datasets: datasets
   };
 }
 
-function requestDatasetDetail(datasetId) {
+function requestDataset(datasetId) {
   return {
-    type: REQUEST_DATASET_DETAIL,
+    type: REQUEST_DATASET,
     datasetId
   };
 }
 
-function receiveDatasetInfo(datasetInfo) {
+function receiveDataset(datasetId, dataset) {
   return {
-    type: RECEIVE_DATASET_INFO,
-    datasetInfo: datasetInfo
-  };
-}
-
-function receiveDatasetDetail(datasetId, datasetDetail) {
-  return {
-    type: RECEIVE_DATASET_DETAIL,
+    type: RECEIVE_DATASET,
     datasetId,
-    datasetDetail: datasetDetail
+    dataset: dataset
   };
 }
 
 // Helpers
-export function fetchDatasets() {
+export function fetchDatasetsInfo() {
   return dispatch => {
-    dispatch(requestDatasets());
-    api.getDatasets().then(
-      data => dispatch(receiveDatasets(data))
+    dispatch(requestDatasetsInfo());
+    api.getDatasetsInfo().then(
+      data => dispatch(receiveDatasetsInfo(data))
     );
   };
 }
 
 
 
-function fetchDatasetDetail(datasetId, format) {
+function fetchDataset(datasetId, format) {
   return dispatch => {
-    dispatch(requestDatasetDetail(datasetId));
+    dispatch(requestDataset(datasetId));
     api.getDataset(datasetId, format).then(
-      data => dispatch(receiveDatasetDetail(datasetId, data))
+      data => dispatch(receiveDataset(datasetId, data))
     );
   };
 }
 
-function shouldFetchDatasetDetail(state, datasetId) {
+function shouldFetchDataset(state, datasetId) {
 
-  const { datasetDetails } = state;
+  const { datasetsById } = state.datasets;
 
   // If there are no datasetDetails at all
-  if (!datasetDetails) {
+  if (!datasetsById) {
     return true;
   }
 
   // If this particular datasetDetail does not exist
-  if (!datasetDetails.hasOwnProperty(datasetId)) {
+  if (!datasetsById.hasOwnProperty(datasetId)) {
     return true;
   }
 
-  const datasetDetail = state.datasetDetails[datasetId];
+  const dataset = datasetsById[datasetId];
 
-  // If this datasetDetail is already fetching
-  if (datasetDetail.isFetching) {
+  // If this dataset is already fetching
+  if (dataset.isFetching) {
     return false;
   }
 
-  // If the datasetDetail exists, but is not populated
-  if (!datasetDetail.item) {
+  // If the dataset exists, but is not populated
+  if (!dataset.items) {
     return true;
   }
 
   return false;
 }
 
-
-// Action Creators (Functions when using thunk)
-
-export function fetchDatasetInfo({ datasetId }) {
-  return dispatch => {
-    dispatch(requestDatasets());
-    api.getDatasetInfo(datasetId).then(
-      data => dispatch(receiveDatasetInfo(data))
-    );
-  };
+export function fetchDatasetInfo(datasetId) {
+  // currently this can just fetch all dataset info
+  return fetchDatasetsInfo();
 }
 
-export function fetchDatasetDetailIfNeeded(datasetId, format ) {
+export function fetchDatasetIfNeeded(datasetId, format) {
   return (dispatch, getState) => {
-    if (shouldFetchDatasetDetail(getState(), datasetId)) {
-      return dispatch(fetchDatasetDetail(datasetId, format));
+    if (shouldFetchDataset(getState(), datasetId)) {
+      return dispatch(fetchDataset(datasetId, format));
     }
   };
 }
