@@ -8,6 +8,7 @@ move_cell_lines:
 
 drugs:
 	./parse_drugs.js drugs.csv
+	./add_datasets_to_drugs.js ./drugs.json ../common/api/data/dataset_info.json
 
 move_drugs:
 	mv drugs.json ../common/api/data/
