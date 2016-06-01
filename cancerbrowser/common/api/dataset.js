@@ -39,7 +39,7 @@ export function getDatasetInfo(datasetId) {
  * @param {String} id of dataset to get
  * @return {Promise} dataset array
  */
-export function getDataset(datasetId) {
+export function getDataset(datasetId, format) {
   return new Promise(function(resolve, reject) {
     if(datasetInfo[datasetId]) {
       var info = datasetInfo[datasetId];
@@ -50,7 +50,7 @@ export function getDataset(datasetId) {
         if(error) {
           reject(error);
         } else {
-          resolve(transformData(data, info));
+          resolve(transformData(data, info, format));
         }
       });
 
@@ -78,14 +78,45 @@ function mergeCellLines(dataset) {
  * @param {Object} info Info about the dataset.
  * @return {Array} transformed data
  */
-function transformData(dataset, info) {
+function transformData(dataset, info, format) {
   dataset = convertStringsToNumbers(dataset, info.text_fields);
   switch(info.id) {
     case 'receptor_profile':
       dataset = transformReceptorData(dataset);
+
+      if(format === 'byReceptor') {
+        dataset = convertToByReceptor(dataset);
+      }
   }
 
   return dataset;
+}
+
+/**
+ * Transform Receptor data to be oriented by receptor instead of
+ * cell line data.
+ * @param {Object} dataset Dataset expected to be processed by
+ * transformReceptorData already.
+ *
+ */
+function convertToByReceptor(dataset) {
+
+  // Store each receptor found separately.
+  let receptors = {};
+
+  dataset.forEach(function(cellLine) {
+
+    // iterate over receptor data
+    cellLine.measurements.forEach(function(m) {
+      // pull out receptor if it isn't in the receptors hash already.
+      receptors[m.id]  = receptors[m.id] || {id:m.id, label:m.receptor, measurements: []};
+      // add a new cell line based measurement
+      let newMeasurement = {id: cellLine.id, label: cellLine.label, value:m.value, threshold:m.threshold};
+      receptors[m.id].measurements.push(newMeasurement);
+    });
+  });
+
+  return _.values(receptors);
 }
 
 /**
@@ -106,10 +137,13 @@ function transformData(dataset, info) {
  */
 function transformReceptorData(dataset) {
 
+  // last value is the thresholds
   let thresholds = dataset.pop();
+
 
   dataset.forEach(function(row) {
     row.id = row['Cell Line Name'].toLowerCase();
+    row.label = row['Cell Line Name'];
 
     var measurements = [];
     _.keys(row).forEach(function(key, index) {
@@ -124,6 +158,7 @@ function transformReceptorData(dataset) {
         let fields = key.split(' ');
         // name of receptor
         measurement.receptor = fields[0];
+        measurement.id = fields[0].toLowerCase();
         // get out the metric.
         let metric = fields[1].match(/\((.*)\)/)[1];
         measurement.metric = metric;

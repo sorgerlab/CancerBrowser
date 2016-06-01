@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { fetchDatasetDetailIfNeeded, fetchDatasetInfo } from '../../actions/dataset';
 
-import SortableTable from '../../components/SortableTable';
+import WaterfallSmallMults from '../../components/WaterfallSmallMults';
 
 const propTypes = {
   dispatch: React.PropTypes.func,
@@ -49,15 +49,24 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
 class DatasetDetailPage extends React.Component {
 
   componentDidMount() {
-    this.props.dispatch(fetchDatasetDetailIfNeeded(this.props.params));
+    this.props.dispatch(fetchDatasetDetailIfNeeded(this.props.params.datasetId));
     this.props.dispatch(fetchDatasetInfo(this.props.params));
   }
 
+  renderSmallMults() {
+    if(this.props.datasetDetail) {
+      return (
+        <WaterfallSmallMults
+          datasets={this.props.datasetDetail} />
+      );
+    }
+  }
+
   render() {
-    console.log(this.props.datasetDetail);
     return (
       <div>
         <h1>{this.props.datasetInfo.label}</h1>
+        {this.renderSmallMults()}
 
       </div>
     );
