@@ -1,4 +1,7 @@
 $drug-diagram-width: 80px;
+$bottom-bar-height: 20px;
+$drug-card-height: 100px;
+
 $preclinical-color: rgba(180, 180, 180, 0.5); // rgba 0.5 gives nier looking circles
 $phase1-color: rgba(73, 156, 83, 0.5);
 $phase2-color: rgba(20, 127, 189, 0.5);
@@ -8,15 +11,24 @@ $approved-color: rgba(199, 155, 29, 0.5);
 .DrugCard {
   position: relative;
   width: 240px;
-  height: 100px;
+  height: $drug-card-height;
   display: inline-block;
   margin: 0 10px 10px 0;
   border: 1px solid #eee;
   border-radius: 4px;
   padding: 10px;
   padding-left: 20px + $drug-diagram-width;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
   background: #fff;
+  vertical-align: top;
+
+  &.has-synonyms {
+    height: $drug-card-height + $bottom-bar-height + 5px;
+
+    .drug-bottom-bar {
+      display: block;
+    }
+  }
 
   .drug-class {
     border-radius: 4px;
@@ -53,7 +65,7 @@ $approved-color: rgba(199, 155, 29, 0.5);
       border-color: $approved-color;
       color: rgba($approved-color, 1);
     }
-}
+  }
 
   .drug-diagram {
     background-color: #fff;
@@ -79,4 +91,31 @@ $approved-color: rgba(199, 155, 29, 0.5);
   .drug-datasets {
     margin-top: 6px;
   }
+
+  .drug-bottom-bar {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0 0 4px 4px;
+    background-color: #fff;
+    height: $bottom-bar-height;
+    line-height: $bottom-bar-height;
+    text-align: center;
+    color: #bbb;
+    font-size: 0.75em;
+
+  }
+
+  .drug-synonyms {
+    background-color: #f6f6f6;
+    padding: 0 4px;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .drug-synonym {
+    color: #888;
+  }
+
 }
