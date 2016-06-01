@@ -13,3 +13,9 @@ export function plural(items, word, pluralSuffix = 's') {
 
   return `${word}${pluralSuffix}`;
 }
+
+
+// helper function to normalize a string for search comparison by lower casing and trimming
+export function normalize(str) {
+  return String(str).toLowerCase().trim();
+}

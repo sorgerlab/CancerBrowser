@@ -46,6 +46,34 @@ function labelValueGroupBy(data, groupBy) {
 }
 
 /**
+ * Returns true if the drug matches the search query, otherwis false
+ */
+function matchDrug(query, drug) {
+  const queryRegex = RegExp(StringUtils.normalize(query));
+
+  // check if the name matches
+  const normalizedName = StringUtils.normalize(drug.name && drug.name.label);
+  if (queryRegex.test(normalizedName)) {
+    return true;
+  }
+
+  // check if a synonym matches
+  const synonymMatch = drug.synonyms.some(synonym => queryRegex.test(StringUtils.normalize(synonym)));
+  if (synonymMatch) {
+    return true;
+  }
+
+  // check if a search only index key matches
+  // searchIndexOnlyNames
+  const searchNameMatch = drug.searchIndexOnlyNames.some(searchName => queryRegex.test(StringUtils.normalize(searchName)));
+  if (searchNameMatch) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
  * Get the group header based on the label in an object in the group
  */
 function groupHeader(group, groupBy) {
@@ -57,11 +85,53 @@ function groupHeader(group, groupBy) {
 class DrugCards extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      groups: labelValueGroupBy(props.data, props.groupBy),
+      search: ''
+    };
+
     this.renderGroup = this.renderGroup.bind(this);
+    this.renderSearch = this.renderSearch.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.data !== this.props.data) {
+      this.setState({ groups: labelValueGroupBy(nextProps.data, nextProps.groupBy) });
+    }
+  }
+
+  handleSearchChange(evt) {
+    const { data, groupBy } = this.props;
+    const { value } = evt.target;
+
+    const filteredData = data.filter(drug => matchDrug(value, drug));
+    this.setState({
+      search: value,
+      groups: labelValueGroupBy(filteredData, groupBy)
+    });
+
+    console.log(data[0]);
+  }
+
+  renderSearch() {
+    const { search } = this.state;
+    return (
+      <div className="search-container">
+        <input
+          className="form-control"
+          type="search"
+          value={search}
+          onChange={this.handleSearchChange}
+          placeholder="Search for drugs..."
+        />
+      </div>
+    );
   }
 
   /**
@@ -93,15 +163,14 @@ class DrugCards extends React.Component {
   }
 
   render() {
-    const { data, groupBy } = this.props;
-
-    const groups = labelValueGroupBy(data, groupBy);
+    const { groups } = this.state;
 
     // sort the groups
     const orderedGroupKeys = Object.keys(groups).sort();
 
     return (
       <div className='DrugCards'>
+        {this.renderSearch()}
         {orderedGroupKeys.map((key, index) => this.renderGroup(groups[key], index))}
       </div>
     );

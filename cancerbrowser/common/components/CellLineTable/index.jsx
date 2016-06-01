@@ -5,6 +5,7 @@ import shallowCompare from 'react-addons-shallow-compare';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 import { Icon } from 'react-fa';
 
+import * as StringUtils from '../../utils/string_utils';
 import SortableTable from '../SortableTable';
 import DatasetSelector from '../DatasetSelector';
 import CellLineGlyph from '../CellLineGlyph';
@@ -171,11 +172,6 @@ function getDatasetColumns(datasets) {
 }
 
 
-// helper function to normalize a string for search comparison by lower casing and trimming
-function normalizeString(str) {
-  return String(str).toLowerCase().trim();
-}
-
 /* function for searching the table column labels as opposed to assuming
  * all the values are strings.
  *
@@ -186,19 +182,19 @@ function normalizeString(str) {
  */
 function labelContainsIgnoreCase(query, cellData) {
   // normalize the query
-  const normalizedQuery = normalizeString(query);
+  const normalizedQuery = StringUtils.normalize(query);
 
   let match;
   // If the cellData is an object with a label, use that as the string to search in
   if (cellData && cellData.label) {
-    match = normalizeString(cellData.label).indexOf(normalizedQuery) !== -1;
+    match = StringUtils.normalize(cellData.label).indexOf(normalizedQuery) !== -1;
 
   // If the cell data is an array, check if the match happens in any element
   } else if (_.isArray(cellData)) {
     match = cellData.some(item => labelContainsIgnoreCase(normalizedQuery, item));
   // otherwise just treat the cellData as the string to search in (default case)
   } else {
-    match = normalizeString(cellData).indexOf(normalizedQuery) !== -1;
+    match = StringUtils.normalize(cellData).indexOf(normalizedQuery) !== -1;
   }
 
   return match;
