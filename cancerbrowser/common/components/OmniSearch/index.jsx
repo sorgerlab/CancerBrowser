@@ -30,7 +30,7 @@ class OmniSearch extends React.Component {
     this.state = {
       value: '',
       maxResultsPerSection: 3,
-      combinedData: [],
+      combinedData: this.combineData(props.cellLines, props.drugs),
       suggestions: []
     };
 
@@ -43,25 +43,29 @@ class OmniSearch extends React.Component {
     this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
   }
 
+  combineData(cellLines, drugs) {
+    return [
+      {
+        label: 'Cell Lines',
+        id: 'cell_line',
+        searchAttrs: ['id', 'cellLine.label'],
+        values: cellLines
+      },
+      {
+        label: 'Drugs',
+        id: 'drug',
+        searchAttrs: ['id', 'name.label', 'synonyms', 'searchIndexOnlyNames'],
+        values: drugs
+      }
+    ];
+  }
+
   componentWillReceiveProps(nextProps) {
     if(nextProps.cellLines && nextProps.drugs &&
       (nextProps.cellLines !== this.props.cellLines || nextProps.drugs !== this.props.drugs)) {
 
       this.setState({
-        combinedData: [
-          {
-            label: 'Cell Lines',
-            id: 'cell_line',
-            searchAttrs: ['id'],
-            values: nextProps.cellLines
-          },
-          {
-            label: 'Drugs',
-            id: 'drug',
-            searchAttrs: ['id'],
-            values: nextProps.drugs
-          }
-        ],
+        combinedData: this.combineData(nextProps.cellLines, nextProps.drugs),
         suggestions: this.getSuggestions('')
       });
     }
@@ -108,10 +112,23 @@ class OmniSearch extends React.Component {
         let filteredData = _.clone(data);
         filteredData.values = filteredData.values.filter(function(value) {
           let found = false;
-          data.searchAttrs.forEach(function(attr) {
-            if(value[attr].toLowerCase().includes(search)) {
-              found = true;
+
+          // create a function to access properties by path on the object `value`
+          const getAttrValue = _.propertyOf(value);
+
+          // check if any of the search attributes match
+          found = data.searchAttrs.some(function(attr) {
+            const searchAttrValue = getAttrValue(attr);
+            let matches = false;
+
+            // handle array value of strings (e.g. synonyms, searchIndexOnlyNames)
+            if (_.isArray(searchAttrValue)) {
+              matches = searchAttrValue.some(val => val.toLowerCase().includes(search));
+            } else if(searchAttrValue.toLowerCase().includes(search)) {
+              matches = true;
             }
+
+            return matches;
           });
           return found;
         });
@@ -139,7 +156,15 @@ class OmniSearch extends React.Component {
   * @param {Object} suggestion Suggestion selected
   */
   getSuggestionValue(suggestion) {
-    return suggestion.id;
+    if (suggestion.cellLine) {
+      name = suggestion.cellLine.label;
+    } else if (suggestion.name) {
+      name = suggestion.name.label;
+    } else {
+      name = suggestion.id;
+    }
+
+    return name;
   }
 
   /**
@@ -165,12 +190,29 @@ class OmniSearch extends React.Component {
   }
 
   /**
-  * render suggestion
+  * render suggestion including synonyms and search only names (if matched)
   * @param {Object} suggestion Suggestion object to display
   */
-  renderSuggestion(suggestion) {
+  renderSuggestion(suggestion, { value: search }) {
+    let name = this.getSuggestionValue(suggestion);
+
+    let synonymsToUse = suggestion.synonyms ? [...suggestion.synonyms] : [];
+
+    // include searchIndexOnlyName if it matches
+    if (suggestion.searchIndexOnlyNames && suggestion.searchIndexOnlyNames.length) {
+      const match = suggestion.searchIndexOnlyNames.find(searchName => searchName.toLowerCase().includes(search.toLowerCase()));
+      if (match) {
+        synonymsToUse.push(match);
+      }
+    }
+
+    let synonyms;
+    if (synonymsToUse.length) {
+      synonyms = <span className="text-muted">{` (aka ${synonymsToUse.join(', ')})`}</span>;
+    }
+
     return (
-      <span>{suggestion.id}</span>
+      <span>{name}{synonyms}</span>
     );
   }
 
