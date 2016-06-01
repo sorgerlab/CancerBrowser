@@ -40,11 +40,11 @@ export function getDatasetInfo(datasetId) {
  * @return {Promise} dataset array
  */
 export function getDataset(datasetId, format) {
+  const info = datasetInfo[datasetId];
   return new Promise(function(resolve, reject) {
-    if(datasetInfo[datasetId]) {
-      var info = datasetInfo[datasetId];
+    if(info) {
 
-      var path = DATA_PATH + 'datasets/' + info.filename;
+      const path = DATA_PATH + 'datasets/' + info.filename;
 
       d3.tsv(path, function(error, data) {
         if(error) {
@@ -57,7 +57,17 @@ export function getDataset(datasetId, format) {
     } else {
       reject('Not valid dataset Id ' + datasetId);
     }
-  }).then(mergeCellLines);
+  }).then(function(dataset) {
+    // some datasets are not arranged by cell line.
+    // TODO: this could be moved somewhere else, or
+    // we could make mergeCellLines more robust.
+    if(info.cell_line_id) {
+      return mergeCellLines(dataset);
+    } else {
+      return dataset;
+    }
+
+  });
 }
 
 /**
@@ -87,15 +97,89 @@ function transformData(dataset, info, format) {
       if(format === 'byReceptor') {
         dataset = convertToByReceptor(dataset);
       }
+      break;
+    case 'growth_factor_packt_perk':
+      dataset = transformGrowthFactor(dataset, info);
+      break;
+    case 'basal_total':
+      dataset = transformBasalTotal(dataset, info);
+      break;
+    case 'basal_phospho':
+      dataset = transformBasalPhospho(dataset, info);
+      break;
   }
 
   return dataset;
 }
 
 /**
+ * Transform Growth Factor data to be used in visualizations
+ * @param {Array} dataset Dataset
+ * @return {Array} transformed dataset
+ */
+function transformGrowthFactor(dataset, info) {
+
+  console.log(dataset);
+
+  dataset.forEach(function(row) {
+    row.label = row[info.row_id];
+    row.id = row.label.toLowerCase();
+
+    const measurements = [];
+    _.keys(row).forEach(function(key, index) {
+      // if log is in the key, then it is a measurement
+      if(key.includes('log')) {
+
+        let measurement = {label: key,
+                           value: row[key],
+                           index: index};
+        measurements.push(measurement);
+        // remove the original value.
+        // delete row[key];
+      }
+    });
+    row.measurements = measurements;
+  });
+  return dataset;
+}
+
+/**
+ * Transform Basal Total data to be used in visualizations
+ * @param {Array} dataset Dataset
+ * @return {Array} transformed dataset
+ */
+function transformBasalTotal(dataset, info) {
+  dataset.forEach(function(row) {
+    row.label = row[info.row_id];
+    row.id = row.label.toLowerCase();
+  });
+  return dataset;
+}
+
+
+/**
+ * Transform Basal Phospho data to be used in visualizations
+ * @param {Array} dataset Dataset
+ * @return {Array} transformed dataset
+ */
+function transformBasalPhospho(dataset, info) {
+  dataset.forEach(function(row) {
+    // phospho has a secondary string i.e: (K.GFINDDDDEDEGEEDEGS#DS#GDS#EDDVGHKK.R)
+    // in the id column.
+    const idFields = row[info.row_id].split(' ');
+    row.label = idFields[0];
+    row.id = row.label.toLowerCase();
+
+    row.descriptor = idFields[1];
+  });
+  return dataset;
+}
+
+
+/**
  * Transform Receptor data to be oriented by receptor instead of
  * cell line data.
- * @param {Object} dataset Dataset expected to be processed by
+ * @param {Array} dataset Dataset expected to be processed by
  * transformReceptorData already.
  *
  */
@@ -145,7 +229,7 @@ function transformReceptorData(dataset) {
     row.id = row['Cell Line Name'].toLowerCase();
     row.label = row['Cell Line Name'];
 
-    var measurements = [];
+    const measurements = [];
     _.keys(row).forEach(function(key, index) {
       // if log is in the key, then it is a measurement
       if(key.includes('log')) {
