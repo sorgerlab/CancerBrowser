@@ -10,11 +10,19 @@ const propTypes = {
   activeKey: React.PropTypes.string,
   dataSort: React.PropTypes.func,
   dataExtent: React.PropTypes.array,
-  onClick: React.PropTypes.func
+  onClick: React.PropTypes.func,
+  width: React.PropTypes.number,
+  height: React.PropTypes.number,
+  fillColor: React.PropTypes.string,
+  highlightColor: React.PropTypes.string
 };
 
 const defaultProps = {
-  dataSort: sortByValue
+  dataSort: sortByValue,
+  width: 100,
+  height: 100,
+  fillColor: '#cccccc',
+  highlightColor: '#9679af'
 };
 
 /**
@@ -34,10 +42,6 @@ class SmallWaterfallPlot extends React.Component {
    */
   constructor(props) {
     super(props);
-
-    this.width = 100;
-    this.height = 100;
-
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -75,7 +79,7 @@ class SmallWaterfallPlot extends React.Component {
    */
   getData(dataset, sortFunc) {
 
-    let data = dataset.measurements;
+    const data = dataset.measurements;
     data.sort(sortFunc);
 
     return data;
@@ -85,14 +89,19 @@ class SmallWaterfallPlot extends React.Component {
    * Rerenders the chart on the canvas. Recomputes data sorting and scales.
    */
   updateCanvas() {
-    const { dataset, activeKey, dataSort, dataExtent } = this.props;
+    const {
+      dataset,
+      activeKey,
+      dataSort,
+      dataExtent,
+      width,
+      height,
+      fillColor,
+      highlightColor } = this.props;
 
     // sort and extract data to display
     const values = this.getData(dataset, dataSort);
 
-    // TODO: can these be moved to more 'generic location?'
-    const fillColor = '#cccccc';
-    const highlightColor = '#9679af';
 
     const ctx = this.refs.canvas.getContext('2d');
 
@@ -106,7 +115,7 @@ class SmallWaterfallPlot extends React.Component {
 
     // scales recomputed each draw
     const xScale = d3.scale.linear()
-      .range([0, this.width]);
+      .range([0, width]);
 
     if(dataExtent) {
       xScale.domain(dataExtent);
@@ -116,11 +125,11 @@ class SmallWaterfallPlot extends React.Component {
 
     const yScale = d3.scale.ordinal()
       .domain(values.map((v) => v.id))
-      .rangeRoundBands([0, this.height]);
+      .rangeRoundBands([0, height]);
 
 
     // draw main bars
-    ctx.clearRect(0,0, this.width, this.height);
+    ctx.clearRect(0,0, width, height);
     ctx.fillStyle = fillColor;
 
     values.forEach(function(value) {
@@ -133,7 +142,7 @@ class SmallWaterfallPlot extends React.Component {
 
       ctx.fillStyle = highlightColor;
 
-      var activeValue = values.filter((v) => v.id === activeKey);
+      const activeValue = values.filter((v) => v.id === activeKey);
       activeValue.forEach(function(value) {
         ctx.fillRect(0, yScale(value.id), xScale(value.value), yScale.rangeBand());
       });
@@ -144,7 +153,7 @@ class SmallWaterfallPlot extends React.Component {
    * Render the chart
    */
   render() {
-    const { dataset } = this.props;
+    const { dataset, width, height } = this.props;
 
     // scaling for retina
     let sizeScale = 1.0;
@@ -153,14 +162,14 @@ class SmallWaterfallPlot extends React.Component {
     }
 
     let canvasStyle = {
-      width: this.width,
-      height: this.height
+      width: width,
+      height: height
     };
 
     return (
       <div className='SmallWaterfallPlot'  onClick={this.handleClick}>
         <div className='name'>{dataset.label}</div>
-        <canvas className='chart' ref="canvas" style={canvasStyle} id={dataset.id} width={this.width * sizeScale} height={this.height * sizeScale} />
+        <canvas className='chart' ref="canvas" style={canvasStyle} id={dataset.id} width={width * sizeScale} height={height * sizeScale} />
       </div>
     );
   }
