@@ -35,6 +35,7 @@
     "label": "Drug Dose-Response Growth Rate Profiling",
     "filename": "dose_response-GR50_GRmax_060116.tsv",
     "cell_line_id": "cell_line",
+    "row_id": "cell_line",
     "drug_id": "small_molecule_HMSLID",
     "text_fields": ["cell_line", "small_molecule"]
   }

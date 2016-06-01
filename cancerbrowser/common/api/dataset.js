@@ -106,10 +106,27 @@ function transformData(dataset, info, format) {
     case 'basal_phospho':
       dataset = transformBasalPhospho(dataset, info);
       break;
+    case 'drug_dose_response':
+      dataset = transformDoseResponse(dataset, info);
+      break;
   }
 
   return dataset;
 }
+
+/**
+ * Transform Basal Total data to be used in visualizations
+ * @param {Array} dataset Dataset
+ * @return {Array} transformed dataset
+ */
+function transformDoseResponse(dataset, info) {
+  dataset.forEach(function(row) {
+    row.label = row[info.row_id];
+    row.id = row.label.toLowerCase();
+  });
+  return dataset;
+}
+
 
 /**
  * Transform Growth Factor data to be used in visualizations
@@ -118,8 +135,6 @@ function transformData(dataset, info, format) {
  */
 function transformGrowthFactor(dataset, info) {
 
-  console.log(dataset);
-
   dataset.forEach(function(row) {
     row.label = row[info.row_id];
     row.id = row.label.toLowerCase();
@@ -127,14 +142,23 @@ function transformGrowthFactor(dataset, info) {
     const measurements = [];
     _.keys(row).forEach(function(key, index) {
       // if log is in the key, then it is a measurement
-      if(key.includes('log')) {
+      if(key.includes('Measured')) {
+        const mTitleRegex = /Measured\s+(\w*):(\w+)\s+(\w+)\((.*)\)/;
+        const fields = key.match(mTitleRegex);
 
-        let measurement = {label: key,
-                           value: row[key],
-                           index: index};
+        let measurement = {
+          label: key,
+          value: row[key],
+          index: index,
+          type: fields[1],
+          time: fields[2],
+          scale: fields[3],
+          metric: fields[4]
+        };
+
         measurements.push(measurement);
         // remove the original value.
-        // delete row[key];
+        delete row[key];
       }
     });
     row.measurements = measurements;
