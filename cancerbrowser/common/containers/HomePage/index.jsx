@@ -2,7 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import PageLayout from '../../components/PageLayout';
 import OmniSearch from '../../components/OmniSearch';
+
+import './home_page.scss';
 
 import {
   fetchCellLinesIfNeeded
@@ -11,6 +14,7 @@ import {
 import {
   fetchDrugsIfNeeded
 } from '../../actions/drug';
+
 
 
 const propTypes = {
@@ -36,20 +40,20 @@ class HomePage extends React.Component {
    *
    */
   componentDidMount() {
-    this.props.dispatch(fetchCellLinesIfNeeded({}, {}));
-    this.props.dispatch(fetchDrugsIfNeeded({}, {}));
+    const { dispatch } = this.props;
+
+    dispatch(fetchCellLinesIfNeeded({}, {}));
+    dispatch(fetchDrugsIfNeeded({}, {}));
   }
 
   /**
    *
    */
   renderSearch() {
-    const { cellLines, drugs} = this.props;
+    const { cellLines, drugs } = this.props;
+
     return (
-      <OmniSearch
-        cellLines = {cellLines}
-        drugs = {drugs}
-      />
+      <OmniSearch cellLines={cellLines} drugs={drugs} />
     );
   }
 
@@ -59,13 +63,15 @@ class HomePage extends React.Component {
    */
   render() {
     return (
-      <div className="HomePage">
+      <PageLayout className="HomePage">
         <h1>HMS LINCS Cancer Browser</h1>
-        {this.renderSearch()}
+        <div className='omni-search-container'>
+          {this.renderSearch()}
+        </div>
 
-        <Link to="/cell_lines" className="btn btn-lg btn-default" role="button">Cell Line Browser</Link>
-        <Link to="/drugs" className="btn btn-lg btn-default" role="button">Drug Browser</Link>
-      </div>
+        <Link to="/cell_lines" className="btn btn-default spaced-right" role="button">Cell Line Browser</Link>
+        <Link to="/drugs" className="btn btn-default" role="button">Drug Browser</Link>
+      </PageLayout>
     );
   }
 }

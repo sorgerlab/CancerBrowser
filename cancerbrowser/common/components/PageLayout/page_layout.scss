@@ -3,11 +3,11 @@
 $page-sidebar-width: 250px;
 
 .page {
-  margin: 0 (-$grid-gutter-width/2);
   min-height: 500px;
 }
 
 .page-with-sidebar {
+  margin: 0 (-$grid-gutter-width/2);
   position: relative;
   min-height: 800px;
   padding-left: $page-sidebar-width;
