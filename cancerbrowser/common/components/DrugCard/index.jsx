@@ -1,18 +1,19 @@
 import React from 'react';
 import classNames from 'classnames';
-import _ from 'lodash';
 import { Link } from 'react-router';
 import shallowCompare from 'react-addons-shallow-compare';
-import { DropdownButton, MenuItem } from 'react-bootstrap';
-import { Icon } from 'react-fa';
 
+import * as StringUtils from '../../utils/string_utils';
 import DatasetSelector from '../DatasetSelector';
 
 import './drug_card.scss';
 
 const propTypes = {
   /** A drug object */
-  data: React.PropTypes.object
+  data: React.PropTypes.object,
+
+  /** A string representing the search query used to show searchIndexOnlyNames */
+  searchQuery: React.PropTypes.string
 };
 
 const defaultProps = {
@@ -26,6 +27,25 @@ const drugClassConfig = {
   '40-approved': 'A'
 };
 
+/**
+ * Returns a name if there is a saerchIndexOnlyName in drug that matches searchQuery
+ *
+ * @param {Object} drug The drug data
+ * @param {String} searchQuery The search string
+ * @return {String} The matching name or undefined
+ */
+function matchSearchIndexOnlyName(drug, searchQuery) {
+  const queryRegex = RegExp(StringUtils.normalize(searchQuery));
+  return drug.searchIndexOnlyNames.find(searchName => queryRegex.test(StringUtils.normalize(searchName)));
+}
+
+/**
+ * Returns true if the drug has synonyms or a matching hidden name
+ */
+function hasVisibleSynonyms(drug, searchQuery) {
+  return (drug.synonyms.length || matchSearchIndexOnlyName(drug, searchQuery));
+}
+
 /** Render a single drug card */
 class DrugCard extends React.Component {
   constructor(props) {
@@ -36,6 +56,11 @@ class DrugCard extends React.Component {
     return shallowCompare(this, nextProps, nextState);
   }
 
+  /**
+   * Renders the class badge (Preclinical, phase1, etc)
+   *
+   * @return {React.Component}
+   */
   renderDrugClass(drugClass) {
     if (!drugClass) {
       return null;
@@ -50,6 +75,11 @@ class DrugCard extends React.Component {
     );
   }
 
+  /**
+   * Renders the drug name, target and dataset selector
+   *
+   * @return {React.Component}
+   */
   renderDrugDetails(data) {
     const target = data.nominalTarget && data.nominalTarget.label || 'Target';
 
@@ -68,8 +98,24 @@ class DrugCard extends React.Component {
     );
   }
 
-  renderSynonyms(data) {
-    const { synonyms } = data;
+  /**
+   * Renders the synonym bar at the bottom
+   * Displays searchIndexOnlyName if it matches the searchQuery prop
+   *
+   * @return {React.Component}
+   */
+  renderSynonyms(data, searchQuery) {
+    let { synonyms } = data;
+
+    const hiddenName = matchSearchIndexOnlyName(data, searchQuery);
+
+    if (hiddenName) {
+      synonyms = [hiddenName];
+    }
+
+    if (!synonyms.length) {
+      return null;
+    }
 
     return (
       <div className='drug-synonyms'>
@@ -80,15 +126,17 @@ class DrugCard extends React.Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, searchQuery } = this.props;
+
+    const hasSynonyms = hasVisibleSynonyms(data, searchQuery);
 
     return (
-      <div className='DrugCard'>
+      <div className={classNames('DrugCard', { 'has-synonyms': hasSynonyms })}>
         <div className='drug-diagram'/>
         {this.renderDrugClass(data.class)}
         {this.renderDrugDetails(data)}
         <div className='drug-bottom-bar'>
-          {this.renderSynonyms(data)}
+          {hasSynonyms ? this.renderSynonyms(data, searchQuery) : null}
         </div>
       </div>
     );

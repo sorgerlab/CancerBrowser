@@ -115,8 +115,6 @@ class DrugCards extends React.Component {
       search: value,
       groups: labelValueGroupBy(filteredData, groupBy)
     });
-
-    console.log(data[0]);
   }
 
   renderSearch() {
@@ -144,7 +142,10 @@ class DrugCards extends React.Component {
    */
   renderGroup(group, key) {
     const { groupBy } = this.props;
+    const { search } = this.state;
+
     const header = groupHeader(group, groupBy);
+
     return (
       <div key={key} className='card-group'>
         <header>
@@ -155,7 +156,7 @@ class DrugCards extends React.Component {
         </header>
         <div className='card-group-cards'>
           {group.map((drug, i) => {
-            return <DrugCard key={i} data={drug} />;
+            return <DrugCard key={i} data={drug} searchQuery={search} />;
           })}
         </div>
       </div>
