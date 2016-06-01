@@ -108,7 +108,7 @@ class DrugCards extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.data !== this.props.data) {
+    if (nextProps.data !== this.props.data || nextProps.groupBy !== this.props.groupBy) {
       this.setState({ groups: labelValueGroupBy(nextProps.data, nextProps.groupBy) });
     }
   }
