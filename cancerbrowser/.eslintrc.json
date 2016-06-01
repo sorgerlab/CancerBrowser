@@ -22,6 +22,8 @@
     ],
     "extends": ["eslint:recommended", "plugin:react/recommended"],
     "rules": {
+        "eqeqeq": ["error", "smart"],
+        "no-var": "error",
         "indent": [
             "error",
             2,
