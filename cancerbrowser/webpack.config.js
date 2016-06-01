@@ -58,7 +58,7 @@ module.exports = [
           loader: 'style-loader!css-loader!sass-loader'
         },
         { test: /\.png$/,
-          loader: 'url-loader?limit=100000'
+          loader: 'file-loader?name=img/[hash].[ext]'
         },
         // Bootstrap
         {
@@ -132,7 +132,7 @@ module.exports = [
         },
         {
           test: /\.png$/,
-          loader: 'url-loader?limit=100000'
+          loader: 'file-loader?name=img/[hash].[ext]'
         },
 
         // Bootstrap

@@ -8,6 +8,20 @@ import DatasetSelector from '../DatasetSelector';
 
 import './drug_card.scss';
 
+// require in the whole directory
+const drugImageContext = require.context('../../assets/img/drugs');
+function drugImageUrl(drug) {
+  const filename = `HMSL${drug.hmsLincsId}.png`;
+  let drugUrl;
+  try {
+    drugUrl = drugImageContext(`./${filename}`);
+  } catch (e) {
+    console.warn(`Error loading image ${filename} for`, drug);
+  }
+
+  return drugUrl;
+}
+
 const propTypes = {
   /** A drug object */
   data: React.PropTypes.object,
@@ -139,7 +153,8 @@ class DrugCard extends React.Component {
 
     return (
       <div className={classNames('DrugCard', { 'has-synonyms': hasSynonyms })}>
-        <div className='drug-diagram'/>
+        <div className='drug-diagram'
+          style={{ backgroundImage: `url(${drugImageUrl(data)})`}} />
         {this.renderDrugClass(data.class)}
         {this.renderDrugDetails(data)}
         <div className='drug-bottom-bar'>
