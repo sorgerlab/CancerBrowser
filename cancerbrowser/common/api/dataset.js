@@ -15,7 +15,7 @@ import datasetInfo from './data/dataset_info.json';
  * each attribute is a dataset key.
  * @return {Promise} datasets info
  */
-export function getDatasets() {
+export function getDatasetsInfo() {
   return new Promise(function(resolve) {
     resolve(datasetInfo);
   });
@@ -27,7 +27,7 @@ export function getDatasets() {
  * @return {Promise} datasets info object
  */
 export function getDatasetInfo(datasetId) {
-  return getDatasets()
+  return getDatasetsInfo()
     .then(datasets => datasets[datasetId]);
 }
 
@@ -43,7 +43,6 @@ export function getDataset(datasetId, format) {
   const info = datasetInfo[datasetId];
   return new Promise(function(resolve, reject) {
     if(info) {
-
       const path = DATA_PATH + 'datasets/' + info.filename;
 
       d3.tsv(path, function(error, data) {
