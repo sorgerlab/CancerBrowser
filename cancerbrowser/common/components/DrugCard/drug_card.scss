@@ -69,8 +69,8 @@ $approved-color: rgba(199, 155, 29, 0.5);
 
   .drug-diagram {
     background-color: #fff;
-    background-image: url(../../assets/img/sample_drug.png);
     background-repeat: no-repeat;
+    background-size: contain;
     background-position: center;
     width: $drug-diagram-width;
     height: 80px;
