@@ -1,8 +1,10 @@
-$search-width: 450px;
+$search-width: 508px;
 $suggest-width: $search-width;
 
 .react-autosuggest__container {
   position: relative;
+  text-align: left;
+  display: inline-block;
 }
 
 .react-autosuggest__input {

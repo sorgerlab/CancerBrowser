@@ -13,7 +13,7 @@ class PageLayout extends React.Component {
   render() {
     const { sidebar, children, className } = this.props;
     return (
-      <div className={classNames('page-with-sidebar page', className)}>
+      <div className={classNames('page', {'page-with-sidebar': sidebar }, className)}>
         {sidebar ? <div className='page-sidebar-bg' /> : null}
         {sidebar ? (
           <div className='page-sidebar'>
