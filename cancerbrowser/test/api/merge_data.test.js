@@ -64,4 +64,23 @@ describe('API Util - Merge', function() {
     assert.equal(result[2].info.val, 'xyz');
 
   });
+
+  it('handles duplicate leftdata keys', function() {
+    let left = [
+      {key: 'a', val: '123'},
+      {key: 'a', val: '123'},
+      {key: 'c', val: '123'}
+    ];
+    let right = [
+      {rkey: 'c', 'val': 'xyz' },
+      {rkey: 'a', 'val': 'abc' }
+    ];
+
+    let result = mergeData(left, right, 'key', 'rkey', 'info');
+    assert.equal(result.length, 3);
+
+    assert.equal(result[0].info.val, 'abc');
+    assert.equal(result[1].info.val, 'abc');
+    assert.equal(result[2].info.val, 'xyz');
+  });
 });

@@ -6,11 +6,12 @@
     "cell_line_id": "Cell Line Name",
     "text_fields": ["Cell Line HMSLID", "Cell Line Name"]
   },
-  "growth_factor_packt_perk": {
-    "id": "growth_factor_packt_perk",
+  "growth_factor_pakt_perk": {
+    "id": "growth_factor_pakt_perk",
     "label": "Growth Factor-Induced pAKT/pERK Response",
     "filename": "pERK-pAKT_fold_change.tsv",
     "cell_line_id": "Cell Line Name",
+    "row_id": "Cell Line Name",
     "text_fields": ["Cell Line HMS LINCS ID", "Cell Line Name", "Protein HMS LINCS ID", "Protein Name"]
   },
   "basal_total": {
@@ -18,6 +19,7 @@
     "label": "Basal Total Protein Mass Spectrometry",
     "filename": "basal_total_proteome-numerical_view.tsv",
     "cell_lines": ["hcc1806", "mcf10a", "hcc38", "bt-549", "hs578t", "mdamb231", "skbr3", "mcf7", "hcc70", "bt-20"],
+    "row_id": "Total protein by cell line",
     "text_fields": ["Total protein by cell line"]
   },
   "basal_phospho": {
@@ -25,6 +27,7 @@
     "label": "Basal Phosphoprotein Mass Spectrometry",
     "filename": "basal_phosphoproteome-numerical_view.tsv",
     "cell_lines": ["bt-549","hs578t","mdamb231","skbr3","hcc70","mcf7","bt-20","hcc38","hcc1806","mcf10a"],
+    "row_id": "Phosphosite by cell line",
     "text_fields": ["Phosphosite by cell line"]
   },
   "drug_dose_response": {
@@ -32,6 +35,7 @@
     "label": "Drug Dose-Response Growth Rate Profiling",
     "filename": "dose_response-GR50_GRmax_060116.tsv",
     "cell_line_id": "cell_line",
+    "row_id": "cell_line",
     "drug_id": "small_molecule_HMSLID",
     "text_fields": ["cell_line", "small_molecule"]
   }

@@ -22,12 +22,12 @@ export const DATA_PATH = '/data/';
  *
  */
 export function filterData(dataset, filterGroup) {
-  var filteredDataset;
+  let filteredDataset;
 
   if(filterGroup && filterGroup.length > 0) {
     filteredDataset = _.filter(dataset, function(row) {
 
-      var matches = getCategoricalMatches(row, filterGroup);
+      const matches = getCategoricalMatches(row, filterGroup);
 
       // now matches is an array of true/false values.
       // if there is a false value in matches, then then
@@ -54,9 +54,9 @@ export function filterData(dataset, filterGroup) {
  *
  */
 function getCategoricalMatches(row, filterGroup) {
-  var matches = _.map(filterGroup, function(filter) {
-    var matched = false;
-    var possibleValues = _.flatten([filter.values]);
+  const matches = _.map(filterGroup, function(filter) {
+    let matched = false;
+    const possibleValues = _.flatten([filter.values]);
     // see if any of the data values are in the filter values
     _.flatten([row[filter.id]]).forEach(function(value) {
       if(value && _.includes(possibleValues, value.value)) {
@@ -77,10 +77,10 @@ function getCategoricalMatches(row, filterGroup) {
  *
  */
 export function countMatchedFilterGroups(data, allFilterGroups) {
-  var allCounts = {};
+  const allCounts = {};
   Object.keys(allFilterGroups).forEach(function(key) {
-    var filterGroup = allFilterGroups[key];
-    var filterGroupCounts = {};
+    const filterGroup = allFilterGroups[key];
+    const filterGroupCounts = {};
     filterGroup.filters.forEach(function(filter) {
       filterGroupCounts[filter.id] = {};
       filterGroupCounts[filter.id]['counts'] = countMatchedFilterData(data, filter);
@@ -97,10 +97,10 @@ export function countMatchedFilterGroups(data, allFilterGroups) {
  *
  */
 function countMatchedFilterData(data, filter) {
-  var filterCounts = {};
+  const filterCounts = {};
   filter.values.forEach(function(value) {
-    var fakeFilterGroup = [{id:filter.id, values:value.value}];
-    var results = filterData(data, fakeFilterGroup);
+    const fakeFilterGroup = [{id:filter.id, values:value.value}];
+    const results = filterData(data, fakeFilterGroup);
     filterCounts[value.value] = results.length;
   });
 
@@ -127,17 +127,19 @@ function countMatchedFilterData(data, filter) {
  */
 export function mergeData(leftData, rightData, leftKey, rightKey, namespace) {
 
-  let leftKeyed = _.keyBy(leftData, leftKey);
-  let rightKeyed = _.keyBy(rightData, rightKey);
+  // const leftKeyed = _.keyBy(leftData, leftKey);
+  const rightKeyed = _.keyBy(rightData, rightKey);
 
-  let results = _.keys(leftKeyed).map(function(key) {
+  const results = leftData.map(function(row) {
 
-    var data = _.cloneDeep(leftKeyed[key]);
+    const data = _.cloneDeep(row);
     // the namespace attribute will contain an empty object
     // if match is not found in rightData.
     data[namespace] = {};
 
-    var rightValues = _.get(rightKeyed, key);
+    const keyValue = _.isFunction(leftKey) ? leftKey(row) : _.get(row, leftKey);
+
+    const rightValues = _.get(rightKeyed, keyValue);
 
     if(rightValues) {
       data[namespace] = _.cloneDeep(rightValues);
