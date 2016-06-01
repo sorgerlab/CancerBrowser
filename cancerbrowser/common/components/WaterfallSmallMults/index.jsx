@@ -22,6 +22,7 @@ class WaterfallSmallMults extends React.Component {
   }
 
   onClick(id) {
+    //TODO switch to clicked on entity in main plots.
     console.log(id);
   }
 

@@ -87,13 +87,24 @@ class SmallWaterfallPlot extends React.Component {
   updateCanvas() {
     const { dataset, activeKey, dataSort, dataExtent } = this.props;
 
+    // sort and extract data to display
     const values = this.getData(dataset, dataSort);
 
+    // TODO: can these be moved to more 'generic location?'
     const fillColor = '#cccccc';
-    const highlightColor = '#9679AF';
+    const highlightColor = '#9679af';
 
     const ctx = this.refs.canvas.getContext('2d');
 
+    // Scaling for retina
+    let sizeScale = 1.0;
+    if (window.devicePixelRatio) {
+      sizeScale = window.devicePixelRatio;
+    }
+    ctx.scale(sizeScale, sizeScale);
+
+
+    // scales recomputed each draw
     const xScale = d3.scale.linear()
       .range([0, this.width]);
 
@@ -108,15 +119,16 @@ class SmallWaterfallPlot extends React.Component {
       .rangeRoundBands([0, this.height]);
 
 
+    // draw main bars
     ctx.clearRect(0,0, this.width, this.height);
-
     ctx.fillStyle = fillColor;
 
     values.forEach(function(value) {
       ctx.fillRect(0, yScale(value.id), xScale(value.value), yScale.rangeBand());
     });
 
-    // active measurement(s)
+    // draw highlight
+    // TODO: this could be an array of highlighted values?
     if(activeKey) {
 
       ctx.fillStyle = highlightColor;
@@ -134,10 +146,21 @@ class SmallWaterfallPlot extends React.Component {
   render() {
     const { dataset } = this.props;
 
+    // scaling for retina
+    let sizeScale = 1.0;
+    if (window.devicePixelRatio) {
+      sizeScale = window.devicePixelRatio;
+    }
+
+    let canvasStyle = {
+      width: this.width,
+      height: this.height
+    };
+
     return (
       <div className='SmallWaterfallPlot'  onClick={this.handleClick}>
         <div className='name'>{dataset.label}</div>
-        <canvas className='chart' ref="canvas" id={dataset.id} width={this.width} height={this.height} />
+        <canvas className='chart' ref="canvas" style={canvasStyle} id={dataset.id} width={this.width * sizeScale} height={this.height * sizeScale} />
       </div>
     );
   }
