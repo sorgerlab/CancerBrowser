@@ -1,4 +1,6 @@
 $drug-diagram-width: 80px;
+$bottom-bar-height: 20px;
+
 $preclinical-color: rgba(180, 180, 180, 0.5); // rgba 0.5 gives nier looking circles
 $phase1-color: rgba(73, 156, 83, 0.5);
 $phase2-color: rgba(20, 127, 189, 0.5);
@@ -8,7 +10,7 @@ $approved-color: rgba(199, 155, 29, 0.5);
 .DrugCard {
   position: relative;
   width: 240px;
-  height: 100px;
+  height: 125px;
   display: inline-block;
   margin: 0 10px 10px 0;
   border: 1px solid #eee;
@@ -79,4 +81,25 @@ $approved-color: rgba(199, 155, 29, 0.5);
   .drug-datasets {
     margin-top: 6px;
   }
+
+  .drug-bottom-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0 0 4px 4px;
+    background-color: #f6f6f6;
+    height: $bottom-bar-height;
+    line-height: $bottom-bar-height;
+    text-align: center;
+    color: #bbb;
+    font-size: 0.75em;
+    padding: 0 4px;
+  }
+
+
+  .drug-synonym {
+    color: #999;
+  }
+
 }

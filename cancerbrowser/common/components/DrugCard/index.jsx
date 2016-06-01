@@ -68,6 +68,17 @@ class DrugCard extends React.Component {
     );
   }
 
+  renderSynonyms(data) {
+    const { synonyms } = data;
+
+    return (
+      <div className='drug-synonyms'>
+        {'Also known as '}
+        <span className='drug-synonym'>{synonyms.join(', ')}</span>
+      </div>
+    );
+  }
+
   render() {
     const { data } = this.props;
 
@@ -76,6 +87,9 @@ class DrugCard extends React.Component {
         <div className='drug-diagram'/>
         {this.renderDrugClass(data.class)}
         {this.renderDrugDetails(data)}
+        <div className='drug-bottom-bar'>
+          {this.renderSynonyms(data)}
+        </div>
       </div>
     );
   }
