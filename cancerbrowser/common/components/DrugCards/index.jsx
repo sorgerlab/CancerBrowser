@@ -49,7 +49,14 @@ function labelValueGroupBy(data, groupBy) {
  * Returns true if the drug matches the search query, otherwis false
  */
 function matchDrug(query, drug) {
-  const queryRegex = RegExp(StringUtils.normalize(query));
+  const normalizedQuery = StringUtils.normalize(query);
+
+  // if we have no query, then everything is in.
+  if (!normalizedQuery.length) {
+    return true;
+  }
+
+  const queryRegex = RegExp(normalizedQuery);
 
   // check if the name matches
   const normalizedName = StringUtils.normalize(drug.name && drug.name.label);

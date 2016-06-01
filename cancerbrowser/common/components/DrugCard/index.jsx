@@ -35,7 +35,14 @@ const drugClassConfig = {
  * @return {String} The matching name or undefined
  */
 function matchSearchIndexOnlyName(drug, searchQuery) {
-  const queryRegex = RegExp(StringUtils.normalize(searchQuery));
+  const normalizedQuery = StringUtils.normalize(searchQuery);
+
+  // do not test against an empty query.
+  if (!normalizedQuery.length) {
+    return null;
+  }
+
+  const queryRegex = RegExp(normalizedQuery);
   return drug.searchIndexOnlyNames.find(searchName => queryRegex.test(StringUtils.normalize(searchName)));
 }
 
