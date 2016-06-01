@@ -9,7 +9,7 @@ import FilterGroupSummary from '../../components/FilterGroupSummary';
 import PageLayout from '../../components/PageLayout';
 import CellLineTable from '../../components/CellLineTable';
 
-import { fetchDatasets } from '../../actions/dataset';
+import { fetchDatasetsInfo } from '../../actions/dataset';
 
 import {
   fetchCellLinesIfNeeded,
@@ -40,7 +40,7 @@ function mapStateToProps(state) {
     filteredCellLines: state.cellLines.filtered,
     activeFilters: state.filters.active,
     cellLineCounts: state.cellLines.counts,
-    datasets: state.datasets.items
+    datasets: state.datasets.info.items
   };
 }
 
@@ -137,7 +137,7 @@ class CellLineBrowserPage extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(fetchCellLinesIfNeeded({}, filterGroups));
-    this.props.dispatch(fetchDatasets());
+    this.props.dispatch(fetchDatasetsInfo());
   }
 
   onFilterChange(newFilters) {
