@@ -6,8 +6,8 @@
     "cell_line_id": "Cell Line Name",
     "text_fields": ["Cell Line HMSLID", "Cell Line Name"]
   },
-  "growth_factor_packt_perk": {
-    "id": "growth_factor_packt_perk",
+  "growth_factor_pakt_perk": {
+    "id": "growth_factor_pakt_perk",
     "label": "Growth Factor-Induced pAKT/pERK Response",
     "filename": "pERK-pAKT_fold_change.tsv",
     "cell_line_id": "Cell Line Name",

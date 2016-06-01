@@ -97,7 +97,7 @@ function transformData(dataset, info, format) {
         dataset = convertToByReceptor(dataset);
       }
       break;
-    case 'growth_factor_packt_perk':
+    case 'growth_factor_pakt_perk':
       dataset = transformGrowthFactor(dataset, info);
       break;
     case 'basal_total':

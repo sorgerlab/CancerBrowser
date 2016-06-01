@@ -34,7 +34,7 @@ export default (
       <Route path="receptor_profile" component={DatasetReceptorProfilePage} />
       <Route path="basal_phospho" component={DatasetBasalPhosphoPage} />
       <Route path="basal_total" component={DatasetBasalTotalPage} />
-      <Route path="growth_factor_packt_perk" component={DatasetGrowthFactorPaktPerkPage} />
+      <Route path="growth_factor_pakt_perk" component={DatasetGrowthFactorPaktPerkPage} />
       <Route path="drug_dose_response" component={DatasetDrugDoseResponsePage} />
     </Route>
     <Route path="about" component={About} />
