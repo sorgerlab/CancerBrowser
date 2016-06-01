@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 
-import { fetchDatasets } from '../../actions/dataset';
+import { fetchDatasetsInfo } from '../../actions/dataset';
 
 const propTypes = {
   dispatch: React.PropTypes.func,
@@ -17,10 +17,8 @@ const propTypes = {
  *  and values are where to get them from the state
  */
 function mapStateToProps(state) {
-  const datasets = state.datasets.items;
-
   return {
-    datasets
+    datasets: state.datasets.info.items
   };
 }
 
@@ -33,7 +31,7 @@ class DatasetSummaryPage extends React.Component {
    * Callback function called after this component has been mounted.
    */
   componentDidMount() {
-    this.props.dispatch(fetchDatasets());
+    this.props.dispatch(fetchDatasetsInfo());
   }
 
   /**

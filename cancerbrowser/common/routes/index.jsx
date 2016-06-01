@@ -10,8 +10,13 @@ import CellLineDetailPage from '../containers/CellLineDetailPage';
 import DrugBrowserPage from '../containers/DrugBrowserPage';
 import DrugDetailPage from '../containers/DrugDetailPage';
 
-import DatasetDetailPage from '../containers/DatasetDetailPage';
 import DatasetSummaryPage from '../containers/DatasetSummaryPage';
+
+import DatasetReceptorProfilePage from '../containers/DatasetReceptorProfilePage';
+import DatasetBasalPhosphoPage from '../containers/DatasetBasalPhosphoPage';
+import DatasetBasalTotalPage from '../containers/DatasetBasalTotalPage';
+import DatasetGrowthFactorPaktPerkPage from '../containers/DatasetGrowthFactorPaktPerkPage';
+import DatasetDrugDoseResponsePage from '../containers/DatasetDrugDoseResponsePage';
 
 import HomePage from '../containers/HomePage';
 import About from '../components/About';
@@ -25,7 +30,13 @@ export default (
     <Route path="/drugs" component={DrugBrowserPage} />
     <Route path="/drug/:drugId" component={DrugDetailPage} />
     <Route path="datasets" component={DatasetSummaryPage} />
-    <Route path="/dataset/:datasetId" component={DatasetDetailPage} />
+    <Route path="dataset">
+      <Route path="receptor_profile" component={DatasetReceptorProfilePage} />
+      <Route path="basal_phospho" component={DatasetBasalPhosphoPage} />
+      <Route path="basal_total" component={DatasetBasalTotalPage} />
+      <Route path="growth_factor_packt_perk" component={DatasetGrowthFactorPaktPerkPage} />
+      <Route path="drug_dose_response" component={DatasetDrugDoseResponsePage} />
+    </Route>
     <Route path="about" component={About} />
   </Route>
 );

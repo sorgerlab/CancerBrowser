@@ -1,18 +1,28 @@
-import { REQUEST_DATASETS, RECEIVE_DATASETS } from '../actions/dataset';
+import { combineReducers } from 'redux';
+import {
+  REQUEST_DATASETS_INFO,
+  RECEIVE_DATASETS_INFO,
+  REQUEST_DATASET,
+  RECEIVE_DATASET
+} from '../actions/dataset';
 
 const INITIAL_STATE = {
-  isFetching: false,
-  items: {}
+  info: {
+    isFetching: false,
+    items: {}
+  },
+
+  datasetsById: {}
 };
 
 
-function datasets(state = INITIAL_STATE, action) {
+function info(state = INITIAL_STATE.info, action) {
   switch (action.type) {
-    case REQUEST_DATASETS:
+    case REQUEST_DATASETS_INFO:
       return Object.assign({}, state, {
         isFetching: true
       });
-    case RECEIVE_DATASETS:
+    case RECEIVE_DATASETS_INFO:
       return Object.assign({}, state, {
         isFetching: false,
         items: action.datasets
@@ -22,4 +32,24 @@ function datasets(state = INITIAL_STATE, action) {
   }
 }
 
-export default datasets;
+function datasetsById(state = INITIAL_STATE.datasetsById, action) {
+  switch (action.type) {
+    case REQUEST_DATASET:
+      return Object.assign({}, state, {
+        [action.datasetId]: {
+          isFetching: true
+        }
+      });
+    case RECEIVE_DATASET:
+      return Object.assign({}, state, {
+        [action.datasetId]: {
+          isFetching: false,
+          items: action.dataset
+        }
+      });
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({ info, datasetsById });
