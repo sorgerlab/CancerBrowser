@@ -16,7 +16,7 @@ function drugImageUrl(drug) {
   try {
     drugUrl = drugImageContext(`./${filename}`);
   } catch (e) {
-    console.warn(`Error loading image ${filename} for`, drug);
+    // some drugs do not have their structure released yet.
   }
 
   return drugUrl;
