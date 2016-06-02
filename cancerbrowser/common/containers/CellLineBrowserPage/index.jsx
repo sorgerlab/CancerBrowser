@@ -17,7 +17,8 @@ import {
 } from '../../actions/cell_line';
 
 import {
-  changeActiveFilters
+  changeActiveFilters,
+  resetActiveFilters
 } from '../../actions/filter';
 
 const propTypes = {
@@ -138,6 +139,14 @@ class CellLineBrowserPage extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchCellLinesIfNeeded({}, filterGroups));
     this.props.dispatch(fetchDatasetsInfo());
+  }
+
+  /*
+   * Reset the active filters when leaving the page.
+   * this prevents cellLineFilters set here affecting other pages
+   */
+  componentWillUnmount() {
+    this.props.dispatch(resetActiveFilters());
   }
 
   onFilterChange(newFilters) {

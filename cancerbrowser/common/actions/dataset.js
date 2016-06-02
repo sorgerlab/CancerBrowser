@@ -48,10 +48,10 @@ export function fetchDatasetsInfo() {
 
 
 
-function fetchDataset(datasetId, format) {
+function fetchDataset(datasetId) {
   return dispatch => {
     dispatch(requestDataset(datasetId));
-    api.getDataset(datasetId, format).then(
+    api.getDataset(datasetId).then(
       data => dispatch(receiveDataset(datasetId, data))
     );
   };
@@ -91,10 +91,10 @@ export function fetchDatasetInfo(datasetId) {
   return fetchDatasetsInfo();
 }
 
-export function fetchDatasetIfNeeded(datasetId, format) {
+export function fetchDatasetIfNeeded(datasetId) {
   return (dispatch, getState) => {
     if (shouldFetchDataset(getState(), datasetId)) {
-      return dispatch(fetchDataset(datasetId, format));
+      return dispatch(fetchDataset(datasetId));
     }
   };
 }

@@ -16,7 +16,8 @@ import {
 } from '../../actions/drug';
 
 import {
-  changeActiveFilters
+  changeActiveFilters,
+  resetActiveFilters
 } from '../../actions/filter';
 
 const propTypes = {
@@ -83,6 +84,15 @@ class DrugBrowserPage extends React.Component {
     dispatch(fetchDrugFilters());
   }
 
+  /*
+   * Reset the active filters when leaving the page.
+   * this prevents drugFilters set here affecting other pages
+   */
+  componentWillUnmount() {
+    this.props.dispatch(resetActiveFilters());
+  }
+
+
   onFilterChange(newFilters) {
     const { dispatch } = this.props;
 
@@ -135,9 +145,17 @@ class DrugBrowserPage extends React.Component {
                  onClick={this.onDrugViewChange.bind(this, 'class')}>
                 Class
               </Button>
-              <Button className={classNames({ active: drugView === 'target' })}
-                  onClick={this.onDrugViewChange.bind(this, 'target')}>
-                Target / Pathway
+              <Button className={classNames({ active: drugView === 'targetRole' })}
+                  onClick={this.onDrugViewChange.bind(this, 'targetRole')}>
+                Target Role
+              </Button>
+              <Button className={classNames({ active: drugView === 'targetPathway' })}
+                  onClick={this.onDrugViewChange.bind(this, 'targetPathway')}>
+                Target Pathway
+              </Button>
+              <Button className={classNames({ active: drugView === 'targetFunction' })}
+                  onClick={this.onDrugViewChange.bind(this, 'targetFunction')}>
+                Target Function
               </Button>
             </ButtonGroup>
           </div>

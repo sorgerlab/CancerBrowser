@@ -10,13 +10,13 @@ import './drug_card.scss';
 
 // require in the whole directory
 const drugImageContext = require.context('../../assets/img/drugs');
-function drugImageUrl(drug) {
+export function drugImageUrl(drug) {
   const filename = `HMSL${drug.hmsLincsId}.png`;
   let drugUrl;
   try {
     drugUrl = drugImageContext(`./${filename}`);
   } catch (e) {
-    console.warn(`Error loading image ${filename} for`, drug);
+    // some drugs do not have their structure released yet.
   }
 
   return drugUrl;
@@ -67,6 +67,10 @@ function hasVisibleSynonyms(drug, searchQuery) {
   return (drug.synonyms.length || matchSearchIndexOnlyName(drug, searchQuery));
 }
 
+function getMostSpecificTarget(drug) {
+  return drug.targetGene || drug.targetRole || drug.targetPathway || drug.targetFunction;
+}
+
 /** Render a single drug card */
 class DrugCard extends React.Component {
   constructor(props) {
@@ -102,7 +106,7 @@ class DrugCard extends React.Component {
    * @return {React.Component}
    */
   renderDrugDetails(data) {
-    const target = data.nominalTarget && data.nominalTarget.label || 'Target';
+    const target = getMostSpecificTarget(data);
 
     return (
       <div className='drug-details'>
@@ -110,7 +114,7 @@ class DrugCard extends React.Component {
           <Link to={`/drug/${data.id}`}>{data.name.label}</Link>
         </div>
         <div className='drug-target'>
-          {target}
+          {target && target.label}
         </div>
         <div className='drug-datasets'>
           <DatasetSelector datasets={data.dataset} bsSize='xs' />
