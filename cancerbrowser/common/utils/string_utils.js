@@ -19,3 +19,8 @@ export function plural(items, word, pluralSuffix = 's') {
 export function normalize(str) {
   return String(str).toLowerCase().trim();
 }
+
+// helper function to convert an array of strings to a comma separated list
+export function toList(stringArray, accessor = (s) => s) {
+  return stringArray.map((s) => String(accessor(s)).trim()).join(', ');
+}

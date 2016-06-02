@@ -16,7 +16,8 @@ import {
 } from '../../actions/drug';
 
 import {
-  changeActiveFilters
+  changeActiveFilters,
+  resetActiveFilters
 } from '../../actions/filter';
 
 const propTypes = {
@@ -82,6 +83,15 @@ class DrugBrowserPage extends React.Component {
     dispatch(fetchDrugsIfNeeded({}, {}));
     dispatch(fetchDrugFilters());
   }
+
+  /*
+   * Reset the active filters when leaving the page.
+   * this prevents drugFilters set here affecting other pages
+   */
+  componentWillUnmount() {
+    this.props.dispatch(resetActiveFilters());
+  }
+
 
   onFilterChange(newFilters) {
     const { dispatch } = this.props;

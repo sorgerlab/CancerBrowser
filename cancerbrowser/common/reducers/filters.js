@@ -1,6 +1,6 @@
 
 
-import { CHANGE_ACTIVE_FILTERS } from '../actions/filter';
+import { CHANGE_ACTIVE_FILTERS, RESET_ACTIVE_FILTERS } from '../actions/filter';
 
 const INITIAL_STATE = {
   active: {},
@@ -14,6 +14,8 @@ function filters(state = INITIAL_STATE, action) {
         isFetching: false,
         active: action.activeFilters
       });
+    case RESET_ACTIVE_FILTERS:
+      return INITIAL_STATE;
     default:
       return state;
   }

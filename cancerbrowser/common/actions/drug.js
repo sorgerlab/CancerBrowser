@@ -4,6 +4,7 @@ export const SET_FILTERED_DRUGS = 'SET_FILTERED_DRUGS';
 export const CHANGE_DRUG_VIEW = 'CHANGE_DRUG_VIEW';
 export const SET_DRUG_COUNTS = 'SET_DRUG_COUNTS';
 export const SET_DRUG_FILTERS = 'SET_DRUG_FILTERS';
+export const SET_DRUG_INFO = 'SET_DRUG_INFO';
 
 /**
  * Action creator for setting filtered cell lines
@@ -24,6 +25,17 @@ function setDrugCounts(counts) {
     counts: counts
   };
 }
+
+/**
+ * Action creator for setting drug info
+ */
+function setDrugInfo(info) {
+  return {
+    type: SET_DRUG_INFO,
+    info
+  };
+}
+
 
 /**
  * Helper function to determine if the
@@ -53,13 +65,46 @@ function fetchDrugs(filterGroups, allFilterGroups) {
 }
 
 /**
- * Public function to acquire cell line data
+ * Helper function to get cellines given a set of filterGroups
+ * @return {Function}
+ */
+function fetchDrugInfo(drugId) {
+  return dispatch => {
+    api.getDrugInfo(drugId)
+    .then((data) => dispatch(setDrugInfo(data)));
+  };
+}
+
+/**
+ * Public function to acquire drug data
  * and create action to store it.
  */
 export function fetchDrugsIfNeeded(activeFilterGroups, allFilterGroups) {
   return (dispatch, getState) => {
     if (shouldFetchDrugs(getState())) {
       return dispatch(fetchDrugs(activeFilterGroups, allFilterGroups));
+    }
+  };
+}
+
+/**
+ * Helper function to determine if the
+ * drugs need to be acquired.
+ * Right now always returns true.
+ * @return true
+ */
+function shouldFetchDrugInfo(state, drugId) {
+  return true;
+}
+
+/**
+ * Public function to acquire single drug info
+ * and create action to store it.
+ */
+export function fetchDrugInfoIfNeeded(drugId) {
+  return (dispatch, getState) => {
+    if (shouldFetchDrugInfo(getState(), drugId)) {
+      return dispatch(fetchDrugInfo(drugId));
     }
   };
 }

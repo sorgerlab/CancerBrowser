@@ -5,15 +5,27 @@ import _ from 'lodash';
 //TODO async load drug data.
 import drugData from  './data/drugs.json';
 
-export function getDrugs(filterGroups) {
+/**
+ * Returns all drugs filtered by filterGroups
+ */
+export function getDrugs(filterGroups = {}) {
   return new Promise(function(resolve) {
 
-    var filteredDrugData = _.clone(drugData);
+    let filteredDrugData = _.clone(drugData);
     Object.keys(filterGroups).forEach(function(key) {
-      var filterGroup = filterGroups[key];
+      const filterGroup = filterGroups[key];
       filteredDrugData = filterData(filteredDrugData, filterGroup);
     });
     resolve(filteredDrugData);
+  });
+}
+
+/**
+ * Returns info for particular drug
+ */
+export function getDrugInfo(drugId) {
+  return getDrugs().then(function(drugs) {
+    return drugs.filter((d) => d.id === drugId)[0];
   });
 }
 
