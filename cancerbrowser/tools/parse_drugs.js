@@ -55,7 +55,7 @@ const outputFilename = './drugs.json';
 
 // specify the columns to be merged into a targets array
 const targetColumnPrefix = 'Target - ';
-const targetColumns = ['protein', 'gene', 'role', 'pathway', 'function', 'protein_class'];
+const targetColumns = ['gene', 'role', 'pathway', 'function'];
 
 fs.readFile(filename, 'utf8', function(error, data) {
   data = d3.csv.parse(data);

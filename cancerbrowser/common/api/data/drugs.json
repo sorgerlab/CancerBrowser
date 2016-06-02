@@ -8,11 +8,6 @@
     },
     "targets": [
       {
-        "label": "CDK1_HUMAN",
-        "value": "cdk1_human",
-        "type": "protein"
-      },
-      {
         "label": "CDK1",
         "value": "cdk1",
         "type": "gene"
@@ -31,11 +26,6 @@
         "label": "CELL_CYCLE",
         "value": "cell_cycle",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -58,11 +48,6 @@
     },
     "targets": [
       {
-        "label": "CDK2_HUMAN",
-        "value": "cdk2_human",
-        "type": "protein"
-      },
-      {
         "label": "CDK2",
         "value": "cdk2",
         "type": "gene"
@@ -81,11 +66,6 @@
         "label": "CELL_CYCLE",
         "value": "cell_cycle",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -103,11 +83,6 @@
       "value": "azd7762"
     },
     "targets": [
-      {
-        "label": "CHK1_HUMAN",
-        "value": "chk1_human",
-        "type": "protein"
-      },
       {
         "label": "CHEK1",
         "value": "chek1",
@@ -127,11 +102,6 @@
         "label": "CELL_CYCLE",
         "value": "cell_cycle",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -149,11 +119,6 @@
       "value": "azd8055"
     },
     "targets": [
-      {
-        "label": "MTOR_HUMAN",
-        "value": "mtor_human",
-        "type": "protein"
-      },
       {
         "label": "MTOR",
         "value": "mtor",
@@ -173,11 +138,6 @@
         "label": "MTOR",
         "value": "mtor",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -204,11 +164,6 @@
         "label": "MAPK",
         "value": "mapk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -231,11 +186,6 @@
     },
     "targets": [
       {
-        "label": "ATM_HUMAN",
-        "value": "atm_human",
-        "type": "protein"
-      },
-      {
         "label": "ATM",
         "value": "atm",
         "type": "gene"
@@ -254,11 +204,6 @@
         "label": "CELL_CYCLE",
         "value": "cell_cycle",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -276,11 +221,6 @@
       "value": "cp724714"
     },
     "targets": [
-      {
-        "label": "ERBB2_HUMAN",
-        "value": "erbb2_human",
-        "type": "protein"
-      },
       {
         "label": "ERBB2",
         "value": "erbb2",
@@ -300,11 +240,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -322,11 +257,6 @@
       "value": "alvocidib"
     },
     "targets": [
-      {
-        "label": "CDK1_HUMAN",
-        "value": "cdk1_human",
-        "type": "protein"
-      },
       {
         "label": "CDK1",
         "value": "cdk1",
@@ -346,11 +276,6 @@
         "label": "CELL_CYCLE",
         "value": "cell_cycle",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -374,11 +299,6 @@
     },
     "targets": [
       {
-        "label": "PLK1_HUMAN",
-        "value": "plk1_human",
-        "type": "protein"
-      },
-      {
         "label": "PLK1",
         "value": "plk1",
         "type": "gene"
@@ -397,11 +317,6 @@
         "label": "CELL_CYCLE",
         "value": "cell_cycle",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -469,11 +384,6 @@
     },
     "targets": [
       {
-        "label": "ERBB2_HUMAN",
-        "value": "erbb2_human",
-        "type": "protein"
-      },
-      {
         "label": "ERBB2",
         "value": "erbb2",
         "type": "gene"
@@ -492,11 +402,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -535,11 +440,6 @@
         "label": "NRTK",
         "value": "nrtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -575,11 +475,6 @@
         "label": "CELL_CYCLE",
         "value": "cell_cycle",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -601,11 +496,6 @@
     },
     "targets": [
       {
-        "label": "ABL1_HUMAN",
-        "value": "abl1_human",
-        "type": "protein"
-      },
-      {
         "label": "ABL1",
         "value": "abl1",
         "type": "gene"
@@ -624,11 +514,6 @@
         "label": "NRTK",
         "value": "nrtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -653,11 +538,6 @@
     },
     "targets": [
       {
-        "label": "ALK_HUMAN",
-        "value": "alk_human",
-        "type": "protein"
-      },
-      {
         "label": "ALK",
         "value": "alk",
         "type": "gene"
@@ -676,11 +556,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -698,11 +573,6 @@
       "value": "cgp60474"
     },
     "targets": [
-      {
-        "label": "CDK1_HUMAN",
-        "value": "cdk1_human",
-        "type": "protein"
-      },
       {
         "label": "CDK1",
         "value": "cdk1",
@@ -722,11 +592,6 @@
         "label": "CELL_CYCLE",
         "value": "cell_cycle",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -748,11 +613,6 @@
     },
     "targets": [
       {
-        "label": "FGFR1_HUMAN",
-        "value": "fgfr1_human",
-        "type": "protein"
-      },
-      {
         "label": "FGFR1",
         "value": "fgfr1",
         "type": "gene"
@@ -771,11 +631,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -793,11 +648,6 @@
       "value": "crizotinib"
     },
     "targets": [
-      {
-        "label": "MET_HUMAN",
-        "value": "met_human",
-        "type": "protein"
-      },
       {
         "label": "MET",
         "value": "met",
@@ -817,11 +667,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -844,11 +689,6 @@
     },
     "targets": [
       {
-        "label": "IKKB_HUMAN",
-        "value": "ikkb_human",
-        "type": "protein"
-      },
-      {
         "label": "IKBKB",
         "value": "ikbkb",
         "type": "gene"
@@ -867,11 +707,6 @@
         "label": "NFKB",
         "value": "nfkb",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -898,11 +733,6 @@
         "label": "WNT",
         "value": "wnt",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -924,11 +754,6 @@
         "label": "NRTK",
         "value": "nrtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -957,11 +782,6 @@
         "label": "AKT_PI3K",
         "value": "akt_pi3k",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -996,11 +816,6 @@
     },
     "targets": [
       {
-        "label": "KSYK_HUMAN",
-        "value": "ksyk_human",
-        "type": "protein"
-      },
-      {
         "label": "SYK",
         "value": "syk",
         "type": "gene"
@@ -1019,11 +834,6 @@
         "label": "NRTK",
         "value": "nrtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1041,11 +851,6 @@
       "value": "bi2536"
     },
     "targets": [
-      {
-        "label": "PLK1_HUMAN",
-        "value": "plk1_human",
-        "type": "protein"
-      },
       {
         "label": "PLK1",
         "value": "plk1",
@@ -1065,11 +870,6 @@
         "label": "CELL_CYCLE",
         "value": "cell_cycle",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1090,11 +890,6 @@
     },
     "targets": [
       {
-        "label": "AKT1_HUMAN",
-        "value": "akt1_human",
-        "type": "protein"
-      },
-      {
         "label": "AKT1",
         "value": "akt1",
         "type": "gene"
@@ -1113,11 +908,6 @@
         "label": "AKT_PI3K",
         "value": "akt_pi3k",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1135,11 +925,6 @@
       "value": "sb590885"
     },
     "targets": [
-      {
-        "label": "BRAF_HUMAN",
-        "value": "braf_human",
-        "type": "protein"
-      },
       {
         "label": "BRAF",
         "value": "braf",
@@ -1159,11 +944,6 @@
         "label": "MAPK",
         "value": "mapk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1181,11 +961,6 @@
       "value": "gdc0941"
     },
     "targets": [
-      {
-        "label": "PK3CA_HUMAN",
-        "value": "pk3ca_human",
-        "type": "protein"
-      },
       {
         "label": "PIK3CA",
         "value": "pik3ca",
@@ -1205,11 +980,6 @@
         "label": "AKT_PI3K",
         "value": "akt_pi3k",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1227,11 +997,6 @@
       "value": "pd184352"
     },
     "targets": [
-      {
-        "label": "MP2K1_HUMAN",
-        "value": "mp2k1_human",
-        "type": "protein"
-      },
       {
         "label": "MAP2K1",
         "value": "map2k1",
@@ -1251,11 +1016,6 @@
         "label": "MAPK",
         "value": "mapk",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1299,11 +1059,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1326,11 +1081,6 @@
     },
     "targets": [
       {
-        "label": "MTOR_HUMAN",
-        "value": "mtor_human",
-        "type": "protein"
-      },
-      {
         "label": "MTOR",
         "value": "mtor",
         "type": "gene"
@@ -1349,11 +1099,6 @@
         "label": "MTOR",
         "value": "mtor",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1382,11 +1127,6 @@
         "label": "AKT_PI3K",
         "value": "akt_pi3k",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1404,11 +1144,6 @@
       "value": "bx912"
     },
     "targets": [
-      {
-        "label": "PDPK1_HUMAN",
-        "value": "pdpk1_human",
-        "type": "protein"
-      },
       {
         "label": "PDPK1",
         "value": "pdpk1",
@@ -1428,11 +1163,6 @@
         "label": "AKT_PI3K",
         "value": "akt_pi3k",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1459,11 +1189,6 @@
         "label": "MAPK",
         "value": "mapk",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1493,11 +1218,6 @@
         "label": "AKT_PI3K",
         "value": "akt_pi3k",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1515,11 +1235,6 @@
       "value": "azd6482"
     },
     "targets": [
-      {
-        "label": "PK3CB_HUMAN",
-        "value": "pk3cb_human",
-        "type": "protein"
-      },
       {
         "label": "PIK3CB",
         "value": "pik3cb",
@@ -1539,11 +1254,6 @@
         "label": "AKT_PI3K",
         "value": "akt_pi3k",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1564,11 +1274,6 @@
     },
     "targets": [
       {
-        "label": "PRKDC_HUMAN",
-        "value": "prkdc_human",
-        "type": "protein"
-      },
-      {
         "label": "PRKDC",
         "value": "prkdc",
         "type": "gene"
@@ -1587,11 +1292,6 @@
         "label": "REPLICATION",
         "value": "replication",
         "type": "function"
-      },
-      {
-        "label": "DNA_ENZYME",
-        "value": "dna_enzyme",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1612,11 +1312,6 @@
     },
     "targets": [
       {
-        "label": "MTOR_HUMAN",
-        "value": "mtor_human",
-        "type": "protein"
-      },
-      {
         "label": "MTOR",
         "value": "mtor",
         "type": "gene"
@@ -1635,11 +1330,6 @@
         "label": "MTOR",
         "value": "mtor",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1658,11 +1348,6 @@
     },
     "targets": [
       {
-        "label": "MTOR_HUMAN",
-        "value": "mtor_human",
-        "type": "protein"
-      },
-      {
         "label": "MTOR",
         "value": "mtor",
         "type": "gene"
@@ -1681,11 +1366,6 @@
         "label": "MTOR",
         "value": "mtor",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1703,11 +1383,6 @@
       "value": "barasertib"
     },
     "targets": [
-      {
-        "label": "AURKB_HUMAN",
-        "value": "aurkb_human",
-        "type": "protein"
-      },
       {
         "label": "AURKB",
         "value": "aurkb",
@@ -1727,11 +1402,6 @@
         "label": "CELL_CYCLE",
         "value": "cell_cycle",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1774,11 +1444,6 @@
     },
     "targets": [
       {
-        "label": "KPCB_HUMAN",
-        "value": "kpcb_human",
-        "type": "protein"
-      },
-      {
         "label": "PRKCB",
         "value": "prkcb",
         "type": "gene"
@@ -1797,11 +1462,6 @@
         "label": "PKC",
         "value": "pkc",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1830,11 +1490,6 @@
         "label": "CELL_CYCLE",
         "value": "cell_cycle",
         "type": "function"
-      },
-      {
-        "label": "KINASE_COFACTOR",
-        "value": "kinase_cofactor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1865,11 +1520,6 @@
         "label": "INTEGRIN",
         "value": "integrin",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1888,13 +1538,7 @@
       "label": "PHA-793887",
       "value": "pha793887"
     },
-    "targets": [
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
-      }
-    ],
+    "targets": [],
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -1909,13 +1553,7 @@
       "label": "QL-X-138",
       "value": "qlx138"
     },
-    "targets": [
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
-      }
-    ],
+    "targets": [],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1931,11 +1569,6 @@
       "value": "qlxii47"
     },
     "targets": [
-      {
-        "label": "BTK_HUMAN",
-        "value": "btk_human",
-        "type": "protein"
-      },
       {
         "label": "BTK",
         "value": "btk",
@@ -1955,11 +1588,6 @@
         "label": "NRTK",
         "value": "nrtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -1978,11 +1606,6 @@
     },
     "targets": [
       {
-        "label": "MTOR_HUMAN",
-        "value": "mtor_human",
-        "type": "protein"
-      },
-      {
         "label": "MTOR",
         "value": "mtor",
         "type": "gene"
@@ -2001,11 +1624,6 @@
         "label": "MTOR",
         "value": "mtor",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2024,11 +1642,6 @@
     },
     "targets": [
       {
-        "label": "MTOR_HUMAN",
-        "value": "mtor_human",
-        "type": "protein"
-      },
-      {
         "label": "MTOR",
         "value": "mtor",
         "type": "gene"
@@ -2047,11 +1660,6 @@
         "label": "MTOR",
         "value": "mtor",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2100,11 +1708,6 @@
     },
     "targets": [
       {
-        "label": "LRRK2_HUMAN",
-        "value": "lrrk2_human",
-        "type": "protein"
-      },
-      {
         "label": "LRRK2",
         "value": "lrrk2",
         "type": "gene"
@@ -2113,11 +1716,6 @@
         "label": "LRRK2",
         "value": "lrrk2",
         "type": "role"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2168,11 +1766,6 @@
     },
     "targets": [
       {
-        "label": "EGFR_HUMAN",
-        "value": "egfr_human",
-        "type": "protein"
-      },
-      {
         "label": "EGFR",
         "value": "egfr",
         "type": "gene"
@@ -2191,11 +1784,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2218,11 +1806,6 @@
     },
     "targets": [
       {
-        "label": "EGFR_HUMAN",
-        "value": "egfr_human",
-        "type": "protein"
-      },
-      {
         "label": "EGFR",
         "value": "egfr",
         "type": "gene"
@@ -2241,11 +1824,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2295,11 +1873,6 @@
         "label": "MAPK",
         "value": "mapk",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2328,11 +1901,6 @@
         "label": "MAPK",
         "value": "mapk",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2366,11 +1934,6 @@
         "label": "CHAPERONE",
         "value": "chaperone",
         "type": "function"
-      },
-      {
-        "label": "CHAPERONE",
-        "value": "chaperone",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2391,11 +1954,6 @@
     },
     "targets": [
       {
-        "label": "FYV1_HUMAN",
-        "value": "fyv1_human",
-        "type": "protein"
-      },
-      {
         "label": "PIKFYVE",
         "value": "pikfyve",
         "type": "gene"
@@ -2414,11 +1972,6 @@
         "label": "AKT_PI3K",
         "value": "akt_pi3k",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2439,11 +1992,6 @@
     },
     "targets": [
       {
-        "label": "GSK3B_HUMAN",
-        "value": "gsk3b_human",
-        "type": "protein"
-      },
-      {
         "label": "GSK3B",
         "value": "gsk3b",
         "type": "gene"
@@ -2462,11 +2010,6 @@
         "label": "WNT",
         "value": "wnt",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2484,11 +2027,6 @@
       "value": "pf477736"
     },
     "targets": [
-      {
-        "label": "CHK1_HUMAN",
-        "value": "chk1_human",
-        "type": "protein"
-      },
       {
         "label": "CHEK1",
         "value": "chek1",
@@ -2508,11 +2046,6 @@
         "label": "CELL_CYCLE",
         "value": "cell_cycle",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2539,11 +2072,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "RECEPTOR",
-        "value": "receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2564,11 +2092,6 @@
     },
     "targets": [
       {
-        "label": "FAK2_HUMAN",
-        "value": "fak2_human",
-        "type": "protein"
-      },
-      {
         "label": "PTK2B",
         "value": "ptk2b",
         "type": "gene"
@@ -2587,11 +2110,6 @@
         "label": "INTEGRIN",
         "value": "integrin",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2625,11 +2143,6 @@
     },
     "targets": [
       {
-        "label": "MET_HUMAN",
-        "value": "met_human",
-        "type": "protein"
-      },
-      {
         "label": "MET",
         "value": "met",
         "type": "gene"
@@ -2648,11 +2161,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2673,11 +2181,6 @@
     },
     "targets": [
       {
-        "label": "EGFR_HUMAN",
-        "value": "egfr_human",
-        "type": "protein"
-      },
-      {
         "label": "EGFR",
         "value": "egfr",
         "type": "gene"
@@ -2696,11 +2199,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2722,11 +2220,6 @@
     },
     "targets": [
       {
-        "label": "IGF1R_HUMAN",
-        "value": "igf1r_human",
-        "type": "protein"
-      },
-      {
         "label": "IGF1R",
         "value": "igf1r",
         "type": "gene"
@@ -2745,11 +2238,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2770,11 +2258,6 @@
     },
     "targets": [
       {
-        "label": "MET_HUMAN",
-        "value": "met_human",
-        "type": "protein"
-      },
-      {
         "label": "MET",
         "value": "met",
         "type": "gene"
@@ -2793,11 +2276,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2814,13 +2292,7 @@
       "label": "PI103",
       "value": "pi103"
     },
-    "targets": [
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
-      }
-    ],
+    "targets": [],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2862,11 +2334,6 @@
         "label": "AKT_PI3K",
         "value": "akt_pi3k",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2884,11 +2351,6 @@
       "value": "sns032"
     },
     "targets": [
-      {
-        "label": "CDK2_HUMAN",
-        "value": "cdk2_human",
-        "type": "protein"
-      },
       {
         "label": "CDK2",
         "value": "cdk2",
@@ -2908,11 +2370,6 @@
         "label": "CELL_CYCLE",
         "value": "cell_cycle",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2941,11 +2398,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -2976,11 +2428,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3007,11 +2454,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3046,11 +2488,6 @@
         "label": "CYTOKINE",
         "value": "cytokine",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3088,11 +2525,6 @@
         "label": "CYTOKINE",
         "value": "cytokine",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3114,11 +2546,6 @@
     },
     "targets": [
       {
-        "label": "JAK2_HUMAN",
-        "value": "jak2_human",
-        "type": "protein"
-      },
-      {
         "label": "JAK2",
         "value": "jak2",
         "type": "gene"
@@ -3137,11 +2564,6 @@
         "label": "CYTOKINE",
         "value": "cytokine",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3168,11 +2590,6 @@
         "label": "MAPK",
         "value": "mapk",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3195,13 +2612,7 @@
       "label": "Omipalisib",
       "value": "omipalisib"
     },
-    "targets": [
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
-      }
-    ],
+    "targets": [],
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -3228,11 +2639,6 @@
         "label": "AKT_PI3K",
         "value": "akt_pi3k",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3279,11 +2685,6 @@
         "label": "CYTOSKELETON",
         "value": "cytoskeleton",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3305,11 +2706,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "RECEPTOR",
-        "value": "receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3336,11 +2732,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "RECEPTOR",
-        "value": "receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3360,13 +2751,7 @@
       "label": "AZD 5438",
       "value": "azd5438"
     },
-    "targets": [
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
-      }
-    ],
+    "targets": [],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -3393,11 +2778,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3431,11 +2811,6 @@
         "label": "CHAPERONE",
         "value": "chaperone",
         "type": "function"
-      },
-      {
-        "label": "CHAPERONE",
-        "value": "chaperone",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3466,11 +2841,6 @@
         "label": "MAPK",
         "value": "mapk",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3492,11 +2862,6 @@
     },
     "targets": [
       {
-        "label": "PK3CB_HUMAN",
-        "value": "pk3cb_human",
-        "type": "protein"
-      },
-      {
         "label": "PIK3CB",
         "value": "pik3cb",
         "type": "gene"
@@ -3515,11 +2880,6 @@
         "label": "AKT_PI3K",
         "value": "akt_pi3k",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3536,13 +2896,7 @@
       "label": "GSK1059615",
       "value": "gsk1059615"
     },
-    "targets": [
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
-      }
-    ],
+    "targets": [],
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -3558,11 +2912,6 @@
       "value": "brivanib"
     },
     "targets": [
-      {
-        "label": "VGFR2_HUMAN",
-        "value": "vgfr2_human",
-        "type": "protein"
-      },
       {
         "label": "KDR",
         "value": "kdr",
@@ -3582,11 +2931,6 @@
         "label": "RTK",
         "value": "rtk",
         "type": "function"
-      },
-      {
-        "label": "KINASE_RECEPTOR",
-        "value": "kinase_receptor",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3616,11 +2960,6 @@
         "label": "WNT",
         "value": "wnt",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3668,11 +3007,6 @@
         "label": "AKT_PI3K",
         "value": "akt_pi3k",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3689,13 +3023,7 @@
       "label": "BEZ235",
       "value": "bez235"
     },
-    "targets": [
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
-      }
-    ],
+    "targets": [],
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -3713,11 +3041,6 @@
       "value": "alpelisib"
     },
     "targets": [
-      {
-        "label": "PK3CA_HUMAN",
-        "value": "pk3ca_human",
-        "type": "protein"
-      },
       {
         "label": "PIK3CA",
         "value": "pik3ca",
@@ -3737,11 +3060,6 @@
         "label": "AKT_PI3K",
         "value": "akt_pi3k",
         "type": "function"
-      },
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
       }
     ],
     "class": {
@@ -3760,13 +3078,7 @@
       "label": "GDC-0980",
       "value": "gdc0980"
     },
-    "targets": [
-      {
-        "label": "KINASE",
-        "value": "kinase",
-        "type": "protein_class"
-      }
-    ],
+    "targets": [],
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
