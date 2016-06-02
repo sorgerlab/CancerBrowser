@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
+import { getViewData } from '../../selectors/datasetReceptorProfile';
+
 import {
   fetchDatasetIfNeeded,
   fetchDatasetInfo
@@ -41,7 +43,8 @@ const propTypes = {
   filteredCellLines: React.PropTypes.array,
   cellLineCounts: React.PropTypes.object,
   receptors: React.PropTypes.array,
-  viewBy: React.PropTypes.string
+  viewBy: React.PropTypes.string,
+  viewData: React.PropTypes.array
 };
 
 function mapStateToProps(state) {
@@ -56,10 +59,11 @@ function mapStateToProps(state) {
     cellLineCounts: cellLines.counts,
     receptors: receptors.items,
     activeFilters: datasetReceptorProfile.activeFilters,
-    viewBy: datasetReceptorProfile.viewBy
-
+    viewBy: datasetReceptorProfile.viewBy,
+    viewData: getViewData(state)
   };
 
+  // TODO - reselect this?
   Object.assign(props, {
     filterGroups: makeFilterGroups(props.filteredCellLines, props.receptors)
   });
@@ -109,14 +113,6 @@ function makeFilterGroups(cellLines, receptors) {
   return filterGroups;
 }
 
-function filterDataByCellLines(data, cellLines) {
-  if (!data) {
-    return data;
-  }
-
-  return data.filter(d => cellLines.find(cellLine => cellLine.id === d.cell_line.id));
-}
-
 /**
  * React container for a dataset page page - Receptor Profile
  */
@@ -128,8 +124,8 @@ class DatasetReceptorProfilePage extends React.Component {
   }
 
   componentDidMount() {
-    const { dispatch, activeFilters, filterGroups, viewBy } = this.props;
-    dispatch(fetchDatasetIfNeeded(datasetId, viewBy));
+    const { dispatch, activeFilters, filterGroups } = this.props;
+    dispatch(fetchDatasetIfNeeded(datasetId));
     dispatch(fetchDatasetInfo(datasetId));
     dispatch(fetchCellLinesIfNeeded(activeFilters, filterGroups));
     dispatch(fetchReceptorsIfNeeded());
@@ -199,16 +195,14 @@ class DatasetReceptorProfilePage extends React.Component {
   }
 
   render() {
-    const { datasetInfo, filteredCellLines, datasetData } = this.props;
+    const { datasetInfo, viewData } = this.props;
 
-    // const filteredData = filterDataByCellLines(datasetData, filteredCellLines);
-    const filteredData = datasetData;
-    console.log('filtered data', filteredData, this.props.viewBy);
+
     return (
       <PageLayout className='DatasetReceptorProfilePage' sidebar={this.renderSidebar()}>
         <h1>{datasetInfo && datasetInfo.label}</h1>
         {this.renderViewOptions()}
-        {this.renderSmallMults(filteredData)}
+        {this.renderSmallMults(viewData)}
       </PageLayout>
     );
   }

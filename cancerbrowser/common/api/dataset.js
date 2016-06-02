@@ -87,15 +87,11 @@ function mergeCellLines(dataset) {
  * @param {Object} info Info about the dataset.
  * @return {Array} transformed data
  */
-function transformData(dataset, info, format) {
+function transformData(dataset, info) {
   dataset = convertStringsToNumbers(dataset, info.text_fields);
   switch(info.id) {
     case 'receptor_profile':
       dataset = transformReceptorData(dataset);
-
-      if(format === 'receptor') {
-        dataset = convertToByReceptor(dataset);
-      }
       break;
     case 'growth_factor_pakt_perk':
       dataset = transformGrowthFactor(dataset, info);
@@ -196,34 +192,6 @@ function transformBasalPhospho(dataset, info) {
     row.descriptor = idFields[1];
   });
   return dataset;
-}
-
-
-/**
- * Transform Receptor data to be oriented by receptor instead of
- * cell line data.
- * @param {Array} dataset Dataset expected to be processed by
- * transformReceptorData already.
- *
- */
-function convertToByReceptor(dataset) {
-
-  // Store each receptor found separately.
-  let receptors = {};
-
-  dataset.forEach(function(cellLine) {
-
-    // iterate over receptor data
-    cellLine.measurements.forEach(function(m) {
-      // pull out receptor if it isn't in the receptors hash already.
-      receptors[m.id]  = receptors[m.id] || {id:m.id, label:m.receptor, measurements: []};
-      // add a new cell line based measurement
-      let newMeasurement = {id: cellLine.id, label: cellLine.label, value:m.value, threshold:m.threshold};
-      receptors[m.id].measurements.push(newMeasurement);
-    });
-  });
-
-  return _.values(receptors);
 }
 
 /**
