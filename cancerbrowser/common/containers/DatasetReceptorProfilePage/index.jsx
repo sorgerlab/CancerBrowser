@@ -12,6 +12,11 @@ import {
 } from '../../actions/cell_line';
 
 import {
+  fetchReceptorsIfNeeded
+} from '../../actions/receptor';
+
+
+import {
   changeActiveFilters
 } from '../../actions/datasetReceptorProfile';
 
@@ -28,55 +33,75 @@ const propTypes = {
   dispatch: React.PropTypes.func,
   datasetData: React.PropTypes.array,
   datasetInfo: React.PropTypes.object,
-  filteredCellLines: React.PropTypes.array,
   activeFilters: React.PropTypes.object,
-  cellLineCounts: React.PropTypes.object
+  filterGroups: React.PropTypes.array,
+  filteredCellLines: React.PropTypes.array,
+  cellLineCounts: React.PropTypes.object,
+  receptors: React.PropTypes.array
 };
 
 function mapStateToProps(state) {
-  const dataset = state.datasets.datasetsById[datasetId];
+  const { datasets, cellLines, receptors } = state;
+  const { datasetReceptorProfile } = datasets;
+  const dataset = datasets.datasetsById[datasetId];
 
-  return {
-    datasetInfo: state.datasets.info.items[datasetId],
+  const props = {
+    datasetInfo: datasets.info.items[datasetId],
     datasetData: dataset && dataset.items,
-    activeFilters: state.datasets.datasetReceptorProfile.activeFilters,
-    filteredCellLines: state.cellLines.filtered,
-    cellLineCounts: state.cellLines.counts
+    activeFilters: datasetReceptorProfile.activeFilters,
+    filteredCellLines: cellLines.filtered,
+    cellLineCounts: cellLines.counts,
+    receptors: receptors.items
   };
+
+  Object.assign(props, {
+    filterGroups: makeFilterGroups(props.filteredCellLines, props.receptors)
+  });
+
+  return props;
 }
 
-const datasetConfiguration = [
-  {
-    id: 'receptor',
-    label: 'Receptor',
-    type: 'select',
-    values: [
-      { value: 'erbb1', label: 'ErbB1' }
-    ]
-  },
-  {
-    id: 'compareTo',
-    label: 'Compare to',
-    type: 'select',
-    values: [
-      { value: 'perbb1', label: 'pErbB1' }
-    ]
-  }
-];
+/**
+ * Takes the dataset data and generates the filter definition.
+ * We need the data to populate the values in the dataset config
+ */
+function makeFilterGroups(cellLines, receptors) {
+  const datasetConfiguration = [
+    {
+      id: 'receptor',
+      label: 'Receptor',
+      type: 'select',
+      values: receptors,
+      options: {
+        props: { counts: null }
+      }
+    },
+    {
+      id: 'compareTo',
+      label: 'Compare to',
+      type: 'select',
+      values: receptors,
+      options: {
+        props: { counts: null }
+      }
+    }
+  ];
 
+  const filterGroups = [
+    {
+      id: 'receptorProfileConfig',
+      label: 'Configure',
+      filters: datasetConfiguration
+    },
+    {
+      id: 'cellLineFilters',
+      label: 'Cell Line Filters',
+      filters: cellLineFilters.filter(filter => filter.id !== 'dataset')
+    }
+  ];
 
-const filterGroups = [
-  {
-    id: 'receptorProfileConfig',
-    label: 'Configure',
-    filters: datasetConfiguration
-  },
-  {
-    id: 'cellLineFilters',
-    label: 'Cell Line Filters',
-    filters: cellLineFilters.filter(filter => filter.id !== 'dataset')
-  }
-];
+  return filterGroups;
+}
 
 function filterDataByCellLines(data, cellLines) {
   if (!data) {
@@ -100,14 +125,15 @@ class DatasetReceptorProfilePage extends React.Component {
   }
 
   componentDidMount() {
-    const { dispatch, activeFilters } = this.props;
+    const { dispatch, activeFilters, filterGroups } = this.props;
     dispatch(fetchDatasetIfNeeded(datasetId));
     dispatch(fetchDatasetInfo(datasetId));
     dispatch(fetchCellLinesIfNeeded(activeFilters, filterGroups));
+    dispatch(fetchReceptorsIfNeeded());
   }
 
   onFilterChange(newFilters) {
-    const { dispatch } = this.props;
+    const { dispatch, filterGroups } = this.props;
 
     dispatch(changeActiveFilters(newFilters));
     dispatch(fetchCellLinesIfNeeded(newFilters, filterGroups));
@@ -128,7 +154,7 @@ class DatasetReceptorProfilePage extends React.Component {
    * @return {React.Component}
    */
   renderSidebar() {
-    const { activeFilters, cellLineCounts } = this.props;
+    const { activeFilters, cellLineCounts, filterGroups } = this.props;
 
     return (
       <FilterPanel
