@@ -1,9 +1,19 @@
 import { createSelector } from 'reselect';
 import _ from 'lodash';
 import { getDataset, getViewBy, getFilteredCellLines } from './dataset';
+import { cellLineFilters } from '../containers/CellLineBrowserPage';
 
 const datasetId = 'receptor_profile';
 const datasetKey = 'datasetReceptorProfile';
+
+
+/////////////////////
+// Input Selectors
+/////////////////////
+function getReceptors(state) {
+  return state.receptors.items;
+}
+
 
 /////////////////////
 // Helpers
@@ -96,3 +106,48 @@ export const getFilteredViewData = createSelector(
   }
 );
 
+
+/** Gets the filter group definition based on what is in the data */
+export const getFilterGroups = createSelector(
+  [ getViewData, getViewBy(datasetKey), getReceptors ],
+  (viewData, viewBy, receptors) => {
+    const datasetConfiguration = [
+      {
+        id: 'receptor',
+        label: 'Receptor',
+        type: 'select',
+        values: receptors,
+        options: {
+          props: { counts: null }
+        }
+      },
+      {
+        id: 'compareTo',
+        label: 'Compare to',
+        type: 'select',
+        values: receptors,
+        options: {
+          props: { counts: null }
+        }
+      }
+    ];
+
+    const filterGroups = [
+      {
+        id: 'receptorProfileConfig',
+        label: 'Configure',
+        filters: datasetConfiguration
+      }
+    ];
+
+    if(viewBy === 'receptor') {
+      filterGroups.push({
+        id: 'cellLineFilters',
+        label: 'Cell Line Filters',
+        filters: cellLineFilters.filter(filter => filter.id !== 'dataset')
+      });
+    }
+
+    return filterGroups;
+  }
+);

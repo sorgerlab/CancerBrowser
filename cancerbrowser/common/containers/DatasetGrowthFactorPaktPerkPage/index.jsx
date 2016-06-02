@@ -5,6 +5,11 @@ import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetGro
 
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 
+import {
+  changeActiveFilters,
+  changeViewBy
+} from '../../actions/datasetGrowthFactorPaktPerk';
+
 /// Specify the dataset ID here: ////
 const datasetId = 'growth_factor_pakt_perk';
 const datasetKey = 'datasetGrowthFactorPaktPerk';
@@ -39,12 +44,17 @@ function mapStateToProps(state) {
   return props;
 }
 
+const viewOptions = [
+  { label: 'Growth Factor', value: 'growthFactor'},
+  { label: 'Cell Line', value: 'cellLine' }
+];
+
 /**
  * React container for a dataset page page - Growth Factor pAKT/pERK page
  */
 class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   constructor(props) {
-    super(props);
+    super(props, viewOptions, changeViewBy, changeActiveFilters);
   }
 
   renderMain() {

@@ -11,10 +11,6 @@ import {
   fetchCellLinesIfNeeded
 } from '../../actions/cell_line';
 
-import {
-  changeActiveFilters,
-  changeViewBy
-} from '../../actions/datasetGrowthFactorPaktPerk';
 
 import { ButtonGroup, Button } from 'react-bootstrap';
 import PageLayout from '../../components/PageLayout';
@@ -62,13 +58,18 @@ export function baseMapStateToProps(state, { datasetId, datasetKey,
  * pages, not instantiated directly.
  */
 class DatasetBasePage extends React.Component {
-  constructor(props) {
+  constructor(props, viewOptions = [], changeViewBy = () => {},
+      changeActiveFilters = () => {}) {
     super(props);
+
+    // provided by subclasses
+    this.viewOptions = viewOptions;
+    this.changeActiveFilters = changeActiveFilters;
+    this.changeViewBy = changeViewBy;
+
     this.onFilterChange = this.onFilterChange.bind(this);
     this.renderViewOptions = this.renderViewOptions.bind(this);
 
-    // can be overridden by subclass
-    this.viewOptions = [];
   }
 
   componentDidMount() {
@@ -80,13 +81,13 @@ class DatasetBasePage extends React.Component {
 
   handleViewByChange(newView) {
     const { datasetId, dispatch } = this.props;
-    dispatch(changeViewBy(newView));
+    dispatch(this.changeViewBy(newView));
     dispatch(fetchDatasetIfNeeded(datasetId, newView));
   }
 
   onFilterChange(newFilters) {
     const { dispatch, filterGroups } = this.props;
-    dispatch(changeActiveFilters(newFilters));
+    dispatch(this.changeActiveFilters(newFilters));
 
     // TODO these should just be affected by cellLineFilters not all the filter groups...
     dispatch(fetchCellLinesIfNeeded(_.pick(newFilters, 'cellLineFilters'),
