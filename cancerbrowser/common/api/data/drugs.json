@@ -39,6 +39,12 @@
     ],
     "searchIndexOnlyNames": [
       "CYC202"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -77,7 +83,13 @@
       "value": "10-phase1"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10006-101",
@@ -115,7 +127,13 @@
       "value": "10-phase1"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10007-101",
@@ -153,7 +171,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10008-101",
@@ -186,6 +210,12 @@
     ],
     "searchIndexOnlyNames": [
       "BAY-439006"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -224,7 +254,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10010-101",
@@ -262,7 +298,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10011-101",
@@ -305,6 +347,12 @@
     "searchIndexOnlyNames": [
       "HMR-1275",
       "L86-8275"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -345,6 +393,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "GW843682"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -365,7 +419,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10016-101",
@@ -385,7 +445,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10017-101",
@@ -407,6 +473,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "KIN001-206"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -447,6 +519,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "HKI-272"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -467,7 +545,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10020-101",
@@ -497,6 +581,12 @@
     ],
     "searchIndexOnlyNames": [
       "BMS-354825"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -532,6 +622,12 @@
     "searchIndexOnlyNames": [
       "VX-680",
       "MK-0457"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -576,6 +672,12 @@
     "searchIndexOnlyNames": [
       "CGP-57148B",
       "STI-571"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -614,7 +716,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10025-101",
@@ -655,6 +763,12 @@
     "searchIndexOnlyNames": [
       "MLS000911536",
       "SMR000463552"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -693,7 +807,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10027-101",
@@ -735,6 +855,12 @@
     ],
     "searchIndexOnlyNames": [
       "PF02341066"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -773,7 +899,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10031-101",
@@ -802,7 +934,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10032-101",
@@ -830,6 +968,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "AZD0530"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -863,6 +1007,12 @@
       "KIN001-102",
       "AKT inhibitor VIII",
       "Akt1/2 kinase inhibitor"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -880,7 +1030,13 @@
     "targetFunction": null,
     "class": null,
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10040-101",
@@ -918,7 +1074,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10041-101",
@@ -958,6 +1120,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "NPK33-1-98-1"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -996,7 +1164,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10046-101",
@@ -1034,7 +1208,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10047-101",
@@ -1072,7 +1252,13 @@
       "value": "20-phase2"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10048-101",
@@ -1112,6 +1298,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "CI-1040"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -1132,7 +1324,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10051-104",
@@ -1165,6 +1363,12 @@
     ],
     "searchIndexOnlyNames": [
       "GW-572016"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -1205,7 +1409,13 @@
     "synonyms": [
       "Rapamycin"
     ],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10053-101",
@@ -1234,7 +1444,13 @@
       "value": "10-phase1"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10055-101",
@@ -1272,7 +1488,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10056-101",
@@ -1304,6 +1526,12 @@
     "searchIndexOnlyNames": [
       "AZD6244",
       "ARRY-142886"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -1333,7 +1561,13 @@
       "value": "20-phase2"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10059-101",
@@ -1373,6 +1607,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "KIN001-193"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -1413,6 +1653,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "KU 57788"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -1451,7 +1697,13 @@
       "value": "10-phase1"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10064-101",
@@ -1489,7 +1741,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10067-101",
@@ -1529,6 +1787,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "AZD1152-HQPA"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -1556,6 +1820,12 @@
       "RG7204",
       "R7204",
       "RO5185426"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -1596,6 +1866,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "LY317615"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -1629,6 +1905,12 @@
     ],
     "searchIndexOnlyNames": [
       "PD0332991"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -1660,6 +1942,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "KIN001-205"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -1683,7 +1971,13 @@
       "value": "10-phase1"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10075-101",
@@ -1706,7 +2000,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10077-101",
@@ -1744,7 +2044,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10079-101",
@@ -1782,7 +2088,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10080-101",
@@ -1820,7 +2132,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10082-101",
@@ -1840,7 +2158,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10084-101",
@@ -1860,7 +2184,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10086-101",
@@ -1894,6 +2224,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "LRRK2-in-1"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -1914,7 +2250,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10091-101",
@@ -1934,7 +2276,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10097-101",
@@ -1976,6 +2324,12 @@
     ],
     "searchIndexOnlyNames": [
       "OSI-774"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2018,6 +2372,12 @@
     ],
     "searchIndexOnlyNames": [
       "ZD1839"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2042,6 +2402,12 @@
     ],
     "searchIndexOnlyNames": [
       "AMN-107"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2073,6 +2439,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "KIN001-204"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2104,6 +2476,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "PD-325901"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2138,6 +2516,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "IPI-493"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2178,6 +2562,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "Kin001-170"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2216,7 +2606,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10112-101",
@@ -2254,7 +2650,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10115-102",
@@ -2285,6 +2687,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "DM 3189"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2323,7 +2731,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10117-101",
@@ -2343,7 +2757,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10119-101",
@@ -2383,6 +2803,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "PKI-SU11274"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2424,6 +2850,12 @@
     "searchIndexOnlyNames": [
       "CI-1033",
       "PD-183805"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2464,6 +2896,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "AEW541"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2502,7 +2940,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10126-101",
@@ -2525,7 +2969,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10127-101",
@@ -2547,6 +2997,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "TKI-258"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2576,7 +3032,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10132-101",
@@ -2616,6 +3078,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "BMS-387032"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2649,6 +3117,12 @@
     ],
     "searchIndexOnlyNames": [
       "BIBW-2992"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2678,7 +3152,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10135-101",
@@ -2710,6 +3190,12 @@
     "searchIndexOnlyNames": [
       "OSI-906",
       "ASP7487"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2748,6 +3234,12 @@
     "searchIndexOnlyNames": [
       "INCB018424",
       "INC424"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2783,6 +3275,12 @@
     "searchIndexOnlyNames": [
       "GS-0387",
       "CYT387"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2821,7 +3319,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10142-101",
@@ -2856,6 +3360,12 @@
       "GSK-1120212",
       "GSK-1120212B",
       "JTP-74057"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2881,6 +3391,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "GSK-2126458"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2913,6 +3429,12 @@
     "searchIndexOnlyNames": [
       "BKM120",
       "NVP-BKM120"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2935,6 +3457,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "SAR245408"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -2964,7 +3492,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10151-101",
@@ -2995,6 +3529,12 @@
     ],
     "searchIndexOnlyNames": [
       "BIBF-1120"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -3024,6 +3564,12 @@
     "searchIndexOnlyNames": [
       "XL880",
       "GSK-1363089"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -3049,6 +3595,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "KIN001-239"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -3080,6 +3632,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "EKB-569"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -3116,6 +3674,12 @@
       "AUY922",
       "NVP-AUY922",
       "VER-52296"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -3148,6 +3712,12 @@
     "searchIndexOnlyNames": [
       "ARRY-424704",
       "ARRY-704"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -3186,7 +3756,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10172-101",
@@ -3209,7 +3785,13 @@
       "value": "10-phase1"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10177-101",
@@ -3250,6 +3832,12 @@
     "searchIndexOnlyNames": [
       "BMS-582664",
       "BMS-540215"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -3282,6 +3870,12 @@
     "searchIndexOnlyNames": [
       "CT99021",
       "KIN001-157"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -3305,6 +3899,12 @@
     "searchIndexOnlyNames": [
       "ABT-869",
       "AL-39324"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -3334,7 +3934,13 @@
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10232-101",
@@ -3359,6 +3965,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "NVP-BEZ235"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -3399,6 +4011,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "BYL719"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -3424,6 +4042,12 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "RG7422"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -3451,6 +4075,12 @@
       "CL-232315",
       "CL-232325",
       "DHAQ"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   },
   {
@@ -3473,7 +4103,13 @@
     "synonyms": [
       "Monorden"
     ],
-    "searchIndexOnlyNames": []
+    "searchIndexOnlyNames": [],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
+    ]
   },
   {
     "id": "10481-101",
@@ -3496,6 +4132,12 @@
     "searchIndexOnlyNames": [
       "NSC-273757",
       "NSC-101088"
+    ],
+    "dataset": [
+      {
+        "value": "drug_dose_response",
+        "label": "Drug Dose-Response Growth Rate Profiling"
+      }
     ]
   }
 ]
