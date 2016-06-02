@@ -3,6 +3,7 @@ import {
   CHANGE_VIEW_BY
 } from '../actions/datasetReceptorProfile';
 
+// Ensure the dataset filter is set to this dataset
 const baseCellLineDatasetFilter = {
   id: 'dataset',
   values: ['receptor_profile']
