@@ -6,8 +6,38 @@
       "label": "Seliciclib",
       "value": "seliciclib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "CDK1_HUMAN",
+        "value": "cdk1_human",
+        "type": "protein"
+      },
+      {
+        "label": "CDK1",
+        "value": "cdk1",
+        "type": "gene"
+      },
+      {
+        "label": "CDC2",
+        "value": "cdc2",
+        "type": "role"
+      },
+      {
+        "label": "CDK",
+        "value": "cdk",
+        "type": "pathway"
+      },
+      {
+        "label": "CELL_CYCLE",
+        "value": "cell_cycle",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -17,12 +47,6 @@
     ],
     "searchIndexOnlyNames": [
       "CYC202"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -32,20 +56,44 @@
       "label": "AT-7519",
       "value": "at7519"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "CDK2_HUMAN",
+        "value": "cdk2_human",
+        "type": "protein"
+      },
+      {
+        "label": "CDK2",
+        "value": "cdk2",
+        "type": "gene"
+      },
+      {
+        "label": "CDK2",
+        "value": "cdk2",
+        "type": "role"
+      },
+      {
+        "label": "CDK",
+        "value": "cdk",
+        "type": "pathway"
+      },
+      {
+        "label": "CELL_CYCLE",
+        "value": "cell_cycle",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10006-101",
@@ -54,20 +102,44 @@
       "label": "AZD7762",
       "value": "azd7762"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "CHK1_HUMAN",
+        "value": "chk1_human",
+        "type": "protein"
+      },
+      {
+        "label": "CHEK1",
+        "value": "chek1",
+        "type": "gene"
+      },
+      {
+        "label": "CHK1",
+        "value": "chk1",
+        "type": "role"
+      },
+      {
+        "label": "CHECKPOINT",
+        "value": "checkpoint",
+        "type": "pathway"
+      },
+      {
+        "label": "CELL_CYCLE",
+        "value": "cell_cycle",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10007-101",
@@ -76,20 +148,44 @@
       "label": "AZD8055",
       "value": "azd8055"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "MTOR_HUMAN",
+        "value": "mtor_human",
+        "type": "protein"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "gene"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "role"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "pathway"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10008-101",
@@ -98,8 +194,23 @@
       "label": "Sorafenib",
       "value": "sorafenib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "RAF",
+        "value": "raf",
+        "type": "pathway"
+      },
+      {
+        "label": "MAPK",
+        "value": "mapk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -109,12 +220,6 @@
     ],
     "searchIndexOnlyNames": [
       "BAY-439006"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -124,20 +229,44 @@
       "label": "CP466722",
       "value": "cp466722"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "ATM_HUMAN",
+        "value": "atm_human",
+        "type": "protein"
+      },
+      {
+        "label": "ATM",
+        "value": "atm",
+        "type": "gene"
+      },
+      {
+        "label": "ATM",
+        "value": "atm",
+        "type": "role"
+      },
+      {
+        "label": "CHECKPOINT",
+        "value": "checkpoint",
+        "type": "pathway"
+      },
+      {
+        "label": "CELL_CYCLE",
+        "value": "cell_cycle",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10010-101",
@@ -146,20 +275,44 @@
       "label": "CP724714",
       "value": "cp724714"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "ERBB2_HUMAN",
+        "value": "erbb2_human",
+        "type": "protein"
+      },
+      {
+        "label": "ERBB2",
+        "value": "erbb2",
+        "type": "gene"
+      },
+      {
+        "label": "HER2",
+        "value": "her2",
+        "type": "role"
+      },
+      {
+        "label": "EGF",
+        "value": "egf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10011-101",
@@ -168,8 +321,38 @@
       "label": "Alvocidib",
       "value": "alvocidib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "CDK1_HUMAN",
+        "value": "cdk1_human",
+        "type": "protein"
+      },
+      {
+        "label": "CDK1",
+        "value": "cdk1",
+        "type": "gene"
+      },
+      {
+        "label": "CDC2",
+        "value": "cdc2",
+        "type": "role"
+      },
+      {
+        "label": "CDK",
+        "value": "cdk",
+        "type": "pathway"
+      },
+      {
+        "label": "CELL_CYCLE",
+        "value": "cell_cycle",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -180,12 +363,6 @@
     "searchIndexOnlyNames": [
       "HMR-1275",
       "L86-8275"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -195,8 +372,38 @@
       "label": "GW843682X",
       "value": "gw843682x"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "PLK1_HUMAN",
+        "value": "plk1_human",
+        "type": "protein"
+      },
+      {
+        "label": "PLK1",
+        "value": "plk1",
+        "type": "gene"
+      },
+      {
+        "label": "PLK",
+        "value": "plk",
+        "type": "role"
+      },
+      {
+        "label": "MITOSIS",
+        "value": "mitosis",
+        "type": "pathway"
+      },
+      {
+        "label": "CELL_CYCLE",
+        "value": "cell_cycle",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -204,12 +411,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "GW843682"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -219,20 +420,13 @@
       "label": "HG-5-113-01",
       "value": "hg511301"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10016-101",
@@ -241,20 +435,13 @@
       "label": "HG-5-88-01",
       "value": "hg58801"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10017-101",
@@ -263,8 +450,7 @@
       "label": "HG-6-64-01",
       "value": "hg66401"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -272,12 +458,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "KIN001-206"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -287,8 +467,38 @@
       "label": "Neratinib",
       "value": "neratinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "ERBB2_HUMAN",
+        "value": "erbb2_human",
+        "type": "protein"
+      },
+      {
+        "label": "ERBB2",
+        "value": "erbb2",
+        "type": "gene"
+      },
+      {
+        "label": "HER2",
+        "value": "her2",
+        "type": "role"
+      },
+      {
+        "label": "EGF",
+        "value": "egf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -296,12 +506,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "HKI-272"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -311,20 +515,13 @@
       "label": "JW-7-24-1",
       "value": "jw7241"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10020-101",
@@ -333,8 +530,18 @@
       "label": "Dasatinib",
       "value": "dasatinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "NRTK",
+        "value": "nrtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -344,12 +551,6 @@
     ],
     "searchIndexOnlyNames": [
       "BMS-354825"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -359,8 +560,28 @@
       "label": "Tozasertib",
       "value": "tozasertib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "AUORA",
+        "value": "auora",
+        "type": "role"
+      },
+      {
+        "label": "MITOSIS",
+        "value": "mitosis",
+        "type": "pathway"
+      },
+      {
+        "label": "CELL_CYCLE",
+        "value": "cell_cycle",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -369,12 +590,6 @@
     "searchIndexOnlyNames": [
       "VX-680",
       "MK-0457"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -384,8 +599,38 @@
       "label": "Imatinib",
       "value": "imatinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "ABL1_HUMAN",
+        "value": "abl1_human",
+        "type": "protein"
+      },
+      {
+        "label": "ABL1",
+        "value": "abl1",
+        "type": "gene"
+      },
+      {
+        "label": "ABL",
+        "value": "abl",
+        "type": "role"
+      },
+      {
+        "label": "ABL_FAMILY",
+        "value": "abl_family",
+        "type": "pathway"
+      },
+      {
+        "label": "NRTK",
+        "value": "nrtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -397,12 +642,6 @@
     "searchIndexOnlyNames": [
       "CGP-57148B",
       "STI-571"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -412,20 +651,44 @@
       "label": "NVP-TAE684",
       "value": "nvptae684"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "ALK_HUMAN",
+        "value": "alk_human",
+        "type": "protein"
+      },
+      {
+        "label": "ALK",
+        "value": "alk",
+        "type": "gene"
+      },
+      {
+        "label": "ALK",
+        "value": "alk",
+        "type": "role"
+      },
+      {
+        "label": "MISC_RTK",
+        "value": "misc_rtk",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10025-101",
@@ -434,8 +697,38 @@
       "label": "CGP60474",
       "value": "cgp60474"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "CDK1_HUMAN",
+        "value": "cdk1_human",
+        "type": "protein"
+      },
+      {
+        "label": "CDK1",
+        "value": "cdk1",
+        "type": "gene"
+      },
+      {
+        "label": "CDC2",
+        "value": "cdc2",
+        "type": "role"
+      },
+      {
+        "label": "CDK",
+        "value": "cdk",
+        "type": "pathway"
+      },
+      {
+        "label": "CELL_CYCLE",
+        "value": "cell_cycle",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -444,12 +737,6 @@
     "searchIndexOnlyNames": [
       "MLS000911536",
       "SMR000463552"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -459,20 +746,44 @@
       "label": "PD173074",
       "value": "pd173074"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "FGFR1_HUMAN",
+        "value": "fgfr1_human",
+        "type": "protein"
+      },
+      {
+        "label": "FGFR1",
+        "value": "fgfr1",
+        "type": "gene"
+      },
+      {
+        "label": "FGFR",
+        "value": "fgfr",
+        "type": "role"
+      },
+      {
+        "label": "FGF",
+        "value": "fgf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10027-101",
@@ -481,8 +792,38 @@
       "label": "Crizotinib",
       "value": "crizotinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "MET_HUMAN",
+        "value": "met_human",
+        "type": "protein"
+      },
+      {
+        "label": "MET",
+        "value": "met",
+        "type": "gene"
+      },
+      {
+        "label": "C-MET",
+        "value": "cmet",
+        "type": "role"
+      },
+      {
+        "label": "HGF",
+        "value": "hgf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -492,12 +833,6 @@
     ],
     "searchIndexOnlyNames": [
       "PF02341066"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -507,20 +842,44 @@
       "label": "BMS345541",
       "value": "bms345541"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "IKKB_HUMAN",
+        "value": "ikkb_human",
+        "type": "protein"
+      },
+      {
+        "label": "IKBKB",
+        "value": "ikbkb",
+        "type": "gene"
+      },
+      {
+        "label": "IKK",
+        "value": "ikk",
+        "type": "role"
+      },
+      {
+        "label": "IKK",
+        "value": "ikk",
+        "type": "pathway"
+      },
+      {
+        "label": "NFKB",
+        "value": "nfkb",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10031-101",
@@ -529,20 +888,29 @@
       "label": "KIN001-043",
       "value": "kin001043"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "GSK3",
+        "value": "gsk3",
+        "type": "pathway"
+      },
+      {
+        "label": "WNT",
+        "value": "wnt",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10032-101",
@@ -551,8 +919,18 @@
       "label": "Saracatinib",
       "value": "saracatinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "NRTK",
+        "value": "nrtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -560,12 +938,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "AZD0530"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -575,8 +947,23 @@
       "label": "Sigma A6730",
       "value": "sigmaa6730"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "AKT",
+        "value": "akt",
+        "type": "pathway"
+      },
+      {
+        "label": "AKT_PI3K",
+        "value": "akt_pi3k",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -586,12 +973,6 @@
       "KIN001-102",
       "AKT inhibitor VIII",
       "Akt1/2 kinase inhibitor"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -601,17 +982,10 @@
       "label": "WH-4-025",
       "value": "wh4025"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [],
     "class": null,
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10040-101",
@@ -620,20 +994,44 @@
       "label": "R406",
       "value": "r406"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "KSYK_HUMAN",
+        "value": "ksyk_human",
+        "type": "protein"
+      },
+      {
+        "label": "SYK",
+        "value": "syk",
+        "type": "gene"
+      },
+      {
+        "label": "SYK",
+        "value": "syk",
+        "type": "role"
+      },
+      {
+        "label": "SYK_FAMILY",
+        "value": "syk_family",
+        "type": "pathway"
+      },
+      {
+        "label": "NRTK",
+        "value": "nrtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10041-101",
@@ -642,8 +1040,38 @@
       "label": "BI-2536",
       "value": "bi2536"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "PLK1_HUMAN",
+        "value": "plk1_human",
+        "type": "protein"
+      },
+      {
+        "label": "PLK1",
+        "value": "plk1",
+        "type": "gene"
+      },
+      {
+        "label": "PLK",
+        "value": "plk",
+        "type": "role"
+      },
+      {
+        "label": "MITOSIS",
+        "value": "mitosis",
+        "type": "pathway"
+      },
+      {
+        "label": "CELL_CYCLE",
+        "value": "cell_cycle",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -651,12 +1079,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "NPK33-1-98-1"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -666,20 +1088,44 @@
       "label": "A443654",
       "value": "a443654"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "AKT1_HUMAN",
+        "value": "akt1_human",
+        "type": "protein"
+      },
+      {
+        "label": "AKT1",
+        "value": "akt1",
+        "type": "gene"
+      },
+      {
+        "label": "AKT",
+        "value": "akt",
+        "type": "role"
+      },
+      {
+        "label": "AKT",
+        "value": "akt",
+        "type": "pathway"
+      },
+      {
+        "label": "AKT_PI3K",
+        "value": "akt_pi3k",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10046-101",
@@ -688,20 +1134,44 @@
       "label": "SB590885",
       "value": "sb590885"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "BRAF_HUMAN",
+        "value": "braf_human",
+        "type": "protein"
+      },
+      {
+        "label": "BRAF",
+        "value": "braf",
+        "type": "gene"
+      },
+      {
+        "label": "BRAF",
+        "value": "braf",
+        "type": "role"
+      },
+      {
+        "label": "RAF",
+        "value": "raf",
+        "type": "pathway"
+      },
+      {
+        "label": "MAPK",
+        "value": "mapk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10047-101",
@@ -710,20 +1180,44 @@
       "label": "GDC-0941",
       "value": "gdc0941"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "PK3CA_HUMAN",
+        "value": "pk3ca_human",
+        "type": "protein"
+      },
+      {
+        "label": "PIK3CA",
+        "value": "pik3ca",
+        "type": "gene"
+      },
+      {
+        "label": "PI3KA",
+        "value": "pi3ka",
+        "type": "role"
+      },
+      {
+        "label": "PI3K",
+        "value": "pi3k",
+        "type": "pathway"
+      },
+      {
+        "label": "AKT_PI3K",
+        "value": "akt_pi3k",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10048-101",
@@ -732,8 +1226,38 @@
       "label": "PD184352",
       "value": "pd184352"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "MP2K1_HUMAN",
+        "value": "mp2k1_human",
+        "type": "protein"
+      },
+      {
+        "label": "MAP2K1",
+        "value": "map2k1",
+        "type": "gene"
+      },
+      {
+        "label": "MEK1",
+        "value": "mek1",
+        "type": "role"
+      },
+      {
+        "label": "MEK",
+        "value": "mek",
+        "type": "pathway"
+      },
+      {
+        "label": "MAPK",
+        "value": "mapk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -741,12 +1265,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "CI-1040"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -756,20 +1274,13 @@
       "label": "PLX-4720",
       "value": "plx4720"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10051-104",
@@ -778,8 +1289,23 @@
       "label": "Lapatinib",
       "value": "lapatinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "EGF",
+        "value": "egf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -789,12 +1315,6 @@
     ],
     "searchIndexOnlyNames": [
       "GW-572016"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -804,8 +1324,38 @@
       "label": "Sirolimus",
       "value": "sirolimus"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "MTOR_HUMAN",
+        "value": "mtor_human",
+        "type": "protein"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "gene"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "role"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "pathway"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -813,13 +1363,7 @@
     "synonyms": [
       "Rapamycin"
     ],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10053-101",
@@ -828,20 +1372,29 @@
       "label": "ZSTK474",
       "value": "zstk474"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "PI3K",
+        "value": "pi3k",
+        "type": "pathway"
+      },
+      {
+        "label": "AKT_PI3K",
+        "value": "akt_pi3k",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10055-101",
@@ -850,20 +1403,44 @@
       "label": "BX-912",
       "value": "bx912"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "PDPK1_HUMAN",
+        "value": "pdpk1_human",
+        "type": "protein"
+      },
+      {
+        "label": "PDPK1",
+        "value": "pdpk1",
+        "type": "gene"
+      },
+      {
+        "label": "PDPK",
+        "value": "pdpk",
+        "type": "role"
+      },
+      {
+        "label": "AKT",
+        "value": "akt",
+        "type": "pathway"
+      },
+      {
+        "label": "AKT_PI3K",
+        "value": "akt_pi3k",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10056-101",
@@ -872,8 +1449,23 @@
       "label": "Selumetinib",
       "value": "selumetinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "MEK",
+        "value": "mek",
+        "type": "pathway"
+      },
+      {
+        "label": "MAPK",
+        "value": "mapk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -882,12 +1474,6 @@
     "searchIndexOnlyNames": [
       "AZD6244",
       "ARRY-142886"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -897,20 +1483,29 @@
       "label": "MK2206",
       "value": "mk2206"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "AKT",
+        "value": "akt",
+        "type": "pathway"
+      },
+      {
+        "label": "AKT_PI3K",
+        "value": "akt_pi3k",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10059-101",
@@ -919,8 +1514,38 @@
       "label": "AZD-6482",
       "value": "azd6482"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "PK3CB_HUMAN",
+        "value": "pk3cb_human",
+        "type": "protein"
+      },
+      {
+        "label": "PIK3CB",
+        "value": "pik3cb",
+        "type": "gene"
+      },
+      {
+        "label": "PI3KB",
+        "value": "pi3kb",
+        "type": "role"
+      },
+      {
+        "label": "PI3K",
+        "value": "pi3k",
+        "type": "pathway"
+      },
+      {
+        "label": "AKT_PI3K",
+        "value": "akt_pi3k",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -928,12 +1553,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "KIN001-193"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -943,8 +1562,38 @@
       "label": "NU7441",
       "value": "nu7441"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "PRKDC_HUMAN",
+        "value": "prkdc_human",
+        "type": "protein"
+      },
+      {
+        "label": "PRKDC",
+        "value": "prkdc",
+        "type": "gene"
+      },
+      {
+        "label": "DNAPK",
+        "value": "dnapk",
+        "type": "role"
+      },
+      {
+        "label": "DNA_REPAIR",
+        "value": "dna_repair",
+        "type": "pathway"
+      },
+      {
+        "label": "REPLICATION",
+        "value": "replication",
+        "type": "function"
+      },
+      {
+        "label": "DNA_ENZYME",
+        "value": "dna_enzyme",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -952,12 +1601,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "KU 57788"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -967,20 +1610,44 @@
       "label": "OSI-027",
       "value": "osi027"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "MTOR_HUMAN",
+        "value": "mtor_human",
+        "type": "protein"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "gene"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "role"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "pathway"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10064-101",
@@ -989,20 +1656,44 @@
       "label": "WYE-125132",
       "value": "wye125132"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "MTOR_HUMAN",
+        "value": "mtor_human",
+        "type": "protein"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "gene"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "role"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "pathway"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10067-101",
@@ -1011,8 +1702,38 @@
       "label": "Barasertib",
       "value": "barasertib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "AURKB_HUMAN",
+        "value": "aurkb_human",
+        "type": "protein"
+      },
+      {
+        "label": "AURKB",
+        "value": "aurkb",
+        "type": "gene"
+      },
+      {
+        "label": "AUORA",
+        "value": "auora",
+        "type": "role"
+      },
+      {
+        "label": "MITOSIS",
+        "value": "mitosis",
+        "type": "pathway"
+      },
+      {
+        "label": "CELL_CYCLE",
+        "value": "cell_cycle",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -1020,12 +1741,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "AZD1152-HQPA"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1035,8 +1750,7 @@
       "label": "Vemurafenib",
       "value": "vemurafenib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [],
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -1049,12 +1763,6 @@
       "RG7204",
       "R7204",
       "RO5185426"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1064,8 +1772,38 @@
       "label": "Enzastaurin",
       "value": "enzastaurin"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "KPCB_HUMAN",
+        "value": "kpcb_human",
+        "type": "protein"
+      },
+      {
+        "label": "PRKCB",
+        "value": "prkcb",
+        "type": "gene"
+      },
+      {
+        "label": "PRKCB",
+        "value": "prkcb",
+        "type": "role"
+      },
+      {
+        "label": "PKC",
+        "value": "pkc",
+        "type": "pathway"
+      },
+      {
+        "label": "PKC",
+        "value": "pkc",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -1073,12 +1811,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "LY317615"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1088,8 +1820,23 @@
       "label": "Palbociclib",
       "value": "palbociclib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "CDK",
+        "value": "cdk",
+        "type": "pathway"
+      },
+      {
+        "label": "CELL_CYCLE",
+        "value": "cell_cycle",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_COFACTOR",
+        "value": "kinase_cofactor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -1099,12 +1846,6 @@
     ],
     "searchIndexOnlyNames": [
       "PD0332991"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1114,8 +1855,23 @@
       "label": "PF562271",
       "value": "pf562271"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "FAK",
+        "value": "fak",
+        "type": "pathway"
+      },
+      {
+        "label": "INTEGRIN",
+        "value": "integrin",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1123,12 +1879,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "KIN001-205"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1138,20 +1888,19 @@
       "label": "PHA-793887",
       "value": "pha793887"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10075-101",
@@ -1160,20 +1909,19 @@
       "label": "QL-X-138",
       "value": "qlx138"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10077-101",
@@ -1182,20 +1930,44 @@
       "label": "QL-XII-47",
       "value": "qlxii47"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "BTK_HUMAN",
+        "value": "btk_human",
+        "type": "protein"
+      },
+      {
+        "label": "BTK",
+        "value": "btk",
+        "type": "gene"
+      },
+      {
+        "label": "BTK",
+        "value": "btk",
+        "type": "role"
+      },
+      {
+        "label": "TEC_FAMILY",
+        "value": "tec_family",
+        "type": "pathway"
+      },
+      {
+        "label": "NRTK",
+        "value": "nrtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10079-101",
@@ -1204,20 +1976,44 @@
       "label": "Torin1",
       "value": "torin1"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "MTOR_HUMAN",
+        "value": "mtor_human",
+        "type": "protein"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "gene"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "role"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "pathway"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10080-101",
@@ -1226,20 +2022,44 @@
       "label": "Torin2",
       "value": "torin2"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "MTOR_HUMAN",
+        "value": "mtor_human",
+        "type": "protein"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "gene"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "role"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "pathway"
+      },
+      {
+        "label": "MTOR",
+        "value": "mtor",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10082-101",
@@ -1248,20 +2068,13 @@
       "label": "WZ-4-145",
       "value": "wz4145"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10084-101",
@@ -1270,20 +2083,13 @@
       "label": "WZ3105",
       "value": "wz3105"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10086-101",
@@ -1292,8 +2098,28 @@
       "label": "XMD11-50",
       "value": "xmd1150"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "LRRK2_HUMAN",
+        "value": "lrrk2_human",
+        "type": "protein"
+      },
+      {
+        "label": "LRRK2",
+        "value": "lrrk2",
+        "type": "gene"
+      },
+      {
+        "label": "LRRK2",
+        "value": "lrrk2",
+        "type": "role"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1301,12 +2127,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "LRRK2-in-1"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1316,20 +2136,13 @@
       "label": "XMD11-85h",
       "value": "xmd1185h"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10091-101",
@@ -1338,20 +2151,13 @@
       "label": "XMD16-144",
       "value": "xmd16144"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10097-101",
@@ -1360,8 +2166,38 @@
       "label": "Erlotinib",
       "value": "erlotinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "EGFR_HUMAN",
+        "value": "egfr_human",
+        "type": "protein"
+      },
+      {
+        "label": "EGFR",
+        "value": "egfr",
+        "type": "gene"
+      },
+      {
+        "label": "EGFR",
+        "value": "egfr",
+        "type": "role"
+      },
+      {
+        "label": "EGF",
+        "value": "egf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -1371,12 +2207,6 @@
     ],
     "searchIndexOnlyNames": [
       "OSI-774"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1386,8 +2216,38 @@
       "label": "Gefitinib",
       "value": "gefitinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "EGFR_HUMAN",
+        "value": "egfr_human",
+        "type": "protein"
+      },
+      {
+        "label": "EGFR",
+        "value": "egfr",
+        "type": "gene"
+      },
+      {
+        "label": "EGFR",
+        "value": "egfr",
+        "type": "role"
+      },
+      {
+        "label": "EGF",
+        "value": "egf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -1397,12 +2257,6 @@
     ],
     "searchIndexOnlyNames": [
       "ZD1839"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1412,8 +2266,7 @@
       "label": "Nilotinib",
       "value": "nilotinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [],
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -1423,12 +2276,6 @@
     ],
     "searchIndexOnlyNames": [
       "AMN-107"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1438,8 +2285,23 @@
       "label": "JNK-9L",
       "value": "jnk9l"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "JNK",
+        "value": "jnk",
+        "type": "pathway"
+      },
+      {
+        "label": "MAPK",
+        "value": "mapk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1447,12 +2309,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "KIN001-204"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1462,8 +2318,23 @@
       "label": "PD0325901",
       "value": "pd0325901"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "MEK",
+        "value": "mek",
+        "type": "pathway"
+      },
+      {
+        "label": "MAPK",
+        "value": "mapk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -1471,12 +2342,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "PD-325901"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1486,8 +2351,28 @@
       "label": "Geldanamycin",
       "value": "geldanamycin"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "HSP90",
+        "value": "hsp90",
+        "type": "role"
+      },
+      {
+        "label": "CHAPERONE",
+        "value": "chaperone",
+        "type": "pathway"
+      },
+      {
+        "label": "CHAPERONE",
+        "value": "chaperone",
+        "type": "function"
+      },
+      {
+        "label": "CHAPERONE",
+        "value": "chaperone",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -1495,12 +2380,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "IPI-493"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1510,8 +2389,38 @@
       "label": "YM 201636",
       "value": "ym201636"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "FYV1_HUMAN",
+        "value": "fyv1_human",
+        "type": "protein"
+      },
+      {
+        "label": "PIKFYVE",
+        "value": "pikfyve",
+        "type": "gene"
+      },
+      {
+        "label": "PIP5K3",
+        "value": "pip5k3",
+        "type": "role"
+      },
+      {
+        "label": "PI5K",
+        "value": "pi5k",
+        "type": "pathway"
+      },
+      {
+        "label": "AKT_PI3K",
+        "value": "akt_pi3k",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1519,12 +2428,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "Kin001-170"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1534,20 +2437,44 @@
       "label": "TWS119",
       "value": "tws119"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "GSK3B_HUMAN",
+        "value": "gsk3b_human",
+        "type": "protein"
+      },
+      {
+        "label": "GSK3B",
+        "value": "gsk3b",
+        "type": "gene"
+      },
+      {
+        "label": "GSK3B",
+        "value": "gsk3b",
+        "type": "role"
+      },
+      {
+        "label": "GSK3",
+        "value": "gsk3",
+        "type": "pathway"
+      },
+      {
+        "label": "WNT",
+        "value": "wnt",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10112-101",
@@ -1556,20 +2483,44 @@
       "label": "PF477736",
       "value": "pf477736"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "CHK1_HUMAN",
+        "value": "chk1_human",
+        "type": "protein"
+      },
+      {
+        "label": "CHEK1",
+        "value": "chek1",
+        "type": "gene"
+      },
+      {
+        "label": "CHK1",
+        "value": "chk1",
+        "type": "role"
+      },
+      {
+        "label": "CHECKPOINT",
+        "value": "checkpoint",
+        "type": "pathway"
+      },
+      {
+        "label": "CELL_CYCLE",
+        "value": "cell_cycle",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10115-102",
@@ -1578,8 +2529,23 @@
       "label": "LDN-193189",
       "value": "ldn193189"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "TGFB",
+        "value": "tgfb",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "RECEPTOR",
+        "value": "receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1587,12 +2553,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "DM 3189"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1602,20 +2562,44 @@
       "label": "PF431396",
       "value": "pf431396"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "FAK2_HUMAN",
+        "value": "fak2_human",
+        "type": "protein"
+      },
+      {
+        "label": "PTK2B",
+        "value": "ptk2b",
+        "type": "gene"
+      },
+      {
+        "label": "PYK2",
+        "value": "pyk2",
+        "type": "role"
+      },
+      {
+        "label": "FAK",
+        "value": "fak",
+        "type": "pathway"
+      },
+      {
+        "label": "INTEGRIN",
+        "value": "integrin",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10117-101",
@@ -1624,20 +2608,13 @@
       "label": "Celastrol",
       "value": "celastrol"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10119-101",
@@ -1646,8 +2623,38 @@
       "label": "SU11274",
       "value": "su11274"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "MET_HUMAN",
+        "value": "met_human",
+        "type": "protein"
+      },
+      {
+        "label": "MET",
+        "value": "met",
+        "type": "gene"
+      },
+      {
+        "label": "C-MET",
+        "value": "cmet",
+        "type": "role"
+      },
+      {
+        "label": "HGF",
+        "value": "hgf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1655,12 +2662,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "PKI-SU11274"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1670,8 +2671,38 @@
       "label": "Canertinib",
       "value": "canertinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "EGFR_HUMAN",
+        "value": "egfr_human",
+        "type": "protein"
+      },
+      {
+        "label": "EGFR",
+        "value": "egfr",
+        "type": "gene"
+      },
+      {
+        "label": "EGFR",
+        "value": "egfr",
+        "type": "role"
+      },
+      {
+        "label": "EGF",
+        "value": "egf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -1680,12 +2711,6 @@
     "searchIndexOnlyNames": [
       "CI-1033",
       "PD-183805"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1695,8 +2720,38 @@
       "label": "NVP-AEW541",
       "value": "nvpaew541"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "IGF1R_HUMAN",
+        "value": "igf1r_human",
+        "type": "protein"
+      },
+      {
+        "label": "IGF1R",
+        "value": "igf1r",
+        "type": "gene"
+      },
+      {
+        "label": "IGFR",
+        "value": "igfr",
+        "type": "role"
+      },
+      {
+        "label": "INSULIN_IGF",
+        "value": "insulin_igf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1704,12 +2759,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "AEW541"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1719,20 +2768,44 @@
       "label": "PHA-665752",
       "value": "pha665752"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "MET_HUMAN",
+        "value": "met_human",
+        "type": "protein"
+      },
+      {
+        "label": "MET",
+        "value": "met",
+        "type": "gene"
+      },
+      {
+        "label": "C-MET",
+        "value": "cmet",
+        "type": "role"
+      },
+      {
+        "label": "HGF",
+        "value": "hgf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10126-101",
@@ -1741,20 +2814,19 @@
       "label": "PI103",
       "value": "pi103"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10127-101",
@@ -1763,8 +2835,7 @@
       "label": "Dovitinib",
       "value": "dovitinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [],
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -1772,12 +2843,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "TKI-258"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1787,20 +2852,29 @@
       "label": "GSK 690693",
       "value": "gsk690693"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "AKT",
+        "value": "akt",
+        "type": "pathway"
+      },
+      {
+        "label": "AKT_PI3K",
+        "value": "akt_pi3k",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10132-101",
@@ -1809,8 +2883,38 @@
       "label": "SNS-032",
       "value": "sns032"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "CDK2_HUMAN",
+        "value": "cdk2_human",
+        "type": "protein"
+      },
+      {
+        "label": "CDK2",
+        "value": "cdk2",
+        "type": "gene"
+      },
+      {
+        "label": "CDK2",
+        "value": "cdk2",
+        "type": "role"
+      },
+      {
+        "label": "CDK",
+        "value": "cdk",
+        "type": "pathway"
+      },
+      {
+        "label": "CELL_CYCLE",
+        "value": "cell_cycle",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -1818,12 +2922,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "BMS-387032"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1833,8 +2931,23 @@
       "label": "Afatinib",
       "value": "afatinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "EGF",
+        "value": "egf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -1844,12 +2957,6 @@
     ],
     "searchIndexOnlyNames": [
       "BIBW-2992"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1859,20 +2966,29 @@
       "label": "GSK1904529A",
       "value": "gsk1904529a"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "INSULIN_IGF",
+        "value": "insulin_igf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10135-101",
@@ -1881,8 +2997,23 @@
       "label": "Linsitinib",
       "value": "linsitinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "INSULIN_IGF",
+        "value": "insulin_igf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -1891,12 +3022,6 @@
     "searchIndexOnlyNames": [
       "OSI-906",
       "ASP7487"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1906,8 +3031,28 @@
       "label": "Ruxolitinib",
       "value": "ruxolitinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "JAK",
+        "value": "jak",
+        "type": "role"
+      },
+      {
+        "label": "STAT",
+        "value": "stat",
+        "type": "pathway"
+      },
+      {
+        "label": "CYTOKINE",
+        "value": "cytokine",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -1919,12 +3064,6 @@
     "searchIndexOnlyNames": [
       "INCB018424",
       "INC424"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1934,8 +3073,28 @@
       "label": "Momelotinib",
       "value": "momelotinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "JAK",
+        "value": "jak",
+        "type": "role"
+      },
+      {
+        "label": "STAT",
+        "value": "stat",
+        "type": "pathway"
+      },
+      {
+        "label": "CYTOKINE",
+        "value": "cytokine",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -1944,12 +3103,6 @@
     "searchIndexOnlyNames": [
       "GS-0387",
       "CYT387"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -1959,20 +3112,44 @@
       "label": "TG 101348",
       "value": "tg101348"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "JAK2_HUMAN",
+        "value": "jak2_human",
+        "type": "protein"
+      },
+      {
+        "label": "JAK2",
+        "value": "jak2",
+        "type": "gene"
+      },
+      {
+        "label": "JAK",
+        "value": "jak",
+        "type": "role"
+      },
+      {
+        "label": "STAT",
+        "value": "stat",
+        "type": "pathway"
+      },
+      {
+        "label": "CYTOKINE",
+        "value": "cytokine",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10142-101",
@@ -1981,8 +3158,23 @@
       "label": "Trametinib",
       "value": "trametinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "MEK",
+        "value": "mek",
+        "type": "pathway"
+      },
+      {
+        "label": "MAPK",
+        "value": "mapk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -1994,34 +3186,29 @@
       "GSK-1120212",
       "GSK-1120212B",
       "JTP-74057"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
     "id": "10146-101",
     "hmsLincsId": "10146-101",
     "name": {
-      "label": "GSK2126458",
-      "value": "gsk2126458"
+      "label": "Omipalisib",
+      "value": "omipalisib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
+    "searchIndexOnlyNames": [
+      "GSK-2126458"
     ]
   },
   {
@@ -2031,8 +3218,23 @@
       "label": "Buparlisib",
       "value": "buparlisib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "PI3K",
+        "value": "pi3k",
+        "type": "pathway"
+      },
+      {
+        "label": "AKT_PI3K",
+        "value": "akt_pi3k",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -2041,12 +3243,6 @@
     "searchIndexOnlyNames": [
       "BKM120",
       "NVP-BKM120"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -2056,8 +3252,7 @@
       "label": "XL147",
       "value": "xl147"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [],
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -2065,12 +3260,6 @@
     "synonyms": [],
     "searchIndexOnlyNames": [
       "SAR245408"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -2080,20 +3269,29 @@
       "label": "Y39983",
       "value": "y39983"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "RHO",
+        "value": "rho",
+        "type": "pathway"
+      },
+      {
+        "label": "CYTOSKELETON",
+        "value": "cytoskeleton",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
     },
     "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10151-101",
@@ -2102,8 +3300,18 @@
       "label": "Nintedanib",
       "value": "nintedanib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
+    "targets": [
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "RECEPTOR",
+        "value": "receptor",
+        "type": "protein_class"
+      }
+    ],
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -2114,12 +3322,6 @@
     ],
     "searchIndexOnlyNames": [
       "BIBF-1120"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -2129,19 +3331,26 @@
       "label": "Foretinib",
       "value": "foretinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
+    "targets": [
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "RECEPTOR",
+        "value": "receptor",
+        "type": "protein_class"
+      }
+    ],
+    "class": {
+      "label": "Phase 2",
+      "value": "20-phase2"
+    },
     "synonyms": [],
     "searchIndexOnlyNames": [
       "XL880",
-      "GSK1363089"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
+      "GSK-1363089"
     ]
   },
   {
@@ -2151,18 +3360,20 @@
       "label": "AZD 5438",
       "value": "azd5438"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
+    "targets": [
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
+    "class": {
+      "label": "Preclinical",
+      "value": "00-preclinical"
+    },
     "synonyms": [],
     "searchIndexOnlyNames": [
       "KIN001-239"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -2172,37 +3383,70 @@
       "label": "Pelitinib",
       "value": "pelitinib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
+    "targets": [
+      {
+        "label": "EGF",
+        "value": "egf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
+    "class": {
+      "label": "Phase 1",
+      "value": "10-phase1"
+    },
     "synonyms": [],
     "searchIndexOnlyNames": [
       "EKB-569"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
     "id": "10161-101",
     "hmsLincsId": "10161-101",
     "name": {
-      "label": "NVP-AUY922",
-      "value": "nvpauy922"
+      "label": "Luminespib",
+      "value": "luminespib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
-    "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
+    "targets": [
       {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
+        "label": "HSP90",
+        "value": "hsp90",
+        "type": "role"
+      },
+      {
+        "label": "CHAPERONE",
+        "value": "chaperone",
+        "type": "pathway"
+      },
+      {
+        "label": "CHAPERONE",
+        "value": "chaperone",
+        "type": "function"
+      },
+      {
+        "label": "CHAPERONE",
+        "value": "chaperone",
+        "type": "protein_class"
       }
+    ],
+    "class": {
+      "label": "Phase 2",
+      "value": "20-phase2"
+    },
+    "synonyms": [],
+    "searchIndexOnlyNames": [
+      "AUY922",
+      "NVP-AUY922",
+      "VER-52296"
     ]
   },
   {
@@ -2212,19 +3456,31 @@
       "label": "AZD8330",
       "value": "azd8330"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
+    "targets": [
+      {
+        "label": "MEK",
+        "value": "mek",
+        "type": "pathway"
+      },
+      {
+        "label": "MAPK",
+        "value": "mapk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
+    "class": {
+      "label": "Phase 1",
+      "value": "10-phase1"
+    },
     "synonyms": [],
     "searchIndexOnlyNames": [
       "ARRY-424704",
       "ARRY-704"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -2234,17 +3490,44 @@
       "label": "TGX221",
       "value": "tgx221"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
-    "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
+    "targets": [
       {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
+        "label": "PK3CB_HUMAN",
+        "value": "pk3cb_human",
+        "type": "protein"
+      },
+      {
+        "label": "PIK3CB",
+        "value": "pik3cb",
+        "type": "gene"
+      },
+      {
+        "label": "PI3KB",
+        "value": "pi3kb",
+        "type": "role"
+      },
+      {
+        "label": "PI3K",
+        "value": "pi3k",
+        "type": "pathway"
+      },
+      {
+        "label": "AKT_PI3K",
+        "value": "akt_pi3k",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
       }
-    ]
+    ],
+    "class": {
+      "label": "Preclinical",
+      "value": "00-preclinical"
+    },
+    "synonyms": [],
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10172-101",
@@ -2253,17 +3536,19 @@
       "label": "GSK1059615",
       "value": "gsk1059615"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
-    "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
+    "targets": [
       {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
       }
-    ]
+    ],
+    "class": {
+      "label": "Phase 1",
+      "value": "10-phase1"
+    },
+    "synonyms": [],
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10177-101",
@@ -2272,18 +3557,46 @@
       "label": "Brivanib",
       "value": "brivanib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
+    "targets": [
+      {
+        "label": "VGFR2_HUMAN",
+        "value": "vgfr2_human",
+        "type": "protein"
+      },
+      {
+        "label": "KDR",
+        "value": "kdr",
+        "type": "gene"
+      },
+      {
+        "label": "KDR",
+        "value": "kdr",
+        "type": "role"
+      },
+      {
+        "label": "VEGF",
+        "value": "vegf",
+        "type": "pathway"
+      },
+      {
+        "label": "RTK",
+        "value": "rtk",
+        "type": "function"
+      },
+      {
+        "label": "KINASE_RECEPTOR",
+        "value": "kinase_receptor",
+        "type": "protein_class"
+      }
+    ],
+    "class": {
+      "label": "Phase 3",
+      "value": "30-phase3"
+    },
     "synonyms": [],
     "searchIndexOnlyNames": [
+      "BMS-582664",
       "BMS-540215"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -2293,19 +3606,31 @@
       "label": "CHIR-99021",
       "value": "chir99021"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
+    "targets": [
+      {
+        "label": "GSK3",
+        "value": "gsk3",
+        "type": "pathway"
+      },
+      {
+        "label": "WNT",
+        "value": "wnt",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
+    "class": {
+      "label": "Preclinical",
+      "value": "00-preclinical"
+    },
     "synonyms": [],
     "searchIndexOnlyNames": [
       "CT99021",
       "KIN001-157"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -2315,19 +3640,15 @@
       "label": "Linifanib",
       "value": "linifanib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
+    "targets": [],
+    "class": {
+      "label": "Phase 2",
+      "value": "20-phase2"
+    },
     "synonyms": [],
     "searchIndexOnlyNames": [
       "ABT-869",
       "AL-39324"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -2337,17 +3658,29 @@
       "label": "PIK-93",
       "value": "pik93"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
-    "synonyms": [],
-    "searchIndexOnlyNames": [],
-    "dataset": [
+    "targets": [
       {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
+        "label": "PI3K",
+        "value": "pi3k",
+        "type": "pathway"
+      },
+      {
+        "label": "AKT_PI3K",
+        "value": "akt_pi3k",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
       }
-    ]
+    ],
+    "class": {
+      "label": "Preclinical",
+      "value": "00-preclinical"
+    },
+    "synonyms": [],
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10232-101",
@@ -2356,18 +3689,20 @@
       "label": "BEZ235",
       "value": "bez235"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
+    "targets": [
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
+    "class": {
+      "label": "Phase 2",
+      "value": "20-phase2"
+    },
     "synonyms": [],
     "searchIndexOnlyNames": [
       "NVP-BEZ235"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -2377,18 +3712,45 @@
       "label": "Alpelisib",
       "value": "alpelisib"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
-    "synonyms": [
-      "BYL719"
-    ],
-    "searchIndexOnlyNames": [],
-    "dataset": [
+    "targets": [
       {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
+        "label": "PK3CA_HUMAN",
+        "value": "pk3ca_human",
+        "type": "protein"
+      },
+      {
+        "label": "PIK3CA",
+        "value": "pik3ca",
+        "type": "gene"
+      },
+      {
+        "label": "PI3KA",
+        "value": "pi3ka",
+        "type": "role"
+      },
+      {
+        "label": "PI3K",
+        "value": "pi3k",
+        "type": "pathway"
+      },
+      {
+        "label": "AKT_PI3K",
+        "value": "akt_pi3k",
+        "type": "function"
+      },
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
       }
+    ],
+    "class": {
+      "label": "Phase 3",
+      "value": "30-phase3"
+    },
+    "synonyms": [],
+    "searchIndexOnlyNames": [
+      "BYL719"
     ]
   },
   {
@@ -2398,18 +3760,20 @@
       "label": "GDC-0980",
       "value": "gdc0980"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
+    "targets": [
+      {
+        "label": "KINASE",
+        "value": "kinase",
+        "type": "protein_class"
+      }
+    ],
+    "class": {
+      "label": "Phase 2",
+      "value": "20-phase2"
+    },
     "synonyms": [],
     "searchIndexOnlyNames": [
       "RG7422"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -2419,21 +3783,19 @@
       "label": "Mitoxantrone",
       "value": "mitoxantrone"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
+    "targets": [],
+    "class": {
+      "label": "Approved",
+      "value": "40-approved"
+    },
     "synonyms": [
-      "Novantrone"
+      "Novantrone",
+      "Mitozantrone"
     ],
     "searchIndexOnlyNames": [
+      "CL-232315",
       "CL-232325",
       "DHAQ"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   },
   {
@@ -2443,19 +3805,15 @@
       "label": "Radicicol",
       "value": "radicicol"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
+    "targets": [],
+    "class": {
+      "label": "Preclinical",
+      "value": "00-preclinical"
+    },
     "synonyms": [
       "Monorden"
     ],
-    "searchIndexOnlyNames": [],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
-    ]
+    "searchIndexOnlyNames": []
   },
   {
     "id": "10481-101",
@@ -2464,19 +3822,15 @@
       "label": "Withaferin A",
       "value": "withaferina"
     },
-    "nominalTarget": null,
-    "parentTargets": [],
-    "class": null,
+    "targets": [],
+    "class": {
+      "label": "Preclinical",
+      "value": "00-preclinical"
+    },
     "synonyms": [],
     "searchIndexOnlyNames": [
       "NSC-273757",
       "NSC-101088"
-    ],
-    "dataset": [
-      {
-        "value": "drug_dose_response",
-        "label": "Drug Dose-Response Growth Rate Profiling"
-      }
     ]
   }
 ]

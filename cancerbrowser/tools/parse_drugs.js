@@ -11,10 +11,11 @@
     searchIndexOnlyNames: ['hiddenName', 'hiddenOtherName', ...],
   }, ...]
 */
+'use strict';
 
-var fs = require('fs');
-var d3 = require('d3');
-var _  = require('lodash');
+const fs = require('fs');
+const d3 = require('d3');
+const _  = require('lodash');
 require('./utils');
 
 
@@ -23,13 +24,13 @@ function normalize(str) {
 }
 
 function labelValue(str, valueOverrides) {
-  var label = _.trim(str);
+  const label = _.trim(str);
 
   if (label.length === 0) {
     return null;
   }
 
-  var value = normalize(str);
+  let value = normalize(str);
 
   if (valueOverrides && valueOverrides[value]) {
     value = valueOverrides[value];
@@ -47,21 +48,36 @@ const classValues = {
   'approved': '40-approved'
 };
 
-var filename = process.argv[2];
+const filename = process.argv[2];
 
 // TODO: specify output filename?
-var outputFilename = './drugs.json';
+const outputFilename = './drugs.json';
+
+// specify the columns to be merged into a targets array
+const targetColumnPrefix = 'Target - ';
+const targetColumns = ['protein', 'gene', 'role', 'pathway', 'function', 'protein_class'];
 
 fs.readFile(filename, 'utf8', function(error, data) {
   data = d3.csv.parse(data);
 
   const transformed = data.map(function(d) {
+
+    // build up the targets array. targets[0] is what we will display. keep type around.
+    const targets = _.compact(targetColumns.map(colType => {
+      const colName = `${targetColumnPrefix}${colType}`;
+      // if this column is available, add it in
+      if (d[colName]) {
+        return { label: d[colName], value: normalize(d[colName]), type: colType };
+      }
+
+      return null;
+    }));
+
     return {
       id: d['HMS LINCS ID'],
       hmsLincsId: d['HMS LINCS ID'],
       name: labelValue(d['Name']),
-      nominalTarget: labelValue(d['Nominal target / Pathway']),
-      parentTargets: [],
+      targets,
       class: labelValue(d['Class'], classValues),
       synonyms: _.compact(_.split(d['Synonyms'], ';')),
       searchIndexOnlyNames: _.compact(_.split(d['Search-index-only names'], ';'))
