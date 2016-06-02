@@ -118,7 +118,10 @@ class FilterPanel extends React.Component {
     const newFilterValues = { id: filterId, values: newFilterValuesList };
 
     // find the active filters for the group
-    let activeFiltersForGroup = activeFilters[groupId];
+    let activeFiltersForGroup = undefined;
+    if(activeFilters) {
+      activeFiltersForGroup = activeFilters[groupId];
+    }
     let activeFiltersFilterIndex;
 
     // find the index of the filter inside the group's active filters
@@ -279,7 +282,10 @@ class FilterPanel extends React.Component {
   renderFilterGroup(group, index) {
     const { activeFilters, counts } = this.props;
 
-    const activeFiltersForGroup = activeFilters[group.id];
+    let activeFiltersForGroup = undefined;
+    if(activeFilters) {
+      activeFiltersForGroup = activeFilters[group.id];
+    }
     const countsForGroup = counts[group.id];
 
     const hasActiveFilters = activeFiltersForGroup && activeFiltersForGroup.length

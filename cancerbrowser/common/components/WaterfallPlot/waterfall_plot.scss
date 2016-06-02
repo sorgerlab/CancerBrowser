@@ -1,0 +1,52 @@
+
+.WaterfallPlot {
+  .name {
+    font-weight: bold;
+    font-size: 1.2em;
+    &.left {
+      padding-left: 80px;
+    }
+  }
+
+  rect.bar.highlight {
+    fill: #9679af !important;;
+  }
+
+  rect.threshold {
+    fill: #ddd;
+  }
+
+  rect.threshold.highlight {
+      fill: #b48fd4 !important;;
+  }
+
+  rect.hover {
+    opacity: 0.0;
+  }
+
+  text.label {
+    fill: #777;
+  }
+
+  text.highlight {
+    font-weight: bold;
+    fill: black;
+  }
+
+  .axis {
+    shape-rendering: crispEdges;
+  }
+
+  .x.axis line {
+    stroke: #ddd;
+  }
+
+  .x.axis .minor {
+    stroke-opacity: .5;
+  }
+
+  .x.axis path {
+    display: none;
+  }
+
+}
