@@ -5,40 +5,34 @@ import d3 from 'd3';
 
 class Waterfall {
   /**
- * Constructor. Sets up container location and scales for visual.
- *
- * @param {Object} container Container DOM element. Expected to be a table.
- */
+   * Constructor. Sets up container location and scales for visual.
+   *
+   * @param {Object} container Container DOM element. Expected to be a table.
+   */
   constructor(container) {
     this.svg = d3.select(container)
      .append('svg')
      .classed('waterfall', true);
 
-    this.xAxisGroup = this.svg.append('g')
-      .attr('transform', 'translate(0,30)')
+    this.g = this.svg.append('g');
+    this.xAxisGroup = this.g.append('g')
+      .attr('transform', 'translate(0,0)')
       .attr('class', 'x axis');
 
-    this.g = this.svg.append('g');
 
     this.dispatch = d3.dispatch('highlight', 'unhighlight');
 
     // window.addEventListener('resize', this.handleResize.bind(this));
 
-
     this.margins = {
       left: 5,
       right: 5,
-      top: 15,
+      top: 25,
       bottom: 10
     };
 
-
     this.onMouseover = this.onMouseover.bind(this);
     this.onMouseout = this.onMouseout.bind(this);
-  }
-
-  initialRender() {
-
   }
 
   /**
@@ -55,28 +49,35 @@ class Waterfall {
     return data;
   }
 
+  /**
+   *
+   */
   updateScales(data, props) {
 
     const { dataExtent } = props;
     // scales recomputed each draw
     const xScale = d3.scale.linear()
-      .range([this.margins.left, this.width]);
+      .range([0, this.width]);
 
     if(dataExtent) {
       xScale.domain(dataExtent);
     } else {
-      xScale.domain(d3.extent(data, (d) => d.value));
+      xScale.domain(d3.extent(data, (d) => d.value))
+        .clamp(true);
     }
 
     const yScale = d3.scale.ordinal()
       .domain(data.map((v) => v.id))
-      .rangeRoundBands([this.margins.top, this.height], 0.05);
+      .rangeRoundBands([0, this.height], 0.05);
 
     const colorScale = (d) => '#999';
 
     return {x: xScale, y: yScale, color:  colorScale};
   }
 
+  /**
+   *
+   */
   update(props) {
     const {dataset, width, height, dataSort, labelLocation, highlightId } = props;
 
@@ -87,10 +88,10 @@ class Waterfall {
 
     // Allow for right or left (or no) placement of labels
     if(labelLocation === 'left') {
-      this.margins.left = 80;
+      this.margins.left = 140;
       this.margins.right = 5;
     } else if(labelLocation === 'right') {
-      this.margins.right = 80;
+      this.margins.right = 140;
       this.margins.left = 5;
     } else {
       this.margins.right = 5;
@@ -112,18 +113,19 @@ class Waterfall {
 
     const scales = this.updateScales(data, props);
 
-
     const xAxis = d3.svg.axis()
       .scale(scales.x)
       .orient('top')
-      .tickSize(-height);
+      .tickSize(-20);
 
     this.xAxisGroup
       .call(xAxis);
 
     const labels = this.g
       .selectAll('.label')
-      .data(data);
+      .data(data, (d) => d.id);
+
+    labels.exit().remove();
 
     if(labelLocation)  {
       labels.enter()
@@ -135,19 +137,20 @@ class Waterfall {
         .attr('x', labelLocation === 'right' ? this.width : 0)
         .attr('dx', labelLocation === 'right' ? 8 : -8)
         .attr('y', (d) => scales.y(d.id))
-        .attr('dy', 12)
+        .attr('dy', scales.y.rangeBand() / 2)
         .classed('highlight', (d)  => d.id === highlightId)
         .text((d) => d.label)
         .on('mouseover', this.onMouseover)
         .on('mouseout', this.onMouseout);
-
     }
 
 
     // for easier mouseovering
     const hoverBars = this.g
       .selectAll('.hover')
-      .data(data);
+      .data(data, (d) => d.id);
+
+    hoverBars.exit().remove();
 
     hoverBars.enter()
       .append('rect')
@@ -164,7 +167,9 @@ class Waterfall {
 
     const bars = this.g
       .selectAll('.bar')
-      .data(data);
+      .data(data, (d) => d.id);
+
+    bars.exit().remove();
 
     bars.enter()
       .append('rect')
@@ -186,7 +191,9 @@ class Waterfall {
 
       const thresholdBars = this.g
         .selectAll('.threshold')
-        .data(data);
+        .data(data, (d) => d.id);
+
+      thresholdBars.exit().remove();
 
       thresholdBars.enter()
         .append('rect')
@@ -210,12 +217,6 @@ class Waterfall {
 
   onMouseout(d) {
     this.dispatch.unhighlight(d);
-  }
-
-  /**
-   * Display list of technologies table using the data passed in via `update`.
-   */
-  render() {
   }
 
   /**

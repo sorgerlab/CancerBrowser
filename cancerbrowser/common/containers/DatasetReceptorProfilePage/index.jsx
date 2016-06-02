@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
+import './dataset_receptor_profile_page.scss';
+
 import { getFilteredViewData } from '../../selectors/datasetReceptorProfile';
 
 import {
@@ -23,7 +25,8 @@ import {
   changeActiveFilters,
   changeViewBy,
   changeHighlight,
-  changeActiveLeft
+  changeActiveLeft,
+  changeActiveRight
 } from '../../actions/datasetReceptorProfile';
 
 import { ButtonGroup, Button } from 'react-bootstrap';
@@ -50,7 +53,7 @@ const propTypes = {
   cellLineCounts: React.PropTypes.object,
   receptors: React.PropTypes.array,
   viewBy: React.PropTypes.string,
-  viewData: React.PropTypes.array
+  filteredData: React.PropTypes.array
 };
 
 const defaultProps = {
@@ -71,7 +74,7 @@ function mapStateToProps(state) {
     receptors: receptors.items,
     activeFilters: datasetReceptorProfile.activeFilters,
     viewBy: datasetReceptorProfile.viewBy,
-    viewData: getFilteredViewData(state),
+    filteredData: getFilteredViewData(state),
     highlightId: datasetReceptorProfile.highlight,
     activeLeft: datasetReceptorProfile.activeLeft,
     activeRight: datasetReceptorProfile.activeRight
@@ -153,8 +156,14 @@ class DatasetReceptorProfilePage extends React.Component {
   }
 
   onChangeActive(activeId) {
+    this.toggleActive = this.toggleActive || 'left';
     const { dispatch } = this.props;
-    dispatch(changeActiveLeft(activeId));
+    if(this.toggleActive === 'left') {
+      dispatch(changeActiveLeft(activeId));
+    } else {
+      dispatch(changeActiveRight(activeId));
+    }
+    this.toggleActive = this.toggleActive === 'left' ? 'right' : 'left';
   }
 
   handleViewByChange(newView) {
@@ -173,7 +182,9 @@ class DatasetReceptorProfilePage extends React.Component {
   }
 
   renderSmallMults(datasets) {
-    const { highlightId, activeLeft, activeRight } = this.props;
+    const { highlightId, activeLeft, activeRight, viewBy } = this.props;
+
+    const dataExtent = (viewBy === 'receptor') ? undefined : [-7, 1];
     if(datasets) {
       return (
         <WaterfallSmallMults
@@ -182,43 +193,15 @@ class DatasetReceptorProfilePage extends React.Component {
           onChangeActive={this.onChangeActive}
           activeLeft={activeLeft}
           activeRight={activeRight}
-          dataExtent={[-8,1]} />
+          dataExtent={dataExtent} />
       );
     }
   }
 
 
-
-  // render() {
-  //   const { datasetInfo, datasetData, activeLeft, activeRight } = this.props;
-  //
-  //   const leftData = this.getData(datasetData, activeLeft);
-  //   const rightData = this.getData(datasetData, activeRight);
-  //
-  //   if(!datasetData) {
-  //     return (
-  //       <div></div>
-  //     );
-  //   }
-  //
-  //   return (
-  //     <PageLayout className="DatasetReceptorProfilePage">
-  //       <h1>{datasetInfo && datasetInfo.label}</h1>
-  //       <div className='row'>
-  //         <div className='col-md-4'>
-  //           {this.renderWaterfall(leftData, 'left')}
-  //         </div>
-  //         <div className='col-md-4'>
-  //           {this.renderWaterfall(rightData, 'left')}
-  //         </div>
-  //         <div className='col-md-4'>
-  //           {this.renderSmallMults(datasetData)}
-  //         </div>
-  //
-  //       </div>
-
   renderWaterfall(dataset, labelLocation) {
-    const { highlightId } = this.props;
+    const { highlightId, viewBy } = this.props;
+    const dataExtent = (viewBy === 'receptor') ? undefined : [-7, 1];
 
     if(dataset) {
       return (
@@ -227,7 +210,7 @@ class DatasetReceptorProfilePage extends React.Component {
           labelLocation={labelLocation}
           onChangeHighlight={this.onChangeHighlight}
           highlightId={highlightId}
-          dataExtent={[-8,1]} />
+          dataExtent={dataExtent} />
       );
     }
   }
@@ -283,10 +266,10 @@ class DatasetReceptorProfilePage extends React.Component {
   }
 
   render() {
-    const { datasetInfo, viewData, datasetData, activeLeft, activeRight } = this.props;
+    const { datasetInfo, filteredData, datasetData, activeLeft, activeRight } = this.props;
 
-    const leftData = this.getData(viewData, activeLeft);
-    const rightData = this.getData(viewData, activeRight);
+    const leftData = this.getData(filteredData, activeLeft);
+    const rightData = this.getData(filteredData, activeRight);
 
     if(!datasetData) {
       return (
@@ -297,7 +280,9 @@ class DatasetReceptorProfilePage extends React.Component {
     return (
       <PageLayout className='DatasetReceptorProfilePage' sidebar={this.renderSidebar()}>
         <h1>{datasetInfo && datasetInfo.label}</h1>
-        {this.renderViewOptions()}
+        <div className='row'>
+          {this.renderViewOptions()}
+        </div>
         <div className='row'>
           <div className='col-md-4'>
             {this.renderWaterfall(leftData, 'left')}
@@ -306,7 +291,7 @@ class DatasetReceptorProfilePage extends React.Component {
             {this.renderWaterfall(rightData, 'left')}
           </div>
           <div className='col-md-4'>
-            {this.renderSmallMults(viewData)}
+            {this.renderSmallMults(filteredData)}
           </div>
         </div>
       </PageLayout>

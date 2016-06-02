@@ -56,12 +56,9 @@ class WaterfallPlot extends React.Component {
 
     this.chart = new Waterfall(this.refs.waterfallContainer);
 
-    this.chart.initialRender();
     this.chart.update(this.props);
-    this.chart.render();
     this.chart.on('highlight', this.onSelect);
     this.chart.on('unhighlight', this.onDeselect);
-
   }
 
   /**
@@ -69,7 +66,6 @@ class WaterfallPlot extends React.Component {
    */
   componentDidUpdate() {
     this.chart.update(this.props);
-    this.chart.render();
   }
 
   onSelect(d) {
