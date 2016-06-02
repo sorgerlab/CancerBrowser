@@ -82,7 +82,7 @@ function mapStateToProps(state) {
 
   // TODO - reselect this?
   Object.assign(props, {
-    filterGroups: makeFilterGroups(props.filteredCellLines, props.receptors)
+    filterGroups: makeFilterGroups(props.filteredCellLines, props.receptors, props.viewBy)
   });
 
   return props;
@@ -92,7 +92,7 @@ function mapStateToProps(state) {
  * Takes the dataset data and generates the filter definition.
  * We need the data to populate the values in the dataset config
  */
-function makeFilterGroups(cellLines, receptors) {
+function makeFilterGroups(cellLines, receptors, viewBy) {
   const datasetConfiguration = [
     {
       id: 'receptor',
@@ -119,13 +119,16 @@ function makeFilterGroups(cellLines, receptors) {
       id: 'receptorProfileConfig',
       label: 'Configure',
       filters: datasetConfiguration
-    },
-    {
+    }
+  ];
+
+  if(viewBy === 'receptor') {
+    filterGroups.push({
       id: 'cellLineFilters',
       label: 'Cell Line Filters',
       filters: cellLineFilters.filter(filter => filter.id !== 'dataset')
-    }
-  ];
+    });
+  }
 
   return filterGroups;
 }
