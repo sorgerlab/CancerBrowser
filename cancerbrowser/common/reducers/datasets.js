@@ -6,6 +6,8 @@ import {
   RECEIVE_DATASET
 } from '../actions/dataset';
 
+import datasetReceptorProfile from './datasetReceptorProfile';
+
 const INITIAL_STATE = {
   info: {
     isFetching: false,
@@ -52,4 +54,4 @@ function datasetsById(state = INITIAL_STATE.datasetsById, action) {
   }
 }
 
-export default combineReducers({ info, datasetsById });
+export default combineReducers({ info, datasetsById, datasetReceptorProfile });
