@@ -1,20 +1,22 @@
 
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
+import classNames from 'classnames';
 import d3 from 'd3';
 
 import './small_waterfall.scss';
 
 const propTypes = {
   dataset: React.PropTypes.object,
-  activeKey: React.PropTypes.string,
+  highlightId: React.PropTypes.string,
   dataSort: React.PropTypes.func,
   dataExtent: React.PropTypes.array,
-  onClick: React.PropTypes.func,
+  onChangeActive: React.PropTypes.func,
   width: React.PropTypes.number,
   height: React.PropTypes.number,
   fillColor: React.PropTypes.string,
-  highlightColor: React.PropTypes.string
+  highlightColor: React.PropTypes.string,
+  isActive: React.PropTypes.bool
 };
 
 const defaultProps = {
@@ -67,8 +69,8 @@ class SmallWaterfallPlot extends React.Component {
   }
 
   handleClick() {
-    const { onClick, dataset } = this.props;
-    onClick(dataset.id);
+    const { onChangeActive, dataset } = this.props;
+    onChangeActive(dataset.id);
   }
 
   /**
@@ -91,7 +93,7 @@ class SmallWaterfallPlot extends React.Component {
   updateCanvas() {
     const {
       dataset,
-      activeKey,
+      highlightId,
       dataSort,
       dataExtent,
       width,
@@ -110,6 +112,8 @@ class SmallWaterfallPlot extends React.Component {
     if (window.devicePixelRatio) {
       sizeScale = window.devicePixelRatio;
     }
+    // Reset transform to ensure scale setting is appropriate.
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.scale(sizeScale, sizeScale);
 
 
@@ -138,11 +142,11 @@ class SmallWaterfallPlot extends React.Component {
 
     // draw highlight
     // TODO: this could be an array of highlighted values?
-    if(activeKey) {
+    if(highlightId) {
 
       ctx.fillStyle = highlightColor;
 
-      const activeValue = values.filter((v) => v.id === activeKey);
+      const activeValue = values.filter((v) => v.id === highlightId);
       activeValue.forEach(function(value) {
         ctx.fillRect(0, yScale(value.id), xScale(value.value), yScale.rangeBand());
       });
@@ -153,7 +157,7 @@ class SmallWaterfallPlot extends React.Component {
    * Render the chart
    */
   render() {
-    const { dataset, width, height } = this.props;
+    const { dataset, width, height, isActive } = this.props;
 
     // scaling for retina
     let sizeScale = 1.0;
@@ -166,8 +170,13 @@ class SmallWaterfallPlot extends React.Component {
       height: height
     };
 
+    const classes = classNames({
+      'SmallWaterfallPlot':true,
+      'active':isActive
+    });
+
     return (
-      <div className='SmallWaterfallPlot'  onClick={this.handleClick}>
+      <div className={classes}  onClick={this.handleClick}>
         <div className='name'>{dataset.label}</div>
         <canvas className='chart' ref="canvas" style={canvasStyle} id={dataset.id} width={width * sizeScale} height={height * sizeScale} />
       </div>

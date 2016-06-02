@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
+import './dataset_receptor_profile_page.scss';
+
 import { getFilteredViewData } from '../../selectors/datasetReceptorProfile';
 
 import {
@@ -21,12 +23,16 @@ import {
 
 import {
   changeActiveFilters,
-  changeViewBy
+  changeViewBy,
+  changeHighlight,
+  changeActiveLeft,
+  changeActiveRight
 } from '../../actions/datasetReceptorProfile';
 
 import { ButtonGroup, Button } from 'react-bootstrap';
 import PageLayout from '../../components/PageLayout';
 import WaterfallSmallMults from '../../components/WaterfallSmallMults';
+import WaterfallPlot from '../../components/WaterfallPlot';
 import { cellLineFilters } from '../../containers/CellLineBrowserPage';
 import FilterPanel from '../../components/FilterPanel';
 
@@ -38,13 +44,21 @@ const propTypes = {
   dispatch: React.PropTypes.func,
   datasetData: React.PropTypes.array,
   datasetInfo: React.PropTypes.object,
+  highlightId: React.PropTypes.string,
+  activeLeft: React.PropTypes.string,
+  activeRight: React.PropTypes.string,
   activeFilters: React.PropTypes.object,
   filterGroups: React.PropTypes.array,
   filteredCellLines: React.PropTypes.array,
   cellLineCounts: React.PropTypes.object,
   receptors: React.PropTypes.array,
   viewBy: React.PropTypes.string,
-  viewData: React.PropTypes.array
+  filteredData: React.PropTypes.array
+};
+
+const defaultProps = {
+  activeLeft: 'bt-20',
+  activeRight: 'bt-483'
 };
 
 function mapStateToProps(state) {
@@ -60,12 +74,15 @@ function mapStateToProps(state) {
     receptors: receptors.items,
     activeFilters: datasetReceptorProfile.activeFilters,
     viewBy: datasetReceptorProfile.viewBy,
-    viewData: getFilteredViewData(state)
+    filteredData: getFilteredViewData(state),
+    highlightId: datasetReceptorProfile.highlight,
+    activeLeft: datasetReceptorProfile.activeLeft,
+    activeRight: datasetReceptorProfile.activeRight
   };
 
   // TODO - reselect this?
   Object.assign(props, {
-    filterGroups: makeFilterGroups(props.filteredCellLines, props.receptors)
+    filterGroups: makeFilterGroups(props.filteredCellLines, props.receptors, props.viewBy)
   });
 
   return props;
@@ -75,7 +92,7 @@ function mapStateToProps(state) {
  * Takes the dataset data and generates the filter definition.
  * We need the data to populate the values in the dataset config
  */
-function makeFilterGroups(cellLines, receptors) {
+function makeFilterGroups(cellLines, receptors, viewBy) {
   const datasetConfiguration = [
     {
       id: 'receptor',
@@ -102,13 +119,16 @@ function makeFilterGroups(cellLines, receptors) {
       id: 'receptorProfileConfig',
       label: 'Configure',
       filters: datasetConfiguration
-    },
-    {
+    }
+  ];
+
+  if(viewBy === 'receptor') {
+    filterGroups.push({
       id: 'cellLineFilters',
       label: 'Cell Line Filters',
       filters: cellLineFilters.filter(filter => filter.id !== 'dataset')
-    }
-  ];
+    });
+  }
 
   return filterGroups;
 }
@@ -121,6 +141,8 @@ class DatasetReceptorProfilePage extends React.Component {
     super(props);
     this.onFilterChange = this.onFilterChange.bind(this);
     this.renderViewOptions = this.renderViewOptions.bind(this);
+    this.onChangeHighlight = this.onChangeHighlight.bind(this);
+    this.onChangeActive = this.onChangeActive.bind(this);
   }
 
   componentDidMount() {
@@ -129,6 +151,22 @@ class DatasetReceptorProfilePage extends React.Component {
     dispatch(fetchDatasetInfo(datasetId));
     dispatch(fetchCellLinesIfNeeded(activeFilters, filterGroups));
     dispatch(fetchReceptorsIfNeeded());
+  }
+
+  onChangeHighlight(highlightId) {
+    const { dispatch } = this.props;
+    dispatch(changeHighlight(highlightId));
+  }
+
+  onChangeActive(activeId) {
+    this.toggleActive = this.toggleActive || 'left';
+    const { dispatch } = this.props;
+    if(this.toggleActive === 'left') {
+      dispatch(changeActiveLeft(activeId));
+    } else {
+      dispatch(changeActiveRight(activeId));
+    }
+    this.toggleActive = this.toggleActive === 'left' ? 'right' : 'left';
   }
 
   handleViewByChange(newView) {
@@ -146,12 +184,48 @@ class DatasetReceptorProfilePage extends React.Component {
       filterGroups.filter(filterGroup => filterGroup.id === 'cellLineFilters')));
   }
 
-  renderSmallMults(data) {
-    if (data) {
+  renderSmallMults(datasets) {
+    const { highlightId, activeLeft, activeRight, viewBy } = this.props;
+
+    const dataExtent = (viewBy === 'receptor') ? undefined : [-7, 1];
+    if(datasets) {
       return (
         <WaterfallSmallMults
-          datasets={data} />
+          datasets={datasets}
+          highlightId={highlightId}
+          onChangeActive={this.onChangeActive}
+          activeLeft={activeLeft}
+          activeRight={activeRight}
+          dataExtent={dataExtent} />
       );
+    }
+  }
+
+
+  renderWaterfall(dataset, labelLocation) {
+    const { highlightId, viewBy } = this.props;
+    const dataExtent = (viewBy === 'receptor') ? undefined : [-7, 1];
+
+    if(dataset) {
+      return (
+        <WaterfallPlot
+          dataset={dataset}
+          labelLocation={labelLocation}
+          onChangeHighlight={this.onChangeHighlight}
+          highlightId={highlightId}
+          dataExtent={dataExtent} />
+      );
+    }
+  }
+
+  getData(datasets, activeId) {
+    if(datasets && activeId) {
+
+      const dataset = datasets.filter((d) => d.id === activeId)[0];
+      return dataset;
+
+    } else {
+      return undefined;
     }
   }
 
@@ -195,18 +269,40 @@ class DatasetReceptorProfilePage extends React.Component {
   }
 
   render() {
-    const { datasetInfo, viewData } = this.props;
+    const { datasetInfo, filteredData, datasetData, activeLeft, activeRight } = this.props;
+
+    const leftData = this.getData(filteredData, activeLeft);
+    const rightData = this.getData(filteredData, activeRight);
+
+    if(!datasetData) {
+      return (
+        <div></div>
+      );
+    }
 
     return (
       <PageLayout className='DatasetReceptorProfilePage' sidebar={this.renderSidebar()}>
         <h1>{datasetInfo && datasetInfo.label}</h1>
-        {this.renderViewOptions()}
-        {this.renderSmallMults(viewData)}
+        <div className='row'>
+          {this.renderViewOptions()}
+        </div>
+        <div className='row'>
+          <div className='col-md-4'>
+            {this.renderWaterfall(leftData, 'left')}
+          </div>
+          <div className='col-md-4'>
+            {this.renderWaterfall(rightData, 'left')}
+          </div>
+          <div className='col-md-4'>
+            {this.renderSmallMults(filteredData)}
+          </div>
+        </div>
       </PageLayout>
     );
   }
 }
 
 DatasetReceptorProfilePage.propTypes = propTypes;
+DatasetReceptorProfilePage.defaultProps = defaultProps;
 
 export default connect(mapStateToProps)(DatasetReceptorProfilePage);
