@@ -10,7 +10,7 @@ import './drug_card.scss';
 
 // require in the whole directory
 const drugImageContext = require.context('../../assets/img/drugs');
-function drugImageUrl(drug) {
+export function drugImageUrl(drug) {
   const filename = `HMSL${drug.hmsLincsId}.png`;
   let drugUrl;
   try {
