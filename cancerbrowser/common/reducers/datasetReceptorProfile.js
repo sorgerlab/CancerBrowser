@@ -14,7 +14,7 @@ const baseCellLineDatasetFilter = {
 
 const INITIAL_STATE = {
   activeFilters: { cellLineFilters: [baseCellLineDatasetFilter] },
-  viewBy: 'receptor',
+  viewBy: 'cellLine',
   highlight: undefined,
   activeLeft: undefined,
   activeRight: undefined

@@ -111,40 +111,69 @@ export const getFilteredViewData = createSelector(
 export const getFilterGroups = createSelector(
   [ getViewData, getViewBy(datasetKey), getReceptors ],
   (viewData, viewBy, receptors) => {
-    const datasetConfiguration = [
-      {
-        id: 'receptor',
-        label: 'Receptor',
-        type: 'select',
-        values: receptors,
-        options: {
-          props: { counts: null }
-        }
-      },
-      {
-        id: 'compareTo',
-        label: 'Compare to',
-        type: 'select',
-        values: receptors,
-        options: {
-          props: { counts: null }
-        }
-      }
-    ];
+    const filterGroups = [];
 
-    const filterGroups = [
-      {
-        id: 'receptorProfileConfig',
+    if (viewBy === 'receptor') {
+      const byReceptorConfig = [
+        {
+          id: 'receptor',
+          label: 'Receptor',
+          type: 'select',
+          values: receptors,
+          options: {
+            props: { counts: null }
+          }
+        },
+        {
+          id: 'compareTo',
+          label: 'Compare to',
+          type: 'select',
+          values: receptors,
+          options: {
+            props: { counts: null }
+          }
+        }
+      ];
+
+      filterGroups.push({
+        id: 'byReceptorConfig',
         label: 'Configure',
-        filters: datasetConfiguration
-      }
-    ];
+        filters: byReceptorConfig
+      });
 
-    if(viewBy === 'receptor') {
       filterGroups.push({
         id: 'cellLineFilters',
         label: 'Cell Line Filters',
         filters: cellLineFilters.filter(filter => filter.id !== 'dataset')
+      });
+    } else {
+      const cellLines = []; // TODO get all cell lines via an input selector
+      // put by cell line filters here
+      const byCellLineConfig = [
+        {
+          id: 'cellLine',
+          label: 'Cell Line',
+          type: 'select',
+          values: cellLines,
+          options: {
+            props: { counts: null }
+          }
+        },
+        {
+          id: 'compareTo',
+          label: 'Compare to',
+          type: 'select',
+          values: cellLines,
+          options: {
+            props: { counts: null }
+          }
+        }
+      ];
+
+      filterGroups.push({
+        id: 'byCellLineConfig',
+        label: 'Configure',
+        filters: byCellLineConfig
       });
     }
 
