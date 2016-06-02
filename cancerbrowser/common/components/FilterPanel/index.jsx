@@ -282,7 +282,11 @@ class FilterPanel extends React.Component {
     const activeFiltersForGroup = activeFilters[group.id];
     const countsForGroup = counts[group.id];
 
-    const hasActiveFilters = activeFiltersForGroup && activeFiltersForGroup.length;
+    const hasActiveFilters = activeFiltersForGroup && activeFiltersForGroup.length
+        && group.filters
+        // hasActiveFilters only for filters that are visible
+        && activeFiltersForGroup.some(activeFilter =>
+          group.filters.some(filter => filter.id === activeFilter.id));
 
     return (
       <div key={index} className='filter-panel-group'>
