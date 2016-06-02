@@ -3,6 +3,9 @@ import _ from 'lodash';
 
 const datasetId = 'receptor_profile';
 
+/////////////////////
+// Input Selectors
+/////////////////////
 const getDataset = (state) => {
   const dataset = state.datasets.datasetsById[datasetId];
   return dataset && dataset.items;
@@ -12,6 +15,14 @@ const getViewBy = state => state.datasets.datasetReceptorProfile.viewBy;
 
 const getFilteredCellLines = state => state.cellLines.filtered;
 
+
+/////////////////////
+// Helpers
+/////////////////////
+
+/**
+ * Filter the data based on a set of cell lines
+ */
 function filterDataByCellLines(data, cellLines) {
   if (!data) {
     return data;
@@ -52,13 +63,46 @@ function convertToByReceptor(dataset) {
 }
 
 
+/** Filters data organized by receptor based on provided cell lines */
+function filterReceptorDataByCellLine(data, cellLines) {
+  if (!data) {
+    return data;
+  }
+
+  return data.map(d => {
+    const filteredMeasurements = d.measurements.filter(m => {
+      return cellLines.find(cellLine => cellLine.id === m.id);
+    });
+
+    return Object.assign({}, d, { measurements: filteredMeasurements });
+  });
+}
+
+/////////////////////
+// Selectors
+/////////////////////
+
+/** Converts the dataset to be by cell line or by receptor */
 export const getViewData = createSelector(
-  [ getDataset, getViewBy, getFilteredCellLines ],
-  (dataset, viewBy, filteredCellLines) => {
+  [ getDataset, getViewBy ],
+  (dataset, viewBy) => {
     if (viewBy === 'receptor') {
       return convertToByReceptor(dataset);
     } else {
-      return filterDataByCellLines(dataset, filteredCellLines);
+      return dataset;
+    }
+  }
+);
+
+
+/** Filters the dataset */
+export const getFilteredViewData = createSelector(
+  [ getViewData, getViewBy, getFilteredCellLines ],
+  (viewData, viewBy, filteredCellLines) => {
+    if (viewBy === 'receptor') {
+      return filterReceptorDataByCellLine(viewData, filteredCellLines);
+    } else {
+      return filterDataByCellLines(viewData, filteredCellLines);
     }
   }
 );

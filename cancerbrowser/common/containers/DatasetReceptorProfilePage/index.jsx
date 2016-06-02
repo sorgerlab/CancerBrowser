@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import { getViewData } from '../../selectors/datasetReceptorProfile';
+import { getFilteredViewData } from '../../selectors/datasetReceptorProfile';
 
 import {
   fetchDatasetIfNeeded,
@@ -60,7 +60,7 @@ function mapStateToProps(state) {
     receptors: receptors.items,
     activeFilters: datasetReceptorProfile.activeFilters,
     viewBy: datasetReceptorProfile.viewBy,
-    viewData: getViewData(state)
+    viewData: getFilteredViewData(state)
   };
 
   // TODO - reselect this?
@@ -196,7 +196,6 @@ class DatasetReceptorProfilePage extends React.Component {
 
   render() {
     const { datasetInfo, viewData } = this.props;
-
 
     return (
       <PageLayout className='DatasetReceptorProfilePage' sidebar={this.renderSidebar()}>
