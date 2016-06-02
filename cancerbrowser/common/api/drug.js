@@ -29,6 +29,24 @@ export function getDrugCounts(drugs, allFilterGroups) {
 }
 
 /**
+ * Creates a list of values from items of form { value, label }
+ * sorted by label and with missing values removed
+ *
+ * @param {Array} collection Collection of items to iterate over
+ * @param {String} labelValueKey Key to map collection on to get { value, label }
+ * @return {Array}
+ */
+function valuesFromLabelValueItems(collection, labelValueKey) {
+  return _.chain(collection)
+    .map(d => d[labelValueKey])
+    .keyBy('value') // keyBy value then get values to eliminate duplicates
+    .values()
+    .compact()
+    .sortBy('label')
+    .value();
+}
+
+/**
  * Provides the filter definition for drugs, generated based on
  * values in the data.
  *
@@ -48,17 +66,29 @@ export function getDrugFilters() {
         { value: '40-approved', label: 'Approved' }
       ]
     }, {
-      id: 'target',
-      label: 'Target / Pathway',
+      id: 'targetGene',
+      label: 'Target Gene',
       type: 'multi-select',
       // generate based on the data
-      values: _.chain(drugData)
-        .map(d => d.nominalTarget)
-        .keyBy('value')
-        .values()
-        .compact()
-        .sortBy('label')
-        .value()
+      values: valuesFromLabelValueItems(drugData, 'targetGene')
+    }, {
+      id: 'targetRole',
+      label: 'Target Role',
+      type: 'multi-select',
+      // generate based on the data
+      values: valuesFromLabelValueItems(drugData, 'targetRole')
+    }, {
+      id: 'targetPathway',
+      label: 'Target Pathway',
+      type: 'multi-select',
+      // generate based on the data
+      values: valuesFromLabelValueItems(drugData, 'targetPathway')
+    }, {
+      id: 'targetFunction',
+      label: 'Target Function',
+      type: 'multi-select',
+      // generate based on the data
+      values: valuesFromLabelValueItems(drugData, 'targetFunction')
     }
   ];
 

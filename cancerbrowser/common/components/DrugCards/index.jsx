@@ -50,6 +50,15 @@ function groupDrugs(data, groupBy) {
 }
 
 
+function matchLabel(queryRegex, labeledItem) {
+  const normalizedLabel =  StringUtils.normalize(labeledItem && labeledItem.label);
+  if (queryRegex.test(normalizedLabel)) {
+    return true;
+  }
+
+  return false;
+}
+
 /**
  * Returns true if the drug matches the search query, otherwis false
  */
@@ -64,8 +73,7 @@ function matchDrug(query, drug) {
   const queryRegex = RegExp(normalizedQuery);
 
   // check if the name matches
-  const normalizedName = StringUtils.normalize(drug.name && drug.name.label);
-  if (queryRegex.test(normalizedName)) {
+  if (matchLabel(queryRegex, drug.name)) {
     return true;
   }
 
@@ -79,6 +87,12 @@ function matchDrug(query, drug) {
   // searchIndexOnlyNames
   const searchNameMatch = drug.searchIndexOnlyNames.some(searchName => queryRegex.test(StringUtils.normalize(searchName)));
   if (searchNameMatch) {
+    return true;
+  }
+
+  // check if targets match
+  if (matchLabel(queryRegex, drug.targetGene) || matchLabel(queryRegex, drug.targetRole) ||
+      matchLabel(queryRegex, drug.targetPathway) || matchLabel(queryRegex, drug.targetFunction)) {
     return true;
   }
 
