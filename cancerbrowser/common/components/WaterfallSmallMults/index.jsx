@@ -5,7 +5,11 @@ import SmallWaterfallPlot from './SmallWaterfallPlot';
 
 const propTypes = {
   datasets: React.PropTypes.array,
-  activeKey: React.PropTypes.string
+  dataExtent: React.PropTypes.array,
+  highlightId: React.PropTypes.string,
+  activeLeft: React.PropTypes.string,
+  activeRight: React.PropTypes.string,
+  onChangeActive: React.PropTypes.func
 };
 
 /**
@@ -16,27 +20,23 @@ class WaterfallSmallMults extends React.Component {
 
   constructor(props) {
     super(props);
-
-
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick(id) {
-    //TODO switch to clicked on entity in main plots.
-    console.log(id);
   }
 
  /**
   * Render the small waterfall
   */
   renderSmallMult(dataset) {
+    const { highlightId, onChangeActive, activeLeft, activeRight, dataExtent } = this.props;
+    const active = (dataset.id === activeLeft || dataset.id === activeRight);
     return (
       <SmallWaterfallPlot
         key={dataset.id}
         dataset={dataset}
         onClick={this.onClick}
-        dataExtent={[-6,1]}
-        activeKey={'insr'} />
+        dataExtent={dataExtent}
+        highlightId={highlightId}
+        isActive={active}
+        onChangeActive={onChangeActive} />
     );
   }
 

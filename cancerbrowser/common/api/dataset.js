@@ -257,7 +257,7 @@ function transformReceptorData(dataset) {
       // if log is in the key, then it is a measurement
       if(key.includes('log')) {
 
-        let measurement = {label: key,
+        let measurement = {original: key,
                            value: row[key],
                            threshold: thresholds[key],
                            index: index};
@@ -265,6 +265,7 @@ function transformReceptorData(dataset) {
         let fields = key.split(' ');
         // name of receptor
         measurement.receptor = fields[0];
+        measurement.label = fields[0];
         measurement.id = fields[0].toLowerCase();
         // get out the metric.
         let metric = fields[1].match(/\((.*)\)/)[1];
