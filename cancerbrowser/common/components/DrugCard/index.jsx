@@ -102,7 +102,7 @@ class DrugCard extends React.Component {
    * @return {React.Component}
    */
   renderDrugDetails(data) {
-    const target = data.nominalTarget && data.nominalTarget.label || 'Target';
+    const target = data.targets[0] && data.targets[0].label;
 
     return (
       <div className='drug-details'>
