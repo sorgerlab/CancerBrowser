@@ -11,10 +11,11 @@
     searchIndexOnlyNames: ['hiddenName', 'hiddenOtherName', ...],
   }, ...]
 */
+'use strict';
 
-var fs = require('fs');
-var d3 = require('d3');
-var _  = require('lodash');
+const fs = require('fs');
+const d3 = require('d3');
+const _  = require('lodash');
 require('./utils');
 
 
@@ -23,13 +24,13 @@ function normalize(str) {
 }
 
 function labelValue(str, valueOverrides) {
-  var label = _.trim(str);
+  const label = _.trim(str);
 
   if (label.length === 0) {
     return null;
   }
 
-  var value = normalize(str);
+  let value = normalize(str);
 
   if (valueOverrides && valueOverrides[value]) {
     value = valueOverrides[value];
@@ -47,10 +48,10 @@ const classValues = {
   'approved': '40-approved'
 };
 
-var filename = process.argv[2];
+const filename = process.argv[2];
 
 // TODO: specify output filename?
-var outputFilename = './drugs.json';
+const outputFilename = './drugs.json';
 
 fs.readFile(filename, 'utf8', function(error, data) {
   data = d3.csv.parse(data);
@@ -60,8 +61,12 @@ fs.readFile(filename, 'utf8', function(error, data) {
       id: d['HMS LINCS ID'],
       hmsLincsId: d['HMS LINCS ID'],
       name: labelValue(d['Name']),
-      nominalTarget: labelValue(d['Nominal target / Pathway']),
-      parentTargets: [],
+      targetProtein: labelValue(d['Target - protein']),
+      targetProteinClass: labelValue(d['Target - protein_class']),
+      targetGene: labelValue(d['Target - gene']),
+      targetRole: labelValue(d['Target - role']),
+      targetPathway: labelValue(d['Target - pathway']),
+      targetFunction: labelValue(d['Target - function']),
       class: labelValue(d['Class'], classValues),
       synonyms: _.compact(_.split(d['Synonyms'], ';')),
       searchIndexOnlyNames: _.compact(_.split(d['Search-index-only names'], ';'))

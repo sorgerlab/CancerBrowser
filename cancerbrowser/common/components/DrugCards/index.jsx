@@ -45,6 +45,20 @@ function labelValueGroupBy(data, groupBy) {
   }, {});
 }
 
+function groupDrugs(data, groupBy) {
+  return labelValueGroupBy(data, groupBy);
+}
+
+
+function matchLabel(queryRegex, labeledItem) {
+  const normalizedLabel =  StringUtils.normalize(labeledItem && labeledItem.label);
+  if (queryRegex.test(normalizedLabel)) {
+    return true;
+  }
+
+  return false;
+}
+
 /**
  * Returns true if the drug matches the search query, otherwis false
  */
@@ -59,8 +73,7 @@ function matchDrug(query, drug) {
   const queryRegex = RegExp(normalizedQuery);
 
   // check if the name matches
-  const normalizedName = StringUtils.normalize(drug.name && drug.name.label);
-  if (queryRegex.test(normalizedName)) {
+  if (matchLabel(queryRegex, drug.name)) {
     return true;
   }
 
@@ -77,6 +90,12 @@ function matchDrug(query, drug) {
     return true;
   }
 
+  // check if targets match
+  if (matchLabel(queryRegex, drug.targetGene) || matchLabel(queryRegex, drug.targetRole) ||
+      matchLabel(queryRegex, drug.targetPathway) || matchLabel(queryRegex, drug.targetFunction)) {
+    return true;
+  }
+
   return false;
 }
 
@@ -84,8 +103,12 @@ function matchDrug(query, drug) {
  * Get the group header based on the label in an object in the group
  */
 function groupHeader(group, groupBy) {
-  return (group[0] && groupBy && group[0][groupBy] && group[0][groupBy].label) ||
-    'Unknown';
+  const drug = group[0];
+  if (drug && drug[groupBy] && drug[groupBy].label) {
+    return drug[groupBy].label;
+  }
+
+  return 'Unknown';
 }
 
 /** Render all the filtered drugs as cards */
@@ -94,7 +117,7 @@ class DrugCards extends React.Component {
     super(props);
 
     this.state = {
-      groups: labelValueGroupBy(props.data, props.groupBy),
+      groups: groupDrugs(props.data, props.groupBy),
       search: ''
     };
 
@@ -109,7 +132,7 @@ class DrugCards extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.data !== this.props.data || nextProps.groupBy !== this.props.groupBy) {
-      this.setState({ groups: labelValueGroupBy(nextProps.data, nextProps.groupBy) });
+      this.setState({ groups: groupDrugs(nextProps.data, nextProps.groupBy) });
     }
   }
 
@@ -120,7 +143,7 @@ class DrugCards extends React.Component {
     const filteredData = data.filter(drug => matchDrug(value, drug));
     this.setState({
       search: value,
-      groups: labelValueGroupBy(filteredData, groupBy)
+      groups: groupDrugs(filteredData, groupBy)
     });
   }
 
@@ -173,8 +196,16 @@ class DrugCards extends React.Component {
   render() {
     const { groups } = this.state;
 
-    // sort the groups
+    // sort the groups with Unknown at the end
     const orderedGroupKeys = Object.keys(groups).sort();
+    const unknownIndex = orderedGroupKeys.indexOf('unknown');
+    if (unknownIndex !== -1 && unknownIndex !== orderedGroupKeys.length - 1) {
+      // remove unknown
+      orderedGroupKeys.splice(unknownIndex, 1);
+
+      // place at the end
+      orderedGroupKeys.push('unknown');
+    }
 
     return (
       <div className='DrugCards'>

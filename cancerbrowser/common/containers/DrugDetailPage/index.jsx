@@ -6,6 +6,7 @@ import { toList } from '../../utils/string_utils';
 
 import PageLayout from '../../components/PageLayout';
 import InfoPanel from '../../components/InfoPanel';
+import { drugImageUrl } from '../../components/DrugCard';
 
 import {
   fetchDrugInfoIfNeeded
@@ -38,9 +39,15 @@ class DrugDetailPage extends React.Component {
 
   renderInfo(drugInfo) {
     const details = [
-      {label: 'Class', value: drugInfo.class.label},
-      {label: 'LINCS ID', value: drugInfo.hmsLincsId.label},
-      {label: 'Synonyms', value: toList(drugInfo.synonyms, (s) => s.label)}
+      { label: 'Class', value: drugInfo.class.label },
+      { label: 'LINCS ID', value: drugInfo.hmsLincsId },
+      { label: 'Synonyms', value: toList(drugInfo.synonyms) },
+      { label: 'Target Gene', value: drugInfo.targetGene.label },
+      { label: 'Target Role', value: drugInfo.targetRole.label },
+      { label: 'Target Pathway', value: drugInfo.targetPathway.label },
+      { label: 'Target Function', value: drugInfo.targetFunction.label },
+      { label: 'Target Protein', value: drugInfo.targetProtein.label },
+      { label: 'Target Protein Class', value: drugInfo.targetProteinClass.label }
     ];
 
     return (
@@ -76,13 +83,15 @@ class DrugDetailPage extends React.Component {
       return (
         <PageLayout className='DrugDetailPage'>
           <h1 className='name'>{ drugInfo.name.label }</h1>
-
-          <div className='clearfix'></div>
-
-          <h3>General Information</h3>
-          {this.renderInfo(drugInfo)}
-          <h3>Dataset Displays</h3>
-          {this.renderDatasets(drugInfo)}
+          <img src={drugImageUrl(drugInfo)} />
+          <div>
+            <h3>General Information</h3>
+            {this.renderInfo(drugInfo)}
+          </div>
+          <div>
+            <h3>Dataset Displays</h3>
+            {this.renderDatasets(drugInfo)}
+          </div>
         </PageLayout>
       );
     } else {
