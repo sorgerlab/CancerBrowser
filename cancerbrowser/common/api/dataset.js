@@ -93,7 +93,7 @@ function transformData(dataset, info, format) {
     case 'receptor_profile':
       dataset = transformReceptorData(dataset);
 
-      if(format === 'byReceptor') {
+      if(format === 'receptor') {
         dataset = convertToByReceptor(dataset);
       }
       break;

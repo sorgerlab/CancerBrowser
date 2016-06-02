@@ -1,6 +1,7 @@
 import React from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import classNames from 'classnames';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import {
   fetchDatasetIfNeeded,
@@ -17,9 +18,11 @@ import {
 
 
 import {
-  changeActiveFilters
+  changeActiveFilters,
+  changeViewBy
 } from '../../actions/datasetReceptorProfile';
 
+import { ButtonGroup, Button } from 'react-bootstrap';
 import PageLayout from '../../components/PageLayout';
 import WaterfallSmallMults from '../../components/WaterfallSmallMults';
 import { cellLineFilters } from '../../containers/CellLineBrowserPage';
@@ -37,7 +40,8 @@ const propTypes = {
   filterGroups: React.PropTypes.array,
   filteredCellLines: React.PropTypes.array,
   cellLineCounts: React.PropTypes.object,
-  receptors: React.PropTypes.array
+  receptors: React.PropTypes.array,
+  viewBy: React.PropTypes.string
 };
 
 function mapStateToProps(state) {
@@ -48,10 +52,12 @@ function mapStateToProps(state) {
   const props = {
     datasetInfo: datasets.info.items[datasetId],
     datasetData: dataset && dataset.items,
-    activeFilters: datasetReceptorProfile.activeFilters,
     filteredCellLines: cellLines.filtered,
     cellLineCounts: cellLines.counts,
-    receptors: receptors.items
+    receptors: receptors.items,
+    activeFilters: datasetReceptorProfile.activeFilters,
+    viewBy: datasetReceptorProfile.viewBy
+
   };
 
   Object.assign(props, {
@@ -118,25 +124,30 @@ class DatasetReceptorProfilePage extends React.Component {
   constructor(props) {
     super(props);
     this.onFilterChange = this.onFilterChange.bind(this);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
+    this.renderViewOptions = this.renderViewOptions.bind(this);
   }
 
   componentDidMount() {
-    const { dispatch, activeFilters, filterGroups } = this.props;
-    dispatch(fetchDatasetIfNeeded(datasetId));
+    const { dispatch, activeFilters, filterGroups, viewBy } = this.props;
+    dispatch(fetchDatasetIfNeeded(datasetId, viewBy));
     dispatch(fetchDatasetInfo(datasetId));
     dispatch(fetchCellLinesIfNeeded(activeFilters, filterGroups));
     dispatch(fetchReceptorsIfNeeded());
   }
 
+  handleViewByChange(newView) {
+    const { dispatch } = this.props;
+    dispatch(changeViewBy(newView));
+    dispatch(fetchDatasetIfNeeded(datasetId, newView));
+  }
+
   onFilterChange(newFilters) {
     const { dispatch, filterGroups } = this.props;
-
     dispatch(changeActiveFilters(newFilters));
-    dispatch(fetchCellLinesIfNeeded(newFilters, filterGroups));
+
+    // TODO these should just be affected by cellLineFilters not all the filter groups...
+    dispatch(fetchCellLinesIfNeeded(_.pick(newFilters, 'cellLineFilters'),
+      filterGroups.filter(filterGroup => filterGroup.id === 'cellLineFilters')));
   }
 
   renderSmallMults(data) {
@@ -165,14 +176,38 @@ class DatasetReceptorProfilePage extends React.Component {
     );
   }
 
+  renderViewOptions() {
+    const { viewBy } = this.props;
+
+    return (
+      <div className='cell-line-view-controls'>
+        <label className='small-label'>View By</label>
+        <div>
+          <ButtonGroup>
+            <Button className={classNames({ active: viewBy === 'receptor' })}
+               onClick={this.handleViewByChange.bind(this, 'receptor')}>
+              Receptor
+            </Button>
+            <Button className={classNames({ active: viewBy === 'cellLine' })}
+                onClick={this.handleViewByChange.bind(this, 'cellLine')}>
+              Cell Line
+            </Button>
+          </ButtonGroup>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const { datasetInfo, filteredCellLines, datasetData } = this.props;
 
-    const filteredData = filterDataByCellLines(datasetData, filteredCellLines);
-
+    // const filteredData = filterDataByCellLines(datasetData, filteredCellLines);
+    const filteredData = datasetData;
+    console.log('filtered data', filteredData, this.props.viewBy);
     return (
       <PageLayout className='DatasetReceptorProfilePage' sidebar={this.renderSidebar()}>
         <h1>{datasetInfo && datasetInfo.label}</h1>
+        {this.renderViewOptions()}
         {this.renderSmallMults(filteredData)}
       </PageLayout>
     );

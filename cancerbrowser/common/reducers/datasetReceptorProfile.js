@@ -1,4 +1,7 @@
-import { CHANGE_ACTIVE_FILTERS } from '../actions/datasetReceptorProfile';
+import {
+  CHANGE_ACTIVE_FILTERS,
+  CHANGE_VIEW_BY
+} from '../actions/datasetReceptorProfile';
 
 const baseCellLineDatasetFilter = {
   id: 'dataset',
@@ -6,7 +9,8 @@ const baseCellLineDatasetFilter = {
 };
 
 const INITIAL_STATE = {
-  activeFilters: { cellLineFilters: [baseCellLineDatasetFilter] }
+  activeFilters: { cellLineFilters: [baseCellLineDatasetFilter] },
+  viewBy: 'receptor'
 };
 
 function datasetReceptorProfile(state = INITIAL_STATE, action) {
@@ -14,6 +18,10 @@ function datasetReceptorProfile(state = INITIAL_STATE, action) {
     case CHANGE_ACTIVE_FILTERS:
       return Object.assign({}, state, {
         activeFilters: action.activeFilters
+      });
+    case CHANGE_VIEW_BY:
+      return Object.assign({}, state, {
+        viewBy: action.viewBy
       });
     default:
       return state;
