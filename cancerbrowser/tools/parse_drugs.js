@@ -53,31 +53,20 @@ const filename = process.argv[2];
 // TODO: specify output filename?
 const outputFilename = './drugs.json';
 
-// specify the columns to be merged into a targets array
-const targetColumnPrefix = 'Target - ';
-const targetColumns = ['gene', 'role', 'pathway', 'function'];
-
 fs.readFile(filename, 'utf8', function(error, data) {
   data = d3.csv.parse(data);
 
   const transformed = data.map(function(d) {
-
-    // build up the targets array. targets[0] is what we will display. keep type around.
-    const targets = _.compact(targetColumns.map(colType => {
-      const colName = `${targetColumnPrefix}${colType}`;
-      // if this column is available, add it in
-      if (d[colName]) {
-        return { label: d[colName], value: normalize(d[colName]), type: colType };
-      }
-
-      return null;
-    }));
-
     return {
       id: d['HMS LINCS ID'],
       hmsLincsId: d['HMS LINCS ID'],
       name: labelValue(d['Name']),
-      targets,
+      targetProtein: labelValue(d['Target - protein']),
+      targetProteinClass: labelValue(d['Target - protein_class']),
+      targetGene: labelValue(d['Target - gene']),
+      targetRole: labelValue(d['Target - role']),
+      targetPathway: labelValue(d['Target - pathway']),
+      targetFunction: labelValue(d['Target - function']),
       class: labelValue(d['Class'], classValues),
       synonyms: _.compact(_.split(d['Synonyms'], ';')),
       searchIndexOnlyNames: _.compact(_.split(d['Search-index-only names'], ';'))

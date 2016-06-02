@@ -6,28 +6,30 @@
       "label": "Seliciclib",
       "value": "seliciclib"
     },
-    "targets": [
-      {
-        "label": "CDK1",
-        "value": "cdk1",
-        "type": "gene"
-      },
-      {
-        "label": "CDC2",
-        "value": "cdc2",
-        "type": "role"
-      },
-      {
-        "label": "CDK",
-        "value": "cdk",
-        "type": "pathway"
-      },
-      {
-        "label": "CELL_CYCLE",
-        "value": "cell_cycle",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "CDK1_HUMAN",
+      "value": "cdk1_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "CDK1",
+      "value": "cdk1"
+    },
+    "targetRole": {
+      "label": "CDC2",
+      "value": "cdc2"
+    },
+    "targetPathway": {
+      "label": "CDK",
+      "value": "cdk"
+    },
+    "targetFunction": {
+      "label": "CELL_CYCLE",
+      "value": "cell_cycle"
+    },
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -46,28 +48,30 @@
       "label": "AT-7519",
       "value": "at7519"
     },
-    "targets": [
-      {
-        "label": "CDK2",
-        "value": "cdk2",
-        "type": "gene"
-      },
-      {
-        "label": "CDK2",
-        "value": "cdk2",
-        "type": "role"
-      },
-      {
-        "label": "CDK",
-        "value": "cdk",
-        "type": "pathway"
-      },
-      {
-        "label": "CELL_CYCLE",
-        "value": "cell_cycle",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "CDK2_HUMAN",
+      "value": "cdk2_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "CDK2",
+      "value": "cdk2"
+    },
+    "targetRole": {
+      "label": "CDK2",
+      "value": "cdk2"
+    },
+    "targetPathway": {
+      "label": "CDK",
+      "value": "cdk"
+    },
+    "targetFunction": {
+      "label": "CELL_CYCLE",
+      "value": "cell_cycle"
+    },
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -82,28 +86,30 @@
       "label": "AZD7762",
       "value": "azd7762"
     },
-    "targets": [
-      {
-        "label": "CHEK1",
-        "value": "chek1",
-        "type": "gene"
-      },
-      {
-        "label": "CHK1",
-        "value": "chk1",
-        "type": "role"
-      },
-      {
-        "label": "CHECKPOINT",
-        "value": "checkpoint",
-        "type": "pathway"
-      },
-      {
-        "label": "CELL_CYCLE",
-        "value": "cell_cycle",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "CHK1_HUMAN",
+      "value": "chk1_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "CHEK1",
+      "value": "chek1"
+    },
+    "targetRole": {
+      "label": "CHK1",
+      "value": "chk1"
+    },
+    "targetPathway": {
+      "label": "CHECKPOINT",
+      "value": "checkpoint"
+    },
+    "targetFunction": {
+      "label": "CELL_CYCLE",
+      "value": "cell_cycle"
+    },
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -118,28 +124,30 @@
       "label": "AZD8055",
       "value": "azd8055"
     },
-    "targets": [
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "gene"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "role"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "pathway"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "MTOR_HUMAN",
+      "value": "mtor_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetRole": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetPathway": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetFunction": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -154,18 +162,21 @@
       "label": "Sorafenib",
       "value": "sorafenib"
     },
-    "targets": [
-      {
-        "label": "RAF",
-        "value": "raf",
-        "type": "pathway"
-      },
-      {
-        "label": "MAPK",
-        "value": "mapk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "RAF",
+      "value": "raf"
+    },
+    "targetFunction": {
+      "label": "MAPK",
+      "value": "mapk"
+    },
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -184,28 +195,30 @@
       "label": "CP466722",
       "value": "cp466722"
     },
-    "targets": [
-      {
-        "label": "ATM",
-        "value": "atm",
-        "type": "gene"
-      },
-      {
-        "label": "ATM",
-        "value": "atm",
-        "type": "role"
-      },
-      {
-        "label": "CHECKPOINT",
-        "value": "checkpoint",
-        "type": "pathway"
-      },
-      {
-        "label": "CELL_CYCLE",
-        "value": "cell_cycle",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "ATM_HUMAN",
+      "value": "atm_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "ATM",
+      "value": "atm"
+    },
+    "targetRole": {
+      "label": "ATM",
+      "value": "atm"
+    },
+    "targetPathway": {
+      "label": "CHECKPOINT",
+      "value": "checkpoint"
+    },
+    "targetFunction": {
+      "label": "CELL_CYCLE",
+      "value": "cell_cycle"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -220,28 +233,30 @@
       "label": "CP724714",
       "value": "cp724714"
     },
-    "targets": [
-      {
-        "label": "ERBB2",
-        "value": "erbb2",
-        "type": "gene"
-      },
-      {
-        "label": "HER2",
-        "value": "her2",
-        "type": "role"
-      },
-      {
-        "label": "EGF",
-        "value": "egf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "ERBB2_HUMAN",
+      "value": "erbb2_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": {
+      "label": "ERBB2",
+      "value": "erbb2"
+    },
+    "targetRole": {
+      "label": "HER2",
+      "value": "her2"
+    },
+    "targetPathway": {
+      "label": "EGF",
+      "value": "egf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -256,28 +271,30 @@
       "label": "Alvocidib",
       "value": "alvocidib"
     },
-    "targets": [
-      {
-        "label": "CDK1",
-        "value": "cdk1",
-        "type": "gene"
-      },
-      {
-        "label": "CDC2",
-        "value": "cdc2",
-        "type": "role"
-      },
-      {
-        "label": "CDK",
-        "value": "cdk",
-        "type": "pathway"
-      },
-      {
-        "label": "CELL_CYCLE",
-        "value": "cell_cycle",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "CDK1_HUMAN",
+      "value": "cdk1_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "CDK1",
+      "value": "cdk1"
+    },
+    "targetRole": {
+      "label": "CDC2",
+      "value": "cdc2"
+    },
+    "targetPathway": {
+      "label": "CDK",
+      "value": "cdk"
+    },
+    "targetFunction": {
+      "label": "CELL_CYCLE",
+      "value": "cell_cycle"
+    },
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -297,28 +314,30 @@
       "label": "GW843682X",
       "value": "gw843682x"
     },
-    "targets": [
-      {
-        "label": "PLK1",
-        "value": "plk1",
-        "type": "gene"
-      },
-      {
-        "label": "PLK",
-        "value": "plk",
-        "type": "role"
-      },
-      {
-        "label": "MITOSIS",
-        "value": "mitosis",
-        "type": "pathway"
-      },
-      {
-        "label": "CELL_CYCLE",
-        "value": "cell_cycle",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "PLK1_HUMAN",
+      "value": "plk1_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "PLK1",
+      "value": "plk1"
+    },
+    "targetRole": {
+      "label": "PLK",
+      "value": "plk"
+    },
+    "targetPathway": {
+      "label": "MITOSIS",
+      "value": "mitosis"
+    },
+    "targetFunction": {
+      "label": "CELL_CYCLE",
+      "value": "cell_cycle"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -335,7 +354,12 @@
       "label": "HG-5-113-01",
       "value": "hg511301"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -350,7 +374,12 @@
       "label": "HG-5-88-01",
       "value": "hg58801"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -365,7 +394,12 @@
       "label": "HG-6-64-01",
       "value": "hg66401"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -382,28 +416,30 @@
       "label": "Neratinib",
       "value": "neratinib"
     },
-    "targets": [
-      {
-        "label": "ERBB2",
-        "value": "erbb2",
-        "type": "gene"
-      },
-      {
-        "label": "HER2",
-        "value": "her2",
-        "type": "role"
-      },
-      {
-        "label": "EGF",
-        "value": "egf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "ERBB2_HUMAN",
+      "value": "erbb2_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": {
+      "label": "ERBB2",
+      "value": "erbb2"
+    },
+    "targetRole": {
+      "label": "HER2",
+      "value": "her2"
+    },
+    "targetPathway": {
+      "label": "EGF",
+      "value": "egf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -420,7 +456,12 @@
       "label": "JW-7-24-1",
       "value": "jw7241"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -435,13 +476,18 @@
       "label": "Dasatinib",
       "value": "dasatinib"
     },
-    "targets": [
-      {
-        "label": "NRTK",
-        "value": "nrtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": {
+      "label": "NRTK",
+      "value": "nrtk"
+    },
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -460,23 +506,24 @@
       "label": "Tozasertib",
       "value": "tozasertib"
     },
-    "targets": [
-      {
-        "label": "AUORA",
-        "value": "auora",
-        "type": "role"
-      },
-      {
-        "label": "MITOSIS",
-        "value": "mitosis",
-        "type": "pathway"
-      },
-      {
-        "label": "CELL_CYCLE",
-        "value": "cell_cycle",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": {
+      "label": "AUORA",
+      "value": "auora"
+    },
+    "targetPathway": {
+      "label": "MITOSIS",
+      "value": "mitosis"
+    },
+    "targetFunction": {
+      "label": "CELL_CYCLE",
+      "value": "cell_cycle"
+    },
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -494,28 +541,30 @@
       "label": "Imatinib",
       "value": "imatinib"
     },
-    "targets": [
-      {
-        "label": "ABL1",
-        "value": "abl1",
-        "type": "gene"
-      },
-      {
-        "label": "ABL",
-        "value": "abl",
-        "type": "role"
-      },
-      {
-        "label": "ABL_FAMILY",
-        "value": "abl_family",
-        "type": "pathway"
-      },
-      {
-        "label": "NRTK",
-        "value": "nrtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "ABL1_HUMAN",
+      "value": "abl1_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "ABL1",
+      "value": "abl1"
+    },
+    "targetRole": {
+      "label": "ABL",
+      "value": "abl"
+    },
+    "targetPathway": {
+      "label": "ABL_FAMILY",
+      "value": "abl_family"
+    },
+    "targetFunction": {
+      "label": "NRTK",
+      "value": "nrtk"
+    },
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -536,28 +585,30 @@
       "label": "NVP-TAE684",
       "value": "nvptae684"
     },
-    "targets": [
-      {
-        "label": "ALK",
-        "value": "alk",
-        "type": "gene"
-      },
-      {
-        "label": "ALK",
-        "value": "alk",
-        "type": "role"
-      },
-      {
-        "label": "MISC_RTK",
-        "value": "misc_rtk",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "ALK_HUMAN",
+      "value": "alk_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": {
+      "label": "ALK",
+      "value": "alk"
+    },
+    "targetRole": {
+      "label": "ALK",
+      "value": "alk"
+    },
+    "targetPathway": {
+      "label": "MISC_RTK",
+      "value": "misc_rtk"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -572,28 +623,30 @@
       "label": "CGP60474",
       "value": "cgp60474"
     },
-    "targets": [
-      {
-        "label": "CDK1",
-        "value": "cdk1",
-        "type": "gene"
-      },
-      {
-        "label": "CDC2",
-        "value": "cdc2",
-        "type": "role"
-      },
-      {
-        "label": "CDK",
-        "value": "cdk",
-        "type": "pathway"
-      },
-      {
-        "label": "CELL_CYCLE",
-        "value": "cell_cycle",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "CDK1_HUMAN",
+      "value": "cdk1_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "CDK1",
+      "value": "cdk1"
+    },
+    "targetRole": {
+      "label": "CDC2",
+      "value": "cdc2"
+    },
+    "targetPathway": {
+      "label": "CDK",
+      "value": "cdk"
+    },
+    "targetFunction": {
+      "label": "CELL_CYCLE",
+      "value": "cell_cycle"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -611,28 +664,30 @@
       "label": "PD173074",
       "value": "pd173074"
     },
-    "targets": [
-      {
-        "label": "FGFR1",
-        "value": "fgfr1",
-        "type": "gene"
-      },
-      {
-        "label": "FGFR",
-        "value": "fgfr",
-        "type": "role"
-      },
-      {
-        "label": "FGF",
-        "value": "fgf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "FGFR1_HUMAN",
+      "value": "fgfr1_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": {
+      "label": "FGFR1",
+      "value": "fgfr1"
+    },
+    "targetRole": {
+      "label": "FGFR",
+      "value": "fgfr"
+    },
+    "targetPathway": {
+      "label": "FGF",
+      "value": "fgf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -647,28 +702,30 @@
       "label": "Crizotinib",
       "value": "crizotinib"
     },
-    "targets": [
-      {
-        "label": "MET",
-        "value": "met",
-        "type": "gene"
-      },
-      {
-        "label": "C-MET",
-        "value": "cmet",
-        "type": "role"
-      },
-      {
-        "label": "HGF",
-        "value": "hgf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "MET_HUMAN",
+      "value": "met_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": {
+      "label": "MET",
+      "value": "met"
+    },
+    "targetRole": {
+      "label": "C-MET",
+      "value": "cmet"
+    },
+    "targetPathway": {
+      "label": "HGF",
+      "value": "hgf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -687,28 +744,30 @@
       "label": "BMS345541",
       "value": "bms345541"
     },
-    "targets": [
-      {
-        "label": "IKBKB",
-        "value": "ikbkb",
-        "type": "gene"
-      },
-      {
-        "label": "IKK",
-        "value": "ikk",
-        "type": "role"
-      },
-      {
-        "label": "IKK",
-        "value": "ikk",
-        "type": "pathway"
-      },
-      {
-        "label": "NFKB",
-        "value": "nfkb",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "IKKB_HUMAN",
+      "value": "ikkb_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "IKBKB",
+      "value": "ikbkb"
+    },
+    "targetRole": {
+      "label": "IKK",
+      "value": "ikk"
+    },
+    "targetPathway": {
+      "label": "IKK",
+      "value": "ikk"
+    },
+    "targetFunction": {
+      "label": "NFKB",
+      "value": "nfkb"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -723,18 +782,21 @@
       "label": "KIN001-043",
       "value": "kin001043"
     },
-    "targets": [
-      {
-        "label": "GSK3",
-        "value": "gsk3",
-        "type": "pathway"
-      },
-      {
-        "label": "WNT",
-        "value": "wnt",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "GSK3",
+      "value": "gsk3"
+    },
+    "targetFunction": {
+      "label": "WNT",
+      "value": "wnt"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -749,13 +811,18 @@
       "label": "Saracatinib",
       "value": "saracatinib"
     },
-    "targets": [
-      {
-        "label": "NRTK",
-        "value": "nrtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": {
+      "label": "NRTK",
+      "value": "nrtk"
+    },
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -772,18 +839,21 @@
       "label": "Sigma A6730",
       "value": "sigmaa6730"
     },
-    "targets": [
-      {
-        "label": "AKT",
-        "value": "akt",
-        "type": "pathway"
-      },
-      {
-        "label": "AKT_PI3K",
-        "value": "akt_pi3k",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "AKT",
+      "value": "akt"
+    },
+    "targetFunction": {
+      "label": "AKT_PI3K",
+      "value": "akt_pi3k"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -802,7 +872,12 @@
       "label": "WH-4-025",
       "value": "wh4025"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": null,
     "synonyms": [],
     "searchIndexOnlyNames": []
@@ -814,28 +889,30 @@
       "label": "R406",
       "value": "r406"
     },
-    "targets": [
-      {
-        "label": "SYK",
-        "value": "syk",
-        "type": "gene"
-      },
-      {
-        "label": "SYK",
-        "value": "syk",
-        "type": "role"
-      },
-      {
-        "label": "SYK_FAMILY",
-        "value": "syk_family",
-        "type": "pathway"
-      },
-      {
-        "label": "NRTK",
-        "value": "nrtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "KSYK_HUMAN",
+      "value": "ksyk_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "SYK",
+      "value": "syk"
+    },
+    "targetRole": {
+      "label": "SYK",
+      "value": "syk"
+    },
+    "targetPathway": {
+      "label": "SYK_FAMILY",
+      "value": "syk_family"
+    },
+    "targetFunction": {
+      "label": "NRTK",
+      "value": "nrtk"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -850,28 +927,30 @@
       "label": "BI-2536",
       "value": "bi2536"
     },
-    "targets": [
-      {
-        "label": "PLK1",
-        "value": "plk1",
-        "type": "gene"
-      },
-      {
-        "label": "PLK",
-        "value": "plk",
-        "type": "role"
-      },
-      {
-        "label": "MITOSIS",
-        "value": "mitosis",
-        "type": "pathway"
-      },
-      {
-        "label": "CELL_CYCLE",
-        "value": "cell_cycle",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "PLK1_HUMAN",
+      "value": "plk1_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "PLK1",
+      "value": "plk1"
+    },
+    "targetRole": {
+      "label": "PLK",
+      "value": "plk"
+    },
+    "targetPathway": {
+      "label": "MITOSIS",
+      "value": "mitosis"
+    },
+    "targetFunction": {
+      "label": "CELL_CYCLE",
+      "value": "cell_cycle"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -888,28 +967,30 @@
       "label": "A443654",
       "value": "a443654"
     },
-    "targets": [
-      {
-        "label": "AKT1",
-        "value": "akt1",
-        "type": "gene"
-      },
-      {
-        "label": "AKT",
-        "value": "akt",
-        "type": "role"
-      },
-      {
-        "label": "AKT",
-        "value": "akt",
-        "type": "pathway"
-      },
-      {
-        "label": "AKT_PI3K",
-        "value": "akt_pi3k",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "AKT1_HUMAN",
+      "value": "akt1_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "AKT1",
+      "value": "akt1"
+    },
+    "targetRole": {
+      "label": "AKT",
+      "value": "akt"
+    },
+    "targetPathway": {
+      "label": "AKT",
+      "value": "akt"
+    },
+    "targetFunction": {
+      "label": "AKT_PI3K",
+      "value": "akt_pi3k"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -924,28 +1005,30 @@
       "label": "SB590885",
       "value": "sb590885"
     },
-    "targets": [
-      {
-        "label": "BRAF",
-        "value": "braf",
-        "type": "gene"
-      },
-      {
-        "label": "BRAF",
-        "value": "braf",
-        "type": "role"
-      },
-      {
-        "label": "RAF",
-        "value": "raf",
-        "type": "pathway"
-      },
-      {
-        "label": "MAPK",
-        "value": "mapk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "BRAF_HUMAN",
+      "value": "braf_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": {
+      "label": "BRAF",
+      "value": "braf"
+    },
+    "targetRole": {
+      "label": "BRAF",
+      "value": "braf"
+    },
+    "targetPathway": {
+      "label": "RAF",
+      "value": "raf"
+    },
+    "targetFunction": {
+      "label": "MAPK",
+      "value": "mapk"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -960,28 +1043,30 @@
       "label": "GDC-0941",
       "value": "gdc0941"
     },
-    "targets": [
-      {
-        "label": "PIK3CA",
-        "value": "pik3ca",
-        "type": "gene"
-      },
-      {
-        "label": "PI3KA",
-        "value": "pi3ka",
-        "type": "role"
-      },
-      {
-        "label": "PI3K",
-        "value": "pi3k",
-        "type": "pathway"
-      },
-      {
-        "label": "AKT_PI3K",
-        "value": "akt_pi3k",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "PK3CA_HUMAN",
+      "value": "pk3ca_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "PIK3CA",
+      "value": "pik3ca"
+    },
+    "targetRole": {
+      "label": "PI3KA",
+      "value": "pi3ka"
+    },
+    "targetPathway": {
+      "label": "PI3K",
+      "value": "pi3k"
+    },
+    "targetFunction": {
+      "label": "AKT_PI3K",
+      "value": "akt_pi3k"
+    },
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -996,28 +1081,30 @@
       "label": "PD184352",
       "value": "pd184352"
     },
-    "targets": [
-      {
-        "label": "MAP2K1",
-        "value": "map2k1",
-        "type": "gene"
-      },
-      {
-        "label": "MEK1",
-        "value": "mek1",
-        "type": "role"
-      },
-      {
-        "label": "MEK",
-        "value": "mek",
-        "type": "pathway"
-      },
-      {
-        "label": "MAPK",
-        "value": "mapk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "MP2K1_HUMAN",
+      "value": "mp2k1_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "MAP2K1",
+      "value": "map2k1"
+    },
+    "targetRole": {
+      "label": "MEK1",
+      "value": "mek1"
+    },
+    "targetPathway": {
+      "label": "MEK",
+      "value": "mek"
+    },
+    "targetFunction": {
+      "label": "MAPK",
+      "value": "mapk"
+    },
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -1034,7 +1121,12 @@
       "label": "PLX-4720",
       "value": "plx4720"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1049,18 +1141,21 @@
       "label": "Lapatinib",
       "value": "lapatinib"
     },
-    "targets": [
-      {
-        "label": "EGF",
-        "value": "egf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "EGF",
+      "value": "egf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -1079,28 +1174,30 @@
       "label": "Sirolimus",
       "value": "sirolimus"
     },
-    "targets": [
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "gene"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "role"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "pathway"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "MTOR_HUMAN",
+      "value": "mtor_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetRole": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetPathway": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetFunction": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -1117,18 +1214,21 @@
       "label": "ZSTK474",
       "value": "zstk474"
     },
-    "targets": [
-      {
-        "label": "PI3K",
-        "value": "pi3k",
-        "type": "pathway"
-      },
-      {
-        "label": "AKT_PI3K",
-        "value": "akt_pi3k",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "PI3K",
+      "value": "pi3k"
+    },
+    "targetFunction": {
+      "label": "AKT_PI3K",
+      "value": "akt_pi3k"
+    },
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -1143,28 +1243,30 @@
       "label": "BX-912",
       "value": "bx912"
     },
-    "targets": [
-      {
-        "label": "PDPK1",
-        "value": "pdpk1",
-        "type": "gene"
-      },
-      {
-        "label": "PDPK",
-        "value": "pdpk",
-        "type": "role"
-      },
-      {
-        "label": "AKT",
-        "value": "akt",
-        "type": "pathway"
-      },
-      {
-        "label": "AKT_PI3K",
-        "value": "akt_pi3k",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "PDPK1_HUMAN",
+      "value": "pdpk1_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "PDPK1",
+      "value": "pdpk1"
+    },
+    "targetRole": {
+      "label": "PDPK",
+      "value": "pdpk"
+    },
+    "targetPathway": {
+      "label": "AKT",
+      "value": "akt"
+    },
+    "targetFunction": {
+      "label": "AKT_PI3K",
+      "value": "akt_pi3k"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1179,18 +1281,21 @@
       "label": "Selumetinib",
       "value": "selumetinib"
     },
-    "targets": [
-      {
-        "label": "MEK",
-        "value": "mek",
-        "type": "pathway"
-      },
-      {
-        "label": "MAPK",
-        "value": "mapk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "MEK",
+      "value": "mek"
+    },
+    "targetFunction": {
+      "label": "MAPK",
+      "value": "mapk"
+    },
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -1208,18 +1313,21 @@
       "label": "MK2206",
       "value": "mk2206"
     },
-    "targets": [
-      {
-        "label": "AKT",
-        "value": "akt",
-        "type": "pathway"
-      },
-      {
-        "label": "AKT_PI3K",
-        "value": "akt_pi3k",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "AKT",
+      "value": "akt"
+    },
+    "targetFunction": {
+      "label": "AKT_PI3K",
+      "value": "akt_pi3k"
+    },
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -1234,28 +1342,30 @@
       "label": "AZD-6482",
       "value": "azd6482"
     },
-    "targets": [
-      {
-        "label": "PIK3CB",
-        "value": "pik3cb",
-        "type": "gene"
-      },
-      {
-        "label": "PI3KB",
-        "value": "pi3kb",
-        "type": "role"
-      },
-      {
-        "label": "PI3K",
-        "value": "pi3k",
-        "type": "pathway"
-      },
-      {
-        "label": "AKT_PI3K",
-        "value": "akt_pi3k",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "PK3CB_HUMAN",
+      "value": "pk3cb_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "PIK3CB",
+      "value": "pik3cb"
+    },
+    "targetRole": {
+      "label": "PI3KB",
+      "value": "pi3kb"
+    },
+    "targetPathway": {
+      "label": "PI3K",
+      "value": "pi3k"
+    },
+    "targetFunction": {
+      "label": "AKT_PI3K",
+      "value": "akt_pi3k"
+    },
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -1272,28 +1382,30 @@
       "label": "NU7441",
       "value": "nu7441"
     },
-    "targets": [
-      {
-        "label": "PRKDC",
-        "value": "prkdc",
-        "type": "gene"
-      },
-      {
-        "label": "DNAPK",
-        "value": "dnapk",
-        "type": "role"
-      },
-      {
-        "label": "DNA_REPAIR",
-        "value": "dna_repair",
-        "type": "pathway"
-      },
-      {
-        "label": "REPLICATION",
-        "value": "replication",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "PRKDC_HUMAN",
+      "value": "prkdc_human"
+    },
+    "targetProteinClass": {
+      "label": "DNA_ENZYME",
+      "value": "dna_enzyme"
+    },
+    "targetGene": {
+      "label": "PRKDC",
+      "value": "prkdc"
+    },
+    "targetRole": {
+      "label": "DNAPK",
+      "value": "dnapk"
+    },
+    "targetPathway": {
+      "label": "DNA_REPAIR",
+      "value": "dna_repair"
+    },
+    "targetFunction": {
+      "label": "REPLICATION",
+      "value": "replication"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1310,28 +1422,30 @@
       "label": "OSI-027",
       "value": "osi027"
     },
-    "targets": [
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "gene"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "role"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "pathway"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "MTOR_HUMAN",
+      "value": "mtor_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetRole": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetPathway": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetFunction": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -1346,28 +1460,30 @@
       "label": "WYE-125132",
       "value": "wye125132"
     },
-    "targets": [
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "gene"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "role"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "pathway"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "MTOR_HUMAN",
+      "value": "mtor_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetRole": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetPathway": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetFunction": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1382,28 +1498,30 @@
       "label": "Barasertib",
       "value": "barasertib"
     },
-    "targets": [
-      {
-        "label": "AURKB",
-        "value": "aurkb",
-        "type": "gene"
-      },
-      {
-        "label": "AUORA",
-        "value": "auora",
-        "type": "role"
-      },
-      {
-        "label": "MITOSIS",
-        "value": "mitosis",
-        "type": "pathway"
-      },
-      {
-        "label": "CELL_CYCLE",
-        "value": "cell_cycle",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "AURKB_HUMAN",
+      "value": "aurkb_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "AURKB",
+      "value": "aurkb"
+    },
+    "targetRole": {
+      "label": "AUORA",
+      "value": "auora"
+    },
+    "targetPathway": {
+      "label": "MITOSIS",
+      "value": "mitosis"
+    },
+    "targetFunction": {
+      "label": "CELL_CYCLE",
+      "value": "cell_cycle"
+    },
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -1420,7 +1538,12 @@
       "label": "Vemurafenib",
       "value": "vemurafenib"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -1442,28 +1565,30 @@
       "label": "Enzastaurin",
       "value": "enzastaurin"
     },
-    "targets": [
-      {
-        "label": "PRKCB",
-        "value": "prkcb",
-        "type": "gene"
-      },
-      {
-        "label": "PRKCB",
-        "value": "prkcb",
-        "type": "role"
-      },
-      {
-        "label": "PKC",
-        "value": "pkc",
-        "type": "pathway"
-      },
-      {
-        "label": "PKC",
-        "value": "pkc",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "KPCB_HUMAN",
+      "value": "kpcb_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "PRKCB",
+      "value": "prkcb"
+    },
+    "targetRole": {
+      "label": "PRKCB",
+      "value": "prkcb"
+    },
+    "targetPathway": {
+      "label": "PKC",
+      "value": "pkc"
+    },
+    "targetFunction": {
+      "label": "PKC",
+      "value": "pkc"
+    },
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -1480,18 +1605,21 @@
       "label": "Palbociclib",
       "value": "palbociclib"
     },
-    "targets": [
-      {
-        "label": "CDK",
-        "value": "cdk",
-        "type": "pathway"
-      },
-      {
-        "label": "CELL_CYCLE",
-        "value": "cell_cycle",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE_COFACTOR",
+      "value": "kinase_cofactor"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "CDK",
+      "value": "cdk"
+    },
+    "targetFunction": {
+      "label": "CELL_CYCLE",
+      "value": "cell_cycle"
+    },
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -1510,18 +1638,21 @@
       "label": "PF562271",
       "value": "pf562271"
     },
-    "targets": [
-      {
-        "label": "FAK",
-        "value": "fak",
-        "type": "pathway"
-      },
-      {
-        "label": "INTEGRIN",
-        "value": "integrin",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "FAK",
+      "value": "fak"
+    },
+    "targetFunction": {
+      "label": "INTEGRIN",
+      "value": "integrin"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1538,7 +1669,15 @@
       "label": "PHA-793887",
       "value": "pha793887"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -1553,7 +1692,15 @@
       "label": "QL-X-138",
       "value": "qlx138"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1568,28 +1715,30 @@
       "label": "QL-XII-47",
       "value": "qlxii47"
     },
-    "targets": [
-      {
-        "label": "BTK",
-        "value": "btk",
-        "type": "gene"
-      },
-      {
-        "label": "BTK",
-        "value": "btk",
-        "type": "role"
-      },
-      {
-        "label": "TEC_FAMILY",
-        "value": "tec_family",
-        "type": "pathway"
-      },
-      {
-        "label": "NRTK",
-        "value": "nrtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "BTK_HUMAN",
+      "value": "btk_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "BTK",
+      "value": "btk"
+    },
+    "targetRole": {
+      "label": "BTK",
+      "value": "btk"
+    },
+    "targetPathway": {
+      "label": "TEC_FAMILY",
+      "value": "tec_family"
+    },
+    "targetFunction": {
+      "label": "NRTK",
+      "value": "nrtk"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1604,28 +1753,30 @@
       "label": "Torin1",
       "value": "torin1"
     },
-    "targets": [
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "gene"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "role"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "pathway"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "MTOR_HUMAN",
+      "value": "mtor_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetRole": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetPathway": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetFunction": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1640,28 +1791,30 @@
       "label": "Torin2",
       "value": "torin2"
     },
-    "targets": [
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "gene"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "role"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "pathway"
-      },
-      {
-        "label": "MTOR",
-        "value": "mtor",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "MTOR_HUMAN",
+      "value": "mtor_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetRole": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetPathway": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
+    "targetFunction": {
+      "label": "MTOR",
+      "value": "mtor"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1676,7 +1829,12 @@
       "label": "WZ-4-145",
       "value": "wz4145"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1691,7 +1849,12 @@
       "label": "WZ3105",
       "value": "wz3105"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1706,18 +1869,24 @@
       "label": "XMD11-50",
       "value": "xmd1150"
     },
-    "targets": [
-      {
-        "label": "LRRK2",
-        "value": "lrrk2",
-        "type": "gene"
-      },
-      {
-        "label": "LRRK2",
-        "value": "lrrk2",
-        "type": "role"
-      }
-    ],
+    "targetProtein": {
+      "label": "LRRK2_HUMAN",
+      "value": "lrrk2_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "LRRK2",
+      "value": "lrrk2"
+    },
+    "targetRole": {
+      "label": "LRRK2",
+      "value": "lrrk2"
+    },
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1734,7 +1903,12 @@
       "label": "XMD11-85h",
       "value": "xmd1185h"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1749,7 +1923,12 @@
       "label": "XMD16-144",
       "value": "xmd16144"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1764,28 +1943,30 @@
       "label": "Erlotinib",
       "value": "erlotinib"
     },
-    "targets": [
-      {
-        "label": "EGFR",
-        "value": "egfr",
-        "type": "gene"
-      },
-      {
-        "label": "EGFR",
-        "value": "egfr",
-        "type": "role"
-      },
-      {
-        "label": "EGF",
-        "value": "egf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "EGFR_HUMAN",
+      "value": "egfr_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": {
+      "label": "EGFR",
+      "value": "egfr"
+    },
+    "targetRole": {
+      "label": "EGFR",
+      "value": "egfr"
+    },
+    "targetPathway": {
+      "label": "EGF",
+      "value": "egf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -1804,28 +1985,30 @@
       "label": "Gefitinib",
       "value": "gefitinib"
     },
-    "targets": [
-      {
-        "label": "EGFR",
-        "value": "egfr",
-        "type": "gene"
-      },
-      {
-        "label": "EGFR",
-        "value": "egfr",
-        "type": "role"
-      },
-      {
-        "label": "EGF",
-        "value": "egf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "EGFR_HUMAN",
+      "value": "egfr_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": {
+      "label": "EGFR",
+      "value": "egfr"
+    },
+    "targetRole": {
+      "label": "EGFR",
+      "value": "egfr"
+    },
+    "targetPathway": {
+      "label": "EGF",
+      "value": "egf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -1844,7 +2027,12 @@
       "label": "Nilotinib",
       "value": "nilotinib"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -1863,18 +2051,21 @@
       "label": "JNK-9L",
       "value": "jnk9l"
     },
-    "targets": [
-      {
-        "label": "JNK",
-        "value": "jnk",
-        "type": "pathway"
-      },
-      {
-        "label": "MAPK",
-        "value": "mapk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "JNK",
+      "value": "jnk"
+    },
+    "targetFunction": {
+      "label": "MAPK",
+      "value": "mapk"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1891,18 +2082,21 @@
       "label": "PD0325901",
       "value": "pd0325901"
     },
-    "targets": [
-      {
-        "label": "MEK",
-        "value": "mek",
-        "type": "pathway"
-      },
-      {
-        "label": "MAPK",
-        "value": "mapk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "MEK",
+      "value": "mek"
+    },
+    "targetFunction": {
+      "label": "MAPK",
+      "value": "mapk"
+    },
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -1919,23 +2113,24 @@
       "label": "Geldanamycin",
       "value": "geldanamycin"
     },
-    "targets": [
-      {
-        "label": "HSP90",
-        "value": "hsp90",
-        "type": "role"
-      },
-      {
-        "label": "CHAPERONE",
-        "value": "chaperone",
-        "type": "pathway"
-      },
-      {
-        "label": "CHAPERONE",
-        "value": "chaperone",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "CHAPERONE",
+      "value": "chaperone"
+    },
+    "targetGene": null,
+    "targetRole": {
+      "label": "HSP90",
+      "value": "hsp90"
+    },
+    "targetPathway": {
+      "label": "CHAPERONE",
+      "value": "chaperone"
+    },
+    "targetFunction": {
+      "label": "CHAPERONE",
+      "value": "chaperone"
+    },
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -1952,28 +2147,30 @@
       "label": "YM 201636",
       "value": "ym201636"
     },
-    "targets": [
-      {
-        "label": "PIKFYVE",
-        "value": "pikfyve",
-        "type": "gene"
-      },
-      {
-        "label": "PIP5K3",
-        "value": "pip5k3",
-        "type": "role"
-      },
-      {
-        "label": "PI5K",
-        "value": "pi5k",
-        "type": "pathway"
-      },
-      {
-        "label": "AKT_PI3K",
-        "value": "akt_pi3k",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "FYV1_HUMAN",
+      "value": "fyv1_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "PIKFYVE",
+      "value": "pikfyve"
+    },
+    "targetRole": {
+      "label": "PIP5K3",
+      "value": "pip5k3"
+    },
+    "targetPathway": {
+      "label": "PI5K",
+      "value": "pi5k"
+    },
+    "targetFunction": {
+      "label": "AKT_PI3K",
+      "value": "akt_pi3k"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -1990,28 +2187,30 @@
       "label": "TWS119",
       "value": "tws119"
     },
-    "targets": [
-      {
-        "label": "GSK3B",
-        "value": "gsk3b",
-        "type": "gene"
-      },
-      {
-        "label": "GSK3B",
-        "value": "gsk3b",
-        "type": "role"
-      },
-      {
-        "label": "GSK3",
-        "value": "gsk3",
-        "type": "pathway"
-      },
-      {
-        "label": "WNT",
-        "value": "wnt",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "GSK3B_HUMAN",
+      "value": "gsk3b_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "GSK3B",
+      "value": "gsk3b"
+    },
+    "targetRole": {
+      "label": "GSK3B",
+      "value": "gsk3b"
+    },
+    "targetPathway": {
+      "label": "GSK3",
+      "value": "gsk3"
+    },
+    "targetFunction": {
+      "label": "WNT",
+      "value": "wnt"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2026,28 +2225,30 @@
       "label": "PF477736",
       "value": "pf477736"
     },
-    "targets": [
-      {
-        "label": "CHEK1",
-        "value": "chek1",
-        "type": "gene"
-      },
-      {
-        "label": "CHK1",
-        "value": "chk1",
-        "type": "role"
-      },
-      {
-        "label": "CHECKPOINT",
-        "value": "checkpoint",
-        "type": "pathway"
-      },
-      {
-        "label": "CELL_CYCLE",
-        "value": "cell_cycle",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "CHK1_HUMAN",
+      "value": "chk1_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "CHEK1",
+      "value": "chek1"
+    },
+    "targetRole": {
+      "label": "CHK1",
+      "value": "chk1"
+    },
+    "targetPathway": {
+      "label": "CHECKPOINT",
+      "value": "checkpoint"
+    },
+    "targetFunction": {
+      "label": "CELL_CYCLE",
+      "value": "cell_cycle"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2062,18 +2263,21 @@
       "label": "LDN-193189",
       "value": "ldn193189"
     },
-    "targets": [
-      {
-        "label": "TGFB",
-        "value": "tgfb",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "RECEPTOR",
+      "value": "receptor"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "TGFB",
+      "value": "tgfb"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2090,28 +2294,30 @@
       "label": "PF431396",
       "value": "pf431396"
     },
-    "targets": [
-      {
-        "label": "PTK2B",
-        "value": "ptk2b",
-        "type": "gene"
-      },
-      {
-        "label": "PYK2",
-        "value": "pyk2",
-        "type": "role"
-      },
-      {
-        "label": "FAK",
-        "value": "fak",
-        "type": "pathway"
-      },
-      {
-        "label": "INTEGRIN",
-        "value": "integrin",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "FAK2_HUMAN",
+      "value": "fak2_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "PTK2B",
+      "value": "ptk2b"
+    },
+    "targetRole": {
+      "label": "PYK2",
+      "value": "pyk2"
+    },
+    "targetPathway": {
+      "label": "FAK",
+      "value": "fak"
+    },
+    "targetFunction": {
+      "label": "INTEGRIN",
+      "value": "integrin"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2126,7 +2332,12 @@
       "label": "Celastrol",
       "value": "celastrol"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2141,28 +2352,30 @@
       "label": "SU11274",
       "value": "su11274"
     },
-    "targets": [
-      {
-        "label": "MET",
-        "value": "met",
-        "type": "gene"
-      },
-      {
-        "label": "C-MET",
-        "value": "cmet",
-        "type": "role"
-      },
-      {
-        "label": "HGF",
-        "value": "hgf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "MET_HUMAN",
+      "value": "met_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": {
+      "label": "MET",
+      "value": "met"
+    },
+    "targetRole": {
+      "label": "C-MET",
+      "value": "cmet"
+    },
+    "targetPathway": {
+      "label": "HGF",
+      "value": "hgf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2179,28 +2392,30 @@
       "label": "Canertinib",
       "value": "canertinib"
     },
-    "targets": [
-      {
-        "label": "EGFR",
-        "value": "egfr",
-        "type": "gene"
-      },
-      {
-        "label": "EGFR",
-        "value": "egfr",
-        "type": "role"
-      },
-      {
-        "label": "EGF",
-        "value": "egf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "EGFR_HUMAN",
+      "value": "egfr_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": {
+      "label": "EGFR",
+      "value": "egfr"
+    },
+    "targetRole": {
+      "label": "EGFR",
+      "value": "egfr"
+    },
+    "targetPathway": {
+      "label": "EGF",
+      "value": "egf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -2218,28 +2433,30 @@
       "label": "NVP-AEW541",
       "value": "nvpaew541"
     },
-    "targets": [
-      {
-        "label": "IGF1R",
-        "value": "igf1r",
-        "type": "gene"
-      },
-      {
-        "label": "IGFR",
-        "value": "igfr",
-        "type": "role"
-      },
-      {
-        "label": "INSULIN_IGF",
-        "value": "insulin_igf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "IGF1R_HUMAN",
+      "value": "igf1r_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": {
+      "label": "IGF1R",
+      "value": "igf1r"
+    },
+    "targetRole": {
+      "label": "IGFR",
+      "value": "igfr"
+    },
+    "targetPathway": {
+      "label": "INSULIN_IGF",
+      "value": "insulin_igf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2256,28 +2473,30 @@
       "label": "PHA-665752",
       "value": "pha665752"
     },
-    "targets": [
-      {
-        "label": "MET",
-        "value": "met",
-        "type": "gene"
-      },
-      {
-        "label": "C-MET",
-        "value": "cmet",
-        "type": "role"
-      },
-      {
-        "label": "HGF",
-        "value": "hgf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "MET_HUMAN",
+      "value": "met_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": {
+      "label": "MET",
+      "value": "met"
+    },
+    "targetRole": {
+      "label": "C-MET",
+      "value": "cmet"
+    },
+    "targetPathway": {
+      "label": "HGF",
+      "value": "hgf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2292,7 +2511,15 @@
       "label": "PI103",
       "value": "pi103"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2307,7 +2534,12 @@
       "label": "Dovitinib",
       "value": "dovitinib"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -2324,18 +2556,21 @@
       "label": "GSK 690693",
       "value": "gsk690693"
     },
-    "targets": [
-      {
-        "label": "AKT",
-        "value": "akt",
-        "type": "pathway"
-      },
-      {
-        "label": "AKT_PI3K",
-        "value": "akt_pi3k",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "AKT",
+      "value": "akt"
+    },
+    "targetFunction": {
+      "label": "AKT_PI3K",
+      "value": "akt_pi3k"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2350,28 +2585,30 @@
       "label": "SNS-032",
       "value": "sns032"
     },
-    "targets": [
-      {
-        "label": "CDK2",
-        "value": "cdk2",
-        "type": "gene"
-      },
-      {
-        "label": "CDK2",
-        "value": "cdk2",
-        "type": "role"
-      },
-      {
-        "label": "CDK",
-        "value": "cdk",
-        "type": "pathway"
-      },
-      {
-        "label": "CELL_CYCLE",
-        "value": "cell_cycle",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "CDK2_HUMAN",
+      "value": "cdk2_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "CDK2",
+      "value": "cdk2"
+    },
+    "targetRole": {
+      "label": "CDK2",
+      "value": "cdk2"
+    },
+    "targetPathway": {
+      "label": "CDK",
+      "value": "cdk"
+    },
+    "targetFunction": {
+      "label": "CELL_CYCLE",
+      "value": "cell_cycle"
+    },
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -2388,18 +2625,21 @@
       "label": "Afatinib",
       "value": "afatinib"
     },
-    "targets": [
-      {
-        "label": "EGF",
-        "value": "egf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "EGF",
+      "value": "egf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -2418,18 +2658,21 @@
       "label": "GSK1904529A",
       "value": "gsk1904529a"
     },
-    "targets": [
-      {
-        "label": "INSULIN_IGF",
-        "value": "insulin_igf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "INSULIN_IGF",
+      "value": "insulin_igf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2444,18 +2687,21 @@
       "label": "Linsitinib",
       "value": "linsitinib"
     },
-    "targets": [
-      {
-        "label": "INSULIN_IGF",
-        "value": "insulin_igf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "INSULIN_IGF",
+      "value": "insulin_igf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -2473,23 +2719,24 @@
       "label": "Ruxolitinib",
       "value": "ruxolitinib"
     },
-    "targets": [
-      {
-        "label": "JAK",
-        "value": "jak",
-        "type": "role"
-      },
-      {
-        "label": "STAT",
-        "value": "stat",
-        "type": "pathway"
-      },
-      {
-        "label": "CYTOKINE",
-        "value": "cytokine",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": {
+      "label": "JAK",
+      "value": "jak"
+    },
+    "targetPathway": {
+      "label": "STAT",
+      "value": "stat"
+    },
+    "targetFunction": {
+      "label": "CYTOKINE",
+      "value": "cytokine"
+    },
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -2510,23 +2757,24 @@
       "label": "Momelotinib",
       "value": "momelotinib"
     },
-    "targets": [
-      {
-        "label": "JAK",
-        "value": "jak",
-        "type": "role"
-      },
-      {
-        "label": "STAT",
-        "value": "stat",
-        "type": "pathway"
-      },
-      {
-        "label": "CYTOKINE",
-        "value": "cytokine",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": {
+      "label": "JAK",
+      "value": "jak"
+    },
+    "targetPathway": {
+      "label": "STAT",
+      "value": "stat"
+    },
+    "targetFunction": {
+      "label": "CYTOKINE",
+      "value": "cytokine"
+    },
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -2544,28 +2792,30 @@
       "label": "TG 101348",
       "value": "tg101348"
     },
-    "targets": [
-      {
-        "label": "JAK2",
-        "value": "jak2",
-        "type": "gene"
-      },
-      {
-        "label": "JAK",
-        "value": "jak",
-        "type": "role"
-      },
-      {
-        "label": "STAT",
-        "value": "stat",
-        "type": "pathway"
-      },
-      {
-        "label": "CYTOKINE",
-        "value": "cytokine",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "JAK2_HUMAN",
+      "value": "jak2_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "JAK2",
+      "value": "jak2"
+    },
+    "targetRole": {
+      "label": "JAK",
+      "value": "jak"
+    },
+    "targetPathway": {
+      "label": "STAT",
+      "value": "stat"
+    },
+    "targetFunction": {
+      "label": "CYTOKINE",
+      "value": "cytokine"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2580,18 +2830,21 @@
       "label": "Trametinib",
       "value": "trametinib"
     },
-    "targets": [
-      {
-        "label": "MEK",
-        "value": "mek",
-        "type": "pathway"
-      },
-      {
-        "label": "MAPK",
-        "value": "mapk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "MEK",
+      "value": "mek"
+    },
+    "targetFunction": {
+      "label": "MAPK",
+      "value": "mapk"
+    },
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -2612,7 +2865,15 @@
       "label": "Omipalisib",
       "value": "omipalisib"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -2629,18 +2890,21 @@
       "label": "Buparlisib",
       "value": "buparlisib"
     },
-    "targets": [
-      {
-        "label": "PI3K",
-        "value": "pi3k",
-        "type": "pathway"
-      },
-      {
-        "label": "AKT_PI3K",
-        "value": "akt_pi3k",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "PI3K",
+      "value": "pi3k"
+    },
+    "targetFunction": {
+      "label": "AKT_PI3K",
+      "value": "akt_pi3k"
+    },
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -2658,7 +2922,12 @@
       "label": "XL147",
       "value": "xl147"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -2675,18 +2944,21 @@
       "label": "Y39983",
       "value": "y39983"
     },
-    "targets": [
-      {
-        "label": "RHO",
-        "value": "rho",
-        "type": "pathway"
-      },
-      {
-        "label": "CYTOSKELETON",
-        "value": "cytoskeleton",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "RHO",
+      "value": "rho"
+    },
+    "targetFunction": {
+      "label": "CYTOSKELETON",
+      "value": "cytoskeleton"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2701,13 +2973,18 @@
       "label": "Nintedanib",
       "value": "nintedanib"
     },
-    "targets": [
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "RECEPTOR",
+      "value": "receptor"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -2727,13 +3004,18 @@
       "label": "Foretinib",
       "value": "foretinib"
     },
-    "targets": [
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "RECEPTOR",
+      "value": "receptor"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -2751,7 +3033,15 @@
       "label": "AZD 5438",
       "value": "azd5438"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2768,18 +3058,21 @@
       "label": "Pelitinib",
       "value": "pelitinib"
     },
-    "targets": [
-      {
-        "label": "EGF",
-        "value": "egf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "EGF",
+      "value": "egf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -2796,23 +3089,24 @@
       "label": "Luminespib",
       "value": "luminespib"
     },
-    "targets": [
-      {
-        "label": "HSP90",
-        "value": "hsp90",
-        "type": "role"
-      },
-      {
-        "label": "CHAPERONE",
-        "value": "chaperone",
-        "type": "pathway"
-      },
-      {
-        "label": "CHAPERONE",
-        "value": "chaperone",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "CHAPERONE",
+      "value": "chaperone"
+    },
+    "targetGene": null,
+    "targetRole": {
+      "label": "HSP90",
+      "value": "hsp90"
+    },
+    "targetPathway": {
+      "label": "CHAPERONE",
+      "value": "chaperone"
+    },
+    "targetFunction": {
+      "label": "CHAPERONE",
+      "value": "chaperone"
+    },
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -2831,18 +3125,21 @@
       "label": "AZD8330",
       "value": "azd8330"
     },
-    "targets": [
-      {
-        "label": "MEK",
-        "value": "mek",
-        "type": "pathway"
-      },
-      {
-        "label": "MAPK",
-        "value": "mapk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "MEK",
+      "value": "mek"
+    },
+    "targetFunction": {
+      "label": "MAPK",
+      "value": "mapk"
+    },
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -2860,28 +3157,30 @@
       "label": "TGX221",
       "value": "tgx221"
     },
-    "targets": [
-      {
-        "label": "PIK3CB",
-        "value": "pik3cb",
-        "type": "gene"
-      },
-      {
-        "label": "PI3KB",
-        "value": "pi3kb",
-        "type": "role"
-      },
-      {
-        "label": "PI3K",
-        "value": "pi3k",
-        "type": "pathway"
-      },
-      {
-        "label": "AKT_PI3K",
-        "value": "akt_pi3k",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "PK3CB_HUMAN",
+      "value": "pk3cb_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "PIK3CB",
+      "value": "pik3cb"
+    },
+    "targetRole": {
+      "label": "PI3KB",
+      "value": "pi3kb"
+    },
+    "targetPathway": {
+      "label": "PI3K",
+      "value": "pi3k"
+    },
+    "targetFunction": {
+      "label": "AKT_PI3K",
+      "value": "akt_pi3k"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2896,7 +3195,15 @@
       "label": "GSK1059615",
       "value": "gsk1059615"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Phase 1",
       "value": "10-phase1"
@@ -2911,28 +3218,30 @@
       "label": "Brivanib",
       "value": "brivanib"
     },
-    "targets": [
-      {
-        "label": "KDR",
-        "value": "kdr",
-        "type": "gene"
-      },
-      {
-        "label": "KDR",
-        "value": "kdr",
-        "type": "role"
-      },
-      {
-        "label": "VEGF",
-        "value": "vegf",
-        "type": "pathway"
-      },
-      {
-        "label": "RTK",
-        "value": "rtk",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "VGFR2_HUMAN",
+      "value": "vgfr2_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE_RECEPTOR",
+      "value": "kinase_receptor"
+    },
+    "targetGene": {
+      "label": "KDR",
+      "value": "kdr"
+    },
+    "targetRole": {
+      "label": "KDR",
+      "value": "kdr"
+    },
+    "targetPathway": {
+      "label": "VEGF",
+      "value": "vegf"
+    },
+    "targetFunction": {
+      "label": "RTK",
+      "value": "rtk"
+    },
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -2950,18 +3259,21 @@
       "label": "CHIR-99021",
       "value": "chir99021"
     },
-    "targets": [
-      {
-        "label": "GSK3",
-        "value": "gsk3",
-        "type": "pathway"
-      },
-      {
-        "label": "WNT",
-        "value": "wnt",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "GSK3",
+      "value": "gsk3"
+    },
+    "targetFunction": {
+      "label": "WNT",
+      "value": "wnt"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -2979,7 +3291,12 @@
       "label": "Linifanib",
       "value": "linifanib"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -2997,18 +3314,21 @@
       "label": "PIK-93",
       "value": "pik93"
     },
-    "targets": [
-      {
-        "label": "PI3K",
-        "value": "pi3k",
-        "type": "pathway"
-      },
-      {
-        "label": "AKT_PI3K",
-        "value": "akt_pi3k",
-        "type": "function"
-      }
-    ],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": {
+      "label": "PI3K",
+      "value": "pi3k"
+    },
+    "targetFunction": {
+      "label": "AKT_PI3K",
+      "value": "akt_pi3k"
+    },
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -3023,7 +3343,15 @@
       "label": "BEZ235",
       "value": "bez235"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -3040,28 +3368,30 @@
       "label": "Alpelisib",
       "value": "alpelisib"
     },
-    "targets": [
-      {
-        "label": "PIK3CA",
-        "value": "pik3ca",
-        "type": "gene"
-      },
-      {
-        "label": "PI3KA",
-        "value": "pi3ka",
-        "type": "role"
-      },
-      {
-        "label": "PI3K",
-        "value": "pi3k",
-        "type": "pathway"
-      },
-      {
-        "label": "AKT_PI3K",
-        "value": "akt_pi3k",
-        "type": "function"
-      }
-    ],
+    "targetProtein": {
+      "label": "PK3CA_HUMAN",
+      "value": "pk3ca_human"
+    },
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": {
+      "label": "PIK3CA",
+      "value": "pik3ca"
+    },
+    "targetRole": {
+      "label": "PI3KA",
+      "value": "pi3ka"
+    },
+    "targetPathway": {
+      "label": "PI3K",
+      "value": "pi3k"
+    },
+    "targetFunction": {
+      "label": "AKT_PI3K",
+      "value": "akt_pi3k"
+    },
     "class": {
       "label": "Phase 3",
       "value": "30-phase3"
@@ -3078,7 +3408,15 @@
       "label": "GDC-0980",
       "value": "gdc0980"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": {
+      "label": "KINASE",
+      "value": "kinase"
+    },
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Phase 2",
       "value": "20-phase2"
@@ -3095,7 +3433,12 @@
       "label": "Mitoxantrone",
       "value": "mitoxantrone"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Approved",
       "value": "40-approved"
@@ -3117,7 +3460,12 @@
       "label": "Radicicol",
       "value": "radicicol"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
@@ -3134,7 +3482,12 @@
       "label": "Withaferin A",
       "value": "withaferina"
     },
-    "targets": [],
+    "targetProtein": null,
+    "targetProteinClass": null,
+    "targetGene": null,
+    "targetRole": null,
+    "targetPathway": null,
+    "targetFunction": null,
     "class": {
       "label": "Preclinical",
       "value": "00-preclinical"
