@@ -6,6 +6,9 @@ import './dataset_receptor_profile_page.scss';
 import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetReceptorProfile';
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 
+import { getFilterValue, getFilterValueItem } from '../../utils/filter_utils';
+
+
 import {
   fetchReceptorsIfNeeded
 } from '../../actions/receptor';
@@ -80,6 +83,10 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
 
     this.onChangeHighlight = this.onChangeHighlight.bind(this);
     this.onChangeActive = this.onChangeActive.bind(this);
+    this.getActiveReceptor = this.getActiveReceptor.bind(this);
+    this.getCompareReceptor = this.getCompareReceptor.bind(this);
+    this.getActiveCellLine = this.getActiveCellLine.bind(this);
+    this.getCompareCellLine = this.getCompareCellLine.bind(this);
   }
 
   componentDidMount() {
@@ -102,6 +109,22 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
       dispatch(changeActiveRight(activeId));
     }
     this.toggleActive = this.toggleActive === 'left' ? 'right' : 'left';
+  }
+
+  getActiveReceptor() {
+    return getFilterValue(this.props.activeFilters, 'byReceptorConfig', 'receptor');
+  }
+
+  getCompareReceptor() {
+    return getFilterValue(this.props.activeFilters, 'byReceptorConfig', 'compareTo');
+  }
+
+  getActiveCellLine() {
+    return getFilterValue(this.props.activeFilters, 'byCellLineConfig', 'receptor');
+  }
+
+  getCompareCellLine() {
+    return getFilterValue(this.props.activeFilters, 'byCellLineConfig', 'compareTo');
   }
 
   renderSmallMults(datasets) {

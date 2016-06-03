@@ -82,7 +82,7 @@ function filterReceptorDataByCellLine(data, cellLines) {
 
 /**
  * For 1 cell line x all receptors view, we don't want to display AU
- * values - so filter them. 
+ * values - so filter them.
  */
 function filterByMetric(dataset, metricToKeep) {
   if (!dataset) {
@@ -168,7 +168,10 @@ export const getFilterGroups = createSelector(
       });
 
     } else {
-      const cellLines = []; // TODO get all cell lines via an input selector
+      let cellLines = [];
+      if(viewData) {
+        cellLines = _.map(viewData,(d) => { return {id:d.id, label:d.label}; });
+      }
       // put by cell line filters here
       const byCellLineConfig = [
         {
