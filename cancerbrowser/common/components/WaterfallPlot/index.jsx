@@ -10,19 +10,34 @@ import './waterfall_plot.scss';
 
 
 const propTypes = {
+
+  /* name to use on top of the waterfall */
+  label: React.PropTypes.string,
+  /* dataset should look something like:
+    [{id:string, value: number, label: string, threshold: number, disable: bool}]
+  */
   dataset: React.PropTypes.object,
+  /* width of waterfall */
   width: React.PropTypes.number,
+  /* height of waterfall */
   height: React.PropTypes.number,
+  /* callback function for when bar is highlighted*/
   onChangeHighlight: React.PropTypes.func,
+  /* either 'right', 'left', or undefined */
   labelLocation: React.PropTypes.string,
-  dataSort: React.PropTypes.func
+  /* function to sort measurement data */
+  dataSort: React.PropTypes.func,
+  /* boolean for showing or hiding thresholds */
+  useThresholds: React.PropTypes.bool
 };
 
 
 const defaultProps = {
   width: 400,
   height: 800,
-  dataSort: sortByValueAndId
+  labelLocation: 'left',
+  dataSort: sortByValueAndId,
+  useThresholds: true
 };
 
 
@@ -61,18 +76,26 @@ class WaterfallPlot extends React.Component {
     this.chart.update(this.props);
   }
 
+  /**
+   *
+   */
   onSelect(d) {
     this.props.onChangeHighlight(d.id);
   }
 
+  /**
+   *
+   */
   onDeselect() {
 
   }
 
 
-
+  /**
+   *
+   */
   render() {
-    const { dataset, labelLocation } = this.props;
+    const { label, labelLocation } = this.props;
 
     const titleClasses = classNames({
       'name': true,
@@ -81,7 +104,7 @@ class WaterfallPlot extends React.Component {
 
     return (
       <div ref='waterfallContainer' className='WaterfallPlot'>
-        <div className={titleClasses}>{dataset.label}</div>
+        <div className={titleClasses}>{label}</div>
 
       </div>
     );
