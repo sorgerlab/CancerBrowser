@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { fetchDatasetIfNeeded, fetchDatasetInfo } from '../../actions/dataset';
 
+import Heatmap from '../../components/Heatmap';
+
 
 /// Specify the dataset ID here: ////
 const datasetId = 'basal_total';
@@ -34,12 +36,25 @@ class DatasetBasalTotalPage extends React.Component {
     dispatch(fetchDatasetInfo(datasetId));
   }
 
+  renderHeatmap() {
+
+    const { datasetData } = this.props;
+    if(!datasetData) {
+      return;
+    }
+    return (
+      <Heatmap
+        dataset={datasetData} />
+    );
+  }
+
   render() {
     const { datasetInfo } = this.props;
 
     return (
       <div>
         <h1>{datasetInfo && datasetInfo.label}</h1>
+        {this.renderHeatmap()}
       </div>
     );
   }

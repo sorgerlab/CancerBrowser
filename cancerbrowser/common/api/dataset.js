@@ -162,6 +162,7 @@ function transformGrowthFactor(dataset, info) {
   return dataset;
 }
 
+
 /**
  * Transform Basal Total data to be used in visualizations
  * @param {Array} dataset Dataset
@@ -171,6 +172,23 @@ function transformBasalTotal(dataset, info) {
   dataset.forEach(function(row) {
     row.label = row[info.row_id];
     row.id = row.label.toLowerCase();
+    const measurements = [];
+    _.keys(row).forEach(function(key) {
+      const keyIndex = info.cell_line_labels.indexOf(key);
+      if(keyIndex >= 0) {
+        const cellLineId = info.cell_lines[keyIndex];
+        const measurement = {
+          label: key,
+          id: cellLineId,
+          value: row[key]
+        };
+
+        measurements.push(measurement);
+      }
+    });
+
+    row.measurements = measurements;
+
   });
   return dataset;
 }
@@ -188,7 +206,6 @@ function transformBasalPhospho(dataset, info) {
     const idFields = row[info.row_id].split(' ');
     row.label = idFields[0];
     row.id = row.label.toLowerCase();
-
     row.descriptor = idFields[1];
   });
   return dataset;
