@@ -15,6 +15,8 @@ import {
 
 import WaterfallPlot from '../../components/WaterfallPlot';
 
+import './dataset_growth_factor_pakt_perk_page.scss';
+
 /// Specify the dataset ID here: ////
 const datasetId = 'growth_factor_pakt_perk';
 const datasetKey = 'datasetGrowthFactorPaktPerk';
@@ -70,6 +72,8 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     this.onChangeHighlight = this.onChangeHighlight.bind(this);
     this.getActiveGrowthFactor = this.getActiveGrowthFactor.bind(this);
     this.getActiveParameter = this.getActiveParameter.bind(this);
+    this.getActiveMetricAndType = this.getActiveMetricAndType.bind(this);
+    this.getActiveConcentration = this.getActiveConcentration.bind(this);
   }
 
   getActiveGrowthFactor() {
@@ -78,7 +82,43 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   }
 
   getActiveParameter() {
-    return getFilterValue(this.props.activeFilters, 'growthFactorConfig', 'parameter');
+    const { filterGroups, activeFilters } = this.props;
+    return getFilterValueItem(filterGroups, activeFilters, 'growthFactorConfig', 'parameter');
+  }
+
+  getActiveMetricAndType() {
+    const parameter = this.getActiveParameter();
+
+    if (!parameter) {
+      return {};
+    }
+
+    let result = {};
+
+    switch(parameter.value) {
+      case 'paktFoldChange':
+        result.metric = 'fold change';
+        result.type = 'pAkt';
+        break;
+      case 'paktRawValues':
+        result.metric = 'raw values';
+        result.type = 'pAkt';
+        break;
+      case 'perkFoldChange':
+        result.metric = 'fold change';
+        result.type = 'pErk';
+        break;
+      case 'perkRawValues':
+        result.metric = 'raw values';
+        result.type = 'pErk';
+        break;
+    }
+
+    return result;
+  }
+
+  getActiveConcentration() {
+    return getFilterValue(this.props.activeFilters, 'growthFactorConfig', 'concentration');
   }
 
   onChangeHighlight(highlightId) {
@@ -106,33 +146,43 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
 
   renderWaterfalls() {
     const { filteredData } = this.props;
-    if (!filteredData) {
+    if (!filteredData || _.isEmpty(filteredData)) {
       return null;
     }
 
-    const metric = 'fold change';
-    const type = 'pAkt';
-    const times = ['10min', '30min', '90min'];
+    const { metric, type } = this.getActiveMetricAndType();
+    const concentration = this.getActiveConcentration();
+    const times = Object.keys(filteredData[metric][type][concentration]);
 
     const sharedExtent = d3.extent(_.flatten(times.map(time => {
-      return d3.extent(filteredData[metric][type][time], d => d.value);
+      return d3.extent(filteredData[metric][type][concentration][time], d => d.value);
     })));
 
     return (
-      <div className='row'>
-        {times.map((time, i) => {
-          const dataset = filteredData[metric][type][time];
-          return <div key={i} className='col-md-4'>{this.renderWaterfall(time, dataset, sharedExtent)}</div>;
-        })}
+      <div className='waterfalls-container'>
+        <div className='row'>
+          {times.map((time, i) => {
+            const dataset = filteredData[metric][type][concentration][time];
+            return <div key={i} className='col-md-4'>{this.renderWaterfall(time, dataset, sharedExtent)}</div>;
+          })}
+        </div>
       </div>
     );
   }
 
   renderGrowthFactorView() {
-    const activeGrowthFactor = this.getActiveGrowthFactor() || { label: 'TODO' };
+    const activeGrowthFactor = this.getActiveGrowthFactor();
+    const activeParameter = this.getActiveParameter();
+    const activeConcentration = this.getActiveConcentration();
+
+    let label;
+    if (activeGrowthFactor) {
+      label = `${activeGrowthFactor.label} - ${activeParameter.label} - ${activeConcentration}ng/mL`;
+    }
+
     return (
       <div>
-        <h2>{activeGrowthFactor.label}</h2>
+        <h3>{label}</h3>
         {this.renderWaterfalls()}
       </div>
     );
@@ -148,6 +198,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
 
   renderMain() {
     const { viewBy } = this.props;
+
     if (viewBy === 'growthFactor') {
       return this.renderGrowthFactorView();
     }
