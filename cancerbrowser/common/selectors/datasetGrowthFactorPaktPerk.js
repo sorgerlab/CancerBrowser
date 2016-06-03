@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import _ from 'lodash';
 import { getDataset, getViewBy } from './dataset';
 import { cellLinesFilterGroup, getFilteredCellLines } from './cell_line';
+import { getFilterValue } from '../utils/filter_utils';
 
 const datasetId = 'growth_factor_pakt_perk';
 const datasetKey = 'datasetGrowthFactorPaktPerk';
@@ -10,8 +11,11 @@ const datasetKey = 'datasetGrowthFactorPaktPerk';
 /////////////////////
 // Input Selectors
 /////////////////////
+
+
 function getActiveGrowthFactor(state) {
-  return '200852.0'; // TODO
+  const activeFilters = state.datasets[datasetKey].activeFilters;
+  return getFilterValue(activeFilters, 'growthFactorConfig', 'growthFactor') || '200852.0';
 }
 
 
@@ -135,11 +139,11 @@ export const getFilterGroups = createSelector(
     }
 
     // remove the dataset from the cell lines group
-    filterGroups.push({
-      id: cellLinesFilterGroup.id,
-      label: cellLinesFilterGroup.label,
-      filters: cellLinesFilterGroup.filters.filter(filter => filter.id !== 'dataset')
-    });
+    // filterGroups.push({
+    //   id: cellLinesFilterGroup.id,
+    //   label: cellLinesFilterGroup.label,
+    //   filters: cellLinesFilterGroup.filters.filter(filter => filter.id !== 'dataset')
+    // });
 
     return filterGroups;
   }
