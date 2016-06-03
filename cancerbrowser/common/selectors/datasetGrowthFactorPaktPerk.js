@@ -98,20 +98,15 @@ export const getFilteredViewData = createSelector(
   (dataset, viewBy, activeGrowthFactor, { type: activeType },
     activeConcentration, filteredCellLines) => {
 
+    const datasetFilteredByCellLines = filterDataByCellLines(dataset, filteredCellLines);
+
     if (viewBy === 'growthFactor') {
-      /*
-        growthfactor
-          metric(fold change, raw)
-            type(perk, pakt)
-              concentration(1, 100)
-                time(10min, 30min, 90min)
-      */
       if (!dataset) {
         return dataset;
       }
 
       // filter to just the selected growth factor and concentration first
-      const filteredData = dataset.filter(d =>
+      const filteredData = datasetFilteredByCellLines.filter(d =>
         d['Protein HMS LINCS ID'] === activeGrowthFactor &&
         String(d['Ligand Concentration']) === String(activeConcentration));
 
@@ -144,7 +139,7 @@ export const getFilteredViewData = createSelector(
       }, {});
       return byTime;
     } else {
-      return dataset;
+      return datasetFilteredByCellLines;
     }
   }
 );
@@ -211,12 +206,12 @@ export const getFilterGroups = createSelector(
       });
     }
 
-    // remove the dataset from the cell lines group
-    // filterGroups.push({
-    //   id: cellLinesFilterGroup.id,
-    //   label: cellLinesFilterGroup.label,
-    //   filters: cellLinesFilterGroup.filters.filter(filter => filter.id !== 'dataset')
-    // });
+    // add in cell line filters without the dataset option
+    filterGroups.push({
+      id: cellLinesFilterGroup.id,
+      label: cellLinesFilterGroup.label,
+      filters: cellLinesFilterGroup.filters.filter(filter => filter.id !== 'dataset')
+    });
 
     return filterGroups;
   }
