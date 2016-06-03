@@ -9,7 +9,8 @@ import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 
 import {
   changeActiveFilters,
-  changeViewBy
+  changeViewBy,
+  changeHighlight
 } from '../../actions/datasetGrowthFactorPaktPerk';
 
 import WaterfallPlot from '../../components/WaterfallPlot';
@@ -24,6 +25,7 @@ const propTypes = {
   dispatch: React.PropTypes.func,
   datasetData: React.PropTypes.array,
   datasetInfo: React.PropTypes.object,
+  highlightId: React.PropTypes.string,
   activeFilters: React.PropTypes.object,
   filterGroups: React.PropTypes.array,
   filteredCellLines: React.PropTypes.array,
@@ -38,11 +40,15 @@ const defaultProps = {
 };
 
 function mapStateToProps(state) {
+  const { datasets } = state;
+  const { datasetGrowthFactorPaktPerk } = datasets;
+
   const baseProps = baseMapStateToProps(state, { datasetId, datasetKey,
     getFilteredViewData, getFilterGroups });
 
   const props = Object.assign(baseProps, {
     /* Add custom props here */
+    highlightId: datasetGrowthFactorPaktPerk.highlight
   });
 
   return props;
@@ -64,8 +70,9 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     this.onChangeHighlight = this.onChangeHighlight.bind(this);
   }
 
-  onChangeHighlight() {
-
+  onChangeHighlight(highlightId) {
+    const { dispatch } = this.props;
+    dispatch(changeHighlight(highlightId));
   }
 
   renderWaterfall(label, dataset, extent) {
@@ -111,8 +118,6 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   }
 
   renderMain() {
-    const { datasetInfo, filteredData } = this.props;
-
     return (
       <div>
         {this.renderWaterfalls()}
