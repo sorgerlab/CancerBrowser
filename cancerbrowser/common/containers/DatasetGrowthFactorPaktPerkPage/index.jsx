@@ -117,12 +117,29 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     );
   }
 
-  renderMain() {
+  renderGrowthFactorView() {
     return (
       <div>
         {this.renderWaterfalls()}
       </div>
     );
+  }
+
+  renderCellLineView() {
+    return (
+      <div>
+        TODO Cell line view
+      </div>
+    );
+  }
+
+  renderMain() {
+    const { viewBy } = this.props;
+    if (viewBy === 'growthFactor') {
+      return this.renderGrowthFactorView();
+    }
+
+    return this.renderCellLineView();
   }
 }
 
