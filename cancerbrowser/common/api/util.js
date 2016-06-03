@@ -1,6 +1,14 @@
 import _ from 'lodash';
 
-export const DATA_PATH = '/data/';
+let DATA_PATH = '';
+if(process.env.NODE_ENV === 'production') {
+  DATA_PATH = '/CancerBrowser/cancerbrowser/data/';
+} else {
+  DATA_PATH = '/data/';
+}
+
+export { DATA_PATH };
+
 
 /**
  * Filter a given row based dataset based on the categorical filters provided.
