@@ -29,7 +29,7 @@ const propTypes = {
   filteredCellLines: React.PropTypes.array,
   cellLineCounts: React.PropTypes.object,
   viewBy: React.PropTypes.string,
-  filteredData: React.PropTypes.array
+  filteredData: React.PropTypes.any
 };
 
 export function baseMapStateToProps(state, { datasetId, datasetKey,

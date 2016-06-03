@@ -10,6 +10,8 @@ import {
   changeViewBy
 } from '../../actions/datasetGrowthFactorPaktPerk';
 
+import WaterfallPlot from '../../components/WaterfallPlot';
+
 /// Specify the dataset ID here: ////
 const datasetId = 'growth_factor_pakt_perk';
 const datasetKey = 'datasetGrowthFactorPaktPerk';
@@ -25,7 +27,7 @@ const propTypes = {
   filteredCellLines: React.PropTypes.array,
   cellLineCounts: React.PropTypes.object,
   viewBy: React.PropTypes.string,
-  filteredData: React.PropTypes.array,
+  filteredData: React.PropTypes.object,
   className: React.PropTypes.string
 };
 
@@ -55,13 +57,58 @@ const viewOptions = [
 class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   constructor(props) {
     super(props, viewOptions, changeViewBy, changeActiveFilters);
+    this.renderWaterfall = this.renderWaterfall.bind(this);
+    this.renderWaterfalls = this.renderWaterfalls.bind(this);
+    this.onChangeHighlight = this.onChangeHighlight.bind(this);
+  }
+
+  onChangeHighlight() {
+
+  }
+
+  renderWaterfall(label, dataset) {
+    const { highlightId } = this.props;
+
+    if(dataset) {
+      return (
+        <WaterfallPlot
+          labelLocation='left'
+          dataset={{ label, measurements: dataset }}
+          onChangeHighlight={this.onChangeHighlight}
+          highlightId={highlightId}
+        />
+      );
+    }
+  }
+
+  renderWaterfalls() {
+    const { filteredData } = this.props;
+    if (!filteredData) {
+      return null;
+    }
+
+    const metric = 'fold change';
+    const type = 'pAkt';
+    const times = ['10min', '30min', '90min'];
+
+    return (
+      <div className='row'>
+        {times.map((time, i) => {
+          const dataset = filteredData[metric][type][time];
+          console.log('dataset = ', dataset);
+          return <div key={i} className='col-md-4'>{this.renderWaterfall(time, dataset)}</div>;
+        })}
+      </div>
+    );
   }
 
   renderMain() {
     const { datasetInfo, filteredData } = this.props;
 
     return (
-      <div>TODO Main page.</div>
+      <div>
+        {this.renderWaterfalls()}
+      </div>
     );
   }
 }

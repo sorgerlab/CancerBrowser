@@ -67,7 +67,12 @@ export const getFilteredViewData = createSelector(
             reducedData[metric][type][time] = [];
           }
 
-          reducedData[metric][type][time].push(m);
+          const preparedMeasurement = Object.assign({}, m, {
+            id: d['Cell Line HMS LINCS ID'],
+            label: d['Cell Line Name']
+          });
+
+          reducedData[metric][type][time].push(preparedMeasurement);
         });
         return reducedData;
       }, {});
