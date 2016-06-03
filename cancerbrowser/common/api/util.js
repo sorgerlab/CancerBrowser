@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 let DATA_PATH = '';
 if(process.env.NODE_ENV === 'production') {
-  DATA_PATH = '/cancerbrowser/data/';
+  DATA_PATH = '/CancerBrowser/cancerbrowser/data/';
 } else {
   DATA_PATH = '/data/';
 }
