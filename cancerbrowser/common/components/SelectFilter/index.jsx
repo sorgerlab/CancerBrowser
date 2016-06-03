@@ -10,7 +10,7 @@ const propTypes = {
       { value: 'icbp43', label: 'ICBP43' }
     ]
   */
-  items: React.PropTypes.array.isRequired,
+  items: React.PropTypes.array,
 
   // The toggled value e.g. 'big6' or 'icbp43'
   value: React.PropTypes.string,

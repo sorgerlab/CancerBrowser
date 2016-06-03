@@ -88,17 +88,34 @@ export function countMatchedFilterGroups(data, allFilterGroups) {
   const allCounts = {};
   Object.keys(allFilterGroups).forEach(function(key) {
     const filterGroup = allFilterGroups[key];
-    const filterGroupCounts = {};
+    allCounts[filterGroup.id] = countMatchedFilterGroup(data, filterGroup);
+  });
+
+  return allCounts;
+}
+
+/**
+ * Provides counts for a single filter group
+ *
+ * @param {Array} data array of data to match to
+ * @param {Object} filterGroup filter group for the cell line data.
+ *
+ */
+export function countMatchedFilterGroup(data, filterGroup) {
+  const filterGroupCounts = {};
+
+  if (filterGroup && filterGroup.filters) {
     filterGroup.filters.forEach(function(filter) {
       filterGroupCounts[filter.id] = {};
       filterGroupCounts[filter.id]['counts'] = countMatchedFilterData(data, filter);
       filterGroupCounts[filter.id]['countMax'] = data.length;
     });
-    allCounts[filterGroup.id] = filterGroupCounts;
-  });
+  }
 
-  return allCounts;
+  return filterGroupCounts;
 }
+
+
 
 /**
  * Provides counts for how many values match

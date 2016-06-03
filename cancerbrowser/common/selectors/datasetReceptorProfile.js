@@ -1,19 +1,18 @@
 import { createSelector } from 'reselect';
 import _ from 'lodash';
+import { getDataset, getViewBy } from './dataset';
+import { cellLinesFilterGroup, getFilteredCellLines } from './cell_line';
 
 const datasetId = 'receptor_profile';
+const datasetKey = 'datasetReceptorProfile';
+
 
 /////////////////////
 // Input Selectors
 /////////////////////
-const getDataset = (state) => {
-  const dataset = state.datasets.datasetsById[datasetId];
-  return dataset && dataset.items;
-};
-
-const getViewBy = state => state.datasets.datasetReceptorProfile.viewBy;
-
-const getFilteredCellLines = state => state.cellLines.filtered;
+function getReceptors(state) {
+  return state.receptors.items;
+}
 
 
 /////////////////////
@@ -87,7 +86,7 @@ function filterReceptorDataByCellLine(data, cellLines) {
 
 /** Converts the dataset to be by cell line or by receptor */
 export const getViewData = createSelector(
-  [ getDataset, getViewBy ],
+  [ getDataset(datasetId), getViewBy(datasetKey) ],
   (dataset, viewBy) => {
     if (viewBy === 'receptor') {
       return convertToByReceptor(dataset);
@@ -100,12 +99,89 @@ export const getViewData = createSelector(
 
 /** Filters the dataset */
 export const getFilteredViewData = createSelector(
-  [ getViewData, getViewBy, getFilteredCellLines ],
+  [ getViewData, getViewBy(datasetKey), getFilteredCellLines ],
   (viewData, viewBy, filteredCellLines) => {
     if (viewBy === 'receptor') {
       return filterReceptorDataByCellLine(viewData, filteredCellLines);
     } else {
       return filterDataByCellLines(viewData, filteredCellLines);
     }
+  }
+);
+
+
+/** Gets the filter group definition based on what is in the data */
+export const getFilterGroups = createSelector(
+  [ getViewData, getViewBy(datasetKey), getReceptors ],
+  (viewData, viewBy, receptors) => {
+    const filterGroups = [];
+
+    if (viewBy === 'receptor') {
+      const byReceptorConfig = [
+        {
+          id: 'receptor',
+          label: 'Receptor',
+          type: 'select',
+          values: receptors,
+          options: {
+            props: { counts: null }
+          }
+        },
+        {
+          id: 'compareTo',
+          label: 'Compare to',
+          type: 'select',
+          values: receptors,
+          options: {
+            props: { counts: null }
+          }
+        }
+      ];
+
+      filterGroups.push({
+        id: 'byReceptorConfig',
+        label: 'Configure',
+        filters: byReceptorConfig
+      });
+
+      // remove the dataset from the cell lines group
+      filterGroups.push({
+        id: cellLinesFilterGroup.id,
+        label: cellLinesFilterGroup.label,
+        filters: cellLinesFilterGroup.filters.filter(filter => filter.id !== 'dataset')
+      });
+
+    } else {
+      const cellLines = []; // TODO get all cell lines via an input selector
+      // put by cell line filters here
+      const byCellLineConfig = [
+        {
+          id: 'cellLine',
+          label: 'Cell Line',
+          type: 'select',
+          values: cellLines,
+          options: {
+            props: { counts: null }
+          }
+        },
+        {
+          id: 'compareTo',
+          label: 'Compare to',
+          type: 'select',
+          values: cellLines,
+          options: {
+            props: { counts: null }
+          }
+        }
+      ];
+
+      filterGroups.push({
+        id: 'byCellLineConfig',
+        label: 'Configure',
+        filters: byCellLineConfig
+      });
+    }
+
+    return filterGroups;
   }
 );
