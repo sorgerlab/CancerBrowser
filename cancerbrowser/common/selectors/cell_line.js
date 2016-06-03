@@ -15,6 +15,8 @@ function getActiveFilters(state) {
 /////////////////////
 // Helpers
 /////////////////////
+
+// The shared filter group definition
 export const cellLinesFilterGroup = {
   id: 'cellLineFilters',
   label: 'Cell Line Filters',
@@ -97,8 +99,6 @@ export const cellLinesFilterGroup = {
 /////////////////////
 // Selectors
 /////////////////////
-/** Gets the filter group definition */
-
 
 export const getFilteredCellLines = createSelector(
   [ getCellLines, getActiveFilters ],

@@ -43,7 +43,7 @@ function mapStateToProps(state) {
     cellLineView: state.cellLines.cellLineView, // TODO: move to .browser.
     activeFilters: state.filters.active,
     filteredCellLines: getFilteredCellLines(state),
-    cellLineCounts: getFilteredCellLineCounts(state, filterGroups)
+    cellLineCounts: getFilteredCellLineCounts(state)
   };
 }
 
