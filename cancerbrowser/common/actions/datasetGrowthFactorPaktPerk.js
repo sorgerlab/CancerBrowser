@@ -1,5 +1,6 @@
 export const DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_ACTIVE_FILTERS = 'DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_ACTIVE_FILTERS';
 export const DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_VIEW_BY = 'DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_VIEW_BY';
+export const DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_HIGHLIGHT = 'DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_HIGHLIGHT';
 
 export function changeActiveFilters(activeFilters) {
   return {
@@ -12,5 +13,12 @@ export function changeViewBy(viewBy) {
   return {
     type: DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_VIEW_BY,
     viewBy
+  };
+}
+
+export function changeHighlight(highlightId) {
+  return {
+    type: DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_HIGHLIGHT,
+    highlightId
   };
 }

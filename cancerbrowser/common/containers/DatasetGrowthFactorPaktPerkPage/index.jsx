@@ -1,14 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
+import d3 from 'd3';
 
 import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetGrowthFactorPaktPerk';
-
+import { getFilterValue, getFilterValueItem } from '../../utils/filter_utils';
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 
 import {
   changeActiveFilters,
-  changeViewBy
+  changeViewBy,
+  changeHighlight
 } from '../../actions/datasetGrowthFactorPaktPerk';
+
+import WaterfallPlot from '../../components/WaterfallPlot';
 
 /// Specify the dataset ID here: ////
 const datasetId = 'growth_factor_pakt_perk';
@@ -20,12 +25,13 @@ const propTypes = {
   dispatch: React.PropTypes.func,
   datasetData: React.PropTypes.array,
   datasetInfo: React.PropTypes.object,
+  highlightId: React.PropTypes.string,
   activeFilters: React.PropTypes.object,
   filterGroups: React.PropTypes.array,
   filteredCellLines: React.PropTypes.array,
   cellLineCounts: React.PropTypes.object,
   viewBy: React.PropTypes.string,
-  filteredData: React.PropTypes.array,
+  filteredData: React.PropTypes.object,
   className: React.PropTypes.string
 };
 
@@ -34,11 +40,15 @@ const defaultProps = {
 };
 
 function mapStateToProps(state) {
+  const { datasets } = state;
+  const { datasetGrowthFactorPaktPerk } = datasets;
+
   const baseProps = baseMapStateToProps(state, { datasetId, datasetKey,
     getFilteredViewData, getFilterGroups });
 
   const props = Object.assign(baseProps, {
     /* Add custom props here */
+    highlightId: datasetGrowthFactorPaktPerk.highlight
   });
 
   return props;
@@ -55,14 +65,94 @@ const viewOptions = [
 class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   constructor(props) {
     super(props, viewOptions, changeViewBy, changeActiveFilters);
+    this.renderWaterfall = this.renderWaterfall.bind(this);
+    this.renderWaterfalls = this.renderWaterfalls.bind(this);
+    this.onChangeHighlight = this.onChangeHighlight.bind(this);
+    this.getActiveGrowthFactor = this.getActiveGrowthFactor.bind(this);
+    this.getActiveParameter = this.getActiveParameter.bind(this);
+  }
+
+  getActiveGrowthFactor() {
+    const { filterGroups, activeFilters } = this.props;
+    return getFilterValueItem(filterGroups, activeFilters, 'growthFactorConfig', 'growthFactor');
+  }
+
+  getActiveParameter() {
+    return getFilterValue(this.props.activeFilters, 'growthFactorConfig', 'parameter');
+  }
+
+  onChangeHighlight(highlightId) {
+    const { dispatch } = this.props;
+    dispatch(changeHighlight(highlightId));
+  }
+
+  renderWaterfall(label, dataset, extent) {
+    const { highlightId } = this.props;
+
+    if(dataset) {
+      return (
+        <WaterfallPlot
+          labelLocation='left'
+          label={label}
+          dataset={dataset}
+          onChangeHighlight={this.onChangeHighlight}
+          highlightId={highlightId}
+          useThresholds={false}
+          dataExtent={extent}
+        />
+      );
+    }
+  }
+
+  renderWaterfalls() {
+    const { filteredData } = this.props;
+    if (!filteredData) {
+      return null;
+    }
+
+    const metric = 'fold change';
+    const type = 'pAkt';
+    const times = ['10min', '30min', '90min'];
+
+    const sharedExtent = d3.extent(_.flatten(times.map(time => {
+      return d3.extent(filteredData[metric][type][time], d => d.value);
+    })));
+
+    return (
+      <div className='row'>
+        {times.map((time, i) => {
+          const dataset = filteredData[metric][type][time];
+          return <div key={i} className='col-md-4'>{this.renderWaterfall(time, dataset, sharedExtent)}</div>;
+        })}
+      </div>
+    );
+  }
+
+  renderGrowthFactorView() {
+    const activeGrowthFactor = this.getActiveGrowthFactor() || { label: 'TODO' };
+    return (
+      <div>
+        <h2>{activeGrowthFactor.label}</h2>
+        {this.renderWaterfalls()}
+      </div>
+    );
+  }
+
+  renderCellLineView() {
+    return (
+      <div>
+        TODO Cell line view
+      </div>
+    );
   }
 
   renderMain() {
-    const { datasetInfo, filteredData } = this.props;
+    const { viewBy } = this.props;
+    if (viewBy === 'growthFactor') {
+      return this.renderGrowthFactorView();
+    }
 
-    return (
-      <div>TODO Main page.</div>
-    );
+    return this.renderCellLineView();
   }
 }
 

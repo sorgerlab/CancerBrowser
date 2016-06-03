@@ -2,9 +2,22 @@ import { createSelector } from 'reselect';
 import _ from 'lodash';
 import { getDataset, getViewBy } from './dataset';
 import { cellLinesFilterGroup, getFilteredCellLines } from './cell_line';
+import { getFilterValue } from '../utils/filter_utils';
 
 const datasetId = 'growth_factor_pakt_perk';
 const datasetKey = 'datasetGrowthFactorPaktPerk';
+
+
+/////////////////////
+// Input Selectors
+/////////////////////
+
+
+function getActiveGrowthFactor(state) {
+  const activeFilters = state.datasets[datasetKey].activeFilters;
+  return getFilterValue(activeFilters, 'growthFactorConfig', 'growthFactor') || '200852.0';
+}
+
 
 /////////////////////
 // Helpers
@@ -25,12 +38,50 @@ function filterDataByCellLines(data, cellLines) {
 // Selectors
 /////////////////////
 
-/** Converts the dataset to be by cell line or by receptor */
-export const getViewData = createSelector(
-  [ getDataset(datasetId), getViewBy(datasetKey) ],
-  (dataset, viewBy) => {
+/** Filters the dataset */
+export const getFilteredViewData = createSelector(
+  [ getDataset(datasetId), getViewBy(datasetKey), getActiveGrowthFactor,
+    getFilteredCellLines ],
+  (dataset, viewBy, activeGrowthFactor, filteredCellLines) => {
     if (viewBy === 'growthFactor') {
-      return dataset; // TODO
+      /*
+        growthfactor
+          metric(fold change, raw)
+            parameter(perk, pakt)
+              time(10min, 30min, 90min)
+      */
+      if (!dataset) {
+        return dataset;
+      }
+
+      const filteredData = dataset.filter(d => d['Protein HMS LINCS ID'] === activeGrowthFactor);
+
+      const reducedData = filteredData.reduce((reducedData, d) => {
+        d.measurements.forEach(m => {
+          const { time, type, metric } = m;
+          if (!reducedData[metric]) {
+            reducedData[metric] = {};
+          }
+
+          if (!reducedData[metric][type]) {
+            reducedData[metric][type] = {};
+          }
+
+          if (!reducedData[metric][type][time]) {
+            reducedData[metric][type][time] = [];
+          }
+
+          const preparedMeasurement = Object.assign({}, m, {
+            id: d['Cell Line HMS LINCS ID'],
+            label: d['Cell Line Name']
+          });
+
+          reducedData[metric][type][time].push(preparedMeasurement);
+        });
+        return reducedData;
+      }, {});
+
+      return reducedData;
     } else {
       return dataset;
     }
@@ -38,22 +89,9 @@ export const getViewData = createSelector(
 );
 
 
-/** Filters the dataset */
-export const getFilteredViewData = createSelector(
-  [ getViewData, getViewBy(datasetKey), getFilteredCellLines ],
-  (viewData, viewBy, filteredCellLines) => {
-    if (viewBy === 'growthFactor') {
-      return viewData; // TODO
-    } else {
-      return filterDataByCellLines(viewData, filteredCellLines);
-    }
-  }
-);
-
-
 /** Gets the filter group definition based on what is in the data */
 export const getFilterGroups = createSelector(
-  [ getViewData, getViewBy(datasetKey) ],
+  [ getDataset(datasetId), getViewBy(datasetKey) ],
   (viewData, viewBy) => {
     const filterGroups = [];
 
@@ -79,10 +117,15 @@ export const getFilterGroups = createSelector(
           }
         },
         {
-          id: 'compareTo',
-          label: 'Compare to',
+          id: 'parameter',
+          label: 'Parameter',
           type: 'select',
-          values: growthFactors,
+          values: [
+            { label: 'pAKT Fold Change', value: 'paktFoldChange' },
+            { label: 'pERK Fold Change', value: 'perkFoldChange' },
+            { label: 'pAKT Raw Values', value: 'paktRawValues' },
+            { label: 'pERK Raw Values', value: 'perkRawValues' }
+          ],
           options: {
             props: { counts: null }
           }
@@ -96,11 +139,11 @@ export const getFilterGroups = createSelector(
     }
 
     // remove the dataset from the cell lines group
-    filterGroups.push({
-      id: cellLinesFilterGroup.id,
-      label: cellLinesFilterGroup.label,
-      filters: cellLinesFilterGroup.filters.filter(filter => filter.id !== 'dataset')
-    });
+    // filterGroups.push({
+    //   id: cellLinesFilterGroup.id,
+    //   label: cellLinesFilterGroup.label,
+    //   filters: cellLinesFilterGroup.filters.filter(filter => filter.id !== 'dataset')
+    // });
 
     return filterGroups;
   }
