@@ -16,7 +16,7 @@ const propTypes = {
   /* dataset should look something like:
     [{id:string, value: number, label: string, threshold: number, disable: bool}]
   */
-  dataset: React.PropTypes.object,
+  dataset: React.PropTypes.array,
   /* width of waterfall */
   width: React.PropTypes.number,
   /* height of waterfall */
@@ -28,7 +28,9 @@ const propTypes = {
   /* function to sort measurement data */
   dataSort: React.PropTypes.func,
   /* boolean for showing or hiding thresholds */
-  useThresholds: React.PropTypes.bool
+  useThresholds: React.PropTypes.bool,
+  /* if provided, sets the x axis extent*/
+  dataExtent: React.PropTypes.array
 };
 
 

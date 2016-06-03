@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
+import d3 from 'd3';
 
 import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetGrowthFactorPaktPerk';
 
@@ -66,16 +68,19 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
 
   }
 
-  renderWaterfall(label, dataset) {
+  renderWaterfall(label, dataset, extent) {
     const { highlightId } = this.props;
 
     if(dataset) {
       return (
         <WaterfallPlot
           labelLocation='left'
-          dataset={{ label, measurements: dataset }}
+          label={label}
+          dataset={dataset}
           onChangeHighlight={this.onChangeHighlight}
           highlightId={highlightId}
+          useThresholds={false}
+          dataExtent={extent}
         />
       );
     }
@@ -91,12 +96,15 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     const type = 'pAkt';
     const times = ['10min', '30min', '90min'];
 
+    const sharedExtent = d3.extent(_.flatten(times.map(time => {
+      return d3.extent(filteredData[metric][type][time], d => d.value);
+    })));
+
     return (
       <div className='row'>
         {times.map((time, i) => {
           const dataset = filteredData[metric][type][time];
-          console.log('dataset = ', dataset);
-          return <div key={i} className='col-md-4'>{this.renderWaterfall(time, dataset)}</div>;
+          return <div key={i} className='col-md-4'>{this.renderWaterfall(time, dataset, sharedExtent)}</div>;
         })}
       </div>
     );
