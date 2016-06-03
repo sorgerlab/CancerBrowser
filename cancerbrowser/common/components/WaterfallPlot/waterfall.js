@@ -2,6 +2,7 @@
 
 import d3 from 'd3';
 
+const DISABLED_BAR_SIZE = 5;
 
 class Waterfall {
   /**
@@ -57,13 +58,13 @@ class Waterfall {
     const { dataExtent } = props;
     // scales recomputed each draw
     const xScale = d3.scale.linear()
-      .range([0, this.width]);
+      .range([0, this.width])
+      .clamp(true);
 
     if(dataExtent) {
       xScale.domain(dataExtent);
     } else {
-      xScale.domain(d3.extent(data, (d) => d.value))
-        .clamp(true);
+      xScale.domain(d3.extent(data, (d) => d.value));
     }
 
     const yScale = d3.scale.ordinal()
@@ -204,7 +205,7 @@ class Waterfall {
       thresholdBars
         .attr('x', 0)
         .attr('y', (d) => scales.y(d.id))
-        .attr('width', (d) => d.disabled ? 5 : scales.x(d.threshold))
+        .attr('width', (d) => d.disabled ? DISABLED_BAR_SIZE : scales.x(d.threshold))
         .attr('height', scales.y.rangeBand())
         .classed('highlight', (d)  => d.id === highlightId)
         .on('mouseover', this.onMouseover)

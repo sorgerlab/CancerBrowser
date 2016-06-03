@@ -4,6 +4,8 @@ import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
 import d3 from 'd3';
 
+import { sortByValueAndId } from '../../utils/sort';
+
 import './small_waterfall.scss';
 
 const propTypes = {
@@ -20,20 +22,13 @@ const propTypes = {
 };
 
 const defaultProps = {
-  dataSort: sortByValue,
+  dataSort: sortByValueAndId,
   width: 100,
   height: 100,
   fillColor: '#cccccc',
   highlightColor: '#9679af'
 };
 
-/**
- * Default sort function for bars if none is passed in
- * Sorts by value attribute descending.
- */
-function sortByValue(a,b) {
-  return b.value - a.value;
-}
 
 /**
  * One of the plots in the small multiples waterfall.
