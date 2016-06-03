@@ -7,6 +7,7 @@ import {
 } from '../actions/dataset';
 
 import datasetReceptorProfile from './datasetReceptorProfile';
+import datasetGrowthFactorPaktPerk from './datasetGrowthFactorPaktPerk';
 
 const INITIAL_STATE = {
   info: {
@@ -54,4 +55,4 @@ function datasetsById(state = INITIAL_STATE.datasetsById, action) {
   }
 }
 
-export default combineReducers({ info, datasetsById, datasetReceptorProfile });
+export default combineReducers({ info, datasetsById, datasetReceptorProfile, datasetGrowthFactorPaktPerk });

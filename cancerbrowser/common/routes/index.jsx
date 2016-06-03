@@ -17,6 +17,7 @@ import DatasetBasalPhosphoPage from '../containers/DatasetBasalPhosphoPage';
 import DatasetBasalTotalPage from '../containers/DatasetBasalTotalPage';
 import DatasetGrowthFactorPaktPerkPage from '../containers/DatasetGrowthFactorPaktPerkPage';
 import DatasetDrugDoseResponsePage from '../containers/DatasetDrugDoseResponsePage';
+import DatasetBasePage from '../containers/DatasetBasePage';
 
 import HomePage from '../containers/HomePage';
 import About from '../components/About';
