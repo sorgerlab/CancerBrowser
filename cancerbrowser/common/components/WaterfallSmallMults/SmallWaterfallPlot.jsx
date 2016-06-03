@@ -119,7 +119,8 @@ class SmallWaterfallPlot extends React.Component {
 
     // scales recomputed each draw
     const xScale = d3.scale.linear()
-      .range([0, width]);
+      .range([0, width])
+      .clamp(true);
 
     if(dataExtent) {
       xScale.domain(dataExtent);
@@ -137,7 +138,8 @@ class SmallWaterfallPlot extends React.Component {
     ctx.fillStyle = fillColor;
 
     values.forEach(function(value) {
-      ctx.fillRect(0, yScale(value.id), xScale(value.value), yScale.rangeBand());
+      const xValue = value.disabled ? 2 : xScale(value.value);
+      ctx.fillRect(0, yScale(value.id), xValue, yScale.rangeBand());
     });
 
     // draw highlight
@@ -148,7 +150,8 @@ class SmallWaterfallPlot extends React.Component {
 
       const activeValue = values.filter((v) => v.id === highlightId);
       activeValue.forEach(function(value) {
-        ctx.fillRect(0, yScale(value.id), xScale(value.value), yScale.rangeBand());
+        const xValue = value.disabled ? 4 : xScale(value.value);
+        ctx.fillRect(0, yScale(value.id), xValue, yScale.rangeBand());
       });
     }
   }

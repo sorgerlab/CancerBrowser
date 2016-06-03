@@ -33,6 +33,10 @@
     fill: black;
   }
 
+  text.disabled {
+    fill: #999;
+  }
+
   .axis {
     shape-rendering: crispEdges;
   }

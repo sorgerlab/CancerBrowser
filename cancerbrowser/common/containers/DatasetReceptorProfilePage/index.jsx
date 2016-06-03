@@ -176,6 +176,7 @@ class DatasetReceptorProfilePage extends React.Component {
   }
 
   onFilterChange(newFilters) {
+    console.log(newFilters)
     const { dispatch, filterGroups } = this.props;
     dispatch(changeActiveFilters(newFilters));
 
@@ -187,7 +188,7 @@ class DatasetReceptorProfilePage extends React.Component {
   renderSmallMults(datasets) {
     const { highlightId, activeLeft, activeRight, viewBy } = this.props;
 
-    const dataExtent = (viewBy === 'receptor') ? undefined : [-7, 1];
+    const dataExtent = (viewBy === 'receptor') ? [-6.5, 1] : [-6.5, 1];
     if(datasets) {
       return (
         <WaterfallSmallMults
@@ -204,7 +205,7 @@ class DatasetReceptorProfilePage extends React.Component {
 
   renderWaterfall(dataset, labelLocation) {
     const { highlightId, viewBy } = this.props;
-    const dataExtent = (viewBy === 'receptor') ? undefined : [-7, 1];
+    const dataExtent = (viewBy === 'receptor') ? [-6.5, 1] : [-6.5, 1];
 
     if(dataset) {
       return (

@@ -13,7 +13,8 @@ const propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number,
   onChangeHighlight: React.PropTypes.func,
-  labelLocation: React.PropTypes.string
+  labelLocation: React.PropTypes.string,
+  dataSort: React.PropTypes.func
 };
 
 
@@ -28,7 +29,7 @@ const defaultProps = {
  * Sorts by value attribute descending.
  */
 function sortByValue(a,b) {
-  return b.value - a.value;
+  return b.value < a.value ? -1 : b.value > a.value ? 1 : b.value >= a.value ? 0 : NaN;
 }
 
 

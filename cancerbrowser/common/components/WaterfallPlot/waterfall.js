@@ -115,6 +115,7 @@ class Waterfall {
 
     const xAxis = d3.svg.axis()
       .scale(scales.x)
+      .ticks(5)
       .orient('top')
       .tickSize(-20);
 
@@ -137,8 +138,9 @@ class Waterfall {
         .attr('x', labelLocation === 'right' ? this.width : 0)
         .attr('dx', labelLocation === 'right' ? 8 : -8)
         .attr('y', (d) => scales.y(d.id))
-        .attr('dy', scales.y.rangeBand() / 2)
+        .attr('dy', (scales.y.rangeBand() / 2) + 5)
         .classed('highlight', (d)  => d.id === highlightId)
+        .classed('disabled', (d)  => d.disabled)
         .text((d) => d.label)
         .on('mouseover', this.onMouseover)
         .on('mouseout', this.onMouseout);
@@ -178,7 +180,7 @@ class Waterfall {
     bars
       .attr('x', 0)
       .attr('y', (d) => scales.y(d.id))
-      .attr('width', (d) => scales.x(d.value))
+      .attr('width', (d) => d.disabled ? 0 : scales.x(d.value))
       .attr('height', scales.y.rangeBand())
       .style('fill', (d) => scales.color(d.id))
       .classed('highlight', (d)  => d.id === highlightId)
@@ -202,7 +204,7 @@ class Waterfall {
       thresholdBars
         .attr('x', 0)
         .attr('y', (d) => scales.y(d.id))
-        .attr('width', (d) => scales.x(d.threshold))
+        .attr('width', (d) => d.disabled ? 5 : scales.x(d.threshold))
         .attr('height', scales.y.rangeBand())
         .classed('highlight', (d)  => d.id === highlightId)
         .on('mouseover', this.onMouseover)

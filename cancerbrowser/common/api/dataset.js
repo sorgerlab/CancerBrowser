@@ -235,6 +235,9 @@ function transformReceptorData(dataset) {
         measurement.receptor = fields[0];
         measurement.label = fields[0];
         measurement.id = fields[0].toLowerCase();
+        if(measurement.value === measurement.threshold) {
+          measurement.disabled = true;
+        }
         // get out the metric.
         let metric = fields[1].match(/\((.*)\)/)[1];
         measurement.metric = metric;
