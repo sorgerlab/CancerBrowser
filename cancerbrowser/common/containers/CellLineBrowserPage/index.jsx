@@ -9,6 +9,8 @@ import FilterGroupSummary from '../../components/FilterGroupSummary';
 import PageLayout from '../../components/PageLayout';
 import CellLineTable from '../../components/CellLineTable';
 
+import { getFilteredCellLines, getFilteredCellLineCounts, cellLinesFilterGroup } from '../../selectors/cell_line';
+
 import { fetchDatasetsInfo } from '../../actions/dataset';
 
 import {
@@ -37,11 +39,11 @@ const defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    cellLineView: state.cellLines.cellLineView,
-    filteredCellLines: state.cellLines.filtered,
+    datasets: state.datasets.info.items,
+    cellLineView: state.cellLines.cellLineView, // TODO: move to .browser.
     activeFilters: state.filters.active,
-    cellLineCounts: state.cellLines.counts,
-    datasets: state.datasets.info.items
+    filteredCellLines: getFilteredCellLines(state),
+    cellLineCounts: getFilteredCellLineCounts(state, filterGroups)
   };
 }
 
@@ -121,11 +123,7 @@ export const cellLineFilters = [
   }
 ];
 
-const filterGroups = [{
-  id: 'cellLineFilters',
-  label: 'Cell Line Filters',
-  filters: cellLineFilters
-}];
+const filterGroups = [cellLinesFilterGroup];
 
 class CellLineBrowserPage extends React.Component {
   constructor(props) {
