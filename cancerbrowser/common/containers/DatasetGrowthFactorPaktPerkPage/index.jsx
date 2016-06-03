@@ -4,7 +4,7 @@ import _ from 'lodash';
 import d3 from 'd3';
 
 import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetGrowthFactorPaktPerk';
-
+import { getFilterValue, getFilterValueItem } from '../../utils/filter_utils';
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 
 import {
@@ -68,6 +68,17 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     this.renderWaterfall = this.renderWaterfall.bind(this);
     this.renderWaterfalls = this.renderWaterfalls.bind(this);
     this.onChangeHighlight = this.onChangeHighlight.bind(this);
+    this.getActiveGrowthFactor = this.getActiveGrowthFactor.bind(this);
+    this.getActiveParameter = this.getActiveParameter.bind(this);
+  }
+
+  getActiveGrowthFactor() {
+    const { filterGroups, activeFilters } = this.props;
+    return getFilterValueItem(filterGroups, activeFilters, 'growthFactorConfig', 'growthFactor');
+  }
+
+  getActiveParameter() {
+    return getFilterValue(this.props.activeFilters, 'growthFactorConfig', 'parameter');
   }
 
   onChangeHighlight(highlightId) {
@@ -118,8 +129,10 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   }
 
   renderGrowthFactorView() {
+    const activeGrowthFactor = this.getActiveGrowthFactor() || { label: 'TODO' };
     return (
       <div>
+        <h2>{activeGrowthFactor.label}</h2>
         {this.renderWaterfalls()}
       </div>
     );
