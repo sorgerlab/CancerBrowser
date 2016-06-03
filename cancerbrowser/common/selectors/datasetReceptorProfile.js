@@ -82,7 +82,7 @@ function filterReceptorDataByCellLine(data, cellLines) {
 
 /**
  * For 1 cell line x all receptors view, we don't want to display AU
- * values - so filter them. 
+ * values - so filter them.
  */
 function filterByMetric(dataset, metricToKeep) {
   if (!dataset) {
@@ -157,6 +157,7 @@ export const getFilterGroups = createSelector(
       filterGroups.push({
         id: 'byReceptorConfig',
         label: 'Configure',
+        clearable: false,
         filters: byReceptorConfig
       });
 
@@ -194,6 +195,7 @@ export const getFilterGroups = createSelector(
       filterGroups.push({
         id: 'byCellLineConfig',
         label: 'Configure',
+        clearable: false,
         filters: byCellLineConfig
       });
     }
