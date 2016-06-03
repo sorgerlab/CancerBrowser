@@ -1,33 +1,12 @@
 import api from '../api';
 
-export const SET_FILTERED_CELL_LINES = 'SET_FILTERED_CELL_LINES';
 export const CHANGE_CELL_LINE_VIEW = 'CHANGE_CELL_LINE_VIEW';
-export const SET_CELL_LINE_COUNTS = 'SET_CELL_LINE_COUNTS';
 export const SET_CELL_LINE_INFO = 'SET_CELL_LINE_INFO';
 
 
 export const REQUEST_CELL_LINES = 'REQUEST_CELL_LINES';
 export const RECEIVE_CELL_LINES = 'RECEIVE_CELL_LINES';
 
-/**
- * Action creator for setting filtered cell lines
- */
-function setFilteredCellLines(cellLines) {
-  return {
-    type: SET_FILTERED_CELL_LINES,
-    cellLines: cellLines
-  };
-}
-
-/**
- * Action creator for setting filtered cell lines
- */
-function setCellLineCounts(counts) {
-  return {
-    type: SET_CELL_LINE_COUNTS,
-    counts: counts
-  };
-}
 
 /**
  * Action creator for setting cell line info
@@ -38,8 +17,6 @@ function setCellLineInfo(info) {
     info
   };
 }
-
-
 
 function requestCellLines() {
   return {
