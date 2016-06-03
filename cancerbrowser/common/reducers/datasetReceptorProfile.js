@@ -1,9 +1,9 @@
 import {
-  CHANGE_ACTIVE_FILTERS,
-  CHANGE_VIEW_BY,
-  CHANGE_HIGHLIGHT,
-  CHANGE_ACTIVE_LEFT,
-  CHANGE_ACTIVE_RIGHT
+  DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_FILTERS,
+  DATASET_RECEPTOR_PROFILE_CHANGE_VIEW_BY,
+  DATASET_RECEPTOR_PROFILE_CHANGE_HIGHLIGHT,
+  DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_LEFT,
+  DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_RIGHT
 } from '../actions/datasetReceptorProfile';
 
 // Ensure the dataset filter is set to this dataset
@@ -22,23 +22,23 @@ const INITIAL_STATE = {
 
 function datasetReceptorProfile(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case CHANGE_ACTIVE_FILTERS:
+    case DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_FILTERS:
       return Object.assign({}, state, {
         activeFilters: action.activeFilters
       });
-    case CHANGE_VIEW_BY:
+    case DATASET_RECEPTOR_PROFILE_CHANGE_VIEW_BY:
       return Object.assign({}, state, {
         viewBy: action.viewBy
       });
-    case CHANGE_HIGHLIGHT:
+    case DATASET_RECEPTOR_PROFILE_CHANGE_HIGHLIGHT:
       return Object.assign({}, state, {
         highlight: action.highlightId
       });
-    case CHANGE_ACTIVE_LEFT:
+    case DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_LEFT:
       return Object.assign({}, state, {
         activeLeft: action.activeId
       });
-    case CHANGE_ACTIVE_RIGHT:
+    case DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_RIGHT:
       return Object.assign({}, state, {
         activeRight: action.activeId
       });
