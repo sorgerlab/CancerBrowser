@@ -83,7 +83,7 @@ class DatasetBasePage extends React.Component {
   handleViewByChange(newView) {
     const { datasetId, dispatch } = this.props;
     dispatch(this.changeViewBy(newView));
-    dispatch(this.changeActiveFilters({}));
+    dispatch(this.changeActiveFilters(null));
     dispatch(fetchDatasetIfNeeded(datasetId, newView));
   }
 

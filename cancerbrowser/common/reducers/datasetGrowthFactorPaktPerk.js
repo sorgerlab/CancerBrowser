@@ -19,8 +19,9 @@ const INITIAL_STATE = {
 function datasetGrowthFactorPaktPerk(state = INITIAL_STATE, action) {
   switch (action.type) {
     case DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_ACTIVE_FILTERS:
+      // reset to the initial state of set to null or undefined
       return Object.assign({}, state, {
-        activeFilters: action.activeFilters
+        activeFilters: action.activeFilters == null ? INITIAL_STATE.activeFilters : action.activeFilters
       });
     case DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_VIEW_BY:
       return Object.assign({}, state, {
