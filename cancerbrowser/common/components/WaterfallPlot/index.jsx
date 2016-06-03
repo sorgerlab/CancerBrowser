@@ -14,7 +14,7 @@ const propTypes = {
   /* name to use on top of the waterfall */
   label: React.PropTypes.string,
   /* dataset should look something like:
-    [{value: number, label: string, threshold: number, disable: bool}]
+    [{id:string, value: number, label: string, threshold: number, disable: bool}]
   */
   dataset: React.PropTypes.object,
   /* width of waterfall */
