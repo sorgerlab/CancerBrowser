@@ -80,6 +80,22 @@ function filterReceptorDataByCellLine(data, cellLines) {
   });
 }
 
+/**
+ * For 1 cell line x all receptors view, we don't want to display AU
+ * values - so filter them. 
+ */
+function filterByMetric(dataset, metricToKeep) {
+  if (!dataset) {
+    return dataset;
+  }
+
+  dataset.forEach(function(cellLine) {
+    cellLine.measurements = cellLine.measurements.filter((m) => m.metric === metricToKeep);
+  });
+
+  return dataset;
+}
+
 /////////////////////
 // Selectors
 /////////////////////
@@ -91,7 +107,7 @@ export const getViewData = createSelector(
     if (viewBy === 'receptor') {
       return convertToByReceptor(dataset);
     } else {
-      return dataset;
+      return filterByMetric(dataset, 'pg/cell');
     }
   }
 );

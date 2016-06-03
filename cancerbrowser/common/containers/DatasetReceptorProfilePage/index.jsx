@@ -59,7 +59,8 @@ function mapStateToProps(state) {
     receptors: receptors.items,
     highlightId: datasetReceptorProfile.highlight,
     activeLeft: datasetReceptorProfile.activeLeft,
-    activeRight: datasetReceptorProfile.activeRight
+    activeRight: datasetReceptorProfile.activeRight,
+    className: 'DatasetReceptorProfilePage'
   });
 
   return props;
