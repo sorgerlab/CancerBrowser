@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import Waterfall from './waterfall';
 
+import { sortByValueAndId } from '../../utils/sort';
 
 import './waterfall_plot.scss';
 
@@ -13,24 +14,16 @@ const propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number,
   onChangeHighlight: React.PropTypes.func,
-  labelLocation: React.PropTypes.string
+  labelLocation: React.PropTypes.string,
+  dataSort: React.PropTypes.func
 };
 
 
 const defaultProps = {
   width: 400,
   height: 800,
-  dataSort: sortByValue
+  dataSort: sortByValueAndId
 };
-
-/**
- * Default sort function for bars if none is passed in
- * Sorts by value attribute descending.
- */
-function sortByValue(a,b) {
-  return b.value - a.value;
-}
-
 
 
 class WaterfallPlot extends React.Component {

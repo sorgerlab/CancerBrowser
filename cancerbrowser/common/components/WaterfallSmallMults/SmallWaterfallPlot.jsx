@@ -4,6 +4,8 @@ import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
 import d3 from 'd3';
 
+import { sortByValueAndId } from '../../utils/sort';
+
 import './small_waterfall.scss';
 
 const propTypes = {
@@ -20,20 +22,13 @@ const propTypes = {
 };
 
 const defaultProps = {
-  dataSort: sortByValue,
+  dataSort: sortByValueAndId,
   width: 100,
   height: 100,
   fillColor: '#cccccc',
   highlightColor: '#9679af'
 };
 
-/**
- * Default sort function for bars if none is passed in
- * Sorts by value attribute descending.
- */
-function sortByValue(a,b) {
-  return b.value - a.value;
-}
 
 /**
  * One of the plots in the small multiples waterfall.
@@ -119,7 +114,8 @@ class SmallWaterfallPlot extends React.Component {
 
     // scales recomputed each draw
     const xScale = d3.scale.linear()
-      .range([0, width]);
+      .range([0, width])
+      .clamp(true);
 
     if(dataExtent) {
       xScale.domain(dataExtent);
@@ -137,7 +133,8 @@ class SmallWaterfallPlot extends React.Component {
     ctx.fillStyle = fillColor;
 
     values.forEach(function(value) {
-      ctx.fillRect(0, yScale(value.id), xScale(value.value), yScale.rangeBand());
+      const xValue = value.disabled ? 2 : xScale(value.value);
+      ctx.fillRect(0, yScale(value.id), xValue, yScale.rangeBand());
     });
 
     // draw highlight
@@ -148,7 +145,8 @@ class SmallWaterfallPlot extends React.Component {
 
       const activeValue = values.filter((v) => v.id === highlightId);
       activeValue.forEach(function(value) {
-        ctx.fillRect(0, yScale(value.id), xScale(value.value), yScale.rangeBand());
+        const xValue = value.disabled ? 4 : xScale(value.value);
+        ctx.fillRect(0, yScale(value.id), xValue, yScale.rangeBand());
       });
     }
   }

@@ -54,6 +54,9 @@ function convertToByReceptor(dataset) {
       receptors[m.id]  = receptors[m.id] || {id:m.id, label:m.receptor, measurements: []};
       // add a new cell line based measurement
       let newMeasurement = {id: cellLine.id, label: cellLine.label, value:m.value, threshold:m.threshold};
+      if(newMeasurement.value === newMeasurement.threshold) {
+        newMeasurement.disabled = true;
+      }
       receptors[m.id].measurements.push(newMeasurement);
     });
   });

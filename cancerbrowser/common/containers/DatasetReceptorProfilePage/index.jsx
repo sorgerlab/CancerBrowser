@@ -106,7 +106,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
   renderSmallMults(datasets) {
     const { highlightId, activeLeft, activeRight, viewBy } = this.props;
 
-    const dataExtent = (viewBy === 'receptor') ? undefined : [-7, 1];
+    const dataExtent = (viewBy === 'receptor') ? [-6.5, 1] : [-6.5, 1];
     if(datasets) {
       return (
         <WaterfallSmallMults
@@ -123,7 +123,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
 
   renderWaterfall(dataset, labelLocation) {
     const { highlightId, viewBy } = this.props;
-    const dataExtent = (viewBy === 'receptor') ? undefined : [-7, 1];
+    const dataExtent = (viewBy === 'receptor') ? [-6.5, 1] : [-6.5, 1];
 
     if(dataset) {
       return (
