@@ -82,6 +82,7 @@ class SelectFilter extends React.Component {
     return (
       <div className="SelectFilter">
         <Select
+          clearable={false}
           options={items}
           value={value}
           optionRenderer={renderOption}

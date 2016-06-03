@@ -48,7 +48,8 @@ export const getFilteredViewData = createSelector(
         growthfactor
           metric(fold change, raw)
             parameter(perk, pakt)
-              time(10min, 30min, 90min)
+              concentration(1, 100)
+                time(10min, 30min, 90min)
       */
       if (!dataset) {
         return dataset;
@@ -59,6 +60,8 @@ export const getFilteredViewData = createSelector(
       const reducedData = filteredData.reduce((reducedData, d) => {
         d.measurements.forEach(m => {
           const { time, type, metric } = m;
+          const concentration = d['Ligand Concentration'];
+
           if (!reducedData[metric]) {
             reducedData[metric] = {};
           }
@@ -67,16 +70,21 @@ export const getFilteredViewData = createSelector(
             reducedData[metric][type] = {};
           }
 
-          if (!reducedData[metric][type][time]) {
-            reducedData[metric][type][time] = [];
+          if (!reducedData[metric][type][concentration]) {
+            reducedData[metric][type][concentration] = {};
+          }
+
+          if (!reducedData[metric][type][concentration][time]) {
+            reducedData[metric][type][concentration][time] = [];
           }
 
           const preparedMeasurement = Object.assign({}, m, {
             id: d['Cell Line HMS LINCS ID'],
-            label: d['Cell Line Name']
+            label: d['Cell Line Name'],
+            d
           });
 
-          reducedData[metric][type][time].push(preparedMeasurement);
+          reducedData[metric][type][concentration][time].push(preparedMeasurement);
         });
         return reducedData;
       }, {});
@@ -123,8 +131,21 @@ export const getFilterGroups = createSelector(
           values: [
             { label: 'pAKT Fold Change', value: 'paktFoldChange' },
             { label: 'pERK Fold Change', value: 'perkFoldChange' },
-            { label: 'pAKT Raw Values', value: 'paktRawValues' },
-            { label: 'pERK Raw Values', value: 'perkRawValues' }
+            // remove these for now since not yet supported
+            // { label: 'pAKT Raw Values', value: 'paktRawValues' },
+            // { label: 'pERK Raw Values', value: 'perkRawValues' }
+          ],
+          options: {
+            props: { counts: null }
+          }
+        },
+        {
+          id: 'concentration',
+          label: 'Ligand Concentration',
+          type: 'select',
+          values: [
+            { label: '1ng/mL', value: '1' },
+            { label: '100ng/mL', value: '100' }
           ],
           options: {
             props: { counts: null }

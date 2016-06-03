@@ -11,7 +11,14 @@ const baseCellLineDatasetFilter = {
 };
 
 const INITIAL_STATE = {
-  activeFilters: { cellLineFilters: [baseCellLineDatasetFilter] },
+  activeFilters: {
+    cellLineFilters: [baseCellLineDatasetFilter],
+    growthFactorConfig: [
+      { id: 'concentration', values: ['1'] },
+      { id: 'parameter', values: ['paktFoldChange'] },
+      { id: 'growthFactor', values: ['200852.0'] }
+    ]
+  },
   viewBy: 'growthFactor',
   highlight: undefined
 };
