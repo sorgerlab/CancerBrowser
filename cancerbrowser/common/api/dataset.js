@@ -39,7 +39,7 @@ export function getDatasetInfo(datasetId) {
  * @param {String} id of dataset to get
  * @return {Promise} dataset array
  */
-export function getDataset(datasetId, format) {
+export function getDataset(datasetId) {
   const info = datasetInfo[datasetId];
   return new Promise(function(resolve, reject) {
     if(info) {
@@ -49,7 +49,7 @@ export function getDataset(datasetId, format) {
         if(error) {
           reject(error);
         } else {
-          resolve(transformData(data, info, format));
+          resolve(transformData(data, info));
         }
       });
 
@@ -94,6 +94,7 @@ function transformData(dataset, info) {
       dataset = transformReceptorData(dataset);
       break;
     case 'growth_factor_pakt_perk':
+    case 'growth_factor_pakt_perk_raw':
       dataset = transformGrowthFactor(dataset, info);
       break;
     case 'basal_total':

@@ -5,6 +5,7 @@ import { cellLinesFilterGroup, getFilteredCellLines } from './cell_line';
 import { getFilterValue } from '../utils/filter_utils';
 
 const datasetId = 'growth_factor_pakt_perk';
+const datasetRawId = 'growth_factor_pakt_perk_raw';
 const datasetKey = 'datasetGrowthFactorPaktPerk';
 
 
@@ -15,7 +16,58 @@ const datasetKey = 'datasetGrowthFactorPaktPerk';
 
 function getActiveGrowthFactor(state) {
   const activeFilters = state.datasets[datasetKey].activeFilters;
-  return getFilterValue(activeFilters, 'growthFactorConfig', 'growthFactor') || '200852.0';
+  return getFilterValue(activeFilters, 'growthFactorConfig', 'growthFactor');
+}
+
+function getActiveParameter(state) {
+  const activeFilters = state.datasets[datasetKey].activeFilters;
+  return getFilterValue(activeFilters, 'growthFactorConfig', 'parameter');
+}
+
+function getActiveConcentration(state) {
+  const activeFilters = state.datasets[datasetKey].activeFilters;
+  return getFilterValue(activeFilters, 'growthFactorConfig', 'concentration');
+}
+
+function getActiveMetricAndType(state) {
+  const parameter = getActiveParameter(state);
+
+  if (!parameter) {
+    return {};
+  }
+
+  let result = {};
+
+  switch(parameter) {
+    case 'paktFoldChange':
+      result.metric = 'fold change';
+      result.type = 'pAkt';
+      break;
+    case 'paktRawValues':
+      result.metric = 'raw values';
+      result.type = 'pAkt';
+      break;
+    case 'perkFoldChange':
+      result.metric = 'fold change';
+      result.type = 'pErk';
+      break;
+    case 'perkRawValues':
+      result.metric = 'raw values';
+      result.type = 'pErk';
+      break;
+  }
+
+  return result;
+}
+
+
+function getActiveDataset(state) {
+  const activeParameter = getActiveParameter(state);
+  if (activeParameter === 'perkFoldChange' || activeParameter === 'paktFoldChange') {
+    return getDataset(datasetId, state);
+  } else {
+    return getDataset(datasetRawId, state);
+  }
 }
 
 
@@ -40,14 +92,17 @@ function filterDataByCellLines(data, cellLines) {
 
 /** Filters the dataset */
 export const getFilteredViewData = createSelector(
-  [ getDataset(datasetId), getViewBy(datasetKey), getActiveGrowthFactor,
+  [ getActiveDataset, getViewBy(datasetKey),
+    getActiveGrowthFactor, getActiveMetricAndType, getActiveConcentration,
     getFilteredCellLines ],
-  (dataset, viewBy, activeGrowthFactor, filteredCellLines) => {
+  (dataset, viewBy, activeGrowthFactor, { type: activeType },
+    activeConcentration, filteredCellLines) => {
+
     if (viewBy === 'growthFactor') {
       /*
         growthfactor
           metric(fold change, raw)
-            parameter(perk, pakt)
+            type(perk, pakt)
               concentration(1, 100)
                 time(10min, 30min, 90min)
       */
@@ -55,27 +110,26 @@ export const getFilteredViewData = createSelector(
         return dataset;
       }
 
-      const filteredData = dataset.filter(d => d['Protein HMS LINCS ID'] === activeGrowthFactor);
+      // filter to just the selected growth factor and concentration first
+      const filteredData = dataset.filter(d =>
+        d['Protein HMS LINCS ID'] === activeGrowthFactor &&
+        String(d['Ligand Concentration']) === String(activeConcentration));
 
-      const reducedData = filteredData.reduce((reducedData, d) => {
+      /* group by time if it matches the metric and type
+       * ends up with form:
+       * { 10m: [{id, label, value, d}, ...], 30m: ... }
+       */
+      const byTime = filteredData.reduce((byTime, d) => {
         d.measurements.forEach(m => {
-          const { time, type, metric } = m;
-          const concentration = d['Ligand Concentration'];
+          const { time } = m;
 
-          if (!reducedData[metric]) {
-            reducedData[metric] = {};
+          // filter out wrong type (pakt, perk) (note that metric filtered by active dataset already)
+          if (m.type !== activeType) {
+            return;
           }
 
-          if (!reducedData[metric][type]) {
-            reducedData[metric][type] = {};
-          }
-
-          if (!reducedData[metric][type][concentration]) {
-            reducedData[metric][type][concentration] = {};
-          }
-
-          if (!reducedData[metric][type][concentration][time]) {
-            reducedData[metric][type][concentration][time] = [];
+          if (!byTime[time]) {
+            byTime[time] = [];
           }
 
           const preparedMeasurement = Object.assign({}, m, {
@@ -84,12 +138,11 @@ export const getFilteredViewData = createSelector(
             d
           });
 
-          reducedData[metric][type][concentration][time].push(preparedMeasurement);
+          byTime[time].push(preparedMeasurement);
         });
-        return reducedData;
+        return byTime;
       }, {});
-
-      return reducedData;
+      return byTime;
     } else {
       return dataset;
     }
@@ -131,9 +184,8 @@ export const getFilterGroups = createSelector(
           values: [
             { label: 'pAKT Fold Change', value: 'paktFoldChange' },
             { label: 'pERK Fold Change', value: 'perkFoldChange' },
-            // remove these for now since not yet supported
-            // { label: 'pAKT Raw Values', value: 'paktRawValues' },
-            // { label: 'pERK Raw Values', value: 'perkRawValues' }
+            { label: 'pAKT Raw Values', value: 'paktRawValues' },
+            { label: 'pERK Raw Values', value: 'perkRawValues' }
           ],
           options: {
             props: { counts: null }

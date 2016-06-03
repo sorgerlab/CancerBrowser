@@ -13,12 +13,17 @@ import {
   changeHighlight
 } from '../../actions/datasetGrowthFactorPaktPerk';
 
+import {
+  fetchDatasetIfNeeded
+} from '../../actions/dataset';
+
 import WaterfallPlot from '../../components/WaterfallPlot';
 
 import './dataset_growth_factor_pakt_perk_page.scss';
 
 /// Specify the dataset ID here: ////
 const datasetId = 'growth_factor_pakt_perk';
+const datasetRawId = 'growth_factor_pakt_perk_raw';
 const datasetKey = 'datasetGrowthFactorPaktPerk';
 /////////////////////////////////////
 
@@ -74,6 +79,14 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     this.getActiveParameter = this.getActiveParameter.bind(this);
     this.getActiveMetricAndType = this.getActiveMetricAndType.bind(this);
     this.getActiveConcentration = this.getActiveConcentration.bind(this);
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    super.componentDidMount();
+
+    // get the extra dataset file
+    dispatch(fetchDatasetIfNeeded(datasetRawId));
   }
 
   getActiveGrowthFactor() {
@@ -150,19 +163,16 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
       return null;
     }
 
-    const { metric, type } = this.getActiveMetricAndType();
-    const concentration = this.getActiveConcentration();
-    const times = Object.keys(filteredData[metric][type][concentration]);
-
+    const times = Object.keys(filteredData);
     const sharedExtent = d3.extent(_.flatten(times.map(time => {
-      return d3.extent(filteredData[metric][type][concentration][time], d => d.value);
+      return d3.extent(filteredData[time], d => d.value);
     })));
 
     return (
       <div className='waterfalls-container'>
         <div className='row'>
           {times.map((time, i) => {
-            const dataset = filteredData[metric][type][concentration][time];
+            const dataset = filteredData[time];
             return <div key={i} className='col-md-4'>{this.renderWaterfall(time, dataset, sharedExtent)}</div>;
           })}
         </div>
