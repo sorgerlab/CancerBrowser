@@ -43,11 +43,7 @@ class Waterfall {
    * @param (Function) sortFunc function indicating how to sort.
    */
   updateData(dataset, sortFunc) {
-
-    const data = dataset.measurements;
-    data.sort(sortFunc);
-
-    return data;
+    return dataset.sort(sortFunc);
   }
 
   /**
@@ -80,7 +76,7 @@ class Waterfall {
    *
    */
   update(props) {
-    const {dataset, width, height, dataSort, labelLocation, highlightId } = props;
+    const {dataset, width, height, dataSort, labelLocation, highlightId, useThresholds } = props;
 
     // Early out
     if(!dataset) {
@@ -188,9 +184,7 @@ class Waterfall {
       .on('mouseover', this.onMouseover)
       .on('mouseout', this.onMouseout);
 
-    const showThresholds = true;
-
-    if(showThresholds) {
+    if(useThresholds) {
 
       const thresholdBars = this.g
         .selectAll('.threshold')

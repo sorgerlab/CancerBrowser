@@ -129,7 +129,8 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     if(dataset) {
       return (
         <WaterfallPlot
-          dataset={dataset}
+          label={dataset.label}
+          dataset={dataset.measurements}
           labelLocation={labelLocation}
           onChangeHighlight={this.onChangeHighlight}
           highlightId={highlightId}
