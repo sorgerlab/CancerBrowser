@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import _ from 'lodash';
-import { getDataset, getViewBy, getFilteredCellLines } from './dataset';
-import { cellLineFilters } from '../containers/CellLineBrowserPage';
+import { getDataset, getViewBy } from './dataset';
+import { cellLinesFilterGroup, getFilteredCellLines } from './cell_line';
 
 const datasetId = 'receptor_profile';
 const datasetKey = 'datasetReceptorProfile';
@@ -141,11 +141,13 @@ export const getFilterGroups = createSelector(
         filters: byReceptorConfig
       });
 
+      // remove the dataset from the cell lines group
       filterGroups.push({
-        id: 'cellLineFilters',
-        label: 'Cell Line Filters',
-        filters: cellLineFilters.filter(filter => filter.id !== 'dataset')
+        id: cellLinesFilterGroup.id,
+        label: cellLinesFilterGroup.label,
+        filters: cellLinesFilterGroup.filters.filter(filter => filter.id !== 'dataset')
       });
+
     } else {
       const cellLines = []; // TODO get all cell lines via an input selector
       // put by cell line filters here

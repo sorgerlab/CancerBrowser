@@ -42,7 +42,7 @@ class HomePage extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
 
-    dispatch(fetchCellLinesIfNeeded({}, {}));
+    dispatch(fetchCellLinesIfNeeded());
     dispatch(fetchDrugsIfNeeded({}, {}));
   }
 

@@ -135,7 +135,7 @@ class CellLineBrowserPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchCellLinesIfNeeded({}, filterGroups));
+    this.props.dispatch(fetchCellLinesIfNeeded());
     this.props.dispatch(fetchDatasetsInfo());
   }
 
@@ -149,7 +149,6 @@ class CellLineBrowserPage extends React.Component {
 
   onFilterChange(newFilters) {
     this.props.dispatch(changeActiveFilters(newFilters));
-    this.props.dispatch(fetchCellLinesIfNeeded(newFilters, filterGroups));
   }
 
   onCellLineFilterChange(newCellLineFilters) {
@@ -157,7 +156,6 @@ class CellLineBrowserPage extends React.Component {
     const newActiveFilters = Object.assign({}, activeFilters, { cellLineFilters: newCellLineFilters });
 
     this.props.dispatch(changeActiveFilters(newActiveFilters));
-    this.props.dispatch(fetchCellLinesIfNeeded(newActiveFilters, filterGroups));
   }
 
   onCellLineViewChange(newView) {

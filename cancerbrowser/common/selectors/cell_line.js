@@ -8,7 +8,17 @@ function getCellLines(state) {
   return state.cellLines.items;
 }
 
-function getActiveFilters(state) {
+/* allow overriding the default filters location
+ *
+ * @param {Object} state The Redux state
+ * @param {Object} substate A subsection of the Redux state to browse if provided instead
+ * @return The active filters
+ */
+function getActiveFilters(state, substate) {
+  if (substate) {
+    return substate.activeFilters;
+  }
+
   return state.filters.active;
 }
 
@@ -103,8 +113,8 @@ export const cellLinesFilterGroup = {
 export const getFilteredCellLines = createSelector(
   [ getCellLines, getActiveFilters ],
   (cellLines, activeFilters) => {
-    const filterGroup = activeFilters.cellLineFilters;
-    const filteredCellLines = filterData(cellLines, filterGroup);
+    const activeCellLineFilters = activeFilters.cellLineFilters;
+    const filteredCellLines = filterData(cellLines, activeCellLineFilters);
 
     return filteredCellLines;
   }

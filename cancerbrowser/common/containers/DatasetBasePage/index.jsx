@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import _ from 'lodash';
+
+import { getFilteredCellLines, getFilteredCellLineCounts } from '../../selectors/cell_line';
 
 import {
   fetchDatasetIfNeeded,
@@ -33,7 +34,7 @@ const propTypes = {
 
 export function baseMapStateToProps(state, { datasetId, datasetKey,
     getFilteredViewData, getFilterGroups }) {
-  const { datasets, cellLines } = state;
+  const { datasets } = state;
   const datasetState = datasets[datasetKey];
   const dataset = datasets.datasetsById[datasetId];
 
@@ -42,12 +43,12 @@ export function baseMapStateToProps(state, { datasetId, datasetKey,
     datasetKey,
     datasetInfo: datasets.info.items[datasetId],
     datasetData: dataset && dataset.items,
-    filteredCellLines: cellLines.filtered,
-    cellLineCounts: cellLines.counts,
     activeFilters: datasetState.activeFilters,
     viewBy: datasetState.viewBy,
-    filteredData: getFilteredViewData(state),
-    filterGroups: getFilterGroups(state)
+    filteredData: getFilteredViewData(state, datasetState),
+    filterGroups: getFilterGroups(state, datasetState),
+    filteredCellLines: getFilteredCellLines(state, datasetState),
+    cellLineCounts: getFilteredCellLineCounts(state, datasetState)
   };
 
   return props;
@@ -73,10 +74,10 @@ class DatasetBasePage extends React.Component {
   }
 
   componentDidMount() {
-    const { datasetId, dispatch, activeFilters, filterGroups } = this.props;
+    const { datasetId, dispatch } = this.props;
     dispatch(fetchDatasetIfNeeded(datasetId));
     dispatch(fetchDatasetInfo(datasetId));
-    dispatch(fetchCellLinesIfNeeded(activeFilters, filterGroups));
+    dispatch(fetchCellLinesIfNeeded());
   }
 
   handleViewByChange(newView) {
@@ -86,12 +87,8 @@ class DatasetBasePage extends React.Component {
   }
 
   onFilterChange(newFilters) {
-    const { dispatch, filterGroups } = this.props;
+    const { dispatch } = this.props;
     dispatch(this.changeActiveFilters(newFilters));
-
-    // TODO these should just be affected by cellLineFilters not all the filter groups...
-    dispatch(fetchCellLinesIfNeeded(_.pick(newFilters, 'cellLineFilters'),
-      filterGroups.filter(filterGroup => filterGroup.id === 'cellLineFilters')));
   }
 
   /**
