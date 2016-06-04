@@ -5,6 +5,7 @@ import './dataset_receptor_profile_page.scss';
 
 import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetReceptorProfile';
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
+import { colorScales } from '../../config/colors';
 
 import {
   fetchReceptorsIfNeeded
@@ -16,7 +17,8 @@ import {
   changeActiveLeft,
   changeActiveRight,
   changeActiveFilters,
-  changeViewBy
+  changeViewBy,
+  changeReceptorColorBy
 } from '../../actions/datasetReceptorProfile';
 
 import WaterfallSmallMults from '../../components/WaterfallSmallMults';
@@ -40,7 +42,8 @@ const propTypes = {
   cellLineCounts: React.PropTypes.object,
   receptors: React.PropTypes.array,
   viewBy: React.PropTypes.string,
-  filteredData: React.PropTypes.array
+  filteredData: React.PropTypes.array,
+  receptorColorBy: React.PropTypes.string
 };
 
 const defaultProps = {
@@ -58,6 +61,7 @@ function mapStateToProps(state) {
   const props = Object.assign(baseProps, {
     receptors: receptors.items,
     highlightId: datasetReceptorProfile.highlight,
+    receptorColorBy: datasetReceptorProfile.receptorColorBy,
     activeLeft: datasetReceptorProfile.activeLeft,
     activeRight: datasetReceptorProfile.activeRight,
     className: 'DatasetReceptorProfilePage'
@@ -71,6 +75,12 @@ const viewOptions = [
   { label: 'Cell Line', value: 'cellLine' }
 ];
 
+const mappedColorScales = {
+  cellLineReceptorStatus: d => colorScales.cellLineReceptorStatus(d.cell_line.receptorStatus.value),
+  cellLineMolecularSubtype: d => colorScales.cellLineMolecularSubtype(d.cell_line.molecularSubtype.value),
+  none: undefined
+};
+
 /**
  * React container for a dataset page page - Receptor Profile
  */
@@ -80,6 +90,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
 
     this.onChangeHighlight = this.onChangeHighlight.bind(this);
     this.onChangeActive = this.onChangeActive.bind(this);
+    this.onReceptorColorChange = this.onReceptorColorChange.bind(this);
   }
 
   componentDidMount() {
@@ -104,6 +115,12 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     this.toggleActive = this.toggleActive === 'left' ? 'right' : 'left';
   }
 
+  onReceptorColorChange(event) {
+    const { value } = event.target;
+    const { dispatch } = this.props;
+    dispatch(changeReceptorColorBy(value));
+  }
+
   renderSmallMults(datasets) {
     const { highlightId, activeLeft, activeRight, viewBy } = this.props;
 
@@ -126,6 +143,11 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     const { highlightId, viewBy } = this.props;
     const dataExtent = (viewBy === 'receptor') ? [-6.5, 1] : [-6.5, 1];
 
+    let colorBy = 'none';
+    if (viewBy === 'receptor') {
+      colorBy = this.props.receptorColorBy;
+    }
+
     if(dataset) {
       return (
         <WaterfallPlot
@@ -134,7 +156,8 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
           labelLocation={labelLocation}
           onChangeHighlight={this.onChangeHighlight}
           highlightId={highlightId}
-          dataExtent={dataExtent} />
+          dataExtent={dataExtent}
+          colorScale={mappedColorScales[colorBy]} />
       );
     }
   }
@@ -150,8 +173,29 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     }
   }
 
+  renderReceptorChartControls() {
+    const { receptorColorBy } = this.props;
+    return (
+      <div>
+        <div className='chart-controls clearfix'>
+          <div className='form-group'>
+            <label className='small-label'>Color By</label>
+            <div>
+              <select className='form-control' value={receptorColorBy}
+                onChange={this.onReceptorColorChange}>
+                <option value='cellLineReceptorStatus'>Cell Line Receptor Status</option>
+                <option value='cellLineMolecularSubtype'>Cell Line Molecular Subtype</option>
+                <option value='none'>Nothing</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   renderMain() {
-    const { filteredData, datasetData, activeLeft, activeRight } = this.props;
+    const { filteredData, datasetData, activeLeft, activeRight, viewBy } = this.props;
 
     const leftData = this.getData(filteredData, activeLeft);
     const rightData = this.getData(filteredData, activeRight);
@@ -162,8 +206,11 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
       );
     }
 
+    const controls = (viewBy === 'receptor') ? this.renderReceptorChartControls() : '';
+
     return (
       <div>
+        {controls}
         <div className='row'>
           <div className='col-md-4'>
             {this.renderWaterfall(leftData, 'left')}

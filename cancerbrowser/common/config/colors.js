@@ -1,6 +1,7 @@
 import d3 from 'd3';
 
-const receptorStatusColors = ['#f6578e', '#fda91f', '#54a3ff', '#7ed321'];
+// const receptorStatusColors = ['#f6578e', '#fda91f', '#54a3ff', '#7ed321'];
+const receptorStatusColors = ['#5fa9bb', '#c88643', '#79af61', '#bd8676'];
 
 function lighten(color, amount) {
   const hsl = d3.rgb(color).hsl();
@@ -28,4 +29,3 @@ export const colorScales = {
   categories: d3.scale.ordinal()
     .range(['#b3e2cd', '#fdcdac', '#cbd5e8', '#f4cae4', '#e6f5c9', '#fff2ae', '#f1e2cc', '#cccccc'])
 };
-
