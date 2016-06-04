@@ -173,7 +173,7 @@ export const getFilterGroups = createSelector(
     } else {
       let cellLines = [];
       if(viewData) {
-        cellLines = _.map(viewData,(d) => { return {id:d.id, label:d.label}; });
+        cellLines = _.map(viewData,(d) => { return {value:d.id, label:d.label}; });
       }
       // put by cell line filters here
       const byCellLineConfig = [
