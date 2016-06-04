@@ -6,11 +6,13 @@ import d3 from 'd3';
 import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetGrowthFactorPaktPerk';
 import { getFilterValue, getFilterValueItem } from '../../utils/filter_utils';
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
+import { colorScales } from '../../config/colors';
 
 import {
   changeActiveFilters,
   changeViewBy,
-  changeHighlight
+  changeHighlight,
+  changeGrowthFactorColorBy
 } from '../../actions/datasetGrowthFactorPaktPerk';
 
 import {
@@ -39,7 +41,8 @@ const propTypes = {
   cellLineCounts: React.PropTypes.object,
   viewBy: React.PropTypes.string,
   filteredData: React.PropTypes.object,
-  className: React.PropTypes.string
+  className: React.PropTypes.string,
+  growthFactorColorBy: React.PropTypes.string
 };
 
 const defaultProps = {
@@ -55,7 +58,8 @@ function mapStateToProps(state) {
 
   const props = Object.assign(baseProps, {
     /* Add custom props here */
-    highlightId: datasetGrowthFactorPaktPerk.highlight
+    highlightId: datasetGrowthFactorPaktPerk.highlight,
+    growthFactorColorBy: datasetGrowthFactorPaktPerk.growthFactorColorBy
   });
 
   return props;
@@ -66,6 +70,13 @@ const viewOptions = [
   { label: 'Cell Line', value: 'cellLine' }
 ];
 
+
+const mappedColorScales = {
+  cellLineReceptorStatus: d => colorScales.cellLineReceptorStatus(d.d.cell_line.receptorStatus.value),
+  cellLineMolecularSubtype: d => colorScales.cellLineMolecularSubtype(d.d.cell_line.molecularSubtype.value),
+  none: undefined
+};
+
 /**
  * React container for a dataset page page - Growth Factor pAKT/pERK page
  */
@@ -74,7 +85,9 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     super(props, viewOptions, changeViewBy, changeActiveFilters);
     this.renderWaterfall = this.renderWaterfall.bind(this);
     this.renderWaterfalls = this.renderWaterfalls.bind(this);
+    this.renderGrowthFactorChartControls = this.renderGrowthFactorChartControls.bind(this);
     this.onChangeHighlight = this.onChangeHighlight.bind(this);
+    this.handleGrowthFactorColorByChange = this.handleGrowthFactorColorByChange.bind(this);
     this.getActiveGrowthFactor = this.getActiveGrowthFactor.bind(this);
     this.getActiveParameter = this.getActiveParameter.bind(this);
     this.getActiveMetricAndType = this.getActiveMetricAndType.bind(this);
@@ -139,10 +152,20 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     dispatch(changeHighlight(highlightId));
   }
 
-  renderWaterfall(label, dataset, extent) {
-    const { highlightId } = this.props;
+  handleGrowthFactorColorByChange(evt) {
+    const { value } = evt.target;
+    const { dispatch } = this.props;
+    dispatch(changeGrowthFactorColorBy(value));
+  }
 
-    if(dataset) {
+  renderWaterfall(label, dataset, extent) {
+    const { viewBy, highlightId } = this.props;
+    let colorBy;
+    if (viewBy === 'growthFactor') {
+      colorBy = this.props.growthFactorColorBy;
+    }
+
+    if (dataset) {
       return (
         <WaterfallPlot
           labelLocation='left'
@@ -152,6 +175,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
           highlightId={highlightId}
           useThresholds={false}
           dataExtent={extent}
+          colorScale={mappedColorScales[colorBy]}
         />
       );
     }
@@ -180,6 +204,27 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     );
   }
 
+  renderGrowthFactorChartControls() {
+    const { growthFactorColorBy } = this.props;
+    return (
+      <div>
+        <div className='chart-controls clearfix'>
+          <div className='form-group'>
+            <label className='small-label'>Color By</label>
+            <div>
+              <select className='form-control' value={growthFactorColorBy}
+                  onChange={this.handleGrowthFactorColorByChange}>
+                <option value='cellLineReceptorStatus'>Cell Line Receptor Status</option>
+                <option value='cellLineMolecularSubtype'>Cell Line Molecular Subtype</option>
+                <option value='none'>Nothing</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   renderGrowthFactorView() {
     const activeGrowthFactor = this.getActiveGrowthFactor();
     const activeParameter = this.getActiveParameter();
@@ -193,6 +238,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     return (
       <div>
         <h3>{label}</h3>
+        {this.renderGrowthFactorChartControls()}
         {this.renderWaterfalls()}
       </div>
     );

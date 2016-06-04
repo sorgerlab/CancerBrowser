@@ -50,8 +50,7 @@ class Waterfall {
    *
    */
   updateScales(data, props) {
-
-    const { dataExtent } = props;
+    const { dataExtent, colorScale } = props;
     // scales recomputed each draw
     const xScale = d3.scale.linear()
       .range([0, this.width])
@@ -67,9 +66,7 @@ class Waterfall {
       .domain(data.map((v) => v.id))
       .rangeRoundBands([0, this.height], 0.05);
 
-    const colorScale = (d) => '#999';
-
-    return {x: xScale, y: yScale, color:  colorScale};
+    return {x: xScale, y: yScale, color: colorScale};
   }
 
   /**
@@ -179,7 +176,7 @@ class Waterfall {
       .attr('y', (d) => scales.y(d.id))
       .attr('width', (d) => d.disabled ? 0 : scales.x(d.value))
       .attr('height', scales.y.rangeBand())
-      .style('fill', (d) => scales.color(d.id))
+      .style('fill', (d) => scales.color(d))
       .classed('highlight', (d)  => d.id === highlightId)
       .on('mouseover', this.onMouseover)
       .on('mouseout', this.onMouseout);
@@ -208,7 +205,7 @@ class Waterfall {
   }
 
   onMouseover(d) {
-    console.log(d)
+    console.log(d);
     this.dispatch.highlight(d);
   }
 
