@@ -95,7 +95,7 @@ export const getFilteredViewData = createSelector(
   [ getActiveDataset, getViewBy(datasetKey),
     getActiveGrowthFactor, getActiveMetricAndType, getActiveConcentration,
     getFilteredCellLines ],
-  (dataset, viewBy, activeGrowthFactor, { type: activeType },
+  (dataset, viewBy, activeGrowthFactor, { metric: activeMetric, type: activeType },
     activeConcentration, filteredCellLines) => {
 
     const datasetFilteredByCellLines = filterDataByCellLines(dataset, filteredCellLines);
@@ -132,6 +132,10 @@ export const getFilteredViewData = createSelector(
             label: d['Cell Line Name'],
             d
           });
+
+          if (activeMetric === 'raw values') {
+            preparedMeasurement.threshold = d[`Control ${activeType} (a.u.)`];
+          }
 
           byTime[time].push(preparedMeasurement);
         });
