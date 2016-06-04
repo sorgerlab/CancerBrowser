@@ -30,16 +30,20 @@ const propTypes = {
   /* boolean for showing or hiding thresholds */
   useThresholds: React.PropTypes.bool,
   /* if provided, sets the x axis extent*/
-  dataExtent: React.PropTypes.array
+  dataExtent: React.PropTypes.array,
+
+  /* function mapping data items to colors */
+  colorScale: React.PropTypes.func
 };
 
 
 const defaultProps = {
   width: 400,
-  height: 800,
+  height: null, // null height means set height based on max bar size
   labelLocation: 'left',
   dataSort: sortByValueAndId,
-  useThresholds: true
+  useThresholds: true,
+  colorScale: () => '#aaa'
 };
 
 

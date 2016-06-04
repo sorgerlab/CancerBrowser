@@ -39,7 +39,7 @@ const defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    datasets: state.datasets.info.items,
+    datasets: state.datasets.info.primaryDatasets,
     cellLineView: state.cellLines.cellLineView, // TODO: move to .browser.
     activeFilters: state.filters.active,
     filteredCellLines: getFilteredCellLines(state),

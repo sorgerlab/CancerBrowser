@@ -157,6 +157,7 @@ export const getFilterGroups = createSelector(
       filterGroups.push({
         id: 'byReceptorConfig',
         label: 'Configure',
+        clearable: false,
         filters: byReceptorConfig
       });
 
@@ -197,6 +198,7 @@ export const getFilterGroups = createSelector(
       filterGroups.push({
         id: 'byCellLineConfig',
         label: 'Configure',
+        clearable: false,
         filters: byCellLineConfig
       });
     }

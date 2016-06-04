@@ -27,6 +27,11 @@ Object.keys(datasetInfo).forEach(function(key) {
 
   var info = datasetInfo[key];
 
+  // skip if not primary entry for the dataset
+  if (info.exclude_from_datasets) {
+    return;
+  }
+
   // the values are info objects.
   var filename = datasetRoot + info.filename;
 

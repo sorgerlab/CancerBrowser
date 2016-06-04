@@ -18,7 +18,7 @@ const propTypes = {
  */
 function mapStateToProps(state) {
   return {
-    datasets: state.datasets.info.items
+    datasets: state.datasets.info.primaryDatasets
   };
 }
 

@@ -50,8 +50,7 @@ class Waterfall {
    *
    */
   updateScales(data, props) {
-
-    const { dataExtent } = props;
+    const { dataExtent, colorScale } = props;
     // scales recomputed each draw
     const xScale = d3.scale.linear()
       .range([0, this.width])
@@ -67,9 +66,7 @@ class Waterfall {
       .domain(data.map((v) => v.id))
       .rangeRoundBands([0, this.height], 0.05);
 
-    const colorScale = (d) => '#999';
-
-    return {x: xScale, y: yScale, color:  colorScale};
+    return {x: xScale, y: yScale, color: colorScale};
   }
 
   /**
@@ -96,7 +93,16 @@ class Waterfall {
     }
 
     this.width = width - (this.margins.left + this.margins.right);
-    this.height = height - (this.margins.top + this.margins.bottom);
+
+    let outerHeight = height;
+    if (outerHeight == null) {
+      // base the height on the size of the bars instead of a predetermined value
+      const barHeight = 22;
+      this.height = barHeight * dataset.length;
+    } else {
+      this.height = outerHeight - (this.margins.top + this.margins.bottom);
+    }
+
 
     this.svg
       .attr('width', this.width + (this.margins.left + this.margins.right))
@@ -143,6 +149,8 @@ class Waterfall {
         .on('mouseout', this.onMouseout);
     }
 
+    // minus 2 to make room for the stroke
+    const barHeight = scales.y.rangeBand() - 2;
 
     // for easier mouseovering
     const hoverBars = this.g
@@ -159,7 +167,7 @@ class Waterfall {
       .attr('x', 0)
       .attr('y', (d) => scales.y(d.id))
       .attr('width', this.width)
-      .attr('height', scales.y.rangeBand())
+      .attr('height', barHeight)
       .style('fill', '#fff')
       .on('mouseover', this.onMouseover)
       .on('mouseout', this.onMouseout);
@@ -178,8 +186,8 @@ class Waterfall {
       .attr('x', 0)
       .attr('y', (d) => scales.y(d.id))
       .attr('width', (d) => d.disabled ? 0 : scales.x(d.value))
-      .attr('height', scales.y.rangeBand())
-      .style('fill', (d) => scales.color(d.id))
+      .attr('height', barHeight)
+      .style('fill', (d) => scales.color(d))
       .classed('highlight', (d)  => d.id === highlightId)
       .on('mouseover', this.onMouseover)
       .on('mouseout', this.onMouseout);
@@ -200,7 +208,7 @@ class Waterfall {
         .attr('x', 0)
         .attr('y', (d) => scales.y(d.id))
         .attr('width', (d) => d.disabled ? DISABLED_BAR_SIZE : scales.x(d.threshold))
-        .attr('height', scales.y.rangeBand())
+        .attr('height', barHeight)
         .classed('highlight', (d)  => d.id === highlightId)
         .on('mouseover', this.onMouseover)
         .on('mouseout', this.onMouseout);
@@ -208,7 +216,7 @@ class Waterfall {
   }
 
   onMouseover(d) {
-    console.log(d)
+    console.log(d);
     this.dispatch.highlight(d);
   }
 
