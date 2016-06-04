@@ -93,7 +93,16 @@ class Waterfall {
     }
 
     this.width = width - (this.margins.left + this.margins.right);
-    this.height = height - (this.margins.top + this.margins.bottom);
+
+    let outerHeight = height;
+    if (outerHeight == null) {
+      // base the height on the size of the bars instead of a predetermined value
+      const barHeight = 22;
+      this.height = barHeight * dataset.length;
+    } else {
+      this.height = outerHeight - (this.margins.top + this.margins.bottom);
+    }
+
 
     this.svg
       .attr('width', this.width + (this.margins.left + this.margins.right))
