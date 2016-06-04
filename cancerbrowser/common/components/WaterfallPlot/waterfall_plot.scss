@@ -1,15 +1,15 @@
 
 .WaterfallPlot {
   .name {
-    font-weight: bold;
-    font-size: 1.2em;
+    font-weight: 400;
+    font-size: 1.1em;
     &.left {
       padding-left: 80px;
     }
   }
 
   rect.bar.highlight {
-    fill: #9679af !important;;
+    fill: #9679af !important;
   }
 
   rect.threshold {
@@ -17,7 +17,7 @@
   }
 
   rect.threshold.highlight {
-      fill: #b48fd4 !important;;
+    fill: #b48fd4 !important;
   }
 
   rect.hover {
@@ -26,10 +26,11 @@
 
   text.label {
     fill: #777;
+    font-size: 14px;
   }
 
   text.highlight {
-    font-weight: bold;
+    font-weight: 400;
     fill: black;
   }
 
@@ -39,6 +40,12 @@
 
   .axis {
     shape-rendering: crispEdges;
+  }
+  rect {
+    shape-rendering: crispEdges;
+  }
+  .tick {
+    font-size: 12px;
   }
 
   .x.axis line {
