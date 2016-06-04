@@ -2,7 +2,8 @@ import {
   DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_ACTIVE_FILTERS,
   DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_VIEW_BY,
   DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_HIGHLIGHT,
-  DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_GROWTH_FACTOR_COLOR_BY
+  DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_GROWTH_FACTOR_COLOR_BY,
+  DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_GROWTH_FACTOR_SORT_BY
 } from '../actions/datasetGrowthFactorPaktPerk';
 
 // Ensure the dataset filter is set to this dataset
@@ -23,7 +24,8 @@ const INITIAL_STATE = {
   viewBy: 'growthFactor',
   highlight: undefined,
 
-  growthFactorColorBy: 'cellLineReceptorStatus'
+  growthFactorColorBy: 'cellLineReceptorStatus',
+  growthFactorSortBy: 'magnitude'
 };
 
 function datasetGrowthFactorPaktPerk(state = INITIAL_STATE, action) {
@@ -40,6 +42,10 @@ function datasetGrowthFactorPaktPerk(state = INITIAL_STATE, action) {
     case DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_GROWTH_FACTOR_COLOR_BY:
       return Object.assign({}, state, {
         growthFactorColorBy: action.growthFactorColorBy
+      });
+    case DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_GROWTH_FACTOR_SORT_BY:
+      return Object.assign({}, state, {
+        growthFactorSortBy: action.growthFactorSortBy
       });
     case DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_HIGHLIGHT:
       return Object.assign({}, state, {
