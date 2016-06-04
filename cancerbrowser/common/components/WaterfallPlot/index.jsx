@@ -43,7 +43,7 @@ const defaultProps = {
   labelLocation: 'left',
   dataSort: sortByValueAndId,
   useThresholds: true,
-  colorScale: () => '#bbb'
+  colorScale: () => '#aaa'
 };
 
 

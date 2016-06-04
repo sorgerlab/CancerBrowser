@@ -188,7 +188,6 @@ class Waterfall {
       .attr('width', (d) => d.disabled ? 0 : scales.x(d.value))
       .attr('height', barHeight)
       .style('fill', (d) => scales.color(d))
-      .style('stroke', (d) => d3.rgb(scales.color(d)).darker(1).toString())
       .classed('highlight', (d)  => d.id === highlightId)
       .on('mouseover', this.onMouseover)
       .on('mouseout', this.onMouseout);
@@ -210,7 +209,6 @@ class Waterfall {
         .attr('y', (d) => scales.y(d.id))
         .attr('width', (d) => d.disabled ? DISABLED_BAR_SIZE : scales.x(d.threshold))
         .attr('height', barHeight)
-        .style('stroke', (d) => d3.rgb(scales.color(d)).darker(1).toString())
         .classed('highlight', (d)  => d.id === highlightId)
         .on('mouseover', this.onMouseover)
         .on('mouseout', this.onMouseout);
