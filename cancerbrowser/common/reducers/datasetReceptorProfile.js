@@ -2,6 +2,7 @@ import {
   DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_FILTERS,
   DATASET_RECEPTOR_PROFILE_CHANGE_VIEW_BY,
   DATASET_RECEPTOR_PROFILE_CHANGE_HIGHLIGHT,
+  DATASET_RECEPTOR_PROFILE_CHANGE_RECEPTOR_COLOR_BY,
   DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_LEFT,
   DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_RIGHT
 } from '../actions/datasetReceptorProfile';
@@ -17,7 +18,8 @@ const INITIAL_STATE = {
   viewBy: 'cellLine',
   highlight: undefined,
   activeLeft: undefined,
-  activeRight: undefined
+  activeRight: undefined,
+  receptorColorBy: 'cellLineReceptorStatus'
 };
 
 function datasetReceptorProfile(state = INITIAL_STATE, action) {
@@ -34,6 +36,10 @@ function datasetReceptorProfile(state = INITIAL_STATE, action) {
     case DATASET_RECEPTOR_PROFILE_CHANGE_HIGHLIGHT:
       return Object.assign({}, state, {
         highlight: action.highlightId
+      });
+    case DATASET_RECEPTOR_PROFILE_CHANGE_RECEPTOR_COLOR_BY:
+      return Object.assign({}, state, {
+        receptorColorBy: action.colorBy
       });
     case DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_LEFT:
       return Object.assign({}, state, {

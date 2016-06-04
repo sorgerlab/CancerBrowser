@@ -48,6 +48,7 @@ function convertToByReceptor(dataset) {
 
   dataset.forEach(function(cellLine) {
 
+
     // iterate over receptor data
     cellLine.measurements.forEach(function(m) {
       // pull out receptor if it isn't in the receptors hash already.
@@ -57,6 +58,7 @@ function convertToByReceptor(dataset) {
       if(newMeasurement.value === newMeasurement.threshold) {
         newMeasurement.disabled = true;
       }
+      newMeasurement['cell_line'] = cellLine['cell_line'];
       receptors[m.id].measurements.push(newMeasurement);
     });
   });
