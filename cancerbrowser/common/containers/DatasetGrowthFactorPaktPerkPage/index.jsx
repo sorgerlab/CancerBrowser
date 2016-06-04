@@ -160,6 +160,11 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
 
   renderWaterfall(label, dataset, extent) {
     const { viewBy, highlightId } = this.props;
+    const { metric } = this.getActiveMetricAndType();
+
+    // encode the control value as a threshold on raw values measures
+    const useThresholds = metric === 'raw values';
+
     let colorBy;
     if (viewBy === 'growthFactor') {
       colorBy = this.props.growthFactorColorBy;
@@ -173,7 +178,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
           dataset={dataset}
           onChangeHighlight={this.onChangeHighlight}
           highlightId={highlightId}
-          useThresholds={false}
+          useThresholds={useThresholds}
           dataExtent={extent}
           colorScale={mappedColorScales[colorBy]}
         />
