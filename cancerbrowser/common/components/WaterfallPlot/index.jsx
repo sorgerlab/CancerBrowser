@@ -39,11 +39,11 @@ const propTypes = {
 
 const defaultProps = {
   width: 400,
-  height: 800,
+  height: null, // null height means set height based on max bar size
   labelLocation: 'left',
   dataSort: sortByValueAndId,
   useThresholds: true,
-  colorScale: () => '#bbb'
+  colorScale: () => '#aaa'
 };
 
 

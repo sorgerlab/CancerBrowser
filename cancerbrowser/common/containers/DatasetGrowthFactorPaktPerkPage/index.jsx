@@ -76,7 +76,7 @@ const viewOptions = [
 
 
 const mappedColorScales = {
-  cellLineReceptorStatus: d => colorScales.cellLineReceptorStatus(d.d.cell_line.receptorStatus.value),
+  cellLineReceptorStatus: d => colorScales.cellLineReceptorStatusLighter(d.d.cell_line.receptorStatus.value),
   cellLineMolecularSubtype: d => colorScales.cellLineMolecularSubtype(d.d.cell_line.molecularSubtype.value),
   none: undefined
 };
@@ -176,6 +176,10 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
 
   renderWaterfall(label, dataset, extent) {
     const { viewBy, highlightId } = this.props;
+    const { metric } = this.getActiveMetricAndType();
+
+    // encode the control value as a threshold on raw values measures
+    const useThresholds = metric === 'raw values';
     let colorBy, sortBy;
     if (viewBy === 'growthFactor') {
       colorBy = this.props.growthFactorColorBy;
@@ -190,7 +194,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
           dataset={dataset}
           onChangeHighlight={this.onChangeHighlight}
           highlightId={highlightId}
-          useThresholds={false}
+          useThresholds={useThresholds}
           dataExtent={extent}
           colorScale={mappedColorScales[colorBy]}
           dataSort={sortBy}
