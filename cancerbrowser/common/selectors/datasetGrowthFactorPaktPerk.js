@@ -202,6 +202,7 @@ export const getFilterGroups = createSelector(
       filterGroups.push({
         id: 'growthFactorConfig',
         label: 'Configure',
+        clearable: false,
         filters: growthFactorConfiguration
       });
     }

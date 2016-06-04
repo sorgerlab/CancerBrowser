@@ -233,10 +233,11 @@ class FilterPanel extends React.Component {
    * @param {Object} filter The filter being rendered (e.g. { id: 'collection', values: [...]})
    * @param {Object} activeValuesObj The values object from the active filter
    * @param {Object} filterCounts The counts information for the filter (e.g. { counts: { big6: 6 }, countMax: 9 })
-   * @param {String} groupId The ID of the filter group
+   * @param {Object} filterGroup The filter group object
    */
-  renderFilter(filter, activeValuesObj, filterCounts, groupId, index) {
+  renderFilter(filter, activeValuesObj, filterCounts, filterGroup, index) {
     let filterElem;
+    const groupId = filterGroup.id;
 
     // we only need the array of values, not the whole obj since we have the filter obj itself
     const activeValues = activeValuesObj && activeValuesObj.values;
@@ -256,12 +257,13 @@ class FilterPanel extends React.Component {
     }
 
     const hasActiveFilters = activeValuesObj && activeValuesObj.values.length;
+    const clearable = filter.clearable !== false && filterGroup.clearable !== false;
 
     return (
       <div key={index} className='filter-panel-filter'>
         <header>
           {filter.label}
-          {hasActiveFilters ? (
+          {hasActiveFilters && clearable ? (
             <Icon name='close'
               title={`Reset ${filter.label}`}
               className='reset-filter-control clickable-icon'
@@ -294,11 +296,13 @@ class FilterPanel extends React.Component {
         && activeFiltersForGroup.some(activeFilter =>
           group.filters.some(filter => filter.id === activeFilter.id));
 
+    const clearable = group.clearable !== false;
+
     return (
       <div key={index} className='filter-panel-group'>
         <header>
           {group.label}
-          {hasActiveFilters ? (
+          {hasActiveFilters && clearable ? (
             <Icon name='close'
               title={`Reset ${group.label}`}
               className='reset-group-control clickable-icon'
@@ -316,7 +320,7 @@ class FilterPanel extends React.Component {
               filterCounts = countsForGroup[filter.id];
             }
 
-            return this.renderFilter(filter, activeValues, filterCounts, group.id, i);
+            return this.renderFilter(filter, activeValues, filterCounts, group, i);
           })}
         </div>
       </div>
