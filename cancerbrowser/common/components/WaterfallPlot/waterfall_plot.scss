@@ -9,15 +9,18 @@
   }
 
   rect.bar.highlight {
-    fill: #9679af !important;;
+    fill: #9679af !important;
+    stroke: #694D82 !important;
   }
 
   rect.threshold {
     fill: #ddd;
+    stroke: #ccc;
   }
 
   rect.threshold.highlight {
-      fill: #b48fd4 !important;;
+    fill: #b48fd4 !important;
+    stroke: #694D82 !important;
   }
 
   rect.hover {
