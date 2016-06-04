@@ -30,7 +30,10 @@ const propTypes = {
   /* boolean for showing or hiding thresholds */
   useThresholds: React.PropTypes.bool,
   /* if provided, sets the x axis extent*/
-  dataExtent: React.PropTypes.array
+  dataExtent: React.PropTypes.array,
+
+  /* function mapping data items to colors */
+  colorScale: React.PropTypes.func
 };
 
 
@@ -39,7 +42,8 @@ const defaultProps = {
   height: 800,
   labelLocation: 'left',
   dataSort: sortByValueAndId,
-  useThresholds: true
+  useThresholds: true,
+  colorScale: () => '#bbb'
 };
 
 
