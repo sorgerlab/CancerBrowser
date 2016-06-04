@@ -7,12 +7,14 @@ import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetGro
 import { getFilterValue, getFilterValueItem } from '../../utils/filter_utils';
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 import { colorScales } from '../../config/colors';
+import { sortByValueAndId, sortByKey } from '../../utils/sort';
 
 import {
   changeActiveFilters,
   changeViewBy,
   changeHighlight,
-  changeGrowthFactorColorBy
+  changeGrowthFactorColorBy,
+  changeGrowthFactorSortBy
 } from '../../actions/datasetGrowthFactorPaktPerk';
 
 import {
@@ -42,7 +44,8 @@ const propTypes = {
   viewBy: React.PropTypes.string,
   filteredData: React.PropTypes.object,
   className: React.PropTypes.string,
-  growthFactorColorBy: React.PropTypes.string
+  growthFactorColorBy: React.PropTypes.string,
+  growthFactorSortBy: React.PropTypes.string
 };
 
 const defaultProps = {
@@ -59,7 +62,8 @@ function mapStateToProps(state) {
   const props = Object.assign(baseProps, {
     /* Add custom props here */
     highlightId: datasetGrowthFactorPaktPerk.highlight,
-    growthFactorColorBy: datasetGrowthFactorPaktPerk.growthFactorColorBy
+    growthFactorColorBy: datasetGrowthFactorPaktPerk.growthFactorColorBy,
+    growthFactorSortBy: datasetGrowthFactorPaktPerk.growthFactorSortBy
   });
 
   return props;
@@ -77,6 +81,11 @@ const mappedColorScales = {
   none: undefined
 };
 
+const sortsMap = {
+  magnitude: sortByValueAndId,
+  cellLine: sortByKey('label')
+};
+
 /**
  * React container for a dataset page page - Growth Factor pAKT/pERK page
  */
@@ -88,6 +97,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     this.renderGrowthFactorChartControls = this.renderGrowthFactorChartControls.bind(this);
     this.onChangeHighlight = this.onChangeHighlight.bind(this);
     this.handleGrowthFactorColorByChange = this.handleGrowthFactorColorByChange.bind(this);
+    this.handleGrowthFactorSortByChange = this.handleGrowthFactorSortByChange.bind(this);
     this.getActiveGrowthFactor = this.getActiveGrowthFactor.bind(this);
     this.getActiveParameter = this.getActiveParameter.bind(this);
     this.getActiveMetricAndType = this.getActiveMetricAndType.bind(this);
@@ -158,16 +168,22 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     dispatch(changeGrowthFactorColorBy(value));
   }
 
+  handleGrowthFactorSortByChange(evt) {
+    const { value } = evt.target;
+    const { dispatch } = this.props;
+    dispatch(changeGrowthFactorSortBy(value));
+  }
+
   renderWaterfall(label, dataset, extent) {
     const { viewBy, highlightId } = this.props;
     const { metric } = this.getActiveMetricAndType();
 
     // encode the control value as a threshold on raw values measures
     const useThresholds = metric === 'raw values';
-
-    let colorBy;
+    let colorBy, sortBy;
     if (viewBy === 'growthFactor') {
       colorBy = this.props.growthFactorColorBy;
+      sortBy = sortsMap[this.props.growthFactorSortBy];
     }
 
     if (dataset) {
@@ -181,6 +197,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
           useThresholds={useThresholds}
           dataExtent={extent}
           colorScale={mappedColorScales[colorBy]}
+          dataSort={sortBy}
         />
       );
     }
@@ -210,7 +227,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   }
 
   renderGrowthFactorChartControls() {
-    const { growthFactorColorBy } = this.props;
+    const { growthFactorColorBy, growthFactorSortBy } = this.props;
     return (
       <div>
         <div className='chart-controls clearfix'>
@@ -222,6 +239,16 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
                 <option value='cellLineReceptorStatus'>Cell Line Receptor Status</option>
                 <option value='cellLineMolecularSubtype'>Cell Line Molecular Subtype</option>
                 <option value='none'>Nothing</option>
+              </select>
+            </div>
+          </div>
+          <div className='form-group'>
+            <label className='small-label'>Sort By</label>
+            <div>
+              <select className='form-control' value={growthFactorSortBy}
+                  onChange={this.handleGrowthFactorSortByChange}>
+                <option value='magnitude'>Magnitude</option>
+                <option value='cellLine'>Cell Line</option>
               </select>
             </div>
           </div>
