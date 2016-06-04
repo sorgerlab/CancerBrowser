@@ -175,8 +175,9 @@ class Waterfall {
       .attr('x', 0)
       .attr('y', (d) => scales.y(d.id))
       .attr('width', (d) => d.disabled ? 0 : scales.x(d.value))
-      .attr('height', scales.y.rangeBand())
+      .attr('height', scales.y.rangeBand() - 2)
       .style('fill', (d) => scales.color(d))
+      .style('stroke', (d) => d3.rgb(scales.color(d)).darker(1).toString())
       .classed('highlight', (d)  => d.id === highlightId)
       .on('mouseover', this.onMouseover)
       .on('mouseout', this.onMouseout);

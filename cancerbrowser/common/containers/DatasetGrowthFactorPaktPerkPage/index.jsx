@@ -72,7 +72,7 @@ const viewOptions = [
 
 
 const mappedColorScales = {
-  cellLineReceptorStatus: d => colorScales.cellLineReceptorStatus(d.d.cell_line.receptorStatus.value),
+  cellLineReceptorStatus: d => colorScales.cellLineReceptorStatusLighter(d.d.cell_line.receptorStatus.value),
   cellLineMolecularSubtype: d => colorScales.cellLineMolecularSubtype(d.d.cell_line.molecularSubtype.value),
   none: undefined
 };
