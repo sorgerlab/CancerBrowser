@@ -35,6 +35,10 @@ class ParallelCoordinates {
     this.linesGroup = this.g.append('g')
       .classed('lines-group', true);
 
+    // event dispatcher
+    this.dispatch = d3.dispatch('highlight', 'unhighlight');
+    this.onMouseEnter = this.onMouseEnter.bind(this);
+    this.onMouseLeave = this.onMouseLeave.bind(this);
   }
 
   /**
@@ -65,7 +69,7 @@ class ParallelCoordinates {
    *
    */
   update(props) {
-    const { dataset, pointLabels, width, height } = props;
+    const { dataset, pointLabels, width, height, highlightId } = props;
 
     // Early out
     if(!dataset) {
@@ -126,20 +130,48 @@ class ParallelCoordinates {
       .data(dataset, d => d.id);
 
     // ENTER lines
-    lines.enter()
+    const linesEnter = lines.enter()
+      .append('g')
+      .classed('series', true);
+
+    // add in the actual line
+    linesEnter
       .append('path')
-      .classed('series', true)
+      .classed('series-line', true)
       .attr('d', d => line(d.values));
 
+    // add in the mouse handler
+    linesEnter
+      .append('path')
+      .on('mouseenter', this.onMouseEnter)
+      .on('mouseleave', this.onMouseLeave)
+      .classed('mouse-handler', true)
+      .attr('d', d => line(d.values));
+
+
     // UPDATE lines
-    lines
+    lines.select('.series-line')
+      .classed('highlight', d => d.id === highlightId)
       .transition()
       .duration(transitionDuration)
       .attr('d', d => line(d.values));
 
+    lines.select('.mouse-handler')
+      .attr('d', d => line(d.values));
+
+
     // EXIT lines
     lines.exit().remove();
   }
+
+  onMouseEnter(d) {
+    this.dispatch.highlight(d);
+  }
+
+  onMouseLeave(d) {
+    this.dispatch.unhighlight(d);
+  }
+
 
   /**
   * Subscribe to an event from this component

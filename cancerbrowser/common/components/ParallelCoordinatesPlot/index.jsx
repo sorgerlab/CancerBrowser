@@ -26,7 +26,6 @@ const propTypes = {
   onChangeHighlight: React.PropTypes.func
 };
 
-
 const defaultProps = {
   width: 1000,
   height: 500
@@ -57,19 +56,19 @@ class ParallelCoordinatesPlot extends React.Component {
     this.chart = new ParallelCoordinates(this.refs.plotContainer);
 
     this.chart.update(this.props);
-    // this.chart.on('highlight', this.onSelect);
-    // this.chart.on('unhighlight', this.onDeselect);
+    this.chart.on('highlight', this.onSelect);
+    this.chart.on('unhighlight', this.onDeselect);
   }
 
   /**
-   *
+   * When props update, update the d3 component
    */
   componentDidUpdate() {
     this.chart.update(this.props);
   }
 
   /**
-   *
+   * Handler for selecting a highlighted line
    */
   onSelect(d) {
     const { onChangeHighlight } = this.props;
@@ -80,15 +79,18 @@ class ParallelCoordinatesPlot extends React.Component {
   }
 
   /**
-   *
+   * Handler for deselecting a highlighted line
    */
   onDeselect() {
-
+    const { onChangeHighlight } = this.props;
+    if (onChangeHighlight) {
+      onChangeHighlight(null);
+    }
   }
 
 
   /**
-   *
+   * Render the d3 component container and a header if provided
    */
   render() {
     const { label } = this.props;

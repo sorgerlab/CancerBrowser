@@ -178,7 +178,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   }
 
   renderParallelCoordinatesPlot() {
-    const { filteredData, parallelCoordinatesPlotData } = this.props;
+    const { filteredData, parallelCoordinatesPlotData, highlightId } = this.props;
     if (!parallelCoordinatesPlotData || _.isEmpty(parallelCoordinatesPlotData) ||
          !filteredData || _.isEmpty(filteredData)) {
       return null;
@@ -188,7 +188,12 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
 
     return (
       <div className='parallel-coordinates-container'>
-        <ParallelCoordinatesPlot dataset={parallelCoordinatesPlotData} pointLabels={pointLabels} />
+        <ParallelCoordinatesPlot
+          dataset={parallelCoordinatesPlotData}
+          pointLabels={pointLabels}
+          onChangeHighlight={this.onChangeHighlight}
+          highlightId={highlightId}
+        />
       </div>
     );
   }
@@ -289,8 +294,8 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     return (
       <div>
         <h3>{label}</h3>
-        {this.renderGrowthFactorChartControls()}
         {this.renderParallelCoordinatesPlot()}
+        {this.renderGrowthFactorChartControls()}
         {this.renderWaterfalls()}
       </div>
     );

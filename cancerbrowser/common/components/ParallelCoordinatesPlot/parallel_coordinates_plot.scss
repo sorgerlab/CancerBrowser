@@ -1,6 +1,9 @@
+@import "../../assets/variables";
+
 $reference-line-color: #ddd;
 $axis-line-color: #ddd;
-$series-line-color: rgba(50, 0, 200, 0.2);
+$series-line-color: #888;
+$highlight-color: $brand-primary;
 
 .parallel-coordinates {
   .axis {
@@ -30,8 +33,30 @@ $series-line-color: rgba(50, 0, 200, 0.2);
     stroke: $reference-line-color;
   }
 
+
+
+
   .series {
-    fill: none;
-    stroke: $series-line-color;
+    .mouse-handler {
+      fill: none;
+      stroke: blue;
+      stroke-width: 10px;
+      opacity: 0;
+    }
+
+    .series-line {
+      fill: none;
+      stroke: $series-line-color;
+      stroke-width: 1px;
+      opacity: 0.2;
+      pointer-events: none;
+
+
+      &.highlight {
+        stroke: $highlight-color;
+        stroke-width: 4px;
+        opacity: 1;
+      }
+    }
   }
 }
