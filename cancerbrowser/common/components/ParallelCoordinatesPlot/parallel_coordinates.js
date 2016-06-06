@@ -62,7 +62,7 @@ class ParallelCoordinates {
     if(dataExtent) {
       yScale.domain(dataExtent);
     } else {
-      yScale.domain(d3.extent(_.flatten(dataset.map(d => d.values))));
+      yScale.domain(d3.extent(_.flatten(dataset.map(d => d.values))).reverse());
     }
 
     return { x: xScale, y: yScale, color: colorScale };

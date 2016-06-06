@@ -36,7 +36,8 @@ const propTypes = {
 const defaultProps = {
   width: 500,
   height: 200,
-  valueFormatter: d3.format('0.2f')
+  valueFormatter: d3.format('0.2f'),
+  colorScale: () => '#bbb'
 };
 
 
