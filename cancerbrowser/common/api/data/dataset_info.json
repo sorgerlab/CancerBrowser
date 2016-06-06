@@ -38,6 +38,7 @@
     "label": "Basal Phosphoprotein Mass Spectrometry",
     "filename": "basal_phosphoproteome-numerical_view.tsv",
     "cell_lines": ["bt549","hs578t","mdamb231","skbr3","hcc70","mcf7","bt20","hcc38","hcc1806","mcf10a"],
+    "cell_line_labels": ["BT549","HS578T","MDAMB231","SKBR3","HCC70","MCF7","BT20","HCC38","HCC1806","MCF10A"],
     "row_id": "Phosphosite by cell line",
     "text_fields": ["Phosphosite by cell line"]
   },

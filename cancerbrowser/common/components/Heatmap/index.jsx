@@ -10,13 +10,17 @@ const propTypes = {
   /* [{id:string, label:string, measurements:[id, value, label]}] */
   dataset: React.PropTypes.array,
   width: React.PropTypes.number,
-  height: React.PropTypes.number
+  height: React.PropTypes.number,
+  margins: React.PropTypes.object,
+  dataExtent: React.PropTypes.array
 };
 
 
 const defaultProps = {
   width: 900,
-  height: 1200
+  height: 1200,
+  margins: {top:40, left:20, right:5, bottom:20},
+  dataExtent: [-2.9, 2.9]
 };
 
 
@@ -33,17 +37,22 @@ class Heatmap extends React.Component {
    * Update canvas when component mounts
    */
   componentDidMount() {
-    this.updateCanvas();
+    this.updateVisuals();
   }
 
   /**
    * Update Canvas when component updates
    */
   componentDidUpdate() {
-    this.updateCanvas();
+    this.updateVisuals();
   }
 
-  updateScales(data, width, height, margins) {
+  updateScales(data, width, height, props) {
+    // const minVal = d3.min(data, (d) => d.extent[0]);
+    // const maxVal = d3.max(data, (d) => d.extent[1]);
+    // console.log(minVal,maxVal)
+
+    const { dataExtent } = props;
 
     const rowIds = data.map((d) => d.id);
     const colIds = data[0].measurements.map((m) => m.id);
@@ -59,8 +68,12 @@ class Heatmap extends React.Component {
       .rangeRoundBands([0, width]);
 
     const colorScale = d3.scale.linear()
-      .domain([-5, 5])
-      .range(['yellow', 'red']);
+      .domain(dataExtent)
+      .range(['white', '#FA6900']);
+
+    // const colorScale = d3.scale.threshold()
+    //   .range(['#8b0000','#b61d39','#d84765','#ef738b','#fea0ac','#ffd1c9','#ffffe0','#c7f0ba','#9edba4','#7ac696','#5aaf8c','#399785','#008080'])
+    //   .domain(d3.range(-2.9, 2.9, 0.4));
 
     return {x:xScale, y:yScale, color:colorScale};
   }
@@ -69,11 +82,13 @@ class Heatmap extends React.Component {
   /**
    * Rerenders the chart on the canvas. Recomputes data sorting and scales.
    */
-  updateCanvas() {
-    const { dataset, width, height } = this.props;
-    console.log(dataset)
+  updateVisuals() {
+    const { dataset, width, height, margins } = this.props;
 
-    const scales = this.updateScales(dataset, width, height);
+    const mWidth = width - (margins.left + margins.right);
+    const mHeight = height - (margins.top + margins.bottom);
+
+    const scales = this.updateScales(dataset, mWidth, mHeight, this.props);
 
 
     const ctx = this.refs.canvas.getContext('2d');
@@ -84,14 +99,11 @@ class Heatmap extends React.Component {
       sizeScale = window.devicePixelRatio;
     }
     // Reset transform to ensure scale setting is appropriate.
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.setTransform(1, 0, 0, 1, (margins.left * sizeScale), (margins.top * sizeScale));
     ctx.scale(sizeScale, sizeScale);
 
 
     ctx.clearRect(0,0, width, height);
-
-    let temp = []
-
 
     const rowLength = dataset.length;
     for(let i = 0; i < rowLength; i++ ) {
@@ -109,34 +121,37 @@ class Heatmap extends React.Component {
         const rwidth = scales.x.rangeBand();
         const rheight = scales.y.rangeBand();
 
-        temp.push({y:y,x:x,w:rwidth,h:rheight});
-
-
         ctx.fillRect(x, y, rwidth, rheight);
 
       }
     }
 
-    console.log(temp)
+    // SVG Stuff
 
-    // draw highlight
-    // TODO: this could be an array of highlighted values?
-    // if(highlightId) {
-    //
-    //   ctx.fillStyle = highlightColor;
-    //
-    //   const activeValue = values.filter((v) => v.id === highlightId);
-    //   activeValue.forEach(function(value) {
-    //     const xValue = value.disabled ? 4 : xScale(value.value);
-    //     ctx.fillRect(0, yScale(value.id), xValue, yScale.rangeBand());
-    //   });
-    // }
+    const svg = d3.select(this.refs.svg);
+    const g = svg.select('g');
+    const mData = dataset[0].measurements;
+
+    const labels = g.selectAll('.label')
+      .data(mData, (d) => d.id);
+
+    labels.exit().remove();
+
+    labels.enter()
+      .append('text')
+      .classed('label', true)
+      .attr('text-anchor', 'middle');
+
+    labels.attr('x', (d) => scales.x(d.id) + scales.x.rangeBand() / 2)
+      .attr('y', 14)
+      .text((d) => d.label);
+
   }
 
 
 
   render() {
-    const { width, height } = this.props;
+    const { width, height, margins } = this.props;
 
     // scaling for retina
     let sizeScale = 1.0;
@@ -151,7 +166,10 @@ class Heatmap extends React.Component {
 
     return (
       <div className="Heatmap">
-        <canvas className='heatmapCanvas' ref="canvas" style={canvasStyle} width={width * sizeScale} height={height * sizeScale} />
+        <canvas className='heatmap-canvas' ref='canvas' style={canvasStyle} width={width * sizeScale} height={height * sizeScale} />
+        <svg className='heatmap-svg' ref='svg' width={width} height={height}>
+          <g transform={`translate(${margins.left},${0})`}></g>
+        </svg>
       </div>
     );
   }

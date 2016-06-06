@@ -170,9 +170,16 @@ function transformGrowthFactor(dataset, info) {
  * @return {Array} transformed dataset
  */
 function transformBasalTotal(dataset, info) {
+  let totalMin = Number.MAX_VALUE;
+  let totalMax = Number.MIN_VALUE;
+
   dataset.forEach(function(row) {
     row.label = row[info.row_id];
     row.id = normalize(row.label);
+
+    let minVal = Number.MAX_VALUE;
+    let maxVal = Number.MIN_VALUE;
+
     const measurements = [];
     _.keys(row).forEach(function(key) {
       const keyIndex = info.cell_line_labels.indexOf(key);
@@ -184,13 +191,28 @@ function transformBasalTotal(dataset, info) {
           value: row[key]
         };
 
+        if (measurement.value > maxVal) {
+          maxVal = measurement.value;
+          if (maxVal > totalMax) {
+            totalMax = maxVal;
+          }
+        } else if (measurement.value < minVal) {
+          minVal = measurement.value;
+          if (minVal < totalMin) {
+            totalMin = minVal;
+          }
+        }
+
         measurements.push(measurement);
       }
     });
 
+    row.extent = [minVal, maxVal];
     row.measurements = measurements;
 
   });
+
+  dataset.extent = [totalMin, totalMax];
   return dataset;
 }
 
@@ -201,15 +223,53 @@ function transformBasalTotal(dataset, info) {
  * @return {Array} transformed dataset
  */
 function transformBasalPhospho(dataset, info) {
+  let totalMin = Number.MAX_VALUE;
+  let totalMax = Number.MIN_VALUE;
+
   dataset.forEach(function(row) {
     // phospho has a secondary string i.e: (K.GFINDDDDEDEGEEDEGS#DS#GDS#EDDVGHKK.R)
     // in the id column.
     const idFields = row[info.row_id].split(' ');
     row.label = idFields[0];
     row.id = normalize(row.label);
-
     row.descriptor = idFields[1];
+
+    let minVal = Number.MAX_VALUE;
+    let maxVal = Number.MIN_VALUE;
+
+    const measurements = [];
+    _.keys(row).forEach(function(key) {
+      const keyIndex = info.cell_line_labels.indexOf(key);
+      if(keyIndex >= 0) {
+        const cellLineId = info.cell_lines[keyIndex];
+        const measurement = {
+          label: key,
+          id: cellLineId,
+          value: row[key]
+        };
+
+        if (measurement.value > maxVal) {
+          maxVal = measurement.value;
+          if (maxVal > totalMax) {
+            totalMax = maxVal;
+          }
+        } else if (measurement.value < minVal) {
+          minVal = measurement.value;
+          if (minVal < totalMin) {
+            totalMin = minVal;
+          }
+        }
+
+        measurements.push(measurement);
+      }
+    });
+
+    row.extent = [minVal, maxVal];
+    row.measurements = measurements;
   });
+
+  // dataset.extent = [totalMin, totalMax];
+
   return dataset;
 }
 
