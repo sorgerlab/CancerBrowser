@@ -130,7 +130,7 @@ export const getFilteredViewData = createSelector(
           const preparedMeasurement = Object.assign({}, m, {
             id: d['Cell Line HMS LINCS ID'],
             label: d['Cell Line Name'],
-            d
+            cell_line: d.cell_line
           });
 
           if (activeMetric === 'raw values') {
