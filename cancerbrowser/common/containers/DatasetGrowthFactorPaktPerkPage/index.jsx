@@ -178,10 +178,15 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   }
 
   renderParallelCoordinatesPlot() {
-    const { filteredData, parallelCoordinatesPlotData, highlightId } = this.props;
+    const { filteredData, parallelCoordinatesPlotData, highlightId, viewBy } = this.props;
     if (!parallelCoordinatesPlotData || _.isEmpty(parallelCoordinatesPlotData) ||
          !filteredData || _.isEmpty(filteredData)) {
       return null;
+    }
+
+    let colorBy;
+    if (viewBy === 'growthFactor') {
+      colorBy = this.props.growthFactorColorBy;
     }
 
     const pointLabels = Object.keys(filteredData);
@@ -192,6 +197,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
           dataset={parallelCoordinatesPlotData}
           pointLabels={pointLabels}
           onChangeHighlight={this.onChangeHighlight}
+          colorScale={mappedColorScales[colorBy]}
           highlightId={highlightId}
         />
       </div>
@@ -294,8 +300,8 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     return (
       <div>
         <h3>{label}</h3>
-        {this.renderParallelCoordinatesPlot()}
         {this.renderGrowthFactorChartControls()}
+        {this.renderParallelCoordinatesPlot()}
         {this.renderWaterfalls()}
       </div>
     );

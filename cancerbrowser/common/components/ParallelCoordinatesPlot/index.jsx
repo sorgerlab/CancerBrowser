@@ -23,12 +23,15 @@ const propTypes = {
   height: React.PropTypes.number,
 
   /* callback when highlighting a line */
-  onChangeHighlight: React.PropTypes.func
+  onChangeHighlight: React.PropTypes.func,
+
+  /* function mapping data items to colors */
+  colorScale: React.PropTypes.func
 };
 
 const defaultProps = {
   width: 1000,
-  height: 500
+  height: 250
 };
 
 

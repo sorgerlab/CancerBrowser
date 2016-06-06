@@ -48,12 +48,12 @@ $highlight-color: $brand-primary;
       fill: none;
       stroke: $series-line-color;
       stroke-width: 1px;
-      opacity: 0.2;
+      opacity: 0.5;
       pointer-events: none;
 
 
       &.highlight {
-        stroke: $highlight-color;
+        stroke: $highlight-color !important;
         stroke-width: 4px;
         opacity: 1;
       }

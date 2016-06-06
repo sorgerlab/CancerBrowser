@@ -104,8 +104,7 @@ class ParallelCoordinates {
 
     const yAxis = d3.svg.axis()
       .scale(scales.y)
-      .orient('left')
-      .ticks(10);
+      .orient('left');
 
     this.yAxisGroup
       .call(yAxis);
@@ -152,6 +151,7 @@ class ParallelCoordinates {
     // UPDATE lines
     lines.select('.series-line')
       .classed('highlight', d => d.id === highlightId)
+      .style('stroke', d => scales.color ? scales.color(d) : undefined)
       .transition()
       .duration(transitionDuration)
       .attr('d', d => line(d.values));
