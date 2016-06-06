@@ -50,14 +50,11 @@ class Heatmap extends React.Component {
   updateScales(data, width, height, props) {
     // const minVal = d3.min(data, (d) => d.extent[0]);
     // const maxVal = d3.max(data, (d) => d.extent[1]);
-    // console.log(minVal,maxVal)
 
     const { dataExtent } = props;
 
     const rowIds = data.map((d) => d.id);
     const colIds = data[0].measurements.map((m) => m.id);
-
-    console.log(colIds)
 
     const yScale = d3.scale.ordinal()
       .domain(rowIds)
