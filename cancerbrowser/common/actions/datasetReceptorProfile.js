@@ -1,8 +1,9 @@
 export const DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_FILTERS = 'DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_FILTERS';
 export const DATASET_RECEPTOR_PROFILE_CHANGE_VIEW_BY = 'DATASET_RECEPTOR_PROFILE_CHANGE_VIEW_BY';
 export const DATASET_RECEPTOR_PROFILE_CHANGE_HIGHLIGHT = 'DATASET_RECEPTOR_PROFILE_CHANGE_HIGHLIGHT';
-export const DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_LEFT = 'DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_LEFT';
-export const DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_RIGHT = 'DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_RIGHT';
+export const DATASET_RECEPTOR_PROFILE_CHANGE_RECEPTOR_COLOR_BY = 'DATASET_RECEPTOR_PROFILE_CHANGE_RECEPTOR_COLOR_BY';
+export const DATASET_RECEPTOR_PROFILE_CHANGE_SIDE = 'DATASET_RECEPTOR_PROFILE_CHANGE_SIDE';
+
 
 export function changeActiveFilters(activeFilters) {
   return {
@@ -18,6 +19,12 @@ export function changeViewBy(viewBy) {
   };
 }
 
+export function changeReceptorColorBy(colorBy) {
+  return {
+    type: DATASET_RECEPTOR_PROFILE_CHANGE_RECEPTOR_COLOR_BY,
+    colorBy
+  };
+}
 
 export function changeHighlight(highlightId) {
   return {
@@ -26,16 +33,9 @@ export function changeHighlight(highlightId) {
   };
 }
 
-export function changeActiveLeft(activeId) {
+export function changeSide(side) {
   return {
-    type: DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_LEFT,
-    activeId
-  };
-}
-
-export function changeActiveRight(activeId) {
-  return {
-    type: DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_RIGHT,
-    activeId
+    type: DATASET_RECEPTOR_PROFILE_CHANGE_SIDE,
+    side
   };
 }

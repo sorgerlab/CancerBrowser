@@ -29,7 +29,7 @@ const propTypes = {
   filteredCellLines: React.PropTypes.array,
   cellLineCounts: React.PropTypes.object,
   viewBy: React.PropTypes.string,
-  filteredData: React.PropTypes.array
+  filteredData: React.PropTypes.any
 };
 
 export function baseMapStateToProps(state, { datasetId, datasetKey,
@@ -83,7 +83,7 @@ class DatasetBasePage extends React.Component {
   handleViewByChange(newView) {
     const { datasetId, dispatch } = this.props;
     dispatch(this.changeViewBy(newView));
-    dispatch(this.changeActiveFilters({}));
+    dispatch(this.changeActiveFilters(null));
     dispatch(fetchDatasetIfNeeded(datasetId, newView));
   }
 

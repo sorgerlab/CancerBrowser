@@ -12,7 +12,8 @@ import datasetGrowthFactorPaktPerk from './datasetGrowthFactorPaktPerk';
 const INITIAL_STATE = {
   info: {
     isFetching: false,
-    items: {}
+    items: {},
+    primaryDatasets: {}
   },
 
   datasetsById: {}
@@ -25,11 +26,24 @@ function info(state = INITIAL_STATE.info, action) {
       return Object.assign({}, state, {
         isFetching: true
       });
-    case RECEIVE_DATASETS_INFO:
+
+    case RECEIVE_DATASETS_INFO: {
+      // store a filtered map that only includes the primary datasets too
+      const primaryDatasets = Object.keys(action.datasets).reduce((primaryDatasets, key) => {
+        if (!action.datasets[key].exclude_from_datasets) {
+          primaryDatasets[key] = action.datasets[key];
+        }
+
+        return primaryDatasets;
+      }, {});
+
       return Object.assign({}, state, {
         isFetching: false,
-        items: action.datasets
+        items: action.datasets,
+        primaryDatasets
       });
+    }
+
     default:
       return state;
   }

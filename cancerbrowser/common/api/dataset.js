@@ -1,6 +1,5 @@
 import d3 from 'd3';
 import _ from 'lodash';
-// import fetch from 'isomorphic-fetch';
 
 import { DATA_PATH,
          mergeData } from './util';
@@ -9,6 +8,7 @@ import { getCellLines } from './cell_line';
 
 import datasetInfo from './data/dataset_info.json';
 
+import { normalize } from '../../common/utils/string_utils';
 
 /** Returns Promise that resolves to information about
  * each dataset in an Object where
@@ -39,7 +39,7 @@ export function getDatasetInfo(datasetId) {
  * @param {String} id of dataset to get
  * @return {Promise} dataset array
  */
-export function getDataset(datasetId, format) {
+export function getDataset(datasetId) {
   const info = datasetInfo[datasetId];
   return new Promise(function(resolve, reject) {
     if(info) {
@@ -49,7 +49,7 @@ export function getDataset(datasetId, format) {
         if(error) {
           reject(error);
         } else {
-          resolve(transformData(data, info, format));
+          resolve(transformData(data, info));
         }
       });
 
@@ -94,6 +94,7 @@ function transformData(dataset, info) {
       dataset = transformReceptorData(dataset);
       break;
     case 'growth_factor_pakt_perk':
+    case 'growth_factor_pakt_perk_raw':
       dataset = transformGrowthFactor(dataset, info);
       break;
     case 'basal_total':
@@ -118,7 +119,7 @@ function transformData(dataset, info) {
 function transformDoseResponse(dataset, info) {
   dataset.forEach(function(row) {
     row.label = row[info.row_id];
-    row.id = row.label.toLowerCase();
+    row.id = normalize(row.label);
   });
   return dataset;
 }
@@ -133,7 +134,7 @@ function transformGrowthFactor(dataset, info) {
 
   dataset.forEach(function(row) {
     row.label = row[info.row_id];
-    row.id = row.label.toLowerCase();
+    row.id = normalize(row.label);
 
     const measurements = [];
     _.keys(row).forEach(function(key, index) {
@@ -171,7 +172,7 @@ function transformGrowthFactor(dataset, info) {
 function transformBasalTotal(dataset, info) {
   dataset.forEach(function(row) {
     row.label = row[info.row_id];
-    row.id = row.label.toLowerCase();
+    row.id = normalize(row.label);
     const measurements = [];
     _.keys(row).forEach(function(key) {
       const keyIndex = info.cell_line_labels.indexOf(key);
@@ -205,7 +206,8 @@ function transformBasalPhospho(dataset, info) {
     // in the id column.
     const idFields = row[info.row_id].split(' ');
     row.label = idFields[0];
-    row.id = row.label.toLowerCase();
+    row.id = normalize(row.label);
+
     row.descriptor = idFields[1];
   });
   return dataset;
@@ -234,7 +236,7 @@ function transformReceptorData(dataset) {
 
 
   dataset.forEach(function(row) {
-    row.id = row['Cell Line Name'].toLowerCase();
+    row.id = normalize(row['Cell Line Name']);
     row.label = row['Cell Line Name'];
 
     const measurements = [];
@@ -251,7 +253,7 @@ function transformReceptorData(dataset) {
         // name of receptor
         measurement.receptor = fields[0];
         measurement.label = fields[0];
-        measurement.id = fields[0].toLowerCase();
+        measurement.id = normalize(fields[0]);
         if(measurement.value === measurement.threshold) {
           measurement.disabled = true;
         }

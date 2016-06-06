@@ -10,6 +10,8 @@ import {
 //TODO async load cell line data.
 import cellLinesData from  './data/cell_lines.json';
 
+import { normalize } from '../../common/utils/string_utils';
+
 /**
  * Returns cell lines data
  *
@@ -42,7 +44,7 @@ export function getCellLineInfos() {
         } else {
 
           // add consistent ID value for matching.
-          data.forEach((d) => d.id = d['Cell Line'].toLowerCase());
+          data.forEach((d) => d.id = normalize(d['Cell Line']));
 
           let results = mergeData(allCellLines, data, 'id', 'id', 'info');
           resolve(results);
@@ -62,9 +64,9 @@ export function getCellLineInfo(cellLineId) {
   return getCellLineInfos().then(function(allCellLineInfos) {
     return new Promise(function(resolve, reject) {
 
-      var cellLinesByName = _.keyBy(allCellLineInfos, 'id');
+      const cellLinesByName = _.keyBy(allCellLineInfos, 'id');
 
-      var cellLine = cellLinesByName[cellLineId];
+      const cellLine = cellLinesByName[cellLineId];
 
       if(cellLine) {
         resolve(cellLine);
@@ -74,4 +76,3 @@ export function getCellLineInfo(cellLineId) {
     });
   });
 }
-

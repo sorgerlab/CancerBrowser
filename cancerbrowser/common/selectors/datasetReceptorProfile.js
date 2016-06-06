@@ -48,6 +48,7 @@ function convertToByReceptor(dataset) {
 
   dataset.forEach(function(cellLine) {
 
+
     // iterate over receptor data
     cellLine.measurements.forEach(function(m) {
       // pull out receptor if it isn't in the receptors hash already.
@@ -57,6 +58,7 @@ function convertToByReceptor(dataset) {
       if(newMeasurement.value === newMeasurement.threshold) {
         newMeasurement.disabled = true;
       }
+      newMeasurement['cell_line'] = cellLine['cell_line'];
       receptors[m.id].measurements.push(newMeasurement);
     });
   });
@@ -82,7 +84,7 @@ function filterReceptorDataByCellLine(data, cellLines) {
 
 /**
  * For 1 cell line x all receptors view, we don't want to display AU
- * values - so filter them. 
+ * values - so filter them.
  */
 function filterByMetric(dataset, metricToKeep) {
   if (!dataset) {
@@ -157,6 +159,7 @@ export const getFilterGroups = createSelector(
       filterGroups.push({
         id: 'byReceptorConfig',
         label: 'Configure',
+        clearable: false,
         filters: byReceptorConfig
       });
 
@@ -168,7 +171,10 @@ export const getFilterGroups = createSelector(
       });
 
     } else {
-      const cellLines = []; // TODO get all cell lines via an input selector
+      let cellLines = [];
+      if(viewData) {
+        cellLines = _.map(viewData,(d) => { return {value:d.id, label:d.label}; });
+      }
       // put by cell line filters here
       const byCellLineConfig = [
         {
@@ -194,6 +200,7 @@ export const getFilterGroups = createSelector(
       filterGroups.push({
         id: 'byCellLineConfig',
         label: 'Configure',
+        clearable: false,
         filters: byCellLineConfig
       });
     }

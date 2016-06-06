@@ -5,7 +5,7 @@ import MultiSelectFilter from '../MultiSelectFilter';
 import SelectFilter from '../SelectFilter';
 import shallowCompare from 'react-addons-shallow-compare';
 import createCachedPartial from '../../utils/createCachedPartial';
-import * as ImmutableUtils from '../../utils/immutable_utils';
+import { updateFilterValues } from '../../utils/filter_utils';
 import './filter_panel.scss';
 
 const propTypes = {
@@ -109,65 +109,7 @@ class FilterPanel extends React.Component {
   handleFilterChange(filterId, groupId, newFilterValuesList) {
     const { activeFilters, onFilterChange } = this.props;
 
-    // for simplicity of interface, make all newFilterValuesList arrays
-    if (!_.isArray(newFilterValuesList)) {
-      newFilterValuesList = newFilterValuesList == null ? [] : [newFilterValuesList];
-    }
-
-    // create a new object with this filter and its new values
-    const newFilterValues = { id: filterId, values: newFilterValuesList };
-
-    // find the active filters for the group
-    let activeFiltersForGroup = undefined;
-    if(activeFilters) {
-      activeFiltersForGroup = activeFilters[groupId];
-    }
-    let activeFiltersFilterIndex;
-
-    // find the index of the filter inside the group's active filters
-    if (activeFiltersForGroup) {
-      activeFiltersFilterIndex = activeFiltersForGroup.findIndex(activeFilter => activeFilter.id === filterId);
-    }
-
-    // if we have no set values for this filter, remove it
-    if (!newFilterValuesList.length) {
-      if (activeFiltersForGroup) {
-        // this was the only filter set, remove the whole group
-        if (activeFiltersForGroup.length === 1) {
-          activeFiltersForGroup = null;
-
-        // there were multiple filters set, remove just this one
-        } else {
-          activeFiltersForGroup = ImmutableUtils.arrayRemove(activeFiltersForGroup, activeFiltersFilterIndex);
-        }
-      }
-
-    // there are some values for this filter, so ensure it is updated or added
-    } else {
-      // group did not have values before, so create the group level initialized with this value
-      if (!activeFiltersForGroup) {
-        activeFiltersForGroup = [newFilterValues];
-
-      // this group had values before
-      } else {
-        // replace the existing values
-        if (activeFiltersFilterIndex !== -1) {
-          activeFiltersForGroup = ImmutableUtils.arraySet(activeFiltersForGroup, activeFiltersFilterIndex, newFilterValues);
-
-        // add new values
-        } else {
-          activeFiltersForGroup = activeFiltersForGroup.concat(newFilterValues);
-        }
-      }
-    }
-
-    // Integrate the updated filter group into the other activeFilters
-    let newActiveFilters;
-    if (activeFiltersForGroup === null) {
-      newActiveFilters = _.omit(activeFilters, groupId);
-    } else {
-      newActiveFilters = Object.assign({}, activeFilters, { [groupId]: activeFiltersForGroup });
-    }
+    const newActiveFilters = updateFilterValues(activeFilters, groupId, filterId, newFilterValuesList);
 
     // fire the callback
     if (onFilterChange) {
@@ -233,10 +175,11 @@ class FilterPanel extends React.Component {
    * @param {Object} filter The filter being rendered (e.g. { id: 'collection', values: [...]})
    * @param {Object} activeValuesObj The values object from the active filter
    * @param {Object} filterCounts The counts information for the filter (e.g. { counts: { big6: 6 }, countMax: 9 })
-   * @param {String} groupId The ID of the filter group
+   * @param {Object} filterGroup The filter group object
    */
-  renderFilter(filter, activeValuesObj, filterCounts, groupId, index) {
+  renderFilter(filter, activeValuesObj, filterCounts, filterGroup, index) {
     let filterElem;
+    const groupId = filterGroup.id;
 
     // we only need the array of values, not the whole obj since we have the filter obj itself
     const activeValues = activeValuesObj && activeValuesObj.values;
@@ -256,12 +199,13 @@ class FilterPanel extends React.Component {
     }
 
     const hasActiveFilters = activeValuesObj && activeValuesObj.values.length;
+    const clearable = filter.clearable !== false && filterGroup.clearable !== false;
 
     return (
       <div key={index} className='filter-panel-filter'>
         <header>
           {filter.label}
-          {hasActiveFilters ? (
+          {hasActiveFilters && clearable ? (
             <Icon name='close'
               title={`Reset ${filter.label}`}
               className='reset-filter-control clickable-icon'
@@ -294,11 +238,13 @@ class FilterPanel extends React.Component {
         && activeFiltersForGroup.some(activeFilter =>
           group.filters.some(filter => filter.id === activeFilter.id));
 
+    const clearable = group.clearable !== false;
+
     return (
       <div key={index} className='filter-panel-group'>
         <header>
           {group.label}
-          {hasActiveFilters ? (
+          {hasActiveFilters && clearable ? (
             <Icon name='close'
               title={`Reset ${group.label}`}
               className='reset-group-control clickable-icon'
@@ -316,7 +262,7 @@ class FilterPanel extends React.Component {
               filterCounts = countsForGroup[filter.id];
             }
 
-            return this.renderFilter(filter, activeValues, filterCounts, group.id, i);
+            return this.renderFilter(filter, activeValues, filterCounts, group, i);
           })}
         </div>
       </div>

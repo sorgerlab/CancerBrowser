@@ -2,9 +2,74 @@ import { createSelector } from 'reselect';
 import _ from 'lodash';
 import { getDataset, getViewBy } from './dataset';
 import { cellLinesFilterGroup, getFilteredCellLines } from './cell_line';
+import { getFilterValue } from '../utils/filter_utils';
 
 const datasetId = 'growth_factor_pakt_perk';
+const datasetRawId = 'growth_factor_pakt_perk_raw';
 const datasetKey = 'datasetGrowthFactorPaktPerk';
+
+
+/////////////////////
+// Input Selectors
+/////////////////////
+
+
+function getActiveGrowthFactor(state) {
+  const activeFilters = state.datasets[datasetKey].activeFilters;
+  return getFilterValue(activeFilters, 'growthFactorConfig', 'growthFactor');
+}
+
+function getActiveParameter(state) {
+  const activeFilters = state.datasets[datasetKey].activeFilters;
+  return getFilterValue(activeFilters, 'growthFactorConfig', 'parameter');
+}
+
+function getActiveConcentration(state) {
+  const activeFilters = state.datasets[datasetKey].activeFilters;
+  return getFilterValue(activeFilters, 'growthFactorConfig', 'concentration');
+}
+
+function getActiveMetricAndType(state) {
+  const parameter = getActiveParameter(state);
+
+  if (!parameter) {
+    return {};
+  }
+
+  let result = {};
+
+  switch(parameter) {
+    case 'paktFoldChange':
+      result.metric = 'fold change';
+      result.type = 'pAkt';
+      break;
+    case 'paktRawValues':
+      result.metric = 'raw values';
+      result.type = 'pAkt';
+      break;
+    case 'perkFoldChange':
+      result.metric = 'fold change';
+      result.type = 'pErk';
+      break;
+    case 'perkRawValues':
+      result.metric = 'raw values';
+      result.type = 'pErk';
+      break;
+  }
+
+  return result;
+}
+
+
+function getActiveDataset(state) {
+  const activeParameter = getActiveParameter(state);
+  if (activeParameter === 'perkFoldChange' || activeParameter === 'paktFoldChange') {
+    return getDataset(datasetId, state);
+  } else {
+    return getDataset(datasetRawId, state);
+  }
+}
+
 
 /////////////////////
 // Helpers
@@ -25,27 +90,60 @@ function filterDataByCellLines(data, cellLines) {
 // Selectors
 /////////////////////
 
-/** Converts the dataset to be by cell line or by receptor */
-export const getViewData = createSelector(
-  [ getDataset(datasetId), getViewBy(datasetKey) ],
-  (dataset, viewBy) => {
-    if (viewBy === 'growthFactor') {
-      return dataset; // TODO
-    } else {
-      return dataset;
-    }
-  }
-);
-
-
 /** Filters the dataset */
 export const getFilteredViewData = createSelector(
-  [ getViewData, getViewBy(datasetKey), getFilteredCellLines ],
-  (viewData, viewBy, filteredCellLines) => {
+  [ getActiveDataset, getViewBy(datasetKey),
+    getActiveGrowthFactor, getActiveMetricAndType, getActiveConcentration,
+    getFilteredCellLines ],
+  (dataset, viewBy, activeGrowthFactor, { metric: activeMetric, type: activeType },
+    activeConcentration, filteredCellLines) => {
+
+    const datasetFilteredByCellLines = filterDataByCellLines(dataset, filteredCellLines);
+
     if (viewBy === 'growthFactor') {
-      return viewData; // TODO
+      if (!dataset) {
+        return dataset;
+      }
+
+      // filter to just the selected growth factor and concentration first
+      const filteredData = datasetFilteredByCellLines.filter(d =>
+        d['Protein HMS LINCS ID'] === activeGrowthFactor &&
+        String(d['Ligand Concentration']) === String(activeConcentration));
+
+      /* group by time if it matches the metric and type
+       * ends up with form:
+       * { 10m: [{id, label, value, d}, ...], 30m: ... }
+       */
+      const byTime = filteredData.reduce((byTime, d) => {
+        d.measurements.forEach(m => {
+          const { time } = m;
+
+          // filter out wrong type (pakt, perk) (note that metric filtered by active dataset already)
+          if (m.type !== activeType) {
+            return;
+          }
+
+          if (!byTime[time]) {
+            byTime[time] = [];
+          }
+
+          const preparedMeasurement = Object.assign({}, m, {
+            id: d['Cell Line HMS LINCS ID'],
+            label: d['Cell Line Name'],
+            cell_line: d.cell_line
+          });
+
+          if (activeMetric === 'raw values') {
+            preparedMeasurement.threshold = d[`Control ${activeType} (a.u.)`];
+          }
+
+          byTime[time].push(preparedMeasurement);
+        });
+        return byTime;
+      }, {});
+      return byTime;
     } else {
-      return filterDataByCellLines(viewData, filteredCellLines);
+      return datasetFilteredByCellLines;
     }
   }
 );
@@ -53,7 +151,7 @@ export const getFilteredViewData = createSelector(
 
 /** Gets the filter group definition based on what is in the data */
 export const getFilterGroups = createSelector(
-  [ getViewData, getViewBy(datasetKey) ],
+  [ getDataset(datasetId), getViewBy(datasetKey) ],
   (viewData, viewBy) => {
     const filterGroups = [];
 
@@ -79,10 +177,27 @@ export const getFilterGroups = createSelector(
           }
         },
         {
-          id: 'compareTo',
-          label: 'Compare to',
+          id: 'parameter',
+          label: 'Parameter',
           type: 'select',
-          values: growthFactors,
+          values: [
+            { label: 'pAKT Fold Change', value: 'paktFoldChange' },
+            { label: 'pERK Fold Change', value: 'perkFoldChange' },
+            { label: 'pAKT Raw Values', value: 'paktRawValues' },
+            { label: 'pERK Raw Values', value: 'perkRawValues' }
+          ],
+          options: {
+            props: { counts: null }
+          }
+        },
+        {
+          id: 'concentration',
+          label: 'Ligand Concentration',
+          type: 'select',
+          values: [
+            { label: '1ng/mL', value: '1' },
+            { label: '100ng/mL', value: '100' }
+          ],
           options: {
             props: { counts: null }
           }
@@ -91,11 +206,12 @@ export const getFilterGroups = createSelector(
       filterGroups.push({
         id: 'growthFactorConfig',
         label: 'Configure',
+        clearable: false,
         filters: growthFactorConfiguration
       });
     }
 
-    // remove the dataset from the cell lines group
+    // add in cell line filters without the dataset option
     filterGroups.push({
       id: cellLinesFilterGroup.id,
       label: cellLinesFilterGroup.label,
