@@ -9,7 +9,7 @@
   "growth_factor_pakt_perk": {
     "id": "growth_factor_pakt_perk",
     "label": "Growth Factor-Induced pAKT/pERK Response",
-    "filename": "pERK-pAKT_fold_change.tsv",
+    "filename": "pERK-pAKT_fold_change_20160606.tsv",
     "cell_line_id": "Cell Line Name",
     "row_id": "Cell Line Name",
     "text_fields": ["Cell Line HMS LINCS ID", "Cell Line Name", "Protein HMS LINCS ID", "Protein Name", "Conc unit"]
@@ -29,6 +29,7 @@
     "label": "Basal Total Protein Mass Spectrometry",
     "filename": "basal_total_proteome-numerical_view.tsv",
     "cell_lines": ["hcc1806", "mcf10a", "hcc38", "bt549", "hs578t", "mdamb231", "skbr3", "mcf7", "hcc70", "bt20"],
+    "cell_line_labels": ["HCC1806", "MCF10A", "HCC38", "BT549", "HS578T", "MDAMB231", "SKBR3", "MCF7", "HCC70", "BT20"],
     "row_id": "Total protein by cell line",
     "text_fields": ["Total protein by cell line"]
   },
@@ -37,6 +38,7 @@
     "label": "Basal Phosphoprotein Mass Spectrometry",
     "filename": "basal_phosphoproteome-numerical_view.tsv",
     "cell_lines": ["bt549","hs578t","mdamb231","skbr3","hcc70","mcf7","bt20","hcc38","hcc1806","mcf10a"],
+    "cell_line_labels": ["BT549","HS578T","MDAMB231","SKBR3","HCC70","MCF7","BT20","HCC38","HCC1806","MCF10A"],
     "row_id": "Phosphosite by cell line",
     "text_fields": ["Phosphosite by cell line"]
   },

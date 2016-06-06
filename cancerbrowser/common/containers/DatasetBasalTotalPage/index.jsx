@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 
-import { fetchDatasetIfNeeded, fetchDatasetInfo } from '../../actions/dataset';
+import {
+  changeActiveFilters
+} from '../../actions/datasetBasalTotal';
 
+import Heatmap from '../../components/Heatmap';
+
+import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetBasalTotal';
 
 /// Specify the dataset ID here: ////
 const datasetId = 'basal_total';
+const datasetKey = 'datasetBasalTotal';
 /////////////////////////////////////
 
 
@@ -15,36 +22,55 @@ const propTypes = {
   datasetInfo: React.PropTypes.object
 };
 
-function mapStateToProps(state) {
-  const dataset = state.datasets.datasetsById[datasetId];
 
-  return {
-    datasetInfo: state.datasets.info.items[datasetId],
-    datasetData: dataset && dataset.items
-  };
+const defaultProps = {
+  className: 'DatasetBasalTotalPage'
+};
+
+function mapStateToProps(state) {
+  // const { datasets } = state;
+  // const { datasetBasalPhospho } = datasets;
+
+  const baseProps = baseMapStateToProps(state, { datasetId, datasetKey,
+    getFilteredViewData, getFilterGroups });
+
+  const props = Object.assign(baseProps, { });
+
+  return props;
 }
 
 /**
  * React container for a dataset page page - Basal Total
  */
-class DatasetBasalTotalPage extends React.Component {
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchDatasetIfNeeded(datasetId));
-    dispatch(fetchDatasetInfo(datasetId));
+class DatasetBasalTotalPage extends DatasetBasePage {
+  constructor(props) {
+    super(props, [], () => {}, changeActiveFilters);
   }
 
-  render() {
-    const { datasetInfo } = this.props;
+
+  renderHeatmap() {
+
+    const { filteredData } = this.props;
+    if(!filteredData) {
+      return;
+    }
+    return (
+      <Heatmap
+        dataset={filteredData} />
+    );
+  }
+
+  renderMain() {
 
     return (
       <div>
-        <h1>{datasetInfo && datasetInfo.label}</h1>
+        {this.renderHeatmap()}
       </div>
     );
   }
 }
 
 DatasetBasalTotalPage.propTypes = propTypes;
+DatasetBasalTotalPage.defaultProps = defaultProps;
 
 export default connect(mapStateToProps)(DatasetBasalTotalPage);
