@@ -1,6 +1,5 @@
 import d3 from 'd3';
 import _ from 'lodash';
-// import fetch from 'isomorphic-fetch';
 
 import { DATA_PATH,
          mergeData } from './util';
@@ -9,6 +8,7 @@ import { getCellLines } from './cell_line';
 
 import datasetInfo from './data/dataset_info.json';
 
+import { normalize } from '../../common/utils/string_utils';
 
 /** Returns Promise that resolves to information about
  * each dataset in an Object where
@@ -119,7 +119,7 @@ function transformData(dataset, info) {
 function transformDoseResponse(dataset, info) {
   dataset.forEach(function(row) {
     row.label = row[info.row_id];
-    row.id = row.label.toLowerCase();
+    row.id = normalize(row.label);
   });
   return dataset;
 }
@@ -134,7 +134,7 @@ function transformGrowthFactor(dataset, info) {
 
   dataset.forEach(function(row) {
     row.label = row[info.row_id];
-    row.id = row.label.toLowerCase();
+    row.id = normalize(row.label);
 
     const measurements = [];
     _.keys(row).forEach(function(key, index) {
@@ -171,7 +171,7 @@ function transformGrowthFactor(dataset, info) {
 function transformBasalTotal(dataset, info) {
   dataset.forEach(function(row) {
     row.label = row[info.row_id];
-    row.id = row.label.toLowerCase();
+    row.id = normalize(row.label);
   });
   return dataset;
 }
@@ -188,7 +188,7 @@ function transformBasalPhospho(dataset, info) {
     // in the id column.
     const idFields = row[info.row_id].split(' ');
     row.label = idFields[0];
-    row.id = row.label.toLowerCase();
+    row.id = normalize(row.label);
 
     row.descriptor = idFields[1];
   });
@@ -218,7 +218,7 @@ function transformReceptorData(dataset) {
 
 
   dataset.forEach(function(row) {
-    row.id = row['Cell Line Name'].toLowerCase();
+    row.id = normalize(row['Cell Line Name']);
     row.label = row['Cell Line Name'];
 
     const measurements = [];
@@ -235,7 +235,7 @@ function transformReceptorData(dataset) {
         // name of receptor
         measurement.receptor = fields[0];
         measurement.label = fields[0];
-        measurement.id = fields[0].toLowerCase();
+        measurement.id = normalize(fields[0]);
         if(measurement.value === measurement.threshold) {
           measurement.disabled = true;
         }

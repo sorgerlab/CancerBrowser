@@ -1,18 +1,22 @@
 #!/usr/bin/env node
+'use strict';
 
-var fs = require('fs');
-var d3 = require('d3');
-var _  = require('lodash');
+const fs = require('fs');
+const d3 = require('d3');
+const _  = require('lodash');
+
+const utils = require('./utils');
+
 
 // cell_lines.json is first param
-var filename = process.argv[2];
+const filename = process.argv[2];
 
 // dataset_info.json is second
-var datasetInfoFilename = process.argv[3];
+const datasetInfoFilename = process.argv[3];
 
-var datasetRoot = '../data/datasets/';
+const datasetRoot = '../data/datasets/';
 
-var cellLines = require('./' + filename);
+const cellLines = require('./' + filename);
 
 // add a spot for datasets we will populate in a bit
 cellLines.forEach(function(cl) {
@@ -20,12 +24,12 @@ cellLines.forEach(function(cl) {
 });
 
 // pull in the dataset info
-var datasetInfo = require(datasetInfoFilename);
+const datasetInfo = require(datasetInfoFilename);
 
 // dataset info is an object, each key is a dataset id.
 Object.keys(datasetInfo).forEach(function(key) {
 
-  var info = datasetInfo[key];
+  const info = datasetInfo[key];
 
   // skip if not primary entry for the dataset
   if (info.exclude_from_datasets) {
@@ -33,18 +37,18 @@ Object.keys(datasetInfo).forEach(function(key) {
   }
 
   // the values are info objects.
-  var filename = datasetRoot + info.filename;
+  const filename = datasetRoot + info.filename;
 
 
   // read the data file
-  var data = fs.readFileSync(filename, 'utf8');
+  let data = fs.readFileSync(filename, 'utf8');
 
   // convert to tsv
   data = d3.tsv.parse(data);
 
   // Some of our datasets have the cell lines as column names instead of
   // attributes, so I have manually encoded this in our dataset info
-  var cellLinesInDataset = info.cell_lines;
+  let cellLinesInDataset = info.cell_lines;
 
   // if this isn't the case, then we can extract it from our datasets
 
@@ -52,7 +56,7 @@ Object.keys(datasetInfo).forEach(function(key) {
     // pull out all the unique cell line names.
     // we convert to lowercase here to match the id values of our
     //  cell_lines.json data.
-    cellLinesInDataset = data.map(d => d[info.cell_line_id].split(' ')[0].toLowerCase());
+    cellLinesInDataset = data.map(d => utils.getId(d[info.cell_line_id].split(' ')[0]));
 
     cellLinesInDataset = _.uniq(cellLinesInDataset);
   }
