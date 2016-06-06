@@ -125,6 +125,10 @@ class Waterfall {
     this.xAxisGroup
       .call(xAxis);
 
+    // animation variables
+    const transitionDuration = 500;
+    const transitionDelay = (d, i) => i * 5;
+
     const labels = this.g
       .selectAll('.label')
       .data(data, (d) => d.id);
@@ -134,19 +138,27 @@ class Waterfall {
     if(labelLocation)  {
       labels.enter()
         .append('text')
-        .classed('label', true);
-
-      labels
-        .attr('text-anchor', labelLocation === 'right' ? 'start' : 'end')
+        .classed('label', true)
         .attr('x', labelLocation === 'right' ? this.width : 0)
         .attr('dx', labelLocation === 'right' ? 8 : -8)
         .attr('y', (d) => scales.y(d.id))
-        .attr('dy', (scales.y.rangeBand() / 2) + 5)
+        .attr('dy', (scales.y.rangeBand() / 2) + 5);
+
+      labels
+        .on('mouseover', this.onMouseover)
+        .on('mouseout', this.onMouseout)
         .classed('highlight', (d)  => d.id === highlightId)
         .classed('disabled', (d)  => d.disabled)
         .text((d) => d.label)
-        .on('mouseover', this.onMouseover)
-        .on('mouseout', this.onMouseout);
+        .attr('text-anchor', labelLocation === 'right' ? 'start' : 'end')
+        .transition()
+        .duration(transitionDuration)
+        .delay(transitionDelay)
+        .attr('x', labelLocation === 'right' ? this.width : 0)
+        .attr('dx', labelLocation === 'right' ? 8 : -8)
+        .attr('y', (d) => scales.y(d.id))
+        .attr('dy', (scales.y.rangeBand() / 2) + 5);
+
     }
 
     // minus 2 to make room for the stroke
@@ -173,45 +185,77 @@ class Waterfall {
       .on('mouseout', this.onMouseout);
 
     const bars = this.g
-      .selectAll('.bar')
+      .selectAll('.bar-container')
       .data(data, (d) => d.id);
 
     bars.exit().remove();
 
-    bars.enter()
-      .append('rect')
-      .classed('bar', true);
+    const barsEnter = bars.enter()
+      .append('g')
+      .classed('bar-container', true)
+      .attr('transform', d => `translate(0 ${scales.y(d.id)})`);
 
+    // add in value bars
+    barsEnter
+      .append('rect')
+        .classed('bar', true)
+        .on('mouseover', this.onMouseover)
+        .on('mouseout', this.onMouseout)
+        .style('fill', (d) => scales.color(d))
+        .attr('height', barHeight)
+        .attr('width', (d) => d.disabled ? 0 : scales.x(d.value));
+
+    // add in threshold bars -- always add them even if not using
+    // thresholds in case we change to using thresholds later (in
+    // which case, .enter() wouldn't have these bars since the data
+    // is applied to the bar group.
+    barsEnter
+      .append('rect')
+      .classed('threshold', true)
+      .on('mouseover', this.onMouseover)
+      .on('mouseout', this.onMouseout)
+      .style('opacity', useThresholds ? 1 : 0)
+      .attr('height', barHeight)
+      .attr('width', (d) => {
+        if (useThresholds) {
+          return d.disabled ? DISABLED_BAR_SIZE : scales.x(d.threshold);
+        } else {
+          return 1e-6;
+        }
+      });
+
+    // UPDATE bars
     bars
-      .attr('x', 0)
-      .attr('y', (d) => scales.y(d.id))
-      .attr('width', (d) => d.disabled ? 0 : scales.x(d.value))
+      .transition()
+      .duration(transitionDuration)
+      .delay(transitionDelay)
+      .attr('transform', d => `translate(0 ${scales.y(d.id)})`);
+
+    bars.select('.bar')
+      .classed('highlight', (d) => d.id === highlightId)
       .attr('height', barHeight)
       .style('fill', (d) => scales.color(d))
-      .classed('highlight', (d)  => d.id === highlightId)
-      .on('mouseover', this.onMouseover)
-      .on('mouseout', this.onMouseout);
+      .transition()
+      .duration(transitionDuration)
+      .delay(transitionDelay)
+      .attr('width', (d) => d.disabled ? 0 : scales.x(d.value));
 
-    if(useThresholds) {
-
-      const thresholdBars = this.g
-        .selectAll('.threshold')
-        .data(data, (d) => d.id);
-
-      thresholdBars.exit().remove();
-
-      thresholdBars.enter()
-        .append('rect')
-        .classed('threshold', true);
-
-      thresholdBars
-        .attr('x', 0)
-        .attr('y', (d) => scales.y(d.id))
-        .attr('width', (d) => d.disabled ? DISABLED_BAR_SIZE : scales.x(d.threshold))
-        .attr('height', barHeight)
+    if (useThresholds) {
+      bars.select('.threshold')
         .classed('highlight', (d)  => d.id === highlightId)
-        .on('mouseover', this.onMouseover)
-        .on('mouseout', this.onMouseout);
+        .transition()
+        .duration(transitionDuration)
+        .delay(transitionDelay)
+        .style('opacity', 1)
+        .attr('width', (d) => d.disabled ? DISABLED_BAR_SIZE : scales.x(d.threshold));
+    } else {
+      // in case we turned off useThresholds
+      bars.select('.threshold')
+        .transition()
+        .duration(transitionDuration)
+        .delay(transitionDelay)
+        .style('opacity', 0)
+        .attr('width', 1e-6);
     }
   }
 
