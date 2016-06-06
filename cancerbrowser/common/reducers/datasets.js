@@ -8,6 +8,8 @@ import {
 
 import datasetReceptorProfile from './datasetReceptorProfile';
 import datasetGrowthFactorPaktPerk from './datasetGrowthFactorPaktPerk';
+import datasetBasalPhospho from './datasetBasalPhospho';
+import datasetBasalTotal from './datasetBasalTotal';
 
 const INITIAL_STATE = {
   info: {
@@ -69,4 +71,11 @@ function datasetsById(state = INITIAL_STATE.datasetsById, action) {
   }
 }
 
-export default combineReducers({ info, datasetsById, datasetReceptorProfile, datasetGrowthFactorPaktPerk });
+export default combineReducers({
+  info,
+  datasetsById,
+  datasetReceptorProfile,
+  datasetGrowthFactorPaktPerk,
+  datasetBasalTotal,
+  datasetBasalPhospho
+});
