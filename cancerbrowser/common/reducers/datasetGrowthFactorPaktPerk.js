@@ -31,7 +31,7 @@ const INITIAL_STATE = {
       { id: 'cellLine', values: ['mcf7'] }
     ]
   },
-  viewBy: 'cellLine',
+  viewBy: 'growthFactor',
 
   growthFactorColorBy: 'cellLineReceptorStatus',
   growthFactorSortBy: 'magnitude',

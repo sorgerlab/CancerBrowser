@@ -56,6 +56,11 @@ const propTypes = {
   cellLineSortBy: React.PropTypes.string
 };
 
+const contextTypes = {
+  router: React.PropTypes.object
+};
+
+
 const defaultProps = {
   className: 'DatasetGrowthFactorPaktPerkPage'
 };
@@ -109,6 +114,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     this.renderWaterfalls = this.renderWaterfalls.bind(this);
     this.renderGrowthFactorChartControls = this.renderGrowthFactorChartControls.bind(this);
     this.onChangeHighlight = this.onChangeHighlight.bind(this);
+    this.onWaterfallLabelClick = this.onWaterfallLabelClick.bind(this);
     this.handleGrowthFactorColorByChange = this.handleGrowthFactorColorByChange.bind(this);
     this.handleGrowthFactorSortByChange = this.handleGrowthFactorSortByChange.bind(this);
     this.handleCellLineSortByChange = this.handleCellLineSortByChange.bind(this);
@@ -191,6 +197,11 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     }
   }
 
+  onWaterfallLabelClick(datum) {
+    const path = `/cell_line/${datum.cell_line.id}`;
+    this.context.router.push(path);
+  }
+
   handleGrowthFactorColorByChange(evt) {
     const { value } = evt.target;
     const { dispatch } = this.props;
@@ -249,11 +260,14 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
 
     // encode the control value as a threshold on raw values measures
     const useThresholds = metric === 'raw values';
-    let colorBy, sortBy;
+    let colorBy, sortBy, labelClick;
     if (viewBy === 'growthFactor') {
       colorBy = this.props.growthFactorColorBy;
       sortBy = sortsMap[this.props.growthFactorSortBy];
       highlightId = this.props.highlightedCellLine;
+
+      // only support label clicking on by growth factor
+      labelClick = this.onWaterfallLabelClick;
     } else {
       colorBy = this.props.cellLineColorBy;
       sortBy = sortsMap[this.props.cellLineSortBy];
@@ -266,12 +280,13 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
           labelLocation='left'
           label={label}
           dataset={dataset}
-          onChangeHighlight={this.onChangeHighlight}
           highlightId={highlightId}
           useThresholds={useThresholds}
           dataExtent={extent}
           colorScale={mappedColorScales[colorBy]}
           dataSort={sortBy}
+          onChangeHighlight={this.onChangeHighlight}
+          onLabelClick={labelClick}
         />
       );
     }
@@ -446,6 +461,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
 }
 
 DatasetGrowthFactorPaktPerkPage.propTypes = propTypes;
+DatasetGrowthFactorPaktPerkPage.contextTypes = contextTypes;
 DatasetGrowthFactorPaktPerkPage.defaultProps = defaultProps;
 
 export default connect(mapStateToProps)(DatasetGrowthFactorPaktPerkPage);

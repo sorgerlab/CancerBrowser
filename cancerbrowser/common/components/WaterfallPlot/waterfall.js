@@ -21,7 +21,7 @@ class Waterfall {
       .attr('class', 'x axis');
 
 
-    this.dispatch = d3.dispatch('highlight', 'unhighlight');
+    this.dispatch = d3.dispatch('highlight', 'unhighlight', 'labelClick');
 
     // window.addEventListener('resize', this.handleResize.bind(this));
 
@@ -34,6 +34,7 @@ class Waterfall {
 
     this.onMouseover = this.onMouseover.bind(this);
     this.onMouseout = this.onMouseout.bind(this);
+    this.onLabelClick = this.onLabelClick.bind(this);
   }
 
   /**
@@ -74,7 +75,7 @@ class Waterfall {
    */
   update(props) {
     const {dataset, width, height, dataSort, labelLocation,
-      highlightId, useThresholds, valueFormatter} = props;
+      highlightId, useThresholds, valueFormatter, onLabelClick } = props;
 
     // Early out
     if(!dataset) {
@@ -140,16 +141,19 @@ class Waterfall {
       labels.enter()
         .append('text')
         .classed('label', true)
+        .classed('clickable', !!onLabelClick)
+        .on('click', this.onLabelClick)
+        .on('mouseover', this.onMouseover)
+        .on('mouseout', this.onMouseout)
         .attr('x', labelLocation === 'right' ? this.width : 0)
         .attr('dx', labelLocation === 'right' ? 8 : -8)
         .attr('y', (d) => scales.y(d.id))
         .attr('dy', (scales.y.rangeBand() / 2) + 5);
 
       labels
-        .on('mouseover', this.onMouseover)
-        .on('mouseout', this.onMouseout)
         .classed('highlight', (d)  => d.id === highlightId)
         .classed('disabled', (d)  => d.disabled)
+        .classed('clickable', !!onLabelClick)
         .text((d) => d.label)
         .attr('text-anchor', labelLocation === 'right' ? 'start' : 'end')
         .transition()
@@ -275,12 +279,15 @@ class Waterfall {
   }
 
   onMouseover(d) {
-    console.log(d);
     this.dispatch.highlight(d);
   }
 
   onMouseout(d) {
     this.dispatch.unhighlight(d);
+  }
+
+  onLabelClick(d) {
+    this.dispatch.labelClick(d);
   }
 
   /**

@@ -24,6 +24,10 @@ const propTypes = {
   height: React.PropTypes.number,
   /* callback function for when bar is highlighted*/
   onChangeHighlight: React.PropTypes.func,
+
+  /* callback function for when a label is clicked */
+  onLabelClick: React.PropTypes.func,
+
   /* either 'right', 'left', or undefined */
   labelLocation: React.PropTypes.string,
   /* function to sort measurement data */
@@ -58,6 +62,7 @@ class WaterfallPlot extends React.Component {
 
     this.onSelect = this.onSelect.bind(this);
     this.onDeselect = this.onDeselect.bind(this);
+    this.onLabelClick = this.onLabelClick.bind(this);
   }
 
   /**
@@ -78,6 +83,7 @@ class WaterfallPlot extends React.Component {
     this.chart.update(this.props);
     this.chart.on('highlight', this.onSelect);
     this.chart.on('unhighlight', this.onDeselect);
+    this.chart.on('labelClick', this.onLabelClick);
   }
 
   /**
@@ -98,9 +104,16 @@ class WaterfallPlot extends React.Component {
    *
    */
   onDeselect() {
-
+    this.props.onChangeHighlight(null);
   }
 
+  onLabelClick(d) {
+    const { onLabelClick } = this.props;
+
+    if (onLabelClick) {
+      onLabelClick(d);
+    }
+  }
 
   /**
    *
@@ -113,10 +126,11 @@ class WaterfallPlot extends React.Component {
       'left': labelLocation === 'left'
     });
 
+    console.log('this.props', this.props.onLabelClick);
+
     return (
       <div ref='waterfallContainer' className='WaterfallPlot'>
         <div className={titleClasses}>{label}</div>
-
       </div>
     );
   }

@@ -49,6 +49,10 @@ const propTypes = {
   activeSide: React.PropTypes.string
 };
 
+const contextTypes = {
+  router: React.PropTypes.object
+};
+
 const defaultProps = {
 };
 
@@ -91,6 +95,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     this.onChangeHighlight = this.onChangeHighlight.bind(this);
     this.onChangeActive = this.onChangeActive.bind(this);
     this.onReceptorColorChange = this.onReceptorColorChange.bind(this);
+    this.onWaterfallLabelClick = this.onWaterfallLabelClick.bind(this);
     this.getActiveReceptor = this.getActiveReceptor.bind(this);
     this.getCompareReceptor = this.getCompareReceptor.bind(this);
     this.getActiveCellLine = this.getActiveCellLine.bind(this);
@@ -133,6 +138,12 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     const { value } = event.target;
     const { dispatch } = this.props;
     dispatch(changeReceptorColorBy(value));
+  }
+
+
+  onWaterfallLabelClick(datum) {
+    const path = `/cell_line/${datum.cell_line.id}`;
+    this.context.router.push(path);
   }
 
   /**
@@ -209,9 +220,10 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     const { highlightId, viewBy } = this.props;
     const dataExtent = [-6.5, 1];
 
-    let colorBy = 'none';
+    let colorBy = 'none', labelClick;
     if (viewBy === 'receptor') {
       colorBy = this.props.receptorColorBy;
+      labelClick = this.onWaterfallLabelClick;
     }
 
     if(dataset) {
@@ -219,10 +231,13 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
         <WaterfallPlot
           label={dataset.label}
           dataset={dataset.measurements}
-          onChangeHighlight={this.onChangeHighlight}
           highlightId={highlightId}
           dataExtent={dataExtent}
-          colorScale={mappedColorScales[colorBy]} />
+          colorScale={mappedColorScales[colorBy]}
+          onChangeHighlight={this.onChangeHighlight}
+          onLabelClick={labelClick}
+        />
+
       );
     }
   }
@@ -316,6 +331,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
 }
 
 DatasetReceptorProfilePage.propTypes = propTypes;
+DatasetReceptorProfilePage.contextTypes = contextTypes;
 DatasetReceptorProfilePage.defaultProps = defaultProps;
 
 export default connect(mapStateToProps)(DatasetReceptorProfilePage);
