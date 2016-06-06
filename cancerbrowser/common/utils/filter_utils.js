@@ -47,11 +47,12 @@ export function getFilterValue(activeFilters, filterGroupId, filterId) {
  */
 export function getFilterValueItem(filterGroups, activeFilters, filterGroupId, filterId) {
   const value = getFilterValue(activeFilters, filterGroupId, filterId);
-
   if (value != null) {
     const filterGroup = filterGroups.find(fg => fg.id === filterGroupId);
-    const filter = filterGroup.filters.find(f => f.id === filterId);
-    return filter.values.find(v => v.value === value);
+    if (filterGroup) {
+      const filter = filterGroup.filters.find(f => f.id === filterId);
+      return filter.values.find(v => v.value === value);
+    }
   }
 
   return value;
