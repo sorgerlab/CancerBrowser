@@ -1,6 +1,7 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
+import d3 from 'd3';
 
 import Waterfall from './waterfall';
 
@@ -33,7 +34,10 @@ const propTypes = {
   dataExtent: React.PropTypes.array,
 
   /* function mapping data items to colors */
-  colorScale: React.PropTypes.func
+  colorScale: React.PropTypes.func,
+
+  /* function formatting values on hover */
+  valueFormatter: React.PropTypes.func
 };
 
 
@@ -43,7 +47,8 @@ const defaultProps = {
   labelLocation: 'left',
   dataSort: sortByValueAndId,
   useThresholds: true,
-  colorScale: () => '#aaa'
+  colorScale: () => '#aaa',
+  valueFormatter: d3.format('.2f')
 };
 
 

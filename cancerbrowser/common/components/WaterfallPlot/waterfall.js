@@ -27,7 +27,7 @@ class Waterfall {
 
     this.margins = {
       left: 5,
-      right: 5,
+      right: 40,
       top: 25,
       bottom: 10
     };
@@ -73,7 +73,8 @@ class Waterfall {
    *
    */
   update(props) {
-    const {dataset, width, height, dataSort, labelLocation, highlightId, useThresholds } = props;
+    const {dataset, width, height, dataSort, labelLocation,
+      highlightId, useThresholds, valueFormatter} = props;
 
     // Early out
     if(!dataset) {
@@ -83,12 +84,12 @@ class Waterfall {
     // Allow for right or left (or no) placement of labels
     if(labelLocation === 'left') {
       this.margins.left = 140;
-      this.margins.right = 5;
+      this.margins.right = 40;
     } else if(labelLocation === 'right') {
       this.margins.right = 140;
       this.margins.left = 5;
     } else {
-      this.margins.right = 5;
+      this.margins.right = 40;
       this.margins.left = 5;
     }
 
@@ -256,6 +257,20 @@ class Waterfall {
         .delay(transitionDelay)
         .style('opacity', 0)
         .attr('width', 1e-6);
+    }
+
+    // add in highlight values
+    if (highlightId) {
+      const highlightedDatum = dataset.find(d => d.id === highlightId);
+      this.g.select('.highlight-value').remove();
+      this.g.append('text')
+        .classed('highlight-value', true)
+        .attr('text-anchor', 'start')
+        .attr('x', scales.x(highlightedDatum.value))
+        .attr('dx', 5)
+        .attr('y', scales.y(highlightedDatum.id))
+        .attr('dy', barHeight - 4)
+        .text(valueFormatter ? valueFormatter(highlightedDatum.value) : highlightedDatum.value);
     }
   }
 
