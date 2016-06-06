@@ -1,0 +1,111 @@
+import React from 'react';
+import shallowCompare from 'react-addons-shallow-compare';
+import classNames from 'classnames';
+
+import ParallelCoordinates from './parallel_coordinates';
+
+import './parallel_coordinates_plot.scss';
+
+const propTypes = {
+  /* name to use on top of the plot */
+  label: React.PropTypes.string,
+  /* dataset should look something like (one object for each line)
+    [{id:string, label: 'line 1', values: [10, 15, 20] }, ...]
+  */
+  dataset: React.PropTypes.array,
+
+  /* array of labels for each point */
+  pointLabels: React.PropTypes.array,
+
+  /* width of the plot */
+  width: React.PropTypes.number,
+  /* height of the plot */
+  height: React.PropTypes.number,
+
+  /* callback when highlighting a line */
+  onChangeHighlight: React.PropTypes.func
+};
+
+
+const defaultProps = {
+  width: 1000,
+  height: 500
+};
+
+
+class ParallelCoordinatesPlot extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onSelect = this.onSelect.bind(this);
+    this.onDeselect = this.onDeselect.bind(this);
+  }
+
+  /**
+   *
+   */
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  }
+
+  /**
+   * Lifecycle callback for when the component is mounted.
+   * Creates new instance of the associated D3-based table and renders it.
+   */
+  componentDidMount() {
+
+    this.chart = new ParallelCoordinates(this.refs.plotContainer);
+
+    this.chart.update(this.props);
+    this.chart.on('highlight', this.onSelect);
+    this.chart.on('unhighlight', this.onDeselect);
+  }
+
+  /**
+   *
+   */
+  componentDidUpdate() {
+    this.chart.update(this.props);
+  }
+
+  /**
+   *
+   */
+  onSelect(d) {
+    const { onChangeHighlight } = this.props;
+
+    if (onChangeHighlight) {
+      onChangeHighlight(d.id);
+    }
+  }
+
+  /**
+   *
+   */
+  onDeselect() {
+
+  }
+
+
+  /**
+   *
+   */
+  render() {
+    const { label } = this.props;
+
+    const titleClasses = classNames({
+      'name': true
+    });
+
+    return (
+      <div ref='plotContainer' className='ParallelCoordinatesPlot'>
+        <div className={titleClasses}>{label}</div>
+      </div>
+    );
+  }
+}
+
+ParallelCoordinatesPlot.propTypes = propTypes;
+ParallelCoordinatesPlot.defaultProps = defaultProps;
+
+export default ParallelCoordinatesPlot;

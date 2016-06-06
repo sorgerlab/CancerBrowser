@@ -22,6 +22,7 @@ import {
 } from '../../actions/dataset';
 
 import WaterfallPlot from '../../components/WaterfallPlot';
+import ParallelCoordinatesPlot from '../../components/ParallelCoordinatesPlot';
 
 import './dataset_growth_factor_pakt_perk_page.scss';
 
@@ -174,6 +175,37 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     dispatch(changeGrowthFactorSortBy(value));
   }
 
+  renderParallelCoordinatesPlot() {
+    const { filteredData } = this.props;
+    if (!filteredData || _.isEmpty(filteredData)) {
+      return null;
+    }
+
+    const dataset = [
+      {
+        id: 'line1',
+        label: 'line 1',
+        values: [10, 15, 12]
+      }, {
+        id: 'line2',
+        label: 'line 2',
+        values: [20, 10, 8]
+      }
+    ];
+
+    const pointLabels = [
+      '10min',
+      '30min',
+      '90min'
+    ];
+
+    return (
+      <div className='parallel-coordinates-container'>
+        <ParallelCoordinatesPlot dataset={dataset} pointLabels={pointLabels} />
+      </div>
+    );
+  }
+
   renderWaterfall(label, dataset, extent) {
     const { viewBy, highlightId } = this.props;
     const { metric } = this.getActiveMetricAndType();
@@ -271,6 +303,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
       <div>
         <h3>{label}</h3>
         {this.renderGrowthFactorChartControls()}
+        {this.renderParallelCoordinatesPlot()}
         {this.renderWaterfalls()}
       </div>
     );

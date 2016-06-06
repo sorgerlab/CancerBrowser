@@ -1,0 +1,37 @@
+$reference-line-color: #ddd;
+$axis-line-color: #ddd;
+$series-line-color: rgba(0, 0, 100, 0.2);
+
+.parallel-coordinates {
+  .axis {
+    shape-rendering: crispEdges;
+
+    .tick {
+      font-size: 12px;
+    }
+
+    line {
+      stroke: $axis-line-color;
+    }
+
+    .minor {
+      stroke-opacity: 0.5;
+    }
+
+    path {
+      fill: none;
+      stroke: $axis-line-color;
+      display: none;
+    }
+  }
+
+  .reference-lines {
+    shape-rendering: crispEdges;
+    stroke: $reference-line-color;
+  }
+
+  .series {
+    fill: none;
+    stroke: $series-line-color;
+  }
+}
