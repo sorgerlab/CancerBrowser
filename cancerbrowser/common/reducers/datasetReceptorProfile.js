@@ -3,8 +3,7 @@ import {
   DATASET_RECEPTOR_PROFILE_CHANGE_VIEW_BY,
   DATASET_RECEPTOR_PROFILE_CHANGE_HIGHLIGHT,
   DATASET_RECEPTOR_PROFILE_CHANGE_RECEPTOR_COLOR_BY,
-  DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_LEFT,
-  DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_RIGHT
+  DATASET_RECEPTOR_PROFILE_CHANGE_SIDE
 } from '../actions/datasetReceptorProfile';
 
 // Ensure the dataset filter is set to this dataset
@@ -14,12 +13,22 @@ const baseCellLineDatasetFilter = {
 };
 
 const INITIAL_STATE = {
-  activeFilters: { cellLineFilters: [baseCellLineDatasetFilter] },
+  activeFilters: {
+    cellLineFilters: [baseCellLineDatasetFilter],
+    byReceptorConfig: [
+      {id:'receptor', values: ['src']},
+      {id:'compareTo', values: ['cmet']}
+    ],
+    byCellLineConfig: [
+      {id: 'cellLine', values: ['184b5']},
+      {id: 'compareTo', values: ['au565']}
+    ]
+  },
+
   viewBy: 'cellLine',
   highlight: undefined,
-  activeLeft: undefined,
-  activeRight: undefined,
-  receptorColorBy: 'cellLineReceptorStatus'
+  receptorColorBy: 'cellLineReceptorStatus',
+  side: 'left'
 };
 
 function datasetReceptorProfile(state = INITIAL_STATE, action) {
@@ -41,14 +50,18 @@ function datasetReceptorProfile(state = INITIAL_STATE, action) {
       return Object.assign({}, state, {
         receptorColorBy: action.colorBy
       });
-    case DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_LEFT:
-      return Object.assign({}, state, {
-        activeLeft: action.activeId
-      });
-    case DATASET_RECEPTOR_PROFILE_CHANGE_ACTIVE_RIGHT:
-      return Object.assign({}, state, {
-        activeRight: action.activeId
-      });
+    case DATASET_RECEPTOR_PROFILE_CHANGE_SIDE:
+      {
+        let side = action.side;
+        // if side not specified, serve as a toggle
+        if(!side) {
+          side = state.side === 'left' ? 'right' : 'left';
+        }
+
+        return Object.assign({}, state, {
+          side: side
+        });
+      }
     default:
       return state;
   }

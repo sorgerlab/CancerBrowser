@@ -7,9 +7,12 @@ const propTypes = {
   datasets: React.PropTypes.array,
   dataExtent: React.PropTypes.array,
   highlightId: React.PropTypes.string,
-  activeLeft: React.PropTypes.string,
-  activeRight: React.PropTypes.string,
+  activeIds: React.PropTypes.array,
   onChangeActive: React.PropTypes.func
+};
+
+const defaultProps = {
+  activeIds: []
 };
 
 /**
@@ -26,8 +29,8 @@ class WaterfallSmallMults extends React.Component {
   * Render the small waterfall
   */
   renderSmallMult(dataset) {
-    const { highlightId, onChangeActive, activeLeft, activeRight, dataExtent } = this.props;
-    const active = (dataset.id === activeLeft || dataset.id === activeRight);
+    const { highlightId, onChangeActive, activeIds, dataExtent } = this.props;
+    const active = activeIds.includes(dataset.id);
     return (
       <SmallWaterfallPlot
         key={dataset.id}
@@ -53,5 +56,6 @@ class WaterfallSmallMults extends React.Component {
 }
 
 WaterfallSmallMults.propTypes = propTypes;
+WaterfallSmallMults.defaultProps = defaultProps;
 
 export default WaterfallSmallMults;

@@ -7,7 +7,9 @@ import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetRec
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 import { colorScales } from '../../config/colors';
 
-import { getFilterValue } from '../../utils/filter_utils';
+import {
+  getFilterValue,
+  updateFilterValues } from '../../utils/filter_utils';
 
 
 import {
@@ -17,10 +19,9 @@ import {
 
 import {
   changeHighlight,
-  changeActiveLeft,
-  changeActiveRight,
   changeActiveFilters,
   changeViewBy,
+  changeSide,
   changeReceptorColorBy
 } from '../../actions/datasetReceptorProfile';
 
@@ -37,8 +38,6 @@ const propTypes = {
   datasetData: React.PropTypes.array,
   datasetInfo: React.PropTypes.object,
   highlightId: React.PropTypes.string,
-  activeLeft: React.PropTypes.string,
-  activeRight: React.PropTypes.string,
   activeFilters: React.PropTypes.object,
   filterGroups: React.PropTypes.array,
   filteredCellLines: React.PropTypes.array,
@@ -46,12 +45,11 @@ const propTypes = {
   receptors: React.PropTypes.array,
   viewBy: React.PropTypes.string,
   filteredData: React.PropTypes.array,
-  receptorColorBy: React.PropTypes.string
+  receptorColorBy: React.PropTypes.string,
+  activeSide: React.PropTypes.string
 };
 
 const defaultProps = {
-  activeLeft: 'bt-20',
-  activeRight: 'bt-483'
 };
 
 function mapStateToProps(state) {
@@ -65,8 +63,7 @@ function mapStateToProps(state) {
     receptors: receptors.items,
     highlightId: datasetReceptorProfile.highlight,
     receptorColorBy: datasetReceptorProfile.receptorColorBy,
-    activeLeft: datasetReceptorProfile.activeLeft,
-    activeRight: datasetReceptorProfile.activeRight,
+    'activeSide': datasetReceptorProfile.side,
     className: 'DatasetReceptorProfilePage'
   });
 
@@ -111,60 +108,106 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     dispatch(changeHighlight(highlightId));
   }
 
+  /**
+   * Called when color change control is toggled
+   * @param {Object} React event object indicating target
+   */
   onChangeActive(activeId) {
-    this.toggleActive = this.toggleActive || 'left';
-    const { dispatch } = this.props;
-    if(this.toggleActive === 'left') {
-      dispatch(changeActiveLeft(activeId));
-    } else {
-      dispatch(changeActiveRight(activeId));
-    }
-    this.toggleActive = this.toggleActive === 'left' ? 'right' : 'left';
+    const { dispatch, viewBy, activeFilters, activeSide } = this.props;
+
+    const subGroup = (viewBy === 'receptor') ? 'byReceptorConfig' : 'byCellLineConfig';
+    const position = (activeSide === 'left') ? viewBy : 'compareTo';
+
+    const newFilters = updateFilterValues(activeFilters, subGroup, position, [activeId]);
+
+    dispatch(changeActiveFilters(newFilters));
+
+    dispatch(changeSide());
   }
 
-  getActiveReceptor() {
-    return getFilterValue(this.props.activeFilters, 'byReceptorConfig', 'receptor');
-  }
-
-  getCompareReceptor() {
-    return getFilterValue(this.props.activeFilters, 'byReceptorConfig', 'compareTo');
-  }
-
-  getActiveCellLine() {
-    return getFilterValue(this.props.activeFilters, 'byCellLineConfig', 'cellLine');
-  }
-
-  getCompareCellLine() {
-    return getFilterValue(this.props.activeFilters, 'byCellLineConfig', 'compareTo');
-  }
-
+  /**
+   * Called when color change control is toggled
+   * @param {Object} React event object indicating target
+   */
   onReceptorColorChange(event) {
     const { value } = event.target;
     const { dispatch } = this.props;
     dispatch(changeReceptorColorBy(value));
   }
 
-  renderSmallMults(datasets) {
-    const { highlightId, activeLeft, activeRight, viewBy } = this.props;
+  /**
+   * Override parent class method
+   * So we can reset the active side toggle.
+   */
+  handleViewByChange(newView) {
+    const { dispatch } = this.props;
+    super.handleViewByChange(newView);
+    // reset the side we are toggling
+    dispatch(changeSide('left'));
+  }
 
-    const dataExtent = (viewBy === 'receptor') ? [-6.5, 1] : [-6.5, 1];
+  /**
+   * Helper function to get Active Receptor from filters
+   */
+  getActiveReceptor() {
+    return getFilterValue(this.props.activeFilters, 'byReceptorConfig', 'receptor');
+  }
+
+  /**
+   * Helper function to get comapared Receptor from filters
+   */
+  getCompareReceptor() {
+    return getFilterValue(this.props.activeFilters, 'byReceptorConfig', 'compareTo');
+  }
+
+  /**
+   * Helper function to get Active Cell Line from filters
+   */
+  getActiveCellLine() {
+    return getFilterValue(this.props.activeFilters, 'byCellLineConfig', 'cellLine');
+  }
+
+  /**
+   * Helper function to get comapared Cell line from filters
+   */
+  getCompareCellLine() {
+    return getFilterValue(this.props.activeFilters, 'byCellLineConfig', 'compareTo');
+  }
+
+
+  /**
+   * Render small multiples component passing in a given datasets Array
+   * @param {Array} datasets Array of dataset Objects to render.
+   */
+  renderSmallMults(datasets) {
+    const { highlightId, viewBy } = this.props;
+
+    const dataExtent = [-6.5, 1];
+
+    const activeIds = (viewBy === 'receptor') ?
+      [this.getActiveReceptor(), this.getCompareReceptor()] :
+      [this.getActiveCellLine(), this.getCompareCellLine()];
+
     if(datasets) {
       return (
         <WaterfallSmallMults
           datasets={datasets}
           highlightId={highlightId}
           onChangeActive={this.onChangeActive}
-          activeLeft={activeLeft}
-          activeRight={activeRight}
+          activeIds={activeIds}
           dataExtent={dataExtent} />
       );
     }
   }
 
 
-  renderWaterfall(dataset, labelLocation) {
+  /**
+   * Render waterfall for a given dataset
+   * @param {Object} dataset Dataset to render.
+   */
+  renderWaterfall(dataset) {
     const { highlightId, viewBy } = this.props;
-    const dataExtent = (viewBy === 'receptor') ? [-6.5, 1] : [-6.5, 1];
+    const dataExtent = [-6.5, 1];
 
     let colorBy = 'none';
     if (viewBy === 'receptor') {
@@ -176,7 +219,6 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
         <WaterfallPlot
           label={dataset.label}
           dataset={dataset.measurements}
-          labelLocation={labelLocation}
           onChangeHighlight={this.onChangeHighlight}
           highlightId={highlightId}
           dataExtent={dataExtent}
@@ -185,6 +227,12 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     }
   }
 
+  /**
+   * Pull out a single object from datasets array based on key string
+   * @param {Array} datasets Array of dataset objects.
+   * @param {String} activeId Id of dataset to acquire.
+   * @return {Object} Individual dataset object with id matching activeId
+   */
   getData(datasets, activeId) {
 
     if(datasets && activeId) {
@@ -197,6 +245,9 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     }
   }
 
+  /**
+   * Render JSX for controls on receptor side of visual
+   */
   renderReceptorChartControls() {
     const { receptorColorBy } = this.props;
     return (
@@ -218,6 +269,9 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     );
   }
 
+  /**
+   * Called by parent class to populatate main body of page.
+   */
   renderMain() {
     const { filteredData, datasetData, viewBy } = this.props;
 
@@ -247,10 +301,10 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
         {controls}
         <div className='row'>
           <div className='col-md-4'>
-            {this.renderWaterfall(leftData, 'left')}
+            {this.renderWaterfall(leftData)}
           </div>
           <div className='col-md-4'>
-            {this.renderWaterfall(rightData, 'left')}
+            {this.renderWaterfall(rightData)}
           </div>
           <div className='col-md-4'>
             {this.renderSmallMults(filteredData)}
