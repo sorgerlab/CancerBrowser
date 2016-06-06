@@ -270,7 +270,7 @@ class Waterfall {
       this.g.append('text')
         .classed('highlight-value', true)
         .attr('text-anchor', 'start')
-        .attr('x', scales.x(highlightedDatum.value))
+        .attr('x', highlightedDatum.disabled ? DISABLED_BAR_SIZE : scales.x(highlightedDatum.value))
         .attr('dx', 5)
         .attr('y', scales.y(highlightedDatum.id))
         .attr('dy', barHeight - 4)
