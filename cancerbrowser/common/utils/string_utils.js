@@ -17,7 +17,7 @@ export function plural(items, word, pluralSuffix = 's') {
 
 // helper function to normalize a string for search comparison by lower casing and trimming
 export function normalize(str) {
-  return String(str).toLowerCase().trim();
+  return String(str).toLowerCase().replace(/-/g,'').replace(/\s/g,'').trim();
 }
 
 // helper function to convert an array of strings to a comma separated list

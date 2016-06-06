@@ -93,7 +93,7 @@
     "TP53": "MUT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "au-565",
+      "value": "au565",
       "label": "AU-565"
     },
     "collection": [
@@ -153,8 +153,17 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "au-565",
-    "dataset": []
+    "id": "au565",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_pakt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -167,7 +176,7 @@
     "TP53": "MUT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "bt-20",
+      "value": "bt20",
       "label": "BT-20"
     },
     "collection": [
@@ -231,7 +240,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "bt-20",
+    "id": "bt20",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -266,7 +275,7 @@
     "TP53": "MUT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "bt-474",
+      "value": "bt474",
       "label": "BT-474"
     },
     "collection": [
@@ -326,7 +335,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "bt-474",
+    "id": "bt474",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -349,7 +358,7 @@
     "TP53": "MUT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "bt-483",
+      "value": "bt483",
       "label": "BT-483"
     },
     "collection": [
@@ -409,7 +418,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "bt-483",
+    "id": "bt483",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -432,7 +441,7 @@
     "TP53": "WT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "bt-549",
+      "value": "bt549",
       "label": "BT-549"
     },
     "collection": [
@@ -492,7 +501,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "bt-549",
+    "id": "bt549",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -523,7 +532,7 @@
     "TP53": "MUT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "cama-1",
+      "value": "cama1",
       "label": "CAMA-1"
     },
     "collection": [
@@ -583,7 +592,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "cama-1",
+    "id": "cama1",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -2269,7 +2278,7 @@
     "TP53": "No data",
     "MAP2K4": "No data",
     "cellLine": {
-      "value": "mcf-12a",
+      "value": "mcf12a",
       "label": "MCF-12A"
     },
     "collection": [
@@ -2329,8 +2338,17 @@
         "label": "MAP2K4 No data"
       }
     ],
-    "id": "mcf-12a",
-    "dataset": []
+    "id": "mcf12a",
+    "dataset": [
+      {
+        "value": "receptor_profile",
+        "label": "Basal Receptor (RTK) Profile"
+      },
+      {
+        "value": "growth_factor_pakt_perk",
+        "label": "Growth Factor-Induced pAKT/pERK Response"
+      }
+    ]
   },
   {
     "BRCA1": "WT",
@@ -2343,7 +2361,7 @@
     "TP53": "WT",
     "MAP2K4": "MUT",
     "cellLine": {
-      "value": "mda-mb-134-vi",
+      "value": "mdamb134vi",
       "label": "MDA-MB-134-VI"
     },
     "collection": [
@@ -2403,7 +2421,7 @@
         "label": "MAP2K4 MUT"
       }
     ],
-    "id": "mda-mb-134-vi",
+    "id": "mdamb134vi",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -2426,7 +2444,7 @@
     "TP53": "MUT*",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "mda-mb-157",
+      "value": "mdamb157",
       "label": "MDA-MB-157"
     },
     "collection": [
@@ -2486,7 +2504,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "mda-mb-157",
+    "id": "mdamb157",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -2509,7 +2527,7 @@
     "TP53": "WT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "mda-mb-175-vii",
+      "value": "mdamb175vii",
       "label": "MDA-MB-175-VII"
     },
     "collection": [
@@ -2569,7 +2587,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "mda-mb-175-vii",
+    "id": "mdamb175vii",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -2592,7 +2610,7 @@
     "TP53": "MUT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "mda-mb-231",
+      "value": "mdamb231",
       "label": "MDA-MB-231"
     },
     "collection": [
@@ -2656,7 +2674,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "mda-mb-231",
+    "id": "mdamb231",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -2665,6 +2683,14 @@
       {
         "value": "growth_factor_pakt_perk",
         "label": "Growth Factor-Induced pAKT/pERK Response"
+      },
+      {
+        "value": "basal_total",
+        "label": "Basal Total Protein Mass Spectrometry"
+      },
+      {
+        "value": "basal_phospho",
+        "label": "Basal Phosphoprotein Mass Spectrometry"
       },
       {
         "value": "drug_dose_response",
@@ -2683,7 +2709,7 @@
     "TP53": "MUT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "mda-mb-361",
+      "value": "mdamb361",
       "label": "MDA-MB-361"
     },
     "collection": [
@@ -2743,7 +2769,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "mda-mb-361",
+    "id": "mdamb361",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -2766,7 +2792,7 @@
     "TP53": "MUT",
     "MAP2K4": "MUT",
     "cellLine": {
-      "value": "mda-mb-415",
+      "value": "mdamb415",
       "label": "MDA-MB-415"
     },
     "collection": [
@@ -2826,7 +2852,7 @@
         "label": "MAP2K4 MUT"
       }
     ],
-    "id": "mda-mb-415",
+    "id": "mdamb415",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -2849,7 +2875,7 @@
     "TP53": "WT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "mda-mb-436",
+      "value": "mdamb436",
       "label": "MDA-MB-436"
     },
     "collection": [
@@ -2909,7 +2935,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "mda-mb-436",
+    "id": "mdamb436",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -2932,7 +2958,7 @@
     "TP53": "WT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "mda-mb-453",
+      "value": "mdamb453",
       "label": "MDA-MB-453"
     },
     "collection": [
@@ -2992,7 +3018,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "mda-mb-453",
+    "id": "mdamb453",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -3015,7 +3041,7 @@
     "TP53": "WT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "mda-mb-468",
+      "value": "mdamb468",
       "label": "MDA-MB-468"
     },
     "collection": [
@@ -3075,7 +3101,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "mda-mb-468",
+    "id": "mdamb468",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -3098,7 +3124,7 @@
     "TP53": "MUT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "sk-br-3",
+      "value": "skbr3",
       "label": "SK-BR-3"
     },
     "collection": [
@@ -3162,7 +3188,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "sk-br-3",
+    "id": "skbr3",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -3171,6 +3197,14 @@
       {
         "value": "growth_factor_pakt_perk",
         "label": "Growth Factor-Induced pAKT/pERK Response"
+      },
+      {
+        "value": "basal_total",
+        "label": "Basal Total Protein Mass Spectrometry"
+      },
+      {
+        "value": "basal_phospho",
+        "label": "Basal Phosphoprotein Mass Spectrometry"
       },
       {
         "value": "drug_dose_response",
@@ -3272,7 +3306,7 @@
     "TP53": "WT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "uacc-812",
+      "value": "uacc812",
       "label": "UACC-812"
     },
     "collection": [
@@ -3332,7 +3366,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "uacc-812",
+    "id": "uacc812",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -3355,7 +3389,7 @@
     "TP53": "MUT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "uacc-893",
+      "value": "uacc893",
       "label": "UACC-893"
     },
     "collection": [
@@ -3415,7 +3449,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "uacc-893",
+    "id": "uacc893",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -3438,7 +3472,7 @@
     "TP53": "WT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "zr-75-1",
+      "value": "zr751",
       "label": "ZR-75-1"
     },
     "collection": [
@@ -3498,7 +3532,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "zr-75-1",
+    "id": "zr751",
     "dataset": [
       {
         "value": "receptor_profile",
@@ -3521,7 +3555,7 @@
     "TP53": "WT",
     "MAP2K4": "WT",
     "cellLine": {
-      "value": "zr-75-30",
+      "value": "zr7530",
       "label": "ZR-75-30"
     },
     "collection": [
@@ -3581,7 +3615,7 @@
         "label": "MAP2K4 WT"
       }
     ],
-    "id": "zr-75-30",
+    "id": "zr7530",
     "dataset": [
       {
         "value": "receptor_profile",
