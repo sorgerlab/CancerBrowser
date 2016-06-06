@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import d3 from 'd3';
+import { Row, Col } from 'react-bootstrap';
 
-import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetGrowthFactorPaktPerk';
+import { getFilteredViewData, getFilterGroups, getParallelCoordinatesPlotData } from '../../selectors/datasetGrowthFactorPaktPerk';
 import { getFilterValue, getFilterValueItem } from '../../utils/filter_utils';
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 import { colorScales } from '../../config/colors';
@@ -22,6 +23,7 @@ import {
 } from '../../actions/dataset';
 
 import WaterfallPlot from '../../components/WaterfallPlot';
+import ParallelCoordinatesPlot from '../../components/ParallelCoordinatesPlot';
 
 import './dataset_growth_factor_pakt_perk_page.scss';
 
@@ -45,7 +47,8 @@ const propTypes = {
   filteredData: React.PropTypes.object,
   className: React.PropTypes.string,
   growthFactorColorBy: React.PropTypes.string,
-  growthFactorSortBy: React.PropTypes.string
+  growthFactorSortBy: React.PropTypes.string,
+  parallelCoordinatesPlotData: React.PropTypes.array
 };
 
 const defaultProps = {
@@ -63,7 +66,8 @@ function mapStateToProps(state) {
     /* Add custom props here */
     highlightId: datasetGrowthFactorPaktPerk.highlight,
     growthFactorColorBy: datasetGrowthFactorPaktPerk.growthFactorColorBy,
-    growthFactorSortBy: datasetGrowthFactorPaktPerk.growthFactorSortBy
+    growthFactorSortBy: datasetGrowthFactorPaktPerk.growthFactorSortBy,
+    parallelCoordinatesPlotData: getParallelCoordinatesPlotData(state, datasetGrowthFactorPaktPerk)
   });
 
   return props;
@@ -174,6 +178,35 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     dispatch(changeGrowthFactorSortBy(value));
   }
 
+  renderParallelCoordinatesPlot() {
+    const { filteredData, parallelCoordinatesPlotData, highlightId, viewBy } = this.props;
+    if (!parallelCoordinatesPlotData || _.isEmpty(parallelCoordinatesPlotData) ||
+         !filteredData || _.isEmpty(filteredData)) {
+      return null;
+    }
+
+    let colorBy;
+    if (viewBy === 'growthFactor') {
+      colorBy = this.props.growthFactorColorBy;
+    }
+
+    const pointLabels = Object.keys(filteredData);
+
+    return (
+      <div className='parallel-coordinates-container'>
+        <ParallelCoordinatesPlot
+          dataset={parallelCoordinatesPlotData}
+          pointLabels={pointLabels}
+          onChangeHighlight={this.onChangeHighlight}
+          colorScale={mappedColorScales[colorBy]}
+          highlightId={highlightId}
+          height={180}
+          width={450}
+        />
+      </div>
+    );
+  }
+
   renderWaterfall(label, dataset, extent) {
     const { viewBy, highlightId } = this.props;
     const { metric } = this.getActiveMetricAndType();
@@ -257,7 +290,20 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     );
   }
 
-  renderGrowthFactorView() {
+  renderSubheaders() {
+    const { viewBy } = this.props;
+    if (viewBy === 'growthFactor') {
+      return this.renderGrowthFactorViewHeaders();
+    }
+
+    return this.renderCellLineViewHeaders();
+  }
+
+  renderCellLineViewHeaders() {
+    return super.renderViewOptions();
+  }
+
+  renderGrowthFactorViewHeaders() {
     const activeGrowthFactor = this.getActiveGrowthFactor();
     const activeParameter = this.getActiveParameter();
     const activeConcentration = this.getActiveConcentration();
@@ -268,18 +314,40 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     }
 
     return (
+      <Row>
+        <Col md={6} sm={6}>
+          {super.renderViewOptions()}
+          <h3>{label}</h3>
+          {this.renderGrowthFactorChartControls()}
+        </Col>
+        <Col md={6} sm={6}>
+          {this.renderParallelCoordinatesPlot()}
+        </Col>
+      </Row>
+    );
+  }
+
+  renderGrowthFactorViewBody() {
+    return (
       <div>
-        <h3>{label}</h3>
-        {this.renderGrowthFactorChartControls()}
         {this.renderWaterfalls()}
       </div>
     );
   }
 
-  renderCellLineView() {
+  renderCellLineViewBody() {
     return (
       <div>
         TODO Cell line view
+      </div>
+    );
+  }
+
+  // override to get parallel coordinates plot beside view options
+  renderViewOptions() {
+    return (
+      <div>
+        {this.renderSubheaders()}
       </div>
     );
   }
@@ -288,10 +356,10 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     const { viewBy } = this.props;
 
     if (viewBy === 'growthFactor') {
-      return this.renderGrowthFactorView();
+      return this.renderGrowthFactorViewBody();
     }
 
-    return this.renderCellLineView();
+    return this.renderCellLineViewBody();
   }
 }
 

@@ -1,0 +1,71 @@
+@import "../../assets/variables";
+
+$reference-line-color: #ddd;
+$axis-line-color: #ddd;
+$series-line-color: #888;
+$highlight-color: $brand-primary;
+
+.parallel-coordinates {
+  .axis {
+    shape-rendering: crispEdges;
+
+    .tick {
+      font-size: 12px;
+    }
+
+    line {
+      stroke: $axis-line-color;
+    }
+
+    .minor {
+      stroke-opacity: 0.5;
+    }
+
+    path {
+      fill: none;
+      stroke: $axis-line-color;
+      display: none;
+    }
+  }
+
+  .reference-lines {
+    shape-rendering: crispEdges;
+    stroke: $reference-line-color;
+  }
+
+
+  .highlight-group {
+    text {
+      fill: #666;
+
+      &.highlighted-label {
+        font-weight: 400;
+      }
+    }
+  }
+
+
+  .series {
+    .mouse-handler {
+      fill: none;
+      stroke: blue;
+      stroke-width: 10px;
+      opacity: 0;
+    }
+
+    .series-line {
+      fill: none;
+      stroke: $series-line-color;
+      stroke-width: 1px;
+      opacity: 0.5;
+      pointer-events: none;
+
+
+      &.highlight {
+        stroke: $highlight-color !important;
+        stroke-width: 4px;
+        opacity: 1;
+      }
+    }
+  }
+}
