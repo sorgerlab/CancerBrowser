@@ -171,7 +171,10 @@ export const getFilterGroups = createSelector(
       });
 
     } else {
-      const cellLines = []; // TODO get all cell lines via an input selector
+      let cellLines = [];
+      if(viewData) {
+        cellLines = _.map(viewData,(d) => { return {value:d.id, label:d.label}; });
+      }
       // put by cell line filters here
       const byCellLineConfig = [
         {
