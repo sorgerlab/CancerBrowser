@@ -1,33 +1,22 @@
 #!/usr/bin/env node
+'use strict';
 
-var fs = require('fs');
-var d3 = require('d3');
-var _  = require('lodash');
+const fs = require('fs');
+const d3 = require('d3');
+const _  = require('lodash');
 
-var filename = process.argv[2];
+const utils = require('./utils');
+
+// import { normalize } from '../common/utils/string_utils';
+
+const filename = process.argv[2];
 
 // TODO: specify output filename?
-var outputFilename = './cell_lines.json';
+const outputFilename = './cell_lines.json';
 
 
-function lowerFirstLetter(string) {
-  return string.charAt(0).toLowerCase() + string.slice(1);
-}
-
-Object.prototype.renameProperty = function (oldName, newName) {
-  // Do nothing if the names are the same
-  if (oldName == newName) {
-    return this;
-  }
-  // Check for the old property name to avoid a ReferenceError in strict mode.
-  if (this.hasOwnProperty(oldName)) {
-    this[newName] = this[oldName];
-    delete this[oldName];
-  }
-  return this;
-};
 // BRCA1,BRCA2,CDH1,MAP3K1,MLL3,PIK3CA,PTEN,TP53,GATA3*,MAP2K4
-var GENES = [
+const GENES = [
   'BRCA1',
   'BRCA2',
   'CDH1',
@@ -41,12 +30,12 @@ var GENES = [
 ];
 
 function getMutations(row) {
-  var mutations = [];
+  const mutations = [];
   GENES.forEach(function(gene) {
     if(_.has(row, gene)) {
-      var mutType = row[gene] ? row[gene].toLowerCase().replace(' ', '') : '';
+      const mutType = row[gene] ? row[gene].toLowerCase().replace(' ', '') : '';
 
-      var mutation = gene.toLowerCase() + mutType;
+      const mutation = gene.toLowerCase() + mutType;
 
       mutations.push({value: mutation, label: gene + ' ' + row[gene]});
     }
@@ -54,8 +43,9 @@ function getMutations(row) {
   return mutations.sort(d3.ascending);
 }
 
+
 function getSubtypes(subtypeString, delim) {
-  if(subtypeString.toLowerCase() == 'no data') {
+  if(subtypeString.toLowerCase() === 'no data') {
     return [];
   } else {
     return _.split(subtypeString, delim).map((s) => {
@@ -76,20 +66,20 @@ fs.readFile(filename, 'utf8', function(error, data) {
   data.forEach(function(d) {
 
     Object.keys(d).forEach(function(k) {
-      var newKey = k.replace('*', '');
+      let newKey = k.replace('*', '');
       d.renameProperty(k, newKey);
       k = newKey;
 
       if(!_.includes(GENES, k)) {
-        var originalValue = d[k];
+        const originalValue = d[k];
 
-        var newValue = d[k].toLowerCase();
+        let newValue = d[k].toLowerCase();
         newValue = newValue.replace('+','plus');
         newValue = newValue.replace(/\s/g,'');
         newValue = newValue.replace(/,/g,'');
         //TODO: save if the mutation has an * somewhere, for display.
         newValue = newValue.replace('*', '');
-        newKey = lowerFirstLetter(k);
+        newKey = utils.lowerFirstLetter(k);
         newKey = newKey.replace(' ','');
         d.renameProperty(k, newKey);
         d[newKey] = {value: newValue, label: originalValue};
@@ -100,7 +90,8 @@ fs.readFile(filename, 'utf8', function(error, data) {
     d.collection = getSubtypes(d.collection.label, ';');
 
     // pull up cellLine.value to be the ID
-    d.id = d.cellLine.value;
+    d.id = utils.getId(d.cellLine.label);
+    d.cellLine.value = utils.getId(d.cellLine.label);
   });
   fs.writeFileSync(outputFilename, JSON.stringify(data, null, 2));
 });

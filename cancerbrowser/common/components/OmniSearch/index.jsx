@@ -4,6 +4,8 @@ import shallowCompare from 'react-addons-shallow-compare';
 
 import _ from 'lodash';
 
+import { normalize } from '../../utils/string_utils';
+
 import './omni_search.scss';
 
 const propTypes = {
@@ -104,7 +106,7 @@ class OmniSearch extends React.Component {
   * @return {String} search term we are searching for
   */
   getSuggestions(search) {
-    search = search.trim().toLowerCase();
+    search = normalize(search.trim());
 
     if(search.length > 0) {
 
@@ -123,8 +125,8 @@ class OmniSearch extends React.Component {
 
             // handle array value of strings (e.g. synonyms, searchIndexOnlyNames)
             if (_.isArray(searchAttrValue)) {
-              matches = searchAttrValue.some(val => val.toLowerCase().includes(search));
-            } else if(searchAttrValue.toLowerCase().includes(search)) {
+              matches = searchAttrValue.some(val => normalize(val).includes(search));
+            } else if(normalize(searchAttrValue).includes(search)) {
               matches = true;
             }
 
@@ -172,7 +174,6 @@ class OmniSearch extends React.Component {
   * @param {String} value New search value
   */
   onSuggestionsUpdateRequested({ value }) {
-    // const term = value.trim().toLowerCase();
     this.setState({
       suggestions: this.getSuggestions(value)
     });
@@ -200,7 +201,7 @@ class OmniSearch extends React.Component {
 
     // include searchIndexOnlyName if it matches
     if (suggestion.searchIndexOnlyNames && suggestion.searchIndexOnlyNames.length) {
-      const match = suggestion.searchIndexOnlyNames.find(searchName => searchName.toLowerCase().includes(search.toLowerCase()));
+      const match = suggestion.searchIndexOnlyNames.find(searchName => normalize(searchName).includes(normalize(search)));
       if (match) {
         synonymsToUse.push(match);
       }

@@ -14,3 +14,5 @@ move_drugs:
 	mv drugs.json ../common/api/data/
 
 all: cell_lines move_cell_lines drugs move_drugs
+
+default: all
