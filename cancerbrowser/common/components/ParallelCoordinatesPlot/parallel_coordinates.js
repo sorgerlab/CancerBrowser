@@ -82,6 +82,8 @@ class ParallelCoordinates {
     this.g
       .attr('transform', `translate(${this.margins.left},${this.margins.top})`);
 
+    const transitionDuration = 300;
+
     const scales = this.updateScales(dataset, props);
     const line = d3.svg.line()
       .x((d, i) => scales.x(i))
@@ -123,11 +125,20 @@ class ParallelCoordinates {
     const lines = this.linesGroup.selectAll('.series')
       .data(dataset, d => d.id);
 
+    // ENTER lines
     lines.enter()
       .append('path')
       .classed('series', true)
       .attr('d', d => line(d.values));
 
+    // UPDATE lines
+    lines
+      .transition()
+      .duration(transitionDuration)
+      .attr('d', d => line(d.values));
+
+    // EXIT lines
+    lines.exit().remove();
   }
 
   /**

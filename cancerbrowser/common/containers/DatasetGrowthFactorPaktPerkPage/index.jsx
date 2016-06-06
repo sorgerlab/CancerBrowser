@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import d3 from 'd3';
 
-import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetGrowthFactorPaktPerk';
+import { getFilteredViewData, getFilterGroups, getParallelCoordinatesPlotData } from '../../selectors/datasetGrowthFactorPaktPerk';
 import { getFilterValue, getFilterValueItem } from '../../utils/filter_utils';
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 import { colorScales } from '../../config/colors';
@@ -46,7 +46,8 @@ const propTypes = {
   filteredData: React.PropTypes.object,
   className: React.PropTypes.string,
   growthFactorColorBy: React.PropTypes.string,
-  growthFactorSortBy: React.PropTypes.string
+  growthFactorSortBy: React.PropTypes.string,
+  parallelCoordinatesPlotData: React.PropTypes.array
 };
 
 const defaultProps = {
@@ -64,7 +65,8 @@ function mapStateToProps(state) {
     /* Add custom props here */
     highlightId: datasetGrowthFactorPaktPerk.highlight,
     growthFactorColorBy: datasetGrowthFactorPaktPerk.growthFactorColorBy,
-    growthFactorSortBy: datasetGrowthFactorPaktPerk.growthFactorSortBy
+    growthFactorSortBy: datasetGrowthFactorPaktPerk.growthFactorSortBy,
+    parallelCoordinatesPlotData: getParallelCoordinatesPlotData(state, datasetGrowthFactorPaktPerk)
   });
 
   return props;
@@ -176,32 +178,17 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   }
 
   renderParallelCoordinatesPlot() {
-    const { filteredData } = this.props;
-    if (!filteredData || _.isEmpty(filteredData)) {
+    const { filteredData, parallelCoordinatesPlotData } = this.props;
+    if (!parallelCoordinatesPlotData || _.isEmpty(parallelCoordinatesPlotData) ||
+         !filteredData || _.isEmpty(filteredData)) {
       return null;
     }
 
-    const dataset = [
-      {
-        id: 'line1',
-        label: 'line 1',
-        values: [10, 15, 12]
-      }, {
-        id: 'line2',
-        label: 'line 2',
-        values: [20, 10, 8]
-      }
-    ];
-
-    const pointLabels = [
-      '10min',
-      '30min',
-      '90min'
-    ];
+    const pointLabels = Object.keys(filteredData);
 
     return (
       <div className='parallel-coordinates-container'>
-        <ParallelCoordinatesPlot dataset={dataset} pointLabels={pointLabels} />
+        <ParallelCoordinatesPlot dataset={parallelCoordinatesPlotData} pointLabels={pointLabels} />
       </div>
     );
   }

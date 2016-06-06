@@ -57,8 +57,8 @@ class ParallelCoordinatesPlot extends React.Component {
     this.chart = new ParallelCoordinates(this.refs.plotContainer);
 
     this.chart.update(this.props);
-    this.chart.on('highlight', this.onSelect);
-    this.chart.on('unhighlight', this.onDeselect);
+    // this.chart.on('highlight', this.onSelect);
+    // this.chart.on('unhighlight', this.onDeselect);
   }
 
   /**

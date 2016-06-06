@@ -149,6 +149,28 @@ export const getFilteredViewData = createSelector(
 );
 
 
+export const getParallelCoordinatesPlotData = createSelector(
+  [ getFilteredViewData ],
+  (viewData) => {
+    // get the object values
+    const valuesArray = _.values(viewData);
+
+    // zip them to arrays by item (assumes each item is in the
+    // same index in viewData in each keyed obj
+    // (e.g. viewData.10min[1].id === viewData.30min[1].id === viewData.90min[1].id))
+    const perItem = _.zip.apply(this, valuesArray);
+
+    const formatted = perItem.map(data => ({
+      label: data[0].label,
+      id: data[0].id,
+      cell_line: data[0].cell_line,
+      values: data.map(d => d.value)
+    }));
+
+    return formatted;
+  }
+);
+
 /** Gets the filter group definition based on what is in the data */
 export const getFilterGroups = createSelector(
   [ getDataset(datasetId), getViewBy(datasetKey) ],
