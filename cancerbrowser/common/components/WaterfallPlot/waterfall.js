@@ -126,7 +126,7 @@ class Waterfall {
       .call(xAxis);
 
     // animation variables
-    const transitionDuration = 500;
+    const transitionDuration = 300;
     const transitionDelay = (d, i) => i * 5;
 
     const labels = this.g
