@@ -18,7 +18,7 @@ class ParallelCoordinates {
       left: 50,
       right: 50,
       top: 25,
-      bottom: 10
+      bottom: 20
     };
 
     this.xAxisGroup = this.g.append('g')
@@ -34,6 +34,9 @@ class ParallelCoordinates {
 
     this.linesGroup = this.g.append('g')
       .classed('lines-group', true);
+
+    this.highlightGroup = this.g.append('g')
+      .classed('highlight-group', true);
 
     // event dispatcher
     this.dispatch = d3.dispatch('highlight', 'unhighlight');
@@ -69,7 +72,7 @@ class ParallelCoordinates {
    *
    */
   update(props) {
-    const { dataset, pointLabels, width, height, highlightId } = props;
+    const { dataset, pointLabels, width, height, highlightId, valueFormatter } = props;
 
     // Early out
     if(!dataset) {
@@ -162,6 +165,40 @@ class ParallelCoordinates {
 
     // EXIT lines
     lines.exit().remove();
+
+    // show values on highlighted item
+    this.highlightGroup.selectAll('*').remove();
+    if (highlightId) {
+      const highlightedDatum = dataset.find(d => d.id === highlightId);
+      this.highlightGroup.append('text')
+        .classed('highlighted-label', true)
+        .attr('text-anchor', 'middle')
+        .attr('x', this.width / 2)
+        .attr('y', this.height)
+        .attr('dy', 14)
+        .text(highlightedDatum.label);
+
+      // render the values
+      highlightedDatum.values.forEach((value, i) => {
+        let textAnchor;
+        if (i === 0) {
+          textAnchor = 'start';
+        } else if (i === highlightedDatum.values.length - 1) {
+          textAnchor = 'end';
+        } else {
+          textAnchor = 'middle';
+        }
+
+        const valueGroup = this.highlightGroup.append('g')
+          .attr('transform', `translate(${scales.x(i)} ${scales.y(value)})`)
+          .classed('highlighted-value', true);
+
+        valueGroup.append('text')
+          .attr('text-anchor', textAnchor)
+          .attr('dy', -5)
+          .text(valueFormatter ? valueFormatter(value) : value);
+      });
+    }
   }
 
   onMouseEnter(d) {

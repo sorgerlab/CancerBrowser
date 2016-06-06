@@ -34,6 +34,15 @@ $highlight-color: $brand-primary;
   }
 
 
+  .highlight-group {
+    text {
+      fill: #666;
+
+      &.highlighted-label {
+        font-weight: 400;
+      }
+    }
+  }
 
 
   .series {

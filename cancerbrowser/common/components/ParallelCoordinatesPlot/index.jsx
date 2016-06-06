@@ -1,6 +1,7 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
+import d3 from 'd3';
 
 import ParallelCoordinates from './parallel_coordinates';
 
@@ -26,12 +27,16 @@ const propTypes = {
   onChangeHighlight: React.PropTypes.func,
 
   /* function mapping data items to colors */
-  colorScale: React.PropTypes.func
+  colorScale: React.PropTypes.func,
+
+  /* function that formats values e.g. d3.format('0.2f') */
+  valueFormatter: React.PropTypes.func
 };
 
 const defaultProps = {
-  width: 1000,
-  height: 250
+  width: 500,
+  height: 200,
+  valueFormatter: d3.format('0.2f')
 };
 
 
