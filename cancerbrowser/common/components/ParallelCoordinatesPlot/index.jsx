@@ -26,6 +26,9 @@ const propTypes = {
   /* callback when highlighting a line */
   onChangeHighlight: React.PropTypes.func,
 
+  /* callback when toggling a line */
+  onChangeToggle: React.PropTypes.func,
+
   /* function mapping data items to colors */
   colorScale: React.PropTypes.func,
 
@@ -45,8 +48,10 @@ class ParallelCoordinatesPlot extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onSelect = this.onSelect.bind(this);
-    this.onDeselect = this.onDeselect.bind(this);
+    this.onToggle = this.onToggle.bind(this);
+    this.onUntoggle = this.onUntoggle.bind(this);
+    this.onHighlight = this.onHighlight.bind(this);
+    this.onUnhighlight = this.onUnhighlight.bind(this);
   }
 
   /**
@@ -65,8 +70,10 @@ class ParallelCoordinatesPlot extends React.Component {
     this.chart = new ParallelCoordinates(this.refs.plotContainer);
 
     this.chart.update(this.props);
-    this.chart.on('highlight', this.onSelect);
-    this.chart.on('unhighlight', this.onDeselect);
+    this.chart.on('highlight', this.onHighlight);
+    this.chart.on('unhighlight', this.onUnhighlight);
+    this.chart.on('toggle', this.onToggle);
+    this.chart.on('untoggle', this.onUntoggle);
   }
 
   /**
@@ -79,7 +86,28 @@ class ParallelCoordinatesPlot extends React.Component {
   /**
    * Handler for selecting a highlighted line
    */
-  onSelect(d) {
+  onToggle(d) {
+    const { onChangeToggle } = this.props;
+    console.log('tog', d);
+    if (onChangeToggle) {
+      onChangeToggle(d.id);
+    }
+  }
+
+  /**
+   * Handler for deselecting a highlighted line
+   */
+  onUntoggle() {
+    const { onChangeToggle } = this.props;
+    if (onChangeToggle) {
+      onChangeToggle(null);
+    }
+  }
+
+  /**
+   * Handler for selecting a highlighted line
+   */
+  onHighlight(d) {
     const { onChangeHighlight } = this.props;
 
     if (onChangeHighlight) {
@@ -90,7 +118,7 @@ class ParallelCoordinatesPlot extends React.Component {
   /**
    * Handler for deselecting a highlighted line
    */
-  onDeselect() {
+  onUnhighlight() {
     const { onChangeHighlight } = this.props;
     if (onChangeHighlight) {
       onChangeHighlight(null);

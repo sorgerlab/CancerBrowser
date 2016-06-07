@@ -1,8 +1,10 @@
+@import "../../assets/variables";
+
 $threshold-color: #ddd;
-$toggled-color: #9679af;
-$toggled-threshold-color: lighten($toggled-color, 15%);
-$highlight-color: #B8A2CC;
-$highlight-threshold-color: lighten($highlight-color, 15%);
+$toggled-color: $chart-toggled-color;
+$toggled-threshold-color: $chart-toggled-color-lighter;
+$highlight-color: $chart-highlight-color;
+$highlight-threshold-color: $chart-highlight-color-lighter;
 
 .WaterfallPlot {
   .name {
