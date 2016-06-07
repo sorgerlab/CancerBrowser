@@ -1,7 +1,9 @@
 import d3 from 'd3';
 
-// const receptorStatusColors = ['#f6578e', '#fda91f', '#54a3ff', '#7ed321'];
 const receptorStatusColors = ['#c85f61', '#4dab9b', '#ca7832', '#7da245'];
+
+const molecularSubtypeColors = ['#49b4be', '#cb645f', '#6ba463', '#b2973a'];
+
 
 function lighten(color, amount) {
   const hsl = d3.rgb(color).hsl();
@@ -23,7 +25,11 @@ export const colorScales = {
   // molecular subtype colors
   cellLineMolecularSubtype: d3.scale.ordinal()
     .domain(['nonmalignantbasal', 'luminal', 'basala', 'claudinlowbasalb'])
-    .range(['#b3e2cd', '#fdcdac', '#cbd5e8', '#f4cae4']),
+    .range(molecularSubtypeColors),
+
+  cellLineMolecularSubtypeLighter: d3.scale.ordinal()
+    .domain(['nonmalignantbasal', 'luminal', 'basala', 'claudinlowbasalb'])
+    .range(molecularSubtypeColors.map(color => lighten(color, 1.4))),
 
   // generic multiple categories colors
   categories: d3.scale.ordinal()
