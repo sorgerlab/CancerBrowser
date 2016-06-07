@@ -34,7 +34,7 @@ const INITIAL_STATE = {
   receptorColorBy: 'cellLineReceptorStatus',
   receptorSortBy: 'magnitude',
   cellLineSortBy: 'magnitude',
-  side: 'left'
+  side: 'right'
 };
 
 function datasetReceptorProfile(state = INITIAL_STATE, action) {
@@ -71,9 +71,9 @@ function datasetReceptorProfile(state = INITIAL_STATE, action) {
     case DATASET_RECEPTOR_PROFILE_CHANGE_SIDE:
       {
         let side = action.side;
-        // if side not specified, serve as a toggle
+        // if side not specified, set to right
         if(!side) {
-          side = state.side === 'left' ? 'right' : 'left';
+          side = 'right';
         }
 
         return Object.assign({}, state, {

@@ -31,6 +31,7 @@ import {
 
 import WaterfallSmallMults from '../../components/WaterfallSmallMults';
 import WaterfallPlot from '../../components/WaterfallPlot';
+import AutoWidth from '../../components/AutoWidth';
 
 /// Specify the dataset ID here: ////
 const datasetId = 'receptor_profile';
@@ -143,16 +144,62 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
    * @param {Object} React event object indicating target
    */
   onChangeActive(activeId) {
-    const { dispatch, viewBy, activeFilters, activeSide } = this.props;
+    const { dispatch, viewBy, activeFilters } = this.props;
 
+    let { activeSide } = this.props;
+
+    const activeIds = this.getActiveWaterfallPlots(viewBy);
     const subGroup = (viewBy === 'receptor') ? 'byReceptorConfig' : 'byCellLineConfig';
+    const newActiveSide = 'right';
+
+    let slideOver = false;
+
+    // if there are now waterfalls shown,
+    // display new one on the left.
+    if(!activeIds[0] && !activeIds[1]) {
+      activeSide = 'left';
+    }
+
+    // toggle off right plot
+    // if id matches right plot
+    if(activeId === activeIds[1]) {
+      activeId = undefined;
+      activeSide = 'right';
+    }
+
+    // toggle off left plot
+    // if id matches left plot
+    if(activeId === activeIds[0]) {
+      activeId = undefined;
+      activeSide = 'left';
+      if(activeIds[1]) {
+        slideOver = true;
+      }
+    }
+
     const position = (activeSide === 'left') ? viewBy : 'compareTo';
 
-    const newFilters = updateFilterValues(activeFilters, subGroup, position, [activeId]);
+    let newFilters = updateFilterValues(activeFilters, subGroup, position, [activeId]);
+
+    // if there is a left plot and we are toggling off right plot, then slide over right
+    // plot
+    if(slideOver) {
+      newFilters = updateFilterValues(newFilters, subGroup, viewBy, [activeIds[1]]);
+      newFilters = updateFilterValues(newFilters, subGroup, 'compareTo', [undefined]);
+    }
 
     dispatch(changeActiveFilters(newFilters));
+    dispatch(changeSide(newActiveSide));
+  }
 
-    dispatch(changeSide());
+  /**
+   * Returns array of two elements
+   * with Ids of active and compareby waterfalls
+   */
+  getActiveWaterfallPlots(viewBy) {
+    return (viewBy === 'receptor') ?
+      [this.getActiveReceptor(), this.getCompareReceptor()] :
+      [this.getActiveCellLine(), this.getCompareCellLine()];
   }
 
   /**
@@ -192,7 +239,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     const { dispatch } = this.props;
     super.handleViewByChange(newView);
     // reset the side we are toggling
-    dispatch(changeSide('left'));
+    dispatch(changeSide('right'));
   }
 
   /**
@@ -232,9 +279,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     const { toggledId, highlightId, viewBy } = this.props;
     const dataExtent = [-6.5, 1];
 
-    const activeIds = (viewBy === 'receptor') ?
-      [this.getActiveReceptor(), this.getCompareReceptor()] :
-      [this.getActiveCellLine(), this.getCompareCellLine()];
+    const activeIds = this.getActiveWaterfallPlots(viewBy);
 
     if(datasets) {
       return (
@@ -271,19 +316,27 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
 
     if(dataset) {
       return (
-        <WaterfallPlot
-          label={dataset.label}
-          dataset={dataset.measurements}
-          highlightId={highlightId}
-          toggledId={toggledId}
-          dataExtent={dataExtent}
-          colorScale={mappedColorScales[colorBy]}
-          dataSort={sortBy}
-          onChangeHighlight={this.onChangeHighlight}
-          onChangeToggle={this.onChangeToggle}
-          onLabelClick={labelClick}
-        />
-
+        <AutoWidth>
+          <WaterfallPlot
+            label={dataset.label}
+            dataset={dataset.measurements}
+            highlightId={highlightId}
+            toggledId={toggledId}
+            dataExtent={dataExtent}
+            colorScale={mappedColorScales[colorBy]}
+            dataSort={sortBy}
+            onChangeHighlight={this.onChangeHighlight}
+            onChangeToggle={this.onChangeToggle}
+            onLabelClick={labelClick}
+            />
+        </AutoWidth>
+      );
+    } else {
+      const entityName = viewBy === 'receptor' ? 'receptor' : 'cell line';
+      return (
+        <div className="waterfall-help">
+          <p>Use the filters on the left or thumbnails on the right to add a {entityName} to compare.</p>
+        </div>
       );
     }
   }
