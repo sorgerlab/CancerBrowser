@@ -207,8 +207,7 @@ class Waterfall {
       labels.enter()
         .append('text')
         .classed('label', true)
-        .classed('clickable', !!onLabelClick)
-        .on('click', this.onLabelClick)
+        .classed('clickable', true)
         .on('mouseenter', this.onMouseEnter)
         .on('mouseleave', this.onMouseLeave)
         .attr('x', labelLocation === 'right' ? this.width : 0)
@@ -217,10 +216,10 @@ class Waterfall {
         .attr('dy', (scales.y.rangeBand() / 2) + 5);
 
       labels
+        .on('click', d => d.id === toggledId ? this.onUntoggle(d) : this.onToggle(d))
         .classed('highlight', (d)  => d.id === highlightId)
         .classed('toggled', (d)  => d.id === toggledId)
         .classed('disabled', (d)  => d.disabled)
-        .classed('clickable', !!onLabelClick)
         .text((d) => d.label)
         .attr('text-anchor', labelLocation === 'right' ? 'start' : 'end')
         .transition()
@@ -231,6 +230,23 @@ class Waterfall {
         .attr('y', (d) => scales.y(d.id))
         .attr('dy', (scales.y.rangeBand() / 2) + 5);
 
+      // if a label click handler is provided, add in the label click icon
+      this.g.selectAll('.label-click-control').remove();
+      if (onLabelClick && toggledId) {
+        const toggledDatum = data.find(d => d.id === toggledId);
+
+        if (toggledDatum) {
+          this.g
+            .append('text')
+            .on('click', this.onLabelClick.bind(this, toggledDatum))
+            .classed('label-click-control', true)
+            .attr('x', -this.margins.left)
+            .attr('dx', 4)
+            .attr('y', scales.y(toggledDatum.id))
+            .attr('dy', (scales.y.rangeBand() / 2) + 5)
+            .text('');
+        }
+      }
     }
 
     // minus 2 to make room for the stroke

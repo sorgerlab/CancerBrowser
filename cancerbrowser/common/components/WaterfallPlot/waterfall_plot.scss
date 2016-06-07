@@ -45,6 +45,12 @@ $highlight-threshold-color: $chart-highlight-color-lighter;
     cursor: pointer;
   }
 
+  .label-click-control {
+    font: normal normal normal 14px/1 FontAwesome;
+    fill: $link-color;
+    cursor: pointer;
+  }
+
   .label {
     fill: #777;
     font-size: 14px;
