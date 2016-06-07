@@ -141,6 +141,23 @@ export const getFilteredViewData = createSelector(
      * { 10m: [{id, label, value, d}, ...], 30m: ... }
      */
     const byTime = filteredData.reduce((byTime, d) => {
+
+      // add in control values first
+      if (activeMetric === 'raw values') {
+        if (!byTime['0min']) {
+          byTime['0min'] = [];
+        }
+
+        const preparedMeasurement = Object.assign({}, {
+          id: d[idKey],
+          label: d[labelKey],
+          cell_line: d.cell_line,
+          value: d[`Control ${activeType} (a.u.)`]
+        });
+        byTime['0min'].push(preparedMeasurement);
+      }
+
+      // add in values for the other time points
       d.measurements.forEach(m => {
         const { time } = m;
 
@@ -159,12 +176,9 @@ export const getFilteredViewData = createSelector(
           cell_line: d.cell_line
         });
 
-        if (activeMetric === 'raw values') {
-          preparedMeasurement.threshold = d[`Control ${activeType} (a.u.)`];
-        }
-
         byTime[time].push(preparedMeasurement);
       });
+
       return byTime;
     }, {});
     return byTime;

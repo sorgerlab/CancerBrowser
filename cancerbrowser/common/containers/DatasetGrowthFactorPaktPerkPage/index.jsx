@@ -26,6 +26,7 @@ import {
   fetchDatasetIfNeeded
 } from '../../actions/dataset';
 
+import AutoWidth from '../../components/AutoWidth';
 import WaterfallPlot from '../../components/WaterfallPlot';
 import ParallelCoordinatesPlot from '../../components/ParallelCoordinatesPlot';
 
@@ -320,6 +321,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
 
   renderWaterfalls() {
     const { filteredData } = this.props;
+
     if (!filteredData || _.isEmpty(filteredData)) {
       return null;
     }
@@ -329,14 +331,26 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
       return d3.extent(filteredData[time], d => d.value);
     })).concat([0])); // add 0 so it is always included in the extent
 
+    const colSizes = {
+      sm: 6,
+      md: 4,
+      lg: times.length > 3 ? 3 : 4
+    };
+
     return (
       <div className='waterfalls-container'>
-        <div className='row'>
+        <Row>
           {times.map((time, i) => {
             const dataset = filteredData[time];
-            return <div key={i} className='col-md-4'>{this.renderWaterfall(time, dataset, sharedExtent)}</div>;
+            return (
+              <Col key={i} {...colSizes}>
+                <AutoWidth>
+                  {this.renderWaterfall(time, dataset, sharedExtent)}
+                </AutoWidth>
+              </Col>
+            );
           })}
-        </div>
+        </Row>
       </div>
     );
   }
@@ -418,7 +432,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
 
     return (
       <Row>
-        <Col md={6} sm={6}>
+        <Col lg={6} md={6} sm={6}>
           {super.renderViewOptions()}
           <header className='view-heading'>
             <h3>{label}</h3>
@@ -429,7 +443,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
           </header>
           {this.renderChartControls()}
         </Col>
-        <Col md={6} sm={6}>
+        <Col lg={6} md={6} sm={6}>
           {this.renderParallelCoordinatesPlot()}
         </Col>
       </Row>
