@@ -111,7 +111,7 @@ class Waterfall {
   update(props) {
     const {dataset, width, height, dataSort, labelLocation,
       highlightId, useThresholds, valueFormatter, onLabelClick,
-      centerValue, toggledId } = props;
+      centerValue, toggledId, itemAxisLabel, valueAxisLabel } = props;
 
     // Early out
     if(!dataset) {
@@ -129,6 +129,10 @@ class Waterfall {
     } else {
       this.margins.right = 40;
       this.margins.left = 5;
+    }
+
+    if (valueAxisLabel) {
+      this.margins.top = 40;
     }
 
     this.width = width - (this.margins.left + this.margins.right);
@@ -155,6 +159,17 @@ class Waterfall {
 
     const scales = this.updateScales(data, props);
 
+    // add in value axis label if provided
+    this.g.select('.value-axis-label').remove();
+    if (valueAxisLabel) {
+      this.g.append('text')
+        .classed('value-axis-label', true)
+        .attr('x', this.width / 2)
+        .attr('text-anchor', 'middle')
+        .attr('y', -20)
+        .text(valueAxisLabel);
+    }
+
     const xAxis = d3.svg.axis()
       .scale(scales.x)
       .ticks(5)
@@ -167,6 +182,20 @@ class Waterfall {
     // animation variables
     const transitionDuration = 300;
     const transitionDelay = (d, i) => i * 5;
+
+
+    // add in item axis label
+    this.g.select('.item-axis-label').remove();
+    if (itemAxisLabel) {
+      this.g.append('text')
+        .classed('item-axis-label', true)
+        .attr('x', labelLocation === 'right' ? this.width : 0)
+        .attr('dx', labelLocation === 'right' ? 8 : -8)
+        .attr('text-anchor', labelLocation === 'right' ? 'start' : 'end')
+        .attr('y', scales.y.range()[0])
+        .attr('dy', -6)
+        .text(itemAxisLabel);
+    }
 
     const labels = this.g
       .selectAll('.label')

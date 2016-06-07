@@ -170,18 +170,22 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     switch(parameter.value) {
       case 'paktFoldChange':
         result.metric = 'fold change';
+        result.unit = 'log10(Fold Change)';
         result.type = 'pAkt';
         break;
       case 'paktRawValues':
         result.metric = 'raw values';
+        result.unit = 'log10(A.U.)';
         result.type = 'pAkt';
         break;
       case 'perkFoldChange':
         result.metric = 'fold change';
+        result.unit = 'log10(Fold Change)';
         result.type = 'pErk';
         break;
       case 'perkRawValues':
         result.metric = 'raw values';
+        result.unit = 'log10(A.U.)';
         result.type = 'pErk';
         break;
     }
@@ -276,18 +280,19 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
 
   renderWaterfall(label, dataset, extent) {
     const { viewBy } = this.props;
-    const { metric } = this.getActiveMetricAndType();
+    const { metric, unit } = this.getActiveMetricAndType();
     let highlightId;
 
     // encode the control value as a threshold on raw values measures
     const useThresholds = metric === 'raw values';
-    let colorBy, sortBy, labelClick, toggledId;
 
+    let colorBy, sortBy, labelClick, toggledId, itemAxisLabel;
     if (viewBy === 'growthFactor') {
       colorBy = this.props.growthFactorColorBy;
       sortBy = sortsMap[this.props.growthFactorSortBy];
       highlightId = this.props.highlightedCellLine;
       toggledId = this.props.toggledCellLine;
+      itemAxisLabel = 'Cell Line';
 
       // only support label clicking on by growth factor
       labelClick = this.onWaterfallLabelClick;
@@ -296,6 +301,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
       sortBy = sortsMap[this.props.cellLineSortBy];
       highlightId = this.props.highlightedGrowthFactor;
       toggledId = this.props.toggledGrowthFactor;
+      itemAxisLabel = 'Growth Factor';
     }
 
     if (dataset) {
@@ -313,6 +319,8 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
           onChangeHighlight={this.onChangeHighlight}
           onChangeToggle={this.onChangeToggle}
           onLabelClick={labelClick}
+          valueAxisLabel={unit}
+          itemAxisLabel={itemAxisLabel}
           centerValue={0}
         />
       );
