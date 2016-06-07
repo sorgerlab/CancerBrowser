@@ -216,7 +216,7 @@ export const getFilterGroups = createSelector(
 
     const parameter = {
       id: 'parameter',
-      label: 'Parameter',
+      label: 'Assay Parameter',
       type: 'select',
       values: [
         { label: 'pAKT Fold Change', value: 'paktFoldChange' },
@@ -231,7 +231,7 @@ export const getFilterGroups = createSelector(
 
     const concentration = {
       id: 'concentration',
-      label: 'Ligand Concentration',
+      label: ' Growth Factor Concentration',
       type: 'select',
       values: [
         { label: '1ng/mL', value: '1' },
