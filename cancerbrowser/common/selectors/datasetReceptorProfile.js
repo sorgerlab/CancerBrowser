@@ -91,11 +91,13 @@ function filterByMetric(dataset, metricToKeep) {
     return dataset;
   }
 
-  dataset.forEach(function(cellLine) {
-    cellLine.measurements = cellLine.measurements.filter((m) => m.metric === metricToKeep);
+  const newData = dataset.map(function(cellLine) {
+    const newCellLine = _.cloneDeep(cellLine);
+    newCellLine.measurements = newCellLine.measurements.filter((m) => m.metric === metricToKeep);
+    return newCellLine;
   });
 
-  return dataset;
+  return newData;
 }
 
 /////////////////////
