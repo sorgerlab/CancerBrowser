@@ -30,10 +30,10 @@ export const sortByAccessor = _.curry(function (accessor, a, b) {
   const aValue = accessor(a);
   const bValue = accessor(b);
 
-  if (a == null || a.disabled || aValue == null) {
+  if (a == null || aValue == null) {
     return 1;
   }
-  if (b == null || b.disabled || bValue == null) {
+  if (b == null || bValue == null) {
     return -1;
   }
 
