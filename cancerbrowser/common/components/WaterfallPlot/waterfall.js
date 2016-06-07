@@ -22,7 +22,8 @@ class Waterfall {
       .attr('class', 'x axis');
 
 
-    this.dispatch = d3.dispatch('highlight', 'unhighlight', 'labelClick');
+    this.dispatch = d3.dispatch('highlight', 'unhighlight', 'toggle',
+      'untoggle', 'labelClick');
 
     // window.addEventListener('resize', this.handleResize.bind(this));
 
@@ -33,9 +34,11 @@ class Waterfall {
       bottom: 10
     };
 
-    this.onMouseover = this.onMouseover.bind(this);
-    this.onMouseout = this.onMouseout.bind(this);
+    this.onMouseEnter = this.onMouseEnter.bind(this);
+    this.onMouseLeave = this.onMouseLeave.bind(this);
     this.onLabelClick = this.onLabelClick.bind(this);
+    this.onToggle = this.onToggle.bind(this);
+    this.onUntoggle = this.onUntoggle.bind(this);
   }
 
   /**
@@ -108,12 +111,13 @@ class Waterfall {
   update(props) {
     const {dataset, width, height, dataSort, labelLocation,
       highlightId, useThresholds, valueFormatter, onLabelClick,
-      centerValue } = props;
+      centerValue, toggledId } = props;
 
     // Early out
     if(!dataset) {
       return;
     }
+
 
     // Allow for right or left (or no) placement of labels
     if(labelLocation === 'left') {
@@ -176,8 +180,8 @@ class Waterfall {
         .classed('label', true)
         .classed('clickable', !!onLabelClick)
         .on('click', this.onLabelClick)
-        .on('mouseover', this.onMouseover)
-        .on('mouseout', this.onMouseout)
+        .on('mouseenter', this.onMouseEnter)
+        .on('mouseleave', this.onMouseLeave)
         .attr('x', labelLocation === 'right' ? this.width : 0)
         .attr('dx', labelLocation === 'right' ? 8 : -8)
         .attr('y', (d) => scales.y(d.id))
@@ -185,6 +189,7 @@ class Waterfall {
 
       labels
         .classed('highlight', (d)  => d.id === highlightId)
+        .classed('toggled', (d)  => d.id === toggledId)
         .classed('disabled', (d)  => d.disabled)
         .classed('clickable', !!onLabelClick)
         .text((d) => d.label)
@@ -202,26 +207,6 @@ class Waterfall {
     // minus 2 to make room for the stroke
     const barHeight = scales.y.rangeBand() - 2;
 
-    // for easier mouseovering
-    const hoverBars = this.g
-      .selectAll('.hover')
-      .data(data, (d) => d.id);
-
-    hoverBars.exit().remove();
-
-    hoverBars.enter()
-      .append('rect')
-      .classed('hover', true);
-
-    hoverBars
-      .attr('x', 0)
-      .attr('y', (d) => scales.y(d.id))
-      .attr('width', this.width)
-      .attr('height', barHeight)
-      .style('fill', 'rgba(0, 0, 0, 0.1)')//TODO: '#fff')
-      .on('mouseover', this.onMouseover)
-      .on('mouseout', this.onMouseout);
-
     const bars = this.g
       .selectAll('.bar-container')
       .data(data, (d) => d.id);
@@ -231,9 +216,8 @@ class Waterfall {
     const barsEnter = bars.enter()
       .append('g')
       .classed('bar-container', true)
+      .classed('clickable', true)
       .attr('transform', d => `translate(0 ${scales.y(d.id)})`);
-
-
 
     const { leftEdge, rightEdge, barWidth } = this.getRectFunctions(centerValue, scales.x, 'value');
     const { leftEdge: leftEdgeThreshold, barWidth: barWidthThreshold } =
@@ -243,8 +227,6 @@ class Waterfall {
     barsEnter
       .append('rect')
         .classed('bar', true)
-        .on('mouseover', this.onMouseover)
-        .on('mouseout', this.onMouseout)
         .style('fill', (d) => scales.color(d))
         .attr('height', barHeight)
         .attr('x', leftEdge)
@@ -257,12 +239,19 @@ class Waterfall {
     barsEnter
       .append('rect')
       .classed('threshold', true)
-      .on('mouseover', this.onMouseover)
-      .on('mouseout', this.onMouseout)
       .style('opacity', useThresholds ? 1 : 0)
       .attr('height', barHeight)
       .attr('x', leftEdgeThreshold)
       .attr('width', useThresholds ? barWidthThreshold : 1e-6);
+
+    // add in values but only draw on highlight/toggle
+    barsEnter
+      .append('text')
+      .classed('bar-value', true)
+      .attr('text-anchor', 'start')
+      .attr('x', rightEdge)
+      .attr('dx', 5)
+      .attr('dy', barHeight - 4);
 
     // UPDATE bars
     bars
@@ -273,6 +262,7 @@ class Waterfall {
 
     bars.select('.bar')
       .classed('highlight', (d) => d.id === highlightId)
+      .classed('toggled', (d)  => d.id === toggledId)
       .attr('height', barHeight)
       .style('fill', (d) => scales.color(d))
       .transition()
@@ -281,9 +271,21 @@ class Waterfall {
       .attr('x', leftEdge)
       .attr('width', barWidth);
 
+    // bar values (text)
+    bars.select('.bar-value')
+      .style('opacity', d => (d.id === highlightId || d.id === toggledId) ? 1 : 0)
+      .text(d => valueFormatter ? valueFormatter(d.value) : d.value)
+      .transition()
+      .duration(transitionDuration)
+      .delay(transitionDelay)
+      .attr('x', rightEdge);
+
+
+
     if (useThresholds) {
       bars.select('.threshold')
         .classed('highlight', (d)  => d.id === highlightId)
+        .classed('toggled', (d)  => d.id === toggledId)
         .transition()
         .duration(transitionDuration)
         .delay(transitionDelay)
@@ -302,31 +304,46 @@ class Waterfall {
         .attr('width', 1e-6);
     }
 
-    // add in highlight values
-    this.g.select('.highlight-value').remove();
-    if (highlightId) {
-      const highlightedDatum = dataset.find(d => d.id === highlightId);
-      this.g.append('text')
-        .classed('highlight-value', true)
-        .attr('text-anchor', 'start')
-        .attr('x', rightEdge(highlightedDatum))
-        .attr('dx', 5)
-        .attr('y', scales.y(highlightedDatum.id))
-        .attr('dy', barHeight - 4)
-        .text(valueFormatter ? valueFormatter(highlightedDatum.value) : highlightedDatum.value);
-    }
+    // for easier handling across a bar's row
+    const mouseHandlerBars = this.g
+      .selectAll('.mouse-handler-bar')
+      .data(data, (d) => d.id);
+
+    mouseHandlerBars.exit().remove();
+
+    mouseHandlerBars.enter()
+      .append('rect')
+      .classed('mouse-handler-bar', true);
+
+    mouseHandlerBars
+      .attr('x', 0)
+      .attr('y', (d) => scales.y(d.id))
+      .attr('width', this.width)
+      .attr('height', barHeight)
+      .style('fill', '#fff')
+      .on('mouseenter', this.onMouseEnter)
+      .on('mouseleave', this.onMouseLeave)
+      .on('click', d => d.id === toggledId ? this.onUntoggle(d) : this.onToggle(d));
   }
 
-  onMouseover(d) {
+  onMouseEnter(d) {
     this.dispatch.highlight(d);
   }
 
-  onMouseout(d) {
+  onMouseLeave(d) {
     this.dispatch.unhighlight(d);
   }
 
   onLabelClick(d) {
     this.dispatch.labelClick(d);
+  }
+
+  onToggle(d) {
+    this.dispatch.toggle(d);
+  }
+
+  onUntoggle(d) {
+    this.dispatch.untoggle(d);
   }
 
   /**

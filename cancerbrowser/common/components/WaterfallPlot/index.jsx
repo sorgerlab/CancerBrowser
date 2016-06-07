@@ -25,6 +25,9 @@ const propTypes = {
   /* callback function for when bar is highlighted*/
   onChangeHighlight: React.PropTypes.func,
 
+  /* callback function for when bar is toggled */
+  onChangeToggle: React.PropTypes.func,
+
   /* callback function for when a label is clicked */
   onLabelClick: React.PropTypes.func,
 
@@ -58,7 +61,9 @@ const defaultProps = {
   dataSort: sortByValueAndId,
   useThresholds: true,
   colorScale: () => '#aaa',
-  valueFormatter: d3.format('.2f')
+  valueFormatter: d3.format('.2f'),
+  onChangeHighlight: () => {},
+  onChangeToggle: () => {}
 };
 
 
@@ -66,8 +71,10 @@ class WaterfallPlot extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onSelect = this.onSelect.bind(this);
-    this.onDeselect = this.onDeselect.bind(this);
+    this.onToggle = this.onToggle.bind(this);
+    this.onUntoggle = this.onUntoggle.bind(this);
+    this.onHighlight = this.onHighlight.bind(this);
+    this.onUnhighlight = this.onUnhighlight.bind(this);
     this.onLabelClick = this.onLabelClick.bind(this);
   }
 
@@ -87,8 +94,10 @@ class WaterfallPlot extends React.Component {
     this.chart = new Waterfall(this.refs.waterfallContainer);
 
     this.chart.update(this.props);
-    this.chart.on('highlight', this.onSelect);
-    this.chart.on('unhighlight', this.onDeselect);
+    this.chart.on('highlight', this.onHighlight);
+    this.chart.on('unhighlight', this.onUnhighlight);
+    this.chart.on('toggle', this.onToggle);
+    this.chart.on('untoggle', this.onUntoggle);
     this.chart.on('labelClick', this.onLabelClick);
   }
 
@@ -102,15 +111,30 @@ class WaterfallPlot extends React.Component {
   /**
    *
    */
-  onSelect(d) {
+  onHighlight(d) {
     this.props.onChangeHighlight(d.id);
   }
 
   /**
    *
    */
-  onDeselect() {
+  onUnhighlight() {
     this.props.onChangeHighlight(null);
+  }
+
+  /**
+   *
+   */
+  onToggle(d) {
+    console.log('toggling', d);
+    this.props.onChangeToggle(d.id);
+  }
+
+  /**
+   *
+   */
+  onUntoggle() {
+    this.props.onChangeToggle(null);
   }
 
   onLabelClick(d) {
@@ -131,8 +155,6 @@ class WaterfallPlot extends React.Component {
       'name': true,
       'left': labelLocation === 'left'
     });
-
-    console.log('this.props', this.props.onLabelClick);
 
     return (
       <div ref='waterfallContainer' className='WaterfallPlot'>

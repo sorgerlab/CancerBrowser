@@ -2,9 +2,11 @@ import {
   DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_ACTIVE_FILTERS,
   DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_VIEW_BY,
   DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_HIGHLIGHTED_CELL_LINE,
+  DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_TOGGLED_CELL_LINE,
   DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_GROWTH_FACTOR_COLOR_BY,
   DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_GROWTH_FACTOR_SORT_BY,
   DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_HIGHLIGHTED_GROWTH_FACTOR,
+  DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_TOGGLED_GROWTH_FACTOR,
   DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_CELL_LINE_COLOR_BY,
   DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_CELL_LINE_SORT_BY
 
@@ -36,9 +38,11 @@ const INITIAL_STATE = {
   growthFactorColorBy: 'cellLineReceptorStatus',
   growthFactorSortBy: 'magnitude',
   highlightedCellLine: undefined,
+  toggledCellLine: undefined,
 
   cellLineSortBy: 'magnitude',
-  highlightedGrowthFactor: undefined
+  highlightedGrowthFactor: undefined,
+  toggledGrowthFactor: undefined
 };
 
 function datasetGrowthFactorPaktPerk(state = INITIAL_STATE, action) {
@@ -64,6 +68,10 @@ function datasetGrowthFactorPaktPerk(state = INITIAL_STATE, action) {
       return Object.assign({}, state, {
         highlightedCellLine: action.highlightId
       });
+    case DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_TOGGLED_CELL_LINE:
+      return Object.assign({}, state, {
+        toggledCellLine: action.toggledId
+      });
     case DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_CELL_LINE_COLOR_BY:
       return Object.assign({}, state, {
         cellLineColorBy: action.cellLineColorBy
@@ -75,6 +83,10 @@ function datasetGrowthFactorPaktPerk(state = INITIAL_STATE, action) {
     case DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_HIGHLIGHTED_GROWTH_FACTOR:
       return Object.assign({}, state, {
         highlightedGrowthFactor: action.highlightId
+      });
+    case DATASET_GROWTH_FACTOR_PAKT_PERK_CHANGE_TOGGLED_GROWTH_FACTOR:
+      return Object.assign({}, state, {
+        toggledGrowthFactor: action.toggledId
       });
     default:
       return state;

@@ -19,6 +19,7 @@ import {
 
 import {
   changeHighlight,
+  changeToggled,
   changeActiveFilters,
   changeViewBy,
   changeSide,
@@ -38,6 +39,7 @@ const propTypes = {
   datasetData: React.PropTypes.array,
   datasetInfo: React.PropTypes.object,
   highlightId: React.PropTypes.string,
+  toggledId: React.PropTypes.string,
   activeFilters: React.PropTypes.object,
   filterGroups: React.PropTypes.array,
   filteredCellLines: React.PropTypes.array,
@@ -66,6 +68,7 @@ function mapStateToProps(state) {
   const props = Object.assign(baseProps, {
     receptors: receptors.items,
     highlightId: datasetReceptorProfile.highlight,
+    toggledId: datasetReceptorProfile.toggled,
     receptorColorBy: datasetReceptorProfile.receptorColorBy,
     'activeSide': datasetReceptorProfile.side,
     className: 'DatasetReceptorProfilePage'
@@ -93,6 +96,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     super(props, viewOptions, changeViewBy, changeActiveFilters);
 
     this.onChangeHighlight = this.onChangeHighlight.bind(this);
+    this.onChangeToggle = this.onChangeToggle.bind(this);
     this.onChangeActive = this.onChangeActive.bind(this);
     this.onReceptorColorChange = this.onReceptorColorChange.bind(this);
     this.onWaterfallLabelClick = this.onWaterfallLabelClick.bind(this);
@@ -111,6 +115,11 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
   onChangeHighlight(highlightId) {
     const { dispatch } = this.props;
     dispatch(changeHighlight(highlightId));
+  }
+
+  onChangeToggle(toggledId) {
+    const { dispatch } = this.props;
+    dispatch(changeToggled(toggledId));
   }
 
   /**
@@ -191,7 +200,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
    * @param {Array} datasets Array of dataset Objects to render.
    */
   renderSmallMults(datasets) {
-    const { highlightId, viewBy } = this.props;
+    const { toggledId, highlightId, viewBy } = this.props;
 
     const dataExtent = [-6.5, 1];
 
@@ -204,6 +213,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
         <WaterfallSmallMults
           datasets={datasets}
           highlightId={highlightId}
+          toggledId={toggledId}
           onChangeActive={this.onChangeActive}
           activeIds={activeIds}
           dataExtent={dataExtent} />
@@ -217,7 +227,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
    * @param {Object} dataset Dataset to render.
    */
   renderWaterfall(dataset) {
-    const { highlightId, viewBy } = this.props;
+    const { highlightId, viewBy, toggledId } = this.props;
     const dataExtent = [-6.5, 1];
 
     let colorBy = 'none', labelClick;
@@ -232,9 +242,11 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
           label={dataset.label}
           dataset={dataset.measurements}
           highlightId={highlightId}
+          toggledId={toggledId}
           dataExtent={dataExtent}
           colorScale={mappedColorScales[colorBy]}
           onChangeHighlight={this.onChangeHighlight}
+          onChangeToggle={this.onChangeToggle}
           onLabelClick={labelClick}
         />
 
