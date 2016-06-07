@@ -30,6 +30,12 @@ $highlight-color: $chart-highlight-color;
     }
   }
 
+  .y-axis-label {
+    font-size: 12px;
+    font-weight: 400;
+    color: #333;
+  }
+
   .reference-lines {
     shape-rendering: crispEdges;
     stroke: $reference-line-color;

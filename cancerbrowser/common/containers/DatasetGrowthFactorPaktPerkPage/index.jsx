@@ -248,6 +248,8 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
       return null;
     }
 
+    const { unit } = this.getActiveMetricAndType();
+
     let colorBy, highlightId, toggledId;
     if (viewBy === 'growthFactor') {
       colorBy = this.props.growthFactorColorBy;
@@ -273,6 +275,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
           toggledId={toggledId}
           height={180}
           width={450}
+          yAxisLabel={unit}
         />
       </div>
     );
