@@ -138,7 +138,7 @@ class DrugBrowserPage extends React.Component {
     return (
       <div>
         <div className='drug-view-controls'>
-          <label className='small-label'>View By</label>
+          <label className='small-label'>Group By</label>
           <div>
             <ButtonGroup>
               <Button className={classNames({ active: drugView === 'class' })}
