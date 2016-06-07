@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-
+import { Row, Col } from 'react-bootstrap';
 
 import { fetchDatasetsInfo } from '../../actions/dataset';
+
+import './dataset_summary_page.scss';
 
 const propTypes = {
   dispatch: React.PropTypes.func,
@@ -42,10 +44,11 @@ class DatasetSummaryPage extends React.Component {
     let dataset = this.props.datasets[key];
 
     return (
-      <div key={key}>
-        <h3>{dataset.label}</h3>
-        <Link to={`/dataset/${dataset.id}`} className="btn btn-lg btn-default" role="button">View Dataset Page</Link>
-      </div>
+      <li key={key} className='dataset-item'>
+        <h4>{dataset.label}</h4>
+        {dataset.description ? <p>{dataset.description}</p> : null}
+        <Link to={`/dataset/${dataset.id}`}>View Dataset Page</Link>
+      </li>
     );
   }
 
@@ -55,8 +58,15 @@ class DatasetSummaryPage extends React.Component {
    */
   render() {
     return (
-      <div className='DatasetSummary'>
-        {Object.keys(this.props.datasets).map((key) => this.renderDataset(key))}
+      <div className='DatasetSummaryPage'>
+        <Row>
+          <Col md={6}>
+            <h1>Datasets</h1>
+            <ul className='datasets-listing list-unstyled'>
+              {Object.keys(this.props.datasets).map((key) => this.renderDataset(key))}
+            </ul>
+          </Col>
+        </Row>
       </div>
     );
   }
