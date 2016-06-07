@@ -198,54 +198,80 @@ class Waterfall {
     }
 
     const labels = this.g
-      .selectAll('.label')
+      .selectAll('.label-group')
       .data(data, (d) => d.id);
 
     labels.exit().remove();
 
     if(labelLocation)  {
-      labels.enter()
+      const transformLabel = d => {
+        let x;
+        if (labelLocation === 'right') {
+          x = this.width;
+        } else {
+          // make room for the label click icon if it is there
+          x = (onLabelClick && toggledId === d.id) ? -15 : 0;
+        }
+
+        const y = scales.y(d.id);
+
+        return `translate(${x} ${y})`;
+      };
+
+      const labelsEnter = labels.enter()
+        .append('g')
+        .classed('label-group', true)
+        .classed('toggled', (d) => d.id === toggledId)
+        .attr('transform', transformLabel);
+
+      // if a label click handler is provided, add in the label click icon
+      if (onLabelClick) {
+        labelsEnter
+          .append('text')
+          .on('click', this.onLabelClick)
+          .classed('label-click-control', true)
+          .attr('text-anchor', 'end')
+          .attr('dx', -8)
+          .attr('dy', (scales.y.rangeBand() / 2) + 5)
+          .text('');
+      }
+
+      // add main label text to the group
+      labelsEnter
         .append('text')
         .classed('label', true)
         .classed('clickable', true)
         .on('mouseenter', this.onMouseEnter)
         .on('mouseleave', this.onMouseLeave)
-        .attr('x', labelLocation === 'right' ? this.width : 0)
         .attr('dx', labelLocation === 'right' ? 8 : -8)
-        .attr('y', (d) => scales.y(d.id))
         .attr('dy', (scales.y.rangeBand() / 2) + 5);
 
+
+      // update the groups
       labels
-        .on('click', d => d.id === toggledId ? this.onUntoggle(d) : this.onToggle(d))
-        .classed('highlight', (d)  => d.id === highlightId)
-        .classed('toggled', (d)  => d.id === toggledId)
-        .classed('disabled', (d)  => d.disabled)
-        .text((d) => d.label)
-        .attr('text-anchor', labelLocation === 'right' ? 'start' : 'end')
+        .classed('toggled', (d) => d.id === toggledId)
         .transition()
         .duration(transitionDuration)
         .delay(transitionDelay)
-        .attr('x', labelLocation === 'right' ? this.width : 0)
+        .attr('transform', transformLabel);
+
+      // update main label text
+      labels.select('.label')
+        .on('click', d => d.id === toggledId ? this.onUntoggle(d) : this.onToggle(d))
+        .classed('highlight', (d) => d.id === highlightId)
+        .classed('toggled', (d) => d.id === toggledId)
+        .classed('disabled', (d) => d.disabled)
+        .text((d) => d.label)
+        .attr('text-anchor', labelLocation === 'right' ? 'start' : 'end')
         .attr('dx', labelLocation === 'right' ? 8 : -8)
-        .attr('y', (d) => scales.y(d.id))
         .attr('dy', (scales.y.rangeBand() / 2) + 5);
 
-      // if a label click handler is provided, add in the label click icon
-      this.g.selectAll('.label-click-control').remove();
-      if (onLabelClick && toggledId) {
-        const toggledDatum = data.find(d => d.id === toggledId);
-
-        if (toggledDatum) {
-          this.g
-            .append('text')
-            .on('click', this.onLabelClick.bind(this, toggledDatum))
-            .classed('label-click-control', true)
-            .attr('x', -this.margins.left)
-            .attr('dx', 4)
-            .attr('y', scales.y(toggledDatum.id))
-            .attr('dy', (scales.y.rangeBand() / 2) + 5)
-            .text('');
-        }
+      // if a label click handler is provided, update the revealed icon
+      if (onLabelClick) {
+        labels.select('.label-click-control')
+          .classed('clickable', d => d.id === toggledId)
+          .attr('dx', 8)
+          .attr('dy', (scales.y.rangeBand() / 2) + 5);
       }
     }
 
@@ -307,7 +333,7 @@ class Waterfall {
 
     bars.select('.bar')
       .classed('highlight', (d) => d.id === highlightId)
-      .classed('toggled', (d)  => d.id === toggledId)
+      .classed('toggled', (d) => d.id === toggledId)
       .attr('height', barHeight)
       .style('fill', (d) => scales.color(d))
       .transition()
@@ -329,8 +355,8 @@ class Waterfall {
 
     if (useThresholds) {
       bars.select('.threshold')
-        .classed('highlight', (d)  => d.id === highlightId)
-        .classed('toggled', (d)  => d.id === toggledId)
+        .classed('highlight', (d) => d.id === highlightId)
+        .classed('toggled', (d) => d.id === toggledId)
         .transition()
         .duration(transitionDuration)
         .delay(transitionDelay)
