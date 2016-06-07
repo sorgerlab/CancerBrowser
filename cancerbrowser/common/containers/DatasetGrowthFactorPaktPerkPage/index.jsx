@@ -373,7 +373,6 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   }
 
   renderCellLineChartControls() {
-    // TODO
     const { cellLineSortBy } = this.props;
     return (
       <div>
@@ -393,76 +392,47 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     );
   }
 
-  renderSubheaders() {
+  renderChartControls() {
     const { viewBy } = this.props;
     if (viewBy === 'growthFactor') {
-      return this.renderGrowthFactorViewHeaders();
+      return this.renderGrowthFactorChartControls();
     }
 
-    return this.renderCellLineViewHeaders();
+    return this.renderCellLineChartControls();
   }
 
-  renderCellLineViewHeaders() {
-    const activeCellLine = this.getActiveCellLine();
+
+  renderSubheaders() {
+    const { viewBy } = this.props;
     const activeParameter = this.getActiveParameter();
     const activeConcentration = this.getActiveConcentration();
 
     let label;
-    if (activeCellLine) {
-      label = `${activeCellLine.label} - ${activeParameter.label} - ${activeConcentration}ng/mL`;
+    if (viewBy === 'growthFactor') {
+      const activeGrowthFactor = this.getActiveGrowthFactor();
+      label = activeGrowthFactor && activeGrowthFactor.label;
+    } else {
+      const activeCellLine = this.getActiveCellLine();
+      label = activeCellLine && activeCellLine.label;
     }
 
     return (
       <Row>
         <Col md={6} sm={6}>
           {super.renderViewOptions()}
-          <h3>{label}</h3>
-          {this.renderCellLineChartControls()}
+          <header className='view-heading'>
+            <h3>{label}</h3>
+            <ul className='selected-params list-inline'>
+              <li>{activeParameter.label}</li>
+              <li>{`${activeConcentration}ng/mL`}</li>
+            </ul>
+          </header>
+          {this.renderChartControls()}
         </Col>
         <Col md={6} sm={6}>
           {this.renderParallelCoordinatesPlot()}
         </Col>
       </Row>
-    );
-  }
-
-  renderGrowthFactorViewHeaders() {
-    const activeGrowthFactor = this.getActiveGrowthFactor();
-    const activeParameter = this.getActiveParameter();
-    const activeConcentration = this.getActiveConcentration();
-
-    let label;
-    if (activeGrowthFactor) {
-      label = `${activeGrowthFactor.label} - ${activeParameter.label} - ${activeConcentration}ng/mL`;
-    }
-
-    return (
-      <Row>
-        <Col md={6} sm={6}>
-          {super.renderViewOptions()}
-          <h3>{label}</h3>
-          {this.renderGrowthFactorChartControls()}
-        </Col>
-        <Col md={6} sm={6}>
-          {this.renderParallelCoordinatesPlot()}
-        </Col>
-      </Row>
-    );
-  }
-
-  renderGrowthFactorViewBody() {
-    return (
-      <div>
-        {this.renderWaterfalls()}
-      </div>
-    );
-  }
-
-  renderCellLineViewBody() {
-    return (
-      <div>
-        {this.renderWaterfalls()}
-      </div>
     );
   }
 
@@ -476,13 +446,11 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   }
 
   renderMain() {
-    const { viewBy } = this.props;
-
-    if (viewBy === 'growthFactor') {
-      return this.renderGrowthFactorViewBody();
-    }
-
-    return this.renderCellLineViewBody();
+    return (
+      <div>
+        {this.renderWaterfalls()}
+      </div>
+    );
   }
 }
 
