@@ -3,7 +3,9 @@
 $reference-line-color: #ddd;
 $axis-line-color: #ddd;
 $series-line-color: #888;
-$highlight-color: $brand-primary;
+
+$toggled-color: $chart-toggled-color;
+$highlight-color: $chart-highlight-color;
 
 .parallel-coordinates {
   .axis {
@@ -35,6 +37,7 @@ $highlight-color: $brand-primary;
 
 
   .highlight-group {
+    pointer-events: none;
     text {
       fill: #666;
 
@@ -51,6 +54,7 @@ $highlight-color: $brand-primary;
       stroke: blue;
       stroke-width: 10px;
       opacity: 0;
+      cursor: pointer;
     }
 
     .series-line {
@@ -60,9 +64,14 @@ $highlight-color: $brand-primary;
       opacity: 0.5;
       pointer-events: none;
 
-
       &.highlight {
         stroke: $highlight-color !important;
+        stroke-width: 4px;
+        opacity: 1;
+      }
+
+      &.toggled {
+        stroke: $toggled-color !important;
         stroke-width: 4px;
         opacity: 1;
       }
