@@ -11,6 +11,7 @@ import './small_waterfall.scss';
 const propTypes = {
   dataset: React.PropTypes.object,
   highlightId: React.PropTypes.string,
+  toggledId: React.PropTypes.string,
   dataSort: React.PropTypes.func,
   dataExtent: React.PropTypes.array,
   onChangeActive: React.PropTypes.func,
@@ -18,6 +19,7 @@ const propTypes = {
   height: React.PropTypes.number,
   fillColor: React.PropTypes.string,
   highlightColor: React.PropTypes.string,
+  toggledColor: React.PropTypes.string,
   isActive: React.PropTypes.bool
 };
 
@@ -26,7 +28,8 @@ const defaultProps = {
   width: 100,
   height: 100,
   fillColor: '#cccccc',
-  highlightColor: '#9679af'
+  highlightColor: '#B8A2CC',
+  toggledColor: '#9679af'
 };
 
 
@@ -89,12 +92,14 @@ class SmallWaterfallPlot extends React.Component {
     const {
       dataset,
       highlightId,
+      toggledId,
       dataSort,
       dataExtent,
       width,
       height,
       fillColor,
-      highlightColor } = this.props;
+      highlightColor,
+      toggledColor } = this.props;
 
     // sort and extract data to display
     const values = this.getData(dataset, dataSort);
@@ -140,10 +145,18 @@ class SmallWaterfallPlot extends React.Component {
     // draw highlight
     // TODO: this could be an array of highlighted values?
     if(highlightId) {
-
       ctx.fillStyle = highlightColor;
 
       const activeValue = values.filter((v) => v.id === highlightId);
+      activeValue.forEach(function(value) {
+        const xValue = value.disabled ? 4 : xScale(value.value);
+        ctx.fillRect(0, yScale(value.id), xValue, yScale.rangeBand());
+      });
+    }
+    if (toggledId) {
+      ctx.fillStyle = toggledColor;
+
+      const activeValue = values.filter((v) => v.id === toggledId);
       activeValue.forEach(function(value) {
         const xValue = value.disabled ? 4 : xScale(value.value);
         ctx.fillRect(0, yScale(value.id), xValue, yScale.rangeBand());

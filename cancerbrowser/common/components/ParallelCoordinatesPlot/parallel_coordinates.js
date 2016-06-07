@@ -39,9 +39,11 @@ class ParallelCoordinates {
       .classed('highlight-group', true);
 
     // event dispatcher
-    this.dispatch = d3.dispatch('highlight', 'unhighlight');
+    this.dispatch = d3.dispatch('highlight', 'unhighlight', 'toggle', 'untoggle');
     this.onMouseEnter = this.onMouseEnter.bind(this);
     this.onMouseLeave = this.onMouseLeave.bind(this);
+    this.onToggle = this.onToggle.bind(this);
+    this.onUntoggle = this.onUntoggle.bind(this);
   }
 
   /**
@@ -72,7 +74,7 @@ class ParallelCoordinates {
    *
    */
   update(props) {
-    const { dataset, pointLabels, width, height, highlightId, valueFormatter } = props;
+    const { dataset, pointLabels, width, height, highlightId, toggledId, valueFormatter } = props;
 
     // Early out
     if(!dataset) {
@@ -147,6 +149,7 @@ class ParallelCoordinates {
       .append('path')
       .on('mouseenter', this.onMouseEnter)
       .on('mouseleave', this.onMouseLeave)
+      .on('click', d => d.id === toggledId ? this.onUntoggle(d) : this.onToggle(d))
       .classed('mouse-handler', true)
       .attr('d', d => line(d.values));
 
@@ -154,6 +157,7 @@ class ParallelCoordinates {
     // UPDATE lines
     lines.select('.series-line')
       .classed('highlight', d => d.id === highlightId)
+      .classed('toggled', d => d.id === toggledId)
       .style('stroke', d => scales.color ? scales.color(d) : undefined)
       .transition()
       .duration(transitionDuration)
@@ -170,35 +174,46 @@ class ParallelCoordinates {
     this.highlightGroup.selectAll('*').remove();
     if (highlightId) {
       const highlightedDatum = dataset.find(d => d.id === highlightId);
-      this.highlightGroup.append('text')
-        .classed('highlighted-label', true)
-        .attr('text-anchor', 'middle')
-        .attr('x', this.width / 2)
-        .attr('y', this.height)
-        .attr('dy', 14)
-        .text(highlightedDatum.label);
-
-      // render the values
-      highlightedDatum.values.forEach((value, i) => {
-        let textAnchor;
-        if (i === 0) {
-          textAnchor = 'start';
-        } else if (i === highlightedDatum.values.length - 1) {
-          textAnchor = 'end';
-        } else {
-          textAnchor = 'middle';
-        }
-
-        const valueGroup = this.highlightGroup.append('g')
-          .attr('transform', `translate(${scales.x(i)} ${scales.y(value)})`)
-          .classed('highlighted-value', true);
-
-        valueGroup.append('text')
-          .attr('text-anchor', textAnchor)
-          .attr('dy', -5)
-          .text(valueFormatter ? valueFormatter(value) : value);
-      });
+      this.drawValues(highlightedDatum, scales, valueFormatter);
+    } else if (toggledId) {
+      const toggledDatum = dataset.find(d => d.id === toggledId);
+      this.drawValues(toggledDatum, scales, valueFormatter);
     }
+  }
+
+  drawValues(datum, scales, valueFormatter) {
+    if (!datum) {
+      return;
+    }
+
+    this.highlightGroup.append('text')
+      .classed('highlighted-label', true)
+      .attr('text-anchor', 'middle')
+      .attr('x', this.width / 2)
+      .attr('y', this.height)
+      .attr('dy', 14)
+      .text(datum.label);
+
+    // render the values
+    datum.values.forEach((value, i) => {
+      let textAnchor;
+      if (i === 0) {
+        textAnchor = 'start';
+      } else if (i === datum.values.length - 1) {
+        textAnchor = 'end';
+      } else {
+        textAnchor = 'middle';
+      }
+
+      const valueGroup = this.highlightGroup.append('g')
+        .attr('transform', `translate(${scales.x(i)} ${scales.y(value)})`)
+        .classed('highlighted-value', true);
+
+      valueGroup.append('text')
+        .attr('text-anchor', textAnchor)
+        .attr('dy', -5)
+        .text(valueFormatter ? valueFormatter(value) : value);
+    });
   }
 
   onMouseEnter(d) {
@@ -209,6 +224,13 @@ class ParallelCoordinates {
     this.dispatch.unhighlight(d);
   }
 
+  onToggle(d) {
+    this.dispatch.toggle(d);
+  }
+
+  onUntoggle(d) {
+    this.dispatch.untoggle(d);
+  }
 
   /**
   * Subscribe to an event from this component

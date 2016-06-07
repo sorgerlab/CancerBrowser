@@ -201,7 +201,6 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
    */
   renderSmallMults(datasets) {
     const { toggledId, highlightId, viewBy } = this.props;
-
     const dataExtent = [-6.5, 1];
 
     const activeIds = (viewBy === 'receptor') ?
@@ -212,8 +211,8 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
       return (
         <WaterfallSmallMults
           datasets={datasets}
-          highlightId={highlightId}
           toggledId={toggledId}
+          highlightId={highlightId}
           onChangeActive={this.onChangeActive}
           activeIds={activeIds}
           dataExtent={dataExtent} />
