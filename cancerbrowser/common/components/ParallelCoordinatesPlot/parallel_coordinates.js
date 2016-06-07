@@ -182,6 +182,10 @@ class ParallelCoordinates {
   }
 
   drawValues(datum, scales, valueFormatter) {
+    if (!datum) {
+      return;
+    }
+
     this.highlightGroup.append('text')
       .classed('highlighted-label', true)
       .attr('text-anchor', 'middle')
