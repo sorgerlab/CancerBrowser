@@ -287,6 +287,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
           dataSort={sortBy}
           onChangeHighlight={this.onChangeHighlight}
           onLabelClick={labelClick}
+          centerValue={0}
         />
       );
     }
@@ -301,7 +302,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     const times = Object.keys(filteredData);
     const sharedExtent = d3.extent(_.flatten(times.map(time => {
       return d3.extent(filteredData[time], d => d.value);
-    })));
+    })).concat([0])); // add 0 so it is always included in the extent
 
     return (
       <div className='waterfalls-container'>

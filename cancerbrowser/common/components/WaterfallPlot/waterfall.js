@@ -3,6 +3,7 @@
 import d3 from 'd3';
 
 const DISABLED_BAR_SIZE = 5;
+const MINIMUM_BAR_SIZE = 1;
 
 class Waterfall {
   /**
@@ -70,12 +71,44 @@ class Waterfall {
     return {x: xScale, y: yScale, color: colorScale};
   }
 
+  // makes helper functions for getting the left edge, right edge and width of a rect
+  // based on a property key
+  getRectFunctions(centerValue, xScale, key = 'value') {
+    let leftEdge = () => 0;
+    let rightEdge = (d) => d.disabled ? DISABLED_BAR_SIZE : xScale(d[key]);
+
+    if (centerValue != null) {
+      leftEdge = d => {
+        const value = d.disabled ? centerValue : d[key];
+        if (value < centerValue) {
+          return xScale(value);
+        } else {
+          return xScale(centerValue);
+        }
+      };
+
+      rightEdge = d => {
+        const value = d.disabled ? centerValue : d[key];
+        if (value > centerValue) {
+          return xScale(value);
+        } else {
+          return xScale(centerValue);
+        }
+      };
+    }
+
+    const barWidth = d => Math.max(rightEdge(d) - leftEdge(d), MINIMUM_BAR_SIZE);
+
+    return { leftEdge, rightEdge, barWidth };
+  }
+
   /**
    *
    */
   update(props) {
     const {dataset, width, height, dataSort, labelLocation,
-      highlightId, useThresholds, valueFormatter, onLabelClick } = props;
+      highlightId, useThresholds, valueFormatter, onLabelClick,
+      centerValue } = props;
 
     // Early out
     if(!dataset) {
@@ -185,7 +218,7 @@ class Waterfall {
       .attr('y', (d) => scales.y(d.id))
       .attr('width', this.width)
       .attr('height', barHeight)
-      .style('fill', '#fff')
+      .style('fill', 'rgba(0, 0, 0, 0.1)')//TODO: '#fff')
       .on('mouseover', this.onMouseover)
       .on('mouseout', this.onMouseout);
 
@@ -200,6 +233,12 @@ class Waterfall {
       .classed('bar-container', true)
       .attr('transform', d => `translate(0 ${scales.y(d.id)})`);
 
+
+
+    const { leftEdge, rightEdge, barWidth } = this.getRectFunctions(centerValue, scales.x, 'value');
+    const { leftEdge: leftEdgeThreshold, barWidth: barWidthThreshold } =
+      this.getRectFunctions(centerValue, scales.x, 'threshold');
+
     // add in value bars
     barsEnter
       .append('rect')
@@ -208,7 +247,8 @@ class Waterfall {
         .on('mouseout', this.onMouseout)
         .style('fill', (d) => scales.color(d))
         .attr('height', barHeight)
-        .attr('width', (d) => d.disabled ? 0 : scales.x(d.value));
+        .attr('x', leftEdge)
+        .attr('width', barWidth);
 
     // add in threshold bars -- always add them even if not using
     // thresholds in case we change to using thresholds later (in
@@ -221,13 +261,8 @@ class Waterfall {
       .on('mouseout', this.onMouseout)
       .style('opacity', useThresholds ? 1 : 0)
       .attr('height', barHeight)
-      .attr('width', (d) => {
-        if (useThresholds) {
-          return d.disabled ? DISABLED_BAR_SIZE : scales.x(d.threshold);
-        } else {
-          return 1e-6;
-        }
-      });
+      .attr('x', leftEdgeThreshold)
+      .attr('width', useThresholds ? barWidthThreshold : 1e-6);
 
     // UPDATE bars
     bars
@@ -243,7 +278,8 @@ class Waterfall {
       .transition()
       .duration(transitionDuration)
       .delay(transitionDelay)
-      .attr('width', (d) => d.disabled ? 0 : scales.x(d.value));
+      .attr('x', leftEdge)
+      .attr('width', barWidth);
 
     if (useThresholds) {
       bars.select('.threshold')
@@ -252,7 +288,9 @@ class Waterfall {
         .duration(transitionDuration)
         .delay(transitionDelay)
         .style('opacity', 1)
-        .attr('width', (d) => d.disabled ? DISABLED_BAR_SIZE : scales.x(d.threshold));
+        .attr('x', leftEdgeThreshold)
+        .attr('width', useThresholds ? barWidthThreshold : 1e-6);
+
     } else {
       // in case we turned off useThresholds
       bars.select('.threshold')
@@ -260,17 +298,18 @@ class Waterfall {
         .duration(transitionDuration)
         .delay(transitionDelay)
         .style('opacity', 0)
+        .attr('x', 0)
         .attr('width', 1e-6);
     }
 
     // add in highlight values
+    this.g.select('.highlight-value').remove();
     if (highlightId) {
       const highlightedDatum = dataset.find(d => d.id === highlightId);
-      this.g.select('.highlight-value').remove();
       this.g.append('text')
         .classed('highlight-value', true)
         .attr('text-anchor', 'start')
-        .attr('x', highlightedDatum.disabled ? DISABLED_BAR_SIZE : scales.x(highlightedDatum.value))
+        .attr('x', rightEdge(highlightedDatum))
         .attr('dx', 5)
         .attr('y', scales.y(highlightedDatum.id))
         .attr('dy', barHeight - 4)

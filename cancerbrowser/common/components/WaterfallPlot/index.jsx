@@ -41,7 +41,13 @@ const propTypes = {
   colorScale: React.PropTypes.func,
 
   /* function formatting values on hover */
-  valueFormatter: React.PropTypes.func
+  valueFormatter: React.PropTypes.func,
+
+  /* if provided, the bars have one edge at this point
+   * e.g. if centerValue = 0, negative values extend left from 0
+   *                          positive values extend right from 0
+   */
+  centerValue: React.PropTypes.number
 };
 
 
