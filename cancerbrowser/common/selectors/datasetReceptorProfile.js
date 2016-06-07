@@ -52,7 +52,7 @@ function convertToByReceptor(dataset) {
     // iterate over receptor data
     cellLine.measurements.forEach(function(m) {
       // pull out receptor if it isn't in the receptors hash already.
-      receptors[m.id]  = receptors[m.id] || {id:m.id, label:m.receptor, measurements: []};
+      receptors[m.id]  = receptors[m.id] || {id:m.id, label:m.receptor, measurements: [], metric: m.metric};
       // add a new cell line based measurement
       let newMeasurement = {id: cellLine.id, label: cellLine.label, value:m.value, threshold:m.threshold};
       if(newMeasurement.value === newMeasurement.threshold) {
