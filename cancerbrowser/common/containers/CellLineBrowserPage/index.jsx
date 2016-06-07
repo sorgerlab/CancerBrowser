@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import 'react-select/dist/react-select.css';
 import { ButtonGroup, Button } from 'react-bootstrap';
 import classNames from 'classnames';
+import { hashHistory } from 'react-router';
 
 import FilterPanel from '../../components/FilterPanel';
 import FilterGroupSummary from '../../components/FilterGroupSummary';
@@ -12,6 +13,9 @@ import CellLineTable from '../../components/CellLineTable';
 import { getFilteredCellLines, getFilteredCellLineCounts, cellLinesFilterGroup } from '../../selectors/cell_line';
 
 import { fetchDatasetsInfo } from '../../actions/dataset';
+
+
+import qs from 'qs';
 
 import {
   fetchCellLinesIfNeeded,
@@ -26,6 +30,7 @@ import {
 const propTypes = {
   dispatch: React.PropTypes.func,
   params: React.PropTypes.object,
+  location: React.PropTypes.object,
   filteredCellLines: React.PropTypes.array,
   activeFilters: React.PropTypes.object,
   cellLineView: React.PropTypes.string,
@@ -137,7 +142,17 @@ class CellLineBrowserPage extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchCellLinesIfNeeded());
     this.props.dispatch(fetchDatasetsInfo());
+
+
+    // see if filters have changed.
+    const filterString = this.props.location.search.replace(/^\?/,'');
+    if(filterString.length > 0) {
+      const newFilters = qs.parse(filterString);
+      this.props.dispatch(changeActiveFilters(newFilters));
+    }
+
   }
+
 
   /*
    * Reset the active filters when leaving the page.
@@ -147,13 +162,20 @@ class CellLineBrowserPage extends React.Component {
     this.props.dispatch(resetActiveFilters());
   }
 
+  updateFilterUrl(newFilters) {
+    const query = qs.stringify(newFilters, {encode: true});
+    hashHistory.replace({pathname: '/cell_lines', search: '?' + query });
+  }
+
   onFilterChange(newFilters) {
+    this.updateFilterUrl(newFilters);
     this.props.dispatch(changeActiveFilters(newFilters));
   }
 
   onCellLineFilterChange(newCellLineFilters) {
     const { activeFilters } = this.props;
     const newActiveFilters = Object.assign({}, activeFilters, { cellLineFilters: newCellLineFilters });
+    this.updateFilterUrl(newActiveFilters);
 
     this.props.dispatch(changeActiveFilters(newActiveFilters));
   }
