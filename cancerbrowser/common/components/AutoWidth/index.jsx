@@ -44,7 +44,6 @@ class AutoWidth extends React.Component {
 
   // Call set state to update the width so it starts an update of the child component
   updateWidth() {
-    console.log('updating width!');
     this.setState({
       width: this.getResizeDOMNode().offsetWidth
     });

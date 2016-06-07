@@ -294,6 +294,23 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     }
   }
 
+  // gets the metric shown in the data
+  getMetric(dataset) {
+    if (!dataset) {
+      return undefined;
+    }
+
+    // if it is a top level item, read it there.
+    let { metric } = dataset;
+    if (metric) {
+      return metric;
+    }
+
+    // otherwise read it from the first measurement
+    metric = dataset.measurements && dataset.measurements[0] && dataset.measurements[0].metric;
+
+    return metric;
+  }
 
   /**
    * Render waterfall for a given dataset
@@ -303,6 +320,15 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     const { highlightId, viewBy, toggledId } = this.props;
     const dataExtent = [-6.5, 1];
 
+    // read the metric from the first item in the dataset (assumes all use the same unit)
+    const metric = this.getMetric(dataset);
+
+    let valueAxisLabel;
+    let itemAxisLabel;
+    if (metric) {
+      valueAxisLabel = `log10(${metric})`;
+    }
+
     let colorBy = 'none';
     let labelClick;
     let sortBy = 'magnitude';
@@ -310,8 +336,10 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
       colorBy = this.props.receptorColorBy;
       labelClick = this.onWaterfallLabelClick;
       sortBy = sortsMap[this.props.receptorSortBy];
+      itemAxisLabel = 'Cell Line';
     } else {
       sortBy = sortsMap[this.props.cellLineSortBy];
+      itemAxisLabel = 'Receptor';
     }
 
     if(dataset) {
@@ -323,6 +351,8 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
             highlightId={highlightId}
             toggledId={toggledId}
             dataExtent={dataExtent}
+            itemAxisLabel={itemAxisLabel}
+            valueAxisLabel={valueAxisLabel}
             colorScale={mappedColorScales[colorBy]}
             dataSort={sortBy}
             onChangeHighlight={this.onChangeHighlight}

@@ -50,7 +50,13 @@ const propTypes = {
    * e.g. if centerValue = 0, negative values extend left from 0
    *                          positive values extend right from 0
    */
-  centerValue: React.PropTypes.number
+  centerValue: React.PropTypes.number,
+
+  /* label for the value axis (x) */
+  valueAxisLabel: React.PropTypes.string,
+
+  /* label for the item axis (y) */
+  itemAxisLabel: React.PropTypes.string
 };
 
 

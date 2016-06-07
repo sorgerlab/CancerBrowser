@@ -74,11 +74,16 @@ class ParallelCoordinates {
    *
    */
   update(props) {
-    const { dataset, pointLabels, width, height, highlightId, toggledId, valueFormatter } = props;
+    const { dataset, pointLabels, width, height, highlightId,
+      toggledId, valueFormatter, yAxisLabel } = props;
 
     // Early out
     if(!dataset) {
       return;
+    }
+
+    if (yAxisLabel) {
+      this.margins.left = 60;
     }
 
     this.width = width - (this.margins.left + this.margins.right);
@@ -109,11 +114,22 @@ class ParallelCoordinates {
 
     const yAxis = d3.svg.axis()
       .scale(scales.y)
-      .orient('left');
+      .orient('left')
+      .ticks(8);
 
     this.yAxisGroup
       .call(yAxis);
 
+    // add in value axis label if provided
+    this.g.select('.y-axis-label').remove();
+    if (yAxisLabel) {
+      this.g.append('text')
+        .classed('y-axis-label', true)
+        .attr('text-anchor', 'middle')
+        .attr('transform', `translate(0 ${this.height / 2}) rotate(-90)`)
+        .attr('dy', -40)
+        .text(yAxisLabel);
+    }
 
     // draw additional axis lines
     const refLines = this.referenceLinesGroup.selectAll('.y-reference-line')
