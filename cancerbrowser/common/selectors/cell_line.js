@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { filterData, countMatchedFilterGroup } from '../api/util';
+import { colorScales } from '../config/colors';
 
 /////////////////////
 // Input Selectors
@@ -44,10 +45,10 @@ export const cellLinesFilterGroup = {
       label: 'Receptor Status',
       type: 'multi-select',
       values: [
-        { value: 'nm', label: 'NM' },
-        { value: 'her2amp', label: 'HER2amp' },
-        { value: 'tnbc', label: 'TNBC' },
-        { value: 'hrplus', label: 'HR+' }
+        { value: 'nm', label: 'NM', color: colorScales.cellLineReceptorStatus('nm') },
+        { value: 'her2amp', label: 'HER2amp', color: colorScales.cellLineReceptorStatus('her2amp') },
+        { value: 'tnbc', label: 'TNBC', color: colorScales.cellLineReceptorStatus('tnbc') },
+        { value: 'hrplus', label: 'HR+', color: colorScales.cellLineReceptorStatus('hrplus') }
       ]
     }, {
       id: 'molecularSubtype',
