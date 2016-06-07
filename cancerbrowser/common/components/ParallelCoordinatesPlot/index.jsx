@@ -33,7 +33,10 @@ const propTypes = {
   colorScale: React.PropTypes.func,
 
   /* function that formats values e.g. d3.format('0.2f') */
-  valueFormatter: React.PropTypes.func
+  valueFormatter: React.PropTypes.func,
+
+  // label for the y axis
+  yAxisLabel: React.PropTypes.string
 };
 
 const defaultProps = {
@@ -88,7 +91,6 @@ class ParallelCoordinatesPlot extends React.Component {
    */
   onToggle(d) {
     const { onChangeToggle } = this.props;
-    console.log('tog', d);
     if (onChangeToggle) {
       onChangeToggle(d.id);
     }

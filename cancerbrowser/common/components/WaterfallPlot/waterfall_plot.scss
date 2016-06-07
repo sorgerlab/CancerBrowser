@@ -65,6 +65,12 @@ $highlight-threshold-color: $chart-highlight-color-lighter;
     pointer-events: none;
   }
 
+  .item-axis-label,.value-axis-label {
+    font-size: 12px;
+    font-weight: 400;
+    color: #666;
+  }
+
   .axis {
     shape-rendering: crispEdges;
     .tick {
