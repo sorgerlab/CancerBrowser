@@ -164,8 +164,8 @@ class Waterfall {
     if (valueAxisLabel) {
       this.g.append('text')
         .classed('value-axis-label', true)
-        .attr('x', this.width / 2)
-        .attr('text-anchor', 'middle')
+        .attr('x', scales.x.range()[1])
+        .attr('text-anchor', 'end')
         .attr('y', -20)
         .text(valueAxisLabel);
     }
