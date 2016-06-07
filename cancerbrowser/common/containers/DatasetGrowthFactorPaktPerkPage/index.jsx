@@ -15,6 +15,8 @@ import {
   changeViewBy,
   changeHighlightedCellLine,
   changeHighlightedGrowthFactor,
+  changeToggledCellLine,
+  changeToggledGrowthFactor,
   changeGrowthFactorColorBy,
   changeGrowthFactorSortBy,
   changeCellLineSortBy
@@ -42,6 +44,8 @@ const propTypes = {
   datasetInfo: React.PropTypes.object,
   highlightedCellLine: React.PropTypes.string,
   highlightedGrowthFactor: React.PropTypes.string,
+  toggledCellLine: React.PropTypes.string,
+  toggledGrowthFactor: React.PropTypes.string,
   activeFilters: React.PropTypes.object,
   filterGroups: React.PropTypes.array,
   filteredCellLines: React.PropTypes.array,
@@ -55,6 +59,11 @@ const propTypes = {
   cellLineColorBy: React.PropTypes.string,
   cellLineSortBy: React.PropTypes.string
 };
+
+const contextTypes = {
+  router: React.PropTypes.object
+};
+
 
 const defaultProps = {
   className: 'DatasetGrowthFactorPaktPerkPage'
@@ -70,10 +79,12 @@ function mapStateToProps(state) {
   const props = Object.assign(baseProps, {
     /* Add custom props here */
     highlightedCellLine: datasetGrowthFactorPaktPerk.highlightedCellLine,
+    toggledCellLine: datasetGrowthFactorPaktPerk.toggledCellLine,
     growthFactorColorBy: datasetGrowthFactorPaktPerk.growthFactorColorBy,
     growthFactorSortBy: datasetGrowthFactorPaktPerk.growthFactorSortBy,
     parallelCoordinatesPlotData: getParallelCoordinatesPlotData(state, datasetGrowthFactorPaktPerk),
     highlightedGrowthFactor: datasetGrowthFactorPaktPerk.highlightedGrowthFactor,
+    toggledGrowthFactor: datasetGrowthFactorPaktPerk.toggledGrowthFactor,
     cellLineSortBy: datasetGrowthFactorPaktPerk.cellLineSortBy,
     cellLineColorBy: datasetGrowthFactorPaktPerk.cellLineColorBy
   });
@@ -109,6 +120,8 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     this.renderWaterfalls = this.renderWaterfalls.bind(this);
     this.renderGrowthFactorChartControls = this.renderGrowthFactorChartControls.bind(this);
     this.onChangeHighlight = this.onChangeHighlight.bind(this);
+    this.onChangeToggle = this.onChangeToggle.bind(this);
+    this.onWaterfallLabelClick = this.onWaterfallLabelClick.bind(this);
     this.handleGrowthFactorColorByChange = this.handleGrowthFactorColorByChange.bind(this);
     this.handleGrowthFactorSortByChange = this.handleGrowthFactorSortByChange.bind(this);
     this.handleCellLineSortByChange = this.handleCellLineSortByChange.bind(this);
@@ -191,6 +204,20 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     }
   }
 
+  onChangeToggle(toggleId) {
+    const { dispatch, viewBy } = this.props;
+    if (viewBy === 'growthFactor') {
+      dispatch(changeToggledCellLine(toggleId));
+    } else {
+      dispatch(changeToggledGrowthFactor(toggleId));
+    }
+  }
+
+  onWaterfallLabelClick(datum) {
+    const path = `/cell_line/${datum.cell_line.id}`;
+    this.context.router.push(path);
+  }
+
   handleGrowthFactorColorByChange(evt) {
     const { value } = evt.target;
     const { dispatch } = this.props;
@@ -216,13 +243,15 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
       return null;
     }
 
-    let colorBy, highlightId;
+    let colorBy, highlightId, toggledId;
     if (viewBy === 'growthFactor') {
       colorBy = this.props.growthFactorColorBy;
       highlightId = this.props.highlightedCellLine;
+      toggledId = this.props.toggledCellLine;
     } else {
       colorBy = this.props.cellLineColorBy;
       highlightId = this.props.highlightedGrowthFactor;
+      toggledId = this.props.toggledCellLine;
     }
 
     const pointLabels = Object.keys(filteredData);
@@ -233,8 +262,10 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
           dataset={parallelCoordinatesPlotData}
           pointLabels={pointLabels}
           onChangeHighlight={this.onChangeHighlight}
+          onChangeToggle={this.onChangeToggle}
           colorScale={mappedColorScales[colorBy]}
           highlightId={highlightId}
+          toggledId={toggledId}
           height={180}
           width={450}
         />
@@ -249,15 +280,21 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
 
     // encode the control value as a threshold on raw values measures
     const useThresholds = metric === 'raw values';
-    let colorBy, sortBy;
+    let colorBy, sortBy, labelClick, toggledId;
+
     if (viewBy === 'growthFactor') {
       colorBy = this.props.growthFactorColorBy;
       sortBy = sortsMap[this.props.growthFactorSortBy];
       highlightId = this.props.highlightedCellLine;
+      toggledId = this.props.toggledCellLine;
+
+      // only support label clicking on by growth factor
+      labelClick = this.onWaterfallLabelClick;
     } else {
       colorBy = this.props.cellLineColorBy;
       sortBy = sortsMap[this.props.cellLineSortBy];
       highlightId = this.props.highlightedGrowthFactor;
+      toggledId = this.props.toggledGrowthFactor;
     }
 
     if (dataset) {
@@ -266,12 +303,16 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
           labelLocation='left'
           label={label}
           dataset={dataset}
-          onChangeHighlight={this.onChangeHighlight}
           highlightId={highlightId}
+          toggledId={toggledId}
           useThresholds={useThresholds}
           dataExtent={extent}
           colorScale={mappedColorScales[colorBy]}
           dataSort={sortBy}
+          onChangeHighlight={this.onChangeHighlight}
+          onChangeToggle={this.onChangeToggle}
+          onLabelClick={labelClick}
+          centerValue={0}
         />
       );
     }
@@ -286,7 +327,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     const times = Object.keys(filteredData);
     const sharedExtent = d3.extent(_.flatten(times.map(time => {
       return d3.extent(filteredData[time], d => d.value);
-    })));
+    })).concat([0])); // add 0 so it is always included in the extent
 
     return (
       <div className='waterfalls-container'>
@@ -446,6 +487,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
 }
 
 DatasetGrowthFactorPaktPerkPage.propTypes = propTypes;
+DatasetGrowthFactorPaktPerkPage.contextTypes = contextTypes;
 DatasetGrowthFactorPaktPerkPage.defaultProps = defaultProps;
 
 export default connect(mapStateToProps)(DatasetGrowthFactorPaktPerkPage);

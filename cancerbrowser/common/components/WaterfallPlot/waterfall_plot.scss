@@ -1,3 +1,8 @@
+$threshold-color: #ddd;
+$toggled-color: #9679af;
+$toggled-threshold-color: lighten($toggled-color, 15%);
+$highlight-color: #B8A2CC;
+$highlight-threshold-color: lighten($highlight-color, 15%);
 
 .WaterfallPlot {
   .name {
@@ -8,20 +13,34 @@
     }
   }
 
-  rect.bar.highlight {
-    fill: #9679af !important;
+  rect {
+    shape-rendering: crispEdges;
   }
 
-  rect.threshold {
-    fill: #ddd;
+  .threshold {
+    fill: $threshold-color;
+    &.highlight {
+      fill: $highlight-threshold-color !important;
+    }
+
+    &.toggled {
+      fill: $toggled-threshold-color !important;
+    }
   }
 
-  rect.threshold.highlight {
-    fill: #b48fd4 !important;
+  .bar {
+    &.highlight {
+      fill: $highlight-color !important;
+    }
+
+    &.toggled {
+      fill: $toggled-color !important;
+    }
   }
 
-  rect.hover {
+  rect.mouse-handler-bar {
     opacity: 0.0;
+    cursor: pointer;
   }
 
   text.label {
@@ -38,26 +57,29 @@
     fill: #999;
   }
 
+  .bar-value {
+    fill: #888;
+    font-size: 14px;
+    pointer-events: none;
+  }
+
   .axis {
     shape-rendering: crispEdges;
-  }
-  rect {
-    shape-rendering: crispEdges;
-  }
-  .tick {
-    font-size: 12px;
-  }
+    .tick {
+      font-size: 12px;
+    }
 
-  .x.axis line {
-    stroke: #ddd;
-  }
+    &.x line {
+      stroke: #ddd;
+    }
 
-  .x.axis .minor {
-    stroke-opacity: .5;
-  }
+    &.x .minor {
+      stroke-opacity: .5;
+    }
 
-  .x.axis path {
-    display: none;
+    &.x path {
+      display: none;
+    }
   }
 
 }

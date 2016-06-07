@@ -3,6 +3,7 @@
 import d3 from 'd3';
 
 const DISABLED_BAR_SIZE = 5;
+const MINIMUM_BAR_SIZE = 1;
 
 class Waterfall {
   /**
@@ -21,19 +22,23 @@ class Waterfall {
       .attr('class', 'x axis');
 
 
-    this.dispatch = d3.dispatch('highlight', 'unhighlight');
+    this.dispatch = d3.dispatch('highlight', 'unhighlight', 'toggle',
+      'untoggle', 'labelClick');
 
     // window.addEventListener('resize', this.handleResize.bind(this));
 
     this.margins = {
       left: 5,
-      right: 5,
+      right: 40,
       top: 25,
       bottom: 10
     };
 
-    this.onMouseover = this.onMouseover.bind(this);
-    this.onMouseout = this.onMouseout.bind(this);
+    this.onMouseEnter = this.onMouseEnter.bind(this);
+    this.onMouseLeave = this.onMouseLeave.bind(this);
+    this.onLabelClick = this.onLabelClick.bind(this);
+    this.onToggle = this.onToggle.bind(this);
+    this.onUntoggle = this.onUntoggle.bind(this);
   }
 
   /**
@@ -69,26 +74,60 @@ class Waterfall {
     return {x: xScale, y: yScale, color: colorScale};
   }
 
+  // makes helper functions for getting the left edge, right edge and width of a rect
+  // based on a property key
+  getRectFunctions(centerValue, xScale, key = 'value') {
+    let leftEdge = () => 0;
+    let rightEdge = (d) => d.disabled ? DISABLED_BAR_SIZE : xScale(d[key]);
+
+    if (centerValue != null) {
+      leftEdge = d => {
+        const value = d.disabled ? centerValue : d[key];
+        if (value < centerValue) {
+          return xScale(value);
+        } else {
+          return xScale(centerValue);
+        }
+      };
+
+      rightEdge = d => {
+        const value = d.disabled ? centerValue : d[key];
+        if (value > centerValue) {
+          return xScale(value);
+        } else {
+          return xScale(centerValue);
+        }
+      };
+    }
+
+    const barWidth = d => Math.max(rightEdge(d) - leftEdge(d), MINIMUM_BAR_SIZE);
+
+    return { leftEdge, rightEdge, barWidth };
+  }
+
   /**
    *
    */
   update(props) {
-    const {dataset, width, height, dataSort, labelLocation, highlightId, useThresholds } = props;
+    const {dataset, width, height, dataSort, labelLocation,
+      highlightId, useThresholds, valueFormatter, onLabelClick,
+      centerValue, toggledId } = props;
 
     // Early out
     if(!dataset) {
       return;
     }
 
+
     // Allow for right or left (or no) placement of labels
     if(labelLocation === 'left') {
       this.margins.left = 140;
-      this.margins.right = 5;
+      this.margins.right = 40;
     } else if(labelLocation === 'right') {
       this.margins.right = 140;
       this.margins.left = 5;
     } else {
-      this.margins.right = 5;
+      this.margins.right = 40;
       this.margins.left = 5;
     }
 
@@ -139,16 +178,20 @@ class Waterfall {
       labels.enter()
         .append('text')
         .classed('label', true)
+        .classed('clickable', !!onLabelClick)
+        .on('click', this.onLabelClick)
+        .on('mouseenter', this.onMouseEnter)
+        .on('mouseleave', this.onMouseLeave)
         .attr('x', labelLocation === 'right' ? this.width : 0)
         .attr('dx', labelLocation === 'right' ? 8 : -8)
         .attr('y', (d) => scales.y(d.id))
         .attr('dy', (scales.y.rangeBand() / 2) + 5);
 
       labels
-        .on('mouseover', this.onMouseover)
-        .on('mouseout', this.onMouseout)
         .classed('highlight', (d)  => d.id === highlightId)
+        .classed('toggled', (d)  => d.id === toggledId)
         .classed('disabled', (d)  => d.disabled)
+        .classed('clickable', !!onLabelClick)
         .text((d) => d.label)
         .attr('text-anchor', labelLocation === 'right' ? 'start' : 'end')
         .transition()
@@ -164,26 +207,6 @@ class Waterfall {
     // minus 2 to make room for the stroke
     const barHeight = scales.y.rangeBand() - 2;
 
-    // for easier mouseovering
-    const hoverBars = this.g
-      .selectAll('.hover')
-      .data(data, (d) => d.id);
-
-    hoverBars.exit().remove();
-
-    hoverBars.enter()
-      .append('rect')
-      .classed('hover', true);
-
-    hoverBars
-      .attr('x', 0)
-      .attr('y', (d) => scales.y(d.id))
-      .attr('width', this.width)
-      .attr('height', barHeight)
-      .style('fill', '#fff')
-      .on('mouseover', this.onMouseover)
-      .on('mouseout', this.onMouseout);
-
     const bars = this.g
       .selectAll('.bar-container')
       .data(data, (d) => d.id);
@@ -193,17 +216,21 @@ class Waterfall {
     const barsEnter = bars.enter()
       .append('g')
       .classed('bar-container', true)
+      .classed('clickable', true)
       .attr('transform', d => `translate(0 ${scales.y(d.id)})`);
+
+    const { leftEdge, rightEdge, barWidth } = this.getRectFunctions(centerValue, scales.x, 'value');
+    const { leftEdge: leftEdgeThreshold, barWidth: barWidthThreshold } =
+      this.getRectFunctions(centerValue, scales.x, 'threshold');
 
     // add in value bars
     barsEnter
       .append('rect')
         .classed('bar', true)
-        .on('mouseover', this.onMouseover)
-        .on('mouseout', this.onMouseout)
         .style('fill', (d) => scales.color(d))
         .attr('height', barHeight)
-        .attr('width', (d) => d.disabled ? 0 : scales.x(d.value));
+        .attr('x', leftEdge)
+        .attr('width', barWidth);
 
     // add in threshold bars -- always add them even if not using
     // thresholds in case we change to using thresholds later (in
@@ -212,17 +239,19 @@ class Waterfall {
     barsEnter
       .append('rect')
       .classed('threshold', true)
-      .on('mouseover', this.onMouseover)
-      .on('mouseout', this.onMouseout)
       .style('opacity', useThresholds ? 1 : 0)
       .attr('height', barHeight)
-      .attr('width', (d) => {
-        if (useThresholds) {
-          return d.disabled ? DISABLED_BAR_SIZE : scales.x(d.threshold);
-        } else {
-          return 1e-6;
-        }
-      });
+      .attr('x', leftEdgeThreshold)
+      .attr('width', useThresholds ? barWidthThreshold : 1e-6);
+
+    // add in values but only draw on highlight/toggle
+    barsEnter
+      .append('text')
+      .classed('bar-value', true)
+      .attr('text-anchor', 'start')
+      .attr('x', rightEdge)
+      .attr('dx', 5)
+      .attr('dy', barHeight - 4);
 
     // UPDATE bars
     bars
@@ -233,21 +262,37 @@ class Waterfall {
 
     bars.select('.bar')
       .classed('highlight', (d) => d.id === highlightId)
+      .classed('toggled', (d)  => d.id === toggledId)
       .attr('height', barHeight)
       .style('fill', (d) => scales.color(d))
       .transition()
       .duration(transitionDuration)
       .delay(transitionDelay)
-      .attr('width', (d) => d.disabled ? 0 : scales.x(d.value));
+      .attr('x', leftEdge)
+      .attr('width', barWidth);
+
+    // bar values (text)
+    bars.select('.bar-value')
+      .style('opacity', d => (d.id === highlightId || d.id === toggledId) ? 1 : 0)
+      .text(d => valueFormatter ? valueFormatter(d.value) : d.value)
+      .transition()
+      .duration(transitionDuration)
+      .delay(transitionDelay)
+      .attr('x', rightEdge);
+
+
 
     if (useThresholds) {
       bars.select('.threshold')
         .classed('highlight', (d)  => d.id === highlightId)
+        .classed('toggled', (d)  => d.id === toggledId)
         .transition()
         .duration(transitionDuration)
         .delay(transitionDelay)
         .style('opacity', 1)
-        .attr('width', (d) => d.disabled ? DISABLED_BAR_SIZE : scales.x(d.threshold));
+        .attr('x', leftEdgeThreshold)
+        .attr('width', useThresholds ? barWidthThreshold : 1e-6);
+
     } else {
       // in case we turned off useThresholds
       bars.select('.threshold')
@@ -255,17 +300,50 @@ class Waterfall {
         .duration(transitionDuration)
         .delay(transitionDelay)
         .style('opacity', 0)
+        .attr('x', 0)
         .attr('width', 1e-6);
     }
+
+    // for easier handling across a bar's row
+    const mouseHandlerBars = this.g
+      .selectAll('.mouse-handler-bar')
+      .data(data, (d) => d.id);
+
+    mouseHandlerBars.exit().remove();
+
+    mouseHandlerBars.enter()
+      .append('rect')
+      .classed('mouse-handler-bar', true);
+
+    mouseHandlerBars
+      .attr('x', 0)
+      .attr('y', (d) => scales.y(d.id))
+      .attr('width', this.width)
+      .attr('height', barHeight)
+      .style('fill', '#fff')
+      .on('mouseenter', this.onMouseEnter)
+      .on('mouseleave', this.onMouseLeave)
+      .on('click', d => d.id === toggledId ? this.onUntoggle(d) : this.onToggle(d));
   }
 
-  onMouseover(d) {
-    console.log(d);
+  onMouseEnter(d) {
     this.dispatch.highlight(d);
   }
 
-  onMouseout(d) {
+  onMouseLeave(d) {
     this.dispatch.unhighlight(d);
+  }
+
+  onLabelClick(d) {
+    this.dispatch.labelClick(d);
+  }
+
+  onToggle(d) {
+    this.dispatch.toggle(d);
+  }
+
+  onUntoggle(d) {
+    this.dispatch.untoggle(d);
   }
 
   /**

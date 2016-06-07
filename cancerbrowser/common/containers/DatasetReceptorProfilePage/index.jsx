@@ -19,6 +19,7 @@ import {
 
 import {
   changeHighlight,
+  changeToggled,
   changeActiveFilters,
   changeViewBy,
   changeSide,
@@ -38,6 +39,7 @@ const propTypes = {
   datasetData: React.PropTypes.array,
   datasetInfo: React.PropTypes.object,
   highlightId: React.PropTypes.string,
+  toggledId: React.PropTypes.string,
   activeFilters: React.PropTypes.object,
   filterGroups: React.PropTypes.array,
   filteredCellLines: React.PropTypes.array,
@@ -47,6 +49,10 @@ const propTypes = {
   filteredData: React.PropTypes.array,
   receptorColorBy: React.PropTypes.string,
   activeSide: React.PropTypes.string
+};
+
+const contextTypes = {
+  router: React.PropTypes.object
 };
 
 const defaultProps = {
@@ -62,6 +68,7 @@ function mapStateToProps(state) {
   const props = Object.assign(baseProps, {
     receptors: receptors.items,
     highlightId: datasetReceptorProfile.highlight,
+    toggledId: datasetReceptorProfile.toggled,
     receptorColorBy: datasetReceptorProfile.receptorColorBy,
     'activeSide': datasetReceptorProfile.side,
     className: 'DatasetReceptorProfilePage'
@@ -89,8 +96,10 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     super(props, viewOptions, changeViewBy, changeActiveFilters);
 
     this.onChangeHighlight = this.onChangeHighlight.bind(this);
+    this.onChangeToggle = this.onChangeToggle.bind(this);
     this.onChangeActive = this.onChangeActive.bind(this);
     this.onReceptorColorChange = this.onReceptorColorChange.bind(this);
+    this.onWaterfallLabelClick = this.onWaterfallLabelClick.bind(this);
     this.getActiveReceptor = this.getActiveReceptor.bind(this);
     this.getCompareReceptor = this.getCompareReceptor.bind(this);
     this.getActiveCellLine = this.getActiveCellLine.bind(this);
@@ -106,6 +115,11 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
   onChangeHighlight(highlightId) {
     const { dispatch } = this.props;
     dispatch(changeHighlight(highlightId));
+  }
+
+  onChangeToggle(toggledId) {
+    const { dispatch } = this.props;
+    dispatch(changeToggled(toggledId));
   }
 
   /**
@@ -133,6 +147,12 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     const { value } = event.target;
     const { dispatch } = this.props;
     dispatch(changeReceptorColorBy(value));
+  }
+
+
+  onWaterfallLabelClick(datum) {
+    const path = `/cell_line/${datum.cell_line.id}`;
+    this.context.router.push(path);
   }
 
   /**
@@ -180,7 +200,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
    * @param {Array} datasets Array of dataset Objects to render.
    */
   renderSmallMults(datasets) {
-    const { highlightId, viewBy } = this.props;
+    const { toggledId, highlightId, viewBy } = this.props;
 
     const dataExtent = [-6.5, 1];
 
@@ -193,6 +213,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
         <WaterfallSmallMults
           datasets={datasets}
           highlightId={highlightId}
+          toggledId={toggledId}
           onChangeActive={this.onChangeActive}
           activeIds={activeIds}
           dataExtent={dataExtent} />
@@ -206,12 +227,13 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
    * @param {Object} dataset Dataset to render.
    */
   renderWaterfall(dataset) {
-    const { highlightId, viewBy } = this.props;
+    const { highlightId, viewBy, toggledId } = this.props;
     const dataExtent = [-6.5, 1];
 
-    let colorBy = 'none';
+    let colorBy = 'none', labelClick;
     if (viewBy === 'receptor') {
       colorBy = this.props.receptorColorBy;
+      labelClick = this.onWaterfallLabelClick;
     }
 
     if(dataset) {
@@ -219,10 +241,15 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
         <WaterfallPlot
           label={dataset.label}
           dataset={dataset.measurements}
-          onChangeHighlight={this.onChangeHighlight}
           highlightId={highlightId}
+          toggledId={toggledId}
           dataExtent={dataExtent}
-          colorScale={mappedColorScales[colorBy]} />
+          colorScale={mappedColorScales[colorBy]}
+          onChangeHighlight={this.onChangeHighlight}
+          onChangeToggle={this.onChangeToggle}
+          onLabelClick={labelClick}
+        />
+
       );
     }
   }
@@ -316,6 +343,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
 }
 
 DatasetReceptorProfilePage.propTypes = propTypes;
+DatasetReceptorProfilePage.contextTypes = contextTypes;
 DatasetReceptorProfilePage.defaultProps = defaultProps;
 
 export default connect(mapStateToProps)(DatasetReceptorProfilePage);
