@@ -4,7 +4,9 @@ import {
   DATASET_RECEPTOR_PROFILE_CHANGE_HIGHLIGHT,
   DATASET_RECEPTOR_PROFILE_CHANGE_TOGGLED,
   DATASET_RECEPTOR_PROFILE_CHANGE_RECEPTOR_COLOR_BY,
-  DATASET_RECEPTOR_PROFILE_CHANGE_SIDE
+  DATASET_RECEPTOR_PROFILE_CHANGE_SIDE,
+  DATASET_RECEPTOR_PROFILE_CHANGE_RECEPTOR_SORT_BY,
+  DATASET_RECEPTOR_PROFILE_CHANGE_CELL_LINE_SORT_BY
 } from '../actions/datasetReceptorProfile';
 
 // Ensure the dataset filter is set to this dataset
@@ -30,6 +32,8 @@ const INITIAL_STATE = {
   highlight: undefined,
   toggled: undefined,
   receptorColorBy: 'cellLineReceptorStatus',
+  receptorSortBy: 'magnitude',
+  cellLineSortBy: 'magnitude',
   side: 'left'
 };
 
@@ -55,6 +59,14 @@ function datasetReceptorProfile(state = INITIAL_STATE, action) {
     case DATASET_RECEPTOR_PROFILE_CHANGE_RECEPTOR_COLOR_BY:
       return Object.assign({}, state, {
         receptorColorBy: action.colorBy
+      });
+    case DATASET_RECEPTOR_PROFILE_CHANGE_RECEPTOR_SORT_BY:
+      return Object.assign({}, state, {
+        receptorSortBy: action.receptorSortBy
+      });
+    case DATASET_RECEPTOR_PROFILE_CHANGE_CELL_LINE_SORT_BY:
+      return Object.assign({}, state, {
+        cellLineSortBy: action.cellLineSortBy
       });
     case DATASET_RECEPTOR_PROFILE_CHANGE_SIDE:
       {

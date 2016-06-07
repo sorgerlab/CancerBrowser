@@ -6,6 +6,7 @@ import './dataset_receptor_profile_page.scss';
 import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetReceptorProfile';
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 import { colorScales } from '../../config/colors';
+import { sortByValueAndId, sortByKey } from '../../utils/sort';
 
 import {
   getFilterValue,
@@ -23,7 +24,9 @@ import {
   changeActiveFilters,
   changeViewBy,
   changeSide,
-  changeReceptorColorBy
+  changeReceptorColorBy,
+  changeCellLineSortBy,
+  changeReceptorSortBy
 } from '../../actions/datasetReceptorProfile';
 
 import WaterfallSmallMults from '../../components/WaterfallSmallMults';
@@ -48,6 +51,8 @@ const propTypes = {
   viewBy: React.PropTypes.string,
   filteredData: React.PropTypes.array,
   receptorColorBy: React.PropTypes.string,
+  receptorSortBy: React.PropTypes.string,
+  cellLineSortBy: React.PropTypes.string,
   activeSide: React.PropTypes.string
 };
 
@@ -70,7 +75,9 @@ function mapStateToProps(state) {
     highlightId: datasetReceptorProfile.highlight,
     toggledId: datasetReceptorProfile.toggled,
     receptorColorBy: datasetReceptorProfile.receptorColorBy,
-    'activeSide': datasetReceptorProfile.side,
+    activeSide: datasetReceptorProfile.side,
+    cellLineSortBy: datasetReceptorProfile.cellLineSortBy,
+    receptorSortBy: datasetReceptorProfile.receptorSortBy,
     className: 'DatasetReceptorProfilePage'
   });
 
@@ -88,6 +95,13 @@ const mappedColorScales = {
   none: undefined
 };
 
+const sortsMap = {
+  magnitude: sortByValueAndId,
+  cellLine: sortByKey('label'),
+  receptor: sortByKey('label')
+};
+
+
 /**
  * React container for a dataset page page - Receptor Profile
  */
@@ -104,6 +118,8 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     this.getCompareReceptor = this.getCompareReceptor.bind(this);
     this.getActiveCellLine = this.getActiveCellLine.bind(this);
     this.getCompareCellLine = this.getCompareCellLine.bind(this);
+    this.handleReceptorSortByChange = this.handleReceptorSortByChange.bind(this);
+    this.handleCellLineSortByChange = this.handleCellLineSortByChange.bind(this);
   }
 
   componentDidMount() {
@@ -154,6 +170,19 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     const path = `/cell_line/${datum.cell_line.id}`;
     this.context.router.push(path);
   }
+
+  handleReceptorSortByChange(evt) {
+    const { value } = evt.target;
+    const { dispatch } = this.props;
+    dispatch(changeReceptorSortBy(value));
+  }
+
+  handleCellLineSortByChange(evt) {
+    const { value } = evt.target;
+    const { dispatch } = this.props;
+    dispatch(changeCellLineSortBy(value));
+  }
+
 
   /**
    * Override parent class method
@@ -229,10 +258,15 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     const { highlightId, viewBy, toggledId } = this.props;
     const dataExtent = [-6.5, 1];
 
-    let colorBy = 'none', labelClick;
+    let colorBy = 'none';
+    let labelClick;
+    let sortBy = 'magnitude';
     if (viewBy === 'receptor') {
       colorBy = this.props.receptorColorBy;
       labelClick = this.onWaterfallLabelClick;
+      sortBy = sortsMap[this.props.receptorSortBy];
+    } else {
+      sortBy = sortsMap[this.props.cellLineSortBy];
     }
 
     if(dataset) {
@@ -244,6 +278,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
           toggledId={toggledId}
           dataExtent={dataExtent}
           colorScale={mappedColorScales[colorBy]}
+          dataSort={sortBy}
           onChangeHighlight={this.onChangeHighlight}
           onChangeToggle={this.onChangeToggle}
           onLabelClick={labelClick}
@@ -275,7 +310,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
    * Render JSX for controls on receptor side of visual
    */
   renderReceptorChartControls() {
-    const { receptorColorBy } = this.props;
+    const { receptorColorBy, receptorSortBy } = this.props;
     return (
       <div>
         <div className='chart-controls clearfix'>
@@ -290,10 +325,43 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
               </select>
             </div>
           </div>
+
+          <div className='form-group'>
+            <label className='small-label'>Sort By</label>
+            <div>
+              <select className='form-control' value={receptorSortBy}
+                  onChange={this.handleReceptorSortByChange}>
+                <option value='magnitude'>Magnitude</option>
+                <option value='cellLine'>Cell Line</option>
+              </select>
+            </div>
+          </div>
+
         </div>
       </div>
     );
   }
+
+  renderCellLineChartControls() {
+    const { cellLineSortBy } = this.props;
+    return (
+      <div>
+        <div className='chart-controls clearfix'>
+          <div className='form-group'>
+            <label className='small-label'>Sort By</label>
+            <div>
+              <select className='form-control' value={cellLineSortBy}
+                  onChange={this.handleCellLineSortByChange}>
+                <option value='magnitude'>Magnitude</option>
+                <option value='receptor'>Receptor</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
 
   /**
    * Called by parent class to populatate main body of page.
@@ -320,7 +388,8 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
       );
     }
 
-    const controls = (viewBy === 'receptor') ? this.renderReceptorChartControls() : '';
+    const controls = (viewBy === 'receptor') ?
+      this.renderReceptorChartControls() :  this.renderCellLineChartControls();
 
     return (
       <div>
