@@ -395,13 +395,13 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
       <div>
         {controls}
         <div className='row'>
-          <div className='col-md-4'>
+          <div className='col-md-4 left-waterfall-container'>
             {this.renderWaterfall(leftData)}
           </div>
-          <div className='col-md-4'>
+          <div className='col-md-4 right-waterfall-container'>
             {this.renderWaterfall(rightData)}
           </div>
-          <div className='col-md-4'>
+          <div className='col-md-4 small-mults-container'>
             {this.renderSmallMults(filteredData)}
           </div>
         </div>
