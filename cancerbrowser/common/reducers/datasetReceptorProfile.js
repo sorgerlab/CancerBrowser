@@ -4,7 +4,9 @@ import {
   DATASET_RECEPTOR_PROFILE_CHANGE_HIGHLIGHT,
   DATASET_RECEPTOR_PROFILE_CHANGE_TOGGLED,
   DATASET_RECEPTOR_PROFILE_CHANGE_RECEPTOR_COLOR_BY,
-  DATASET_RECEPTOR_PROFILE_CHANGE_SIDE
+  DATASET_RECEPTOR_PROFILE_CHANGE_SIDE,
+  DATASET_RECEPTOR_PROFILE_CHANGE_RECEPTOR_SORT_BY,
+  DATASET_RECEPTOR_PROFILE_CHANGE_CELL_LINE_SORT_BY
 } from '../actions/datasetReceptorProfile';
 
 // Ensure the dataset filter is set to this dataset
@@ -17,12 +19,10 @@ const INITIAL_STATE = {
   activeFilters: {
     cellLineFilters: [baseCellLineDatasetFilter],
     byReceptorConfig: [
-      {id:'receptor', values: ['src']},
-      {id:'compareTo', values: ['cmet']}
+      {id:'receptor', values: ['src']}
     ],
     byCellLineConfig: [
-      {id: 'cellLine', values: ['184b5']},
-      {id: 'compareTo', values: ['au565']}
+      {id: 'cellLine', values: ['184b5']}
     ]
   },
 
@@ -30,7 +30,9 @@ const INITIAL_STATE = {
   highlight: undefined,
   toggled: undefined,
   receptorColorBy: 'cellLineReceptorStatus',
-  side: 'left'
+  receptorSortBy: 'magnitude',
+  cellLineSortBy: 'magnitude',
+  side: 'right'
 };
 
 function datasetReceptorProfile(state = INITIAL_STATE, action) {
@@ -56,12 +58,20 @@ function datasetReceptorProfile(state = INITIAL_STATE, action) {
       return Object.assign({}, state, {
         receptorColorBy: action.colorBy
       });
+    case DATASET_RECEPTOR_PROFILE_CHANGE_RECEPTOR_SORT_BY:
+      return Object.assign({}, state, {
+        receptorSortBy: action.receptorSortBy
+      });
+    case DATASET_RECEPTOR_PROFILE_CHANGE_CELL_LINE_SORT_BY:
+      return Object.assign({}, state, {
+        cellLineSortBy: action.cellLineSortBy
+      });
     case DATASET_RECEPTOR_PROFILE_CHANGE_SIDE:
       {
         let side = action.side;
-        // if side not specified, serve as a toggle
+        // if side not specified, set to right
         if(!side) {
-          side = state.side === 'left' ? 'right' : 'left';
+          side = 'right';
         }
 
         return Object.assign({}, state, {

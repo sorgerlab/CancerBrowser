@@ -6,6 +6,7 @@ import './dataset_receptor_profile_page.scss';
 import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetReceptorProfile';
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 import { colorScales } from '../../config/colors';
+import { sortByValueAndId, sortByKey } from '../../utils/sort';
 
 import {
   getFilterValue,
@@ -23,11 +24,14 @@ import {
   changeActiveFilters,
   changeViewBy,
   changeSide,
-  changeReceptorColorBy
+  changeReceptorColorBy,
+  changeCellLineSortBy,
+  changeReceptorSortBy
 } from '../../actions/datasetReceptorProfile';
 
 import WaterfallSmallMults from '../../components/WaterfallSmallMults';
 import WaterfallPlot from '../../components/WaterfallPlot';
+import AutoWidth from '../../components/AutoWidth';
 
 /// Specify the dataset ID here: ////
 const datasetId = 'receptor_profile';
@@ -48,6 +52,8 @@ const propTypes = {
   viewBy: React.PropTypes.string,
   filteredData: React.PropTypes.array,
   receptorColorBy: React.PropTypes.string,
+  receptorSortBy: React.PropTypes.string,
+  cellLineSortBy: React.PropTypes.string,
   activeSide: React.PropTypes.string
 };
 
@@ -70,7 +76,9 @@ function mapStateToProps(state) {
     highlightId: datasetReceptorProfile.highlight,
     toggledId: datasetReceptorProfile.toggled,
     receptorColorBy: datasetReceptorProfile.receptorColorBy,
-    'activeSide': datasetReceptorProfile.side,
+    activeSide: datasetReceptorProfile.side,
+    cellLineSortBy: datasetReceptorProfile.cellLineSortBy,
+    receptorSortBy: datasetReceptorProfile.receptorSortBy,
     className: 'DatasetReceptorProfilePage'
   });
 
@@ -88,6 +96,13 @@ const mappedColorScales = {
   none: undefined
 };
 
+const sortsMap = {
+  magnitude: sortByValueAndId,
+  cellLine: sortByKey('label'),
+  receptor: sortByKey('label')
+};
+
+
 /**
  * React container for a dataset page page - Receptor Profile
  */
@@ -104,6 +119,8 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     this.getCompareReceptor = this.getCompareReceptor.bind(this);
     this.getActiveCellLine = this.getActiveCellLine.bind(this);
     this.getCompareCellLine = this.getCompareCellLine.bind(this);
+    this.handleReceptorSortByChange = this.handleReceptorSortByChange.bind(this);
+    this.handleCellLineSortByChange = this.handleCellLineSortByChange.bind(this);
   }
 
   componentDidMount() {
@@ -127,16 +144,62 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
    * @param {Object} React event object indicating target
    */
   onChangeActive(activeId) {
-    const { dispatch, viewBy, activeFilters, activeSide } = this.props;
+    const { dispatch, viewBy, activeFilters } = this.props;
 
+    let { activeSide } = this.props;
+
+    const activeIds = this.getActiveWaterfallPlots(viewBy);
     const subGroup = (viewBy === 'receptor') ? 'byReceptorConfig' : 'byCellLineConfig';
+    const newActiveSide = 'right';
+
+    let slideOver = false;
+
+    // if there are now waterfalls shown,
+    // display new one on the left.
+    if(!activeIds[0] && !activeIds[1]) {
+      activeSide = 'left';
+    }
+
+    // toggle off right plot
+    // if id matches right plot
+    if(activeId === activeIds[1]) {
+      activeId = undefined;
+      activeSide = 'right';
+    }
+
+    // toggle off left plot
+    // if id matches left plot
+    if(activeId === activeIds[0]) {
+      activeId = undefined;
+      activeSide = 'left';
+      if(activeIds[1]) {
+        slideOver = true;
+      }
+    }
+
     const position = (activeSide === 'left') ? viewBy : 'compareTo';
 
-    const newFilters = updateFilterValues(activeFilters, subGroup, position, [activeId]);
+    let newFilters = updateFilterValues(activeFilters, subGroup, position, [activeId]);
+
+    // if there is a left plot and we are toggling off right plot, then slide over right
+    // plot
+    if(slideOver) {
+      newFilters = updateFilterValues(newFilters, subGroup, viewBy, [activeIds[1]]);
+      newFilters = updateFilterValues(newFilters, subGroup, 'compareTo', [undefined]);
+    }
 
     dispatch(changeActiveFilters(newFilters));
+    dispatch(changeSide(newActiveSide));
+  }
 
-    dispatch(changeSide());
+  /**
+   * Returns array of two elements
+   * with Ids of active and compareby waterfalls
+   */
+  getActiveWaterfallPlots(viewBy) {
+    return (viewBy === 'receptor') ?
+      [this.getActiveReceptor(), this.getCompareReceptor()] :
+      [this.getActiveCellLine(), this.getCompareCellLine()];
   }
 
   /**
@@ -155,6 +218,19 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     this.context.router.push(path);
   }
 
+  handleReceptorSortByChange(evt) {
+    const { value } = evt.target;
+    const { dispatch } = this.props;
+    dispatch(changeReceptorSortBy(value));
+  }
+
+  handleCellLineSortByChange(evt) {
+    const { value } = evt.target;
+    const { dispatch } = this.props;
+    dispatch(changeCellLineSortBy(value));
+  }
+
+
   /**
    * Override parent class method
    * So we can reset the active side toggle.
@@ -163,7 +239,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     const { dispatch } = this.props;
     super.handleViewByChange(newView);
     // reset the side we are toggling
-    dispatch(changeSide('left'));
+    dispatch(changeSide('right'));
   }
 
   /**
@@ -203,9 +279,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     const { toggledId, highlightId, viewBy } = this.props;
     const dataExtent = [-6.5, 1];
 
-    const activeIds = (viewBy === 'receptor') ?
-      [this.getActiveReceptor(), this.getCompareReceptor()] :
-      [this.getActiveCellLine(), this.getCompareCellLine()];
+    const activeIds = this.getActiveWaterfallPlots(viewBy);
 
     if(datasets) {
       return (
@@ -250,35 +324,49 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     const metric = this.getMetric(dataset);
 
     let valueAxisLabel;
+    let itemAxisLabel;
     if (metric) {
       valueAxisLabel = `log10(${metric})`;
     }
 
-    let colorBy = 'none', labelClick, itemAxisLabel;
+    let colorBy = 'none';
+    let labelClick;
+    let sortBy = 'magnitude';
     if (viewBy === 'receptor') {
       colorBy = this.props.receptorColorBy;
       labelClick = this.onWaterfallLabelClick;
+      sortBy = sortsMap[this.props.receptorSortBy];
       itemAxisLabel = 'Cell Line';
     } else {
+      sortBy = sortsMap[this.props.cellLineSortBy];
       itemAxisLabel = 'Receptor';
     }
 
     if(dataset) {
       return (
-        <WaterfallPlot
-          label={dataset.label}
-          dataset={dataset.measurements}
-          highlightId={highlightId}
-          toggledId={toggledId}
-          dataExtent={dataExtent}
-          colorScale={mappedColorScales[colorBy]}
-          itemAxisLabel={itemAxisLabel}
-          valueAxisLabel={valueAxisLabel}
-          onChangeHighlight={this.onChangeHighlight}
-          onChangeToggle={this.onChangeToggle}
-          onLabelClick={labelClick}
-        />
-
+        <AutoWidth>
+          <WaterfallPlot
+            label={dataset.label}
+            dataset={dataset.measurements}
+            highlightId={highlightId}
+            toggledId={toggledId}
+            dataExtent={dataExtent}
+            itemAxisLabel={itemAxisLabel}
+            valueAxisLabel={valueAxisLabel}
+            colorScale={mappedColorScales[colorBy]}
+            dataSort={sortBy}
+            onChangeHighlight={this.onChangeHighlight}
+            onChangeToggle={this.onChangeToggle}
+            onLabelClick={labelClick}
+            />
+        </AutoWidth>
+      );
+    } else {
+      const entityName = viewBy === 'receptor' ? 'receptor' : 'cell line';
+      return (
+        <div className="waterfall-help">
+          <p>Use the filters on the left or thumbnails on the right to add a {entityName} to compare.</p>
+        </div>
       );
     }
   }
@@ -305,7 +393,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
    * Render JSX for controls on receptor side of visual
    */
   renderReceptorChartControls() {
-    const { receptorColorBy } = this.props;
+    const { receptorColorBy, receptorSortBy } = this.props;
     return (
       <div>
         <div className='chart-controls clearfix'>
@@ -320,10 +408,43 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
               </select>
             </div>
           </div>
+
+          <div className='form-group'>
+            <label className='small-label'>Sort By</label>
+            <div>
+              <select className='form-control' value={receptorSortBy}
+                  onChange={this.handleReceptorSortByChange}>
+                <option value='magnitude'>Magnitude</option>
+                <option value='cellLine'>Cell Line</option>
+              </select>
+            </div>
+          </div>
+
         </div>
       </div>
     );
   }
+
+  renderCellLineChartControls() {
+    const { cellLineSortBy } = this.props;
+    return (
+      <div>
+        <div className='chart-controls clearfix'>
+          <div className='form-group'>
+            <label className='small-label'>Sort By</label>
+            <div>
+              <select className='form-control' value={cellLineSortBy}
+                  onChange={this.handleCellLineSortByChange}>
+                <option value='magnitude'>Magnitude</option>
+                <option value='receptor'>Receptor</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
 
   /**
    * Called by parent class to populatate main body of page.
@@ -350,19 +471,20 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
       );
     }
 
-    const controls = (viewBy === 'receptor') ? this.renderReceptorChartControls() : '';
+    const controls = (viewBy === 'receptor') ?
+      this.renderReceptorChartControls() :  this.renderCellLineChartControls();
 
     return (
       <div>
         {controls}
         <div className='row'>
-          <div className='col-md-4'>
+          <div className='col-md-4 left-waterfall-container'>
             {this.renderWaterfall(leftData)}
           </div>
-          <div className='col-md-4'>
+          <div className='col-md-4 right-waterfall-container'>
             {this.renderWaterfall(rightData)}
           </div>
-          <div className='col-md-4'>
+          <div className='col-md-4 small-mults-container'>
             {this.renderSmallMults(filteredData)}
           </div>
         </div>
