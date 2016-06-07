@@ -19,12 +19,10 @@ const INITIAL_STATE = {
   activeFilters: {
     cellLineFilters: [baseCellLineDatasetFilter],
     byReceptorConfig: [
-      {id:'receptor', values: ['src']},
-      {id:'compareTo', values: ['cmet']}
+      {id:'receptor', values: ['src']}
     ],
     byCellLineConfig: [
-      {id: 'cellLine', values: ['184b5']},
-      {id: 'compareTo', values: ['au565']}
+      {id: 'cellLine', values: ['184b5']}
     ]
   },
 
