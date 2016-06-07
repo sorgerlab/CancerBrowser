@@ -1,0 +1,14 @@
+.DatasetSummaryPage {
+  .datasets-listing {
+    .dataset-item {
+      padding: 10px;
+      h4 {
+        margin: 0 0 10px;
+      }
+
+      &:nth-child(odd) {
+        background: #f6f6f6;
+      }
+    }
+  }
+}
