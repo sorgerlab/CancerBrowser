@@ -45,18 +45,18 @@ $highlight-threshold-color: $chart-highlight-color-lighter;
     cursor: pointer;
   }
 
-  text.label {
+  .label {
     fill: #777;
     font-size: 14px;
-  }
 
-  text.highlight {
-    font-weight: 400;
-    fill: black;
-  }
+    &.highlight, &.toggled {
+      font-weight: 400;
+      fill: #333;
+    }
 
-  text.disabled {
-    fill: #999;
+    &.disabled {
+      fill: #999;
+    }
   }
 
   .bar-value {
