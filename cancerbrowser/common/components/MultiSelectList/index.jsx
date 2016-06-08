@@ -7,7 +7,7 @@ import * as ImmutableUtils from '../../utils/immutable_utils';
 import './multi_select_list.scss';
 
 const propTypes = {
-  /* The list of items to render
+  /* The list of items to render. Can optionally include a color to add a color icon on render
     [
       { value: 'big6', label: 'Big 6' },
       { value: 'icbp43', label: 'ICBP43' }
@@ -107,11 +107,16 @@ class MultiSelectList extends React.Component {
       );
     }
 
+    let colorIcon;
+    if (item.color) {
+      colorIcon = <span className='color-icon' style={{ backgroundColor: item.color }} />;
+    }
+
     return (
       <li key={index}
         className={classNames({ active: values.indexOf(item.value) !== -1 })}
         onClick={this.handleClickItem.bind(this, item.value)}>
-        <div className='item-label'>{item.label}</div>
+        <div className='item-label'>{colorIcon}{item.label}</div>
         {count}
       </li>
     );
