@@ -39,15 +39,15 @@ class DrugDetailPage extends React.Component {
 
   renderInfo(drugInfo) {
     const details = [
-      { label: 'Class', value: drugInfo.class.label },
+      { label: 'Class', value: drugInfo.class ? drugInfo.class.label : '' },
       { label: 'LINCS ID', value: drugInfo.hmsLincsId },
       { label: 'Synonyms', value: toList(drugInfo.synonyms) },
-      { label: 'Target Gene', value: drugInfo.targetGene.label },
-      { label: 'Target Role', value: drugInfo.targetRole.label },
-      { label: 'Target Pathway', value: drugInfo.targetPathway.label },
-      { label: 'Target Function', value: drugInfo.targetFunction.label },
-      { label: 'Target Protein', value: drugInfo.targetProtein.label },
-      { label: 'Target Protein Class', value: drugInfo.targetProteinClass.label }
+      { label: 'Target Gene', value: drugInfo.targetGene ? drugInfo.targetGene.label : '' },
+      { label: 'Target Role', value: drugInfo.targetRole ? drugInfo.targetRole.label : '' },
+      { label: 'Target Pathway', value: drugInfo.targetPathway ? drugInfo.targetPathway.label : ''},
+      { label: 'Target Function', value: drugInfo.targetFunction ? drugInfo.targetFunction.label : '' },
+      { label: 'Target Protein', value: drugInfo.targetProtein ? drugInfo.targetProtein.label : ''},
+      { label: 'Target Protein Class', value: drugInfo.targetProteinClass ? drugInfo.targetProteinClass.label : ''}
     ];
 
     return (
@@ -78,11 +78,12 @@ class DrugDetailPage extends React.Component {
   render() {
     const { drugInfo } = this.props;
 
+
     if(drugInfo.id) {
 
       return (
         <PageLayout className='DrugDetailPage'>
-          <h1 className='name'>{ drugInfo.name.label }</h1>
+          <h1 className='name'>{ drugInfo.name ? drugInfo.name.label : '' }</h1>
           <img src={drugImageUrl(drugInfo)} />
           <div>
             <h3>General Information</h3>
