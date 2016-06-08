@@ -49,6 +49,6 @@
     "cell_line_id": "cell_line",
     "row_id": "cell_line",
     "drug_id": "small_molecule_HMSLID",
-    "text_fields": ["cell_line", "small_molecule"]
+    "text_fields": ["cell_line", "small_molecule", "cell_line_HMSLID", "small_molecule_HMSLID", "GR50"]
   }
 }

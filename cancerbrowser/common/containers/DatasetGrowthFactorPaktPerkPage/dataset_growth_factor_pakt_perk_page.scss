@@ -5,29 +5,4 @@
   .parallel-coordinates-container {
     margin: 20px;
   }
-
-
-  .view-heading {
-    margin-bottom: 10px;
-
-    h3 {
-      margin-bottom: 2px;
-    }
-
-    .selected-params {
-      color: #888;
-
-      li:before {
-        content: '•';
-        margin-right: 8px;
-        color: #ccc;
-      }
-
-      li:first-child:before {
-        content: '';
-        display: none;
-      }
-    }
-  }
-
 }

@@ -10,6 +10,7 @@ import datasetReceptorProfile from './datasetReceptorProfile';
 import datasetGrowthFactorPaktPerk from './datasetGrowthFactorPaktPerk';
 import datasetBasalPhospho from './datasetBasalPhospho';
 import datasetBasalTotal from './datasetBasalTotal';
+import datasetDrugDoseResponse from './datasetDrugDoseResponse';
 
 const INITIAL_STATE = {
   info: {
@@ -77,5 +78,6 @@ export default combineReducers({
   datasetReceptorProfile,
   datasetGrowthFactorPaktPerk,
   datasetBasalTotal,
-  datasetBasalPhospho
+  datasetBasalPhospho,
+  datasetDrugDoseResponse
 });
