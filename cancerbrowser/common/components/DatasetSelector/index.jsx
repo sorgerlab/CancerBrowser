@@ -7,7 +7,8 @@ import './dataset_selector.scss';
 
 const propTypes = {
   /** Array of datasets [{value, label}] to render in the list */
-  datasets: React.PropTypes.array
+  datasets: React.PropTypes.array,
+  entityId: React.PropTypes.string
 };
 
 const contextTypes = {
@@ -37,7 +38,12 @@ class DatasetSelector extends React.Component {
   }
 
   handleDatasetSelect(datasetId) {
-    this.context.router.push(`/dataset/${datasetId}`);
+    const { entityId } = this.props;
+    let path = `/dataset/${datasetId}`;
+    if (entityId) {
+      path +=`/${entityId}`;
+    }
+    this.context.router.push(path);
   }
 
   render() {

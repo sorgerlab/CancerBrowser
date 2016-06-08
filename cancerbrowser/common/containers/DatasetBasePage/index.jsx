@@ -1,5 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
+import { hashHistory } from 'react-router';
+import qs from 'qs';
 
 import { getFilteredCellLines, getFilteredCellLineCounts } from '../../selectors/cell_line';
 
@@ -22,6 +24,7 @@ const propTypes = {
   datasetKey: React.PropTypes.string,
   className: React.PropTypes.string,
   dispatch: React.PropTypes.func,
+  location: React.PropTypes.object,
   datasetData: React.PropTypes.array,
   datasetInfo: React.PropTypes.object,
   activeFilters: React.PropTypes.object,
@@ -78,6 +81,17 @@ class DatasetBasePage extends React.Component {
     dispatch(fetchDatasetIfNeeded(datasetId));
     dispatch(fetchDatasetInfo(datasetId));
     dispatch(fetchCellLinesIfNeeded());
+
+    this.initFromUrl();
+  }
+
+  initFromUrl() {
+    // see if filters have changed.
+    const filterString = this.props.location.search.replace(/^\?/,'');
+    if(filterString.length > 0) {
+      const newFilters = qs.parse(filterString);
+      this.props.dispatch(this.changeActiveFilters(newFilters));
+    }
   }
 
   handleViewByChange(newView) {
@@ -87,8 +101,16 @@ class DatasetBasePage extends React.Component {
     dispatch(fetchDatasetIfNeeded(datasetId, newView));
   }
 
+  updateUrlWithConfig(filters) {
+    const { datasetId } = this.props;
+    const query = qs.stringify(filters, {encode: true});
+    hashHistory.replace({pathname: '/dataset/' + datasetId, search: '?' + query });
+  }
+
   onFilterChange(newFilters) {
     const { dispatch } = this.props;
+
+    this.updateUrlWithConfig(newFilters);
     dispatch(this.changeActiveFilters(newFilters));
   }
 

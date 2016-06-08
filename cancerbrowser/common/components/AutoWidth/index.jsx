@@ -26,6 +26,7 @@ class AutoWidth extends React.Component {
   }
 
   componentWillUnmount() {
+    this.updateWidth.cancel();
     window.removeEventListener('resize', this.updateWidth);
   }
 

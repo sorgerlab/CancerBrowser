@@ -40,6 +40,7 @@ const datasetKey = 'datasetReceptorProfile';
 
 const propTypes = {
   dispatch: React.PropTypes.func,
+  params: React.PropTypes.object,
   datasetData: React.PropTypes.array,
   datasetInfo: React.PropTypes.object,
   highlightId: React.PropTypes.string,
@@ -125,8 +126,26 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
 
   componentDidMount() {
     super.componentDidMount();
-    const { dispatch } = this.props;
+    const { dispatch, params, viewBy} = this.props;
     dispatch(fetchReceptorsIfNeeded());
+
+    if(params.entityId) {
+      const activeIds = this.getActiveWaterfallPlots(viewBy);
+      if(params.entityId !== activeIds[0])
+      {
+        this.resetWaterfalls(params.entityId);
+      }
+
+    }
+  }
+
+  resetWaterfalls(activeId) {
+    const { dispatch, activeFilters } = this.props;
+    dispatch(changeViewBy('cellLine'));
+    let newFilters = updateFilterValues(activeFilters, 'byCellLineConfig', 'cellLine', [activeId]);
+    newFilters = updateFilterValues(newFilters, 'byCellLineConfig', 'compareTo', [undefined]);
+    dispatch(changeActiveFilters(newFilters));
+
   }
 
   onChangeHighlight(highlightId) {
