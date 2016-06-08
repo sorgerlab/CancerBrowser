@@ -117,9 +117,18 @@ function transformData(dataset, info) {
  * @return {Array} transformed dataset
  */
 function transformDoseResponse(dataset, info) {
+  console.warn('TODO update infinity support');
   dataset.forEach(function(row) {
     row.label = row[info.row_id];
     row.id = normalize(row.label);
+    const GR50 = row.GR50;
+    if (GR50 === 'Inf') {
+      row.GR50 = 100;
+    } else if (GR50 === '-Inf') {
+      row.GR50 = -100;
+    } else {
+      row.GR50 = parseFloat(row.GR50);
+    }
   });
   return dataset;
 }

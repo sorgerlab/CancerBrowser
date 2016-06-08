@@ -59,7 +59,7 @@ class AutoWidth extends React.Component {
     }
 
     const child = this.props.children;
-    const newChild = React.cloneElement(child, { width: this.state.width });
+    const newChild = child ? React.cloneElement(child, { width: this.state.width }) : null;
     return <div className='auto-width'>{newChild}</div>;
   }
 }
