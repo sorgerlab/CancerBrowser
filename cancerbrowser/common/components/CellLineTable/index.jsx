@@ -93,9 +93,9 @@ const allColumns = {
   dataset: {
     prop: 'dataset',
     title: 'Dataset',
-    render(val) {
+    render(val, data) {
       return (
-        <DatasetSelector datasets={val} />
+        <DatasetSelector datasets={val} entityId={data.id} />
       );
     }
   }
