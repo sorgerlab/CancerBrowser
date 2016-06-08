@@ -17,10 +17,34 @@ export function sortByValueAndId(a, b) {
 }
 
 /**
- * Sorts by a key on the objects a and b
+ * sort by a series of keys
+ */
+export const sortByKeys = _.curry(function (keys, a, b) {
+  let result, key;
+  for (key of keys) {
+    result = sortByKey(key, a, b);
+    if (result !== 0) {
+      return result;
+    }
+  }
+
+  return result;
+});
+
+/**
+ * Sorts by a key on the objects a and b.
+ * If the key starts with "-", sorts in reverse
  */
 export const sortByKey = _.curry(function (key, a, b) {
-  return sortByAccessor(obj => obj[key], a, b);
+  let reverse = false;
+  if (key.charAt(0) === '-') {
+    key = key.substring(1);
+    reverse = true;
+  }
+
+  let result = sortByAccessor(obj => obj[key], a, b);
+
+  return reverse ? -result : result;
 });
 
 /**
@@ -44,7 +68,7 @@ export const sortByAccessor = _.curry(function (accessor, a, b) {
   if (aValue < bValue) {
     return -1;
   }
-  if (aValue > aValue) {
+  if (aValue > bValue) {
     return 1;
   }
   if (aValue === bValue) {
