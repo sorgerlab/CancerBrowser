@@ -135,7 +135,6 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
       {
         this.resetWaterfalls(params.entityId);
       }
-
     }
   }
 
@@ -209,6 +208,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
 
     dispatch(changeActiveFilters(newFilters));
     dispatch(changeSide(newActiveSide));
+    super.updateUrlWithConfig(newFilters);
   }
 
   /**
