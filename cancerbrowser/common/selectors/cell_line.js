@@ -9,18 +9,34 @@ function getCellLines(state) {
   return state.cellLines.items;
 }
 
-/* allow overriding the default filters location
+/* Get the active filters
  *
  * @param {Object} state The Redux state
  * @param {Object} substate A subsection of the Redux state to browse if provided instead
  * @return The active filters
  */
 function getActiveFilters(state, substate) {
+  // allow overriding the default filters location
   if (substate) {
     return substate.activeFilters;
   }
 
   return state.filters.active;
+}
+
+
+/* Get base filters you want active filtered to be merged with (optional)
+ *
+ * @param {Object} state The Redux state
+ * @param {Object} substate A subsection of the Redux state to browse if provided instead
+ * @return The base filters
+ */
+function getBaseFilters(state, substate) {
+  if (substate) {
+    return substate.baseFilters;
+  }
+
+  return state.filters.base;
 }
 
 /////////////////////
@@ -111,11 +127,28 @@ export const cellLinesFilterGroup = {
 // Selectors
 /////////////////////
 
+// NOTE: we keep getBaseFilters separate from getActiveFilters so that
+// if we encode activeFilters in the URL the base filters do not show up
+// and they do not show up in the filter summary either.
 export const getFilteredCellLines = createSelector(
-  [ getCellLines, getActiveFilters ],
-  (cellLines, activeFilters) => {
+  [ getCellLines, getActiveFilters, getBaseFilters ],
+  (cellLines, activeFilters, baseFilters) => {
     const activeCellLineFilters = activeFilters.cellLineFilters;
-    const filteredCellLines = filterData(cellLines, activeCellLineFilters);
+    const baseCellLineFilters = baseFilters && baseFilters.cellLineFilters;
+
+    let cellLineFilters;
+
+    // merge in the base ones if provided
+    if (baseCellLineFilters) {
+      // for simplicity, concatenate base with activeFilters excluding those that match in base
+      cellLineFilters = (activeCellLineFilters || [])
+        .filter(activeValues => !baseCellLineFilters.find(baseValues => baseValues.id === activeValues.id))
+        .concat(baseCellLineFilters);
+    } else {
+      cellLineFilters = activeCellLineFilters;
+    }
+
+    const filteredCellLines = filterData(cellLines, cellLineFilters);
 
     return filteredCellLines;
   }
