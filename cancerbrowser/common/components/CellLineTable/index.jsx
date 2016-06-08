@@ -144,9 +144,9 @@ function getDatasetColumns(datasets) {
         const datasetValue = val.find(d => d.value === datasetId);
         return !!datasetValue;
       },
-      render(val) {
+      render(val, data) {
         if (val.find(d => d.value === datasetId)) {
-          return <Link to={`/dataset/${datasetId}`}><Icon name='bar-chart'/></Link>;
+          return <Link to={`/dataset/${datasetId}/${data.id}`}><Icon name='bar-chart'/></Link>;
         }
 
         return '';
