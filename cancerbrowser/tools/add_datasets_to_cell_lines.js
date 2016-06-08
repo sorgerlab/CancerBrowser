@@ -56,7 +56,7 @@ Object.keys(datasetInfo).forEach(function(key) {
     // pull out all the unique cell line names.
     // we convert to lowercase here to match the id values of our
     //  cell_lines.json data.
-    cellLinesInDataset = data.map(d => utils.getId(d[info.cell_line_id].split(' ')[0]));
+    cellLinesInDataset = data.map(d => utils.getId(d[info.cell_line_id]));
 
     cellLinesInDataset = _.uniq(cellLinesInDataset);
   }
