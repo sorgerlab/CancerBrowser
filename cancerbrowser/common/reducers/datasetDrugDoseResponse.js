@@ -12,16 +12,14 @@ import {
 
 } from '../actions/datasetDrugDoseResponse';
 
-// Ensure the dataset filter is set to this dataset
-const baseCellLineDatasetFilter = {
-  id: 'dataset',
-  values: ['growth_factor_pakt_perk']
-};
-
 const INITIAL_STATE = {
-  activeFilters: {
-    cellLineFilters: [baseCellLineDatasetFilter],
+  baseFilters: {
+    cellLineFilters: [
+      { id: 'dataset', values: ['drug_dose_response'] }
+    ]
+  },
 
+  activeFilters: {
     drugConfig: [
       { id: 'drug', values: ['10001-101'] }
     ],
@@ -29,6 +27,7 @@ const INITIAL_STATE = {
       { id: 'cellLine', values: ['mcf7'] }
     ]
   },
+
   viewBy: 'drug',
 
   drugColorBy: 'cellLineReceptorStatus',
