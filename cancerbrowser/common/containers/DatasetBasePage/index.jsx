@@ -116,23 +116,23 @@ class DatasetBasePage extends React.Component {
     dispatch(this.changeViewBy(newView));
     dispatch(this.changeActiveFilters(null));
     dispatch(fetchDatasetIfNeeded(datasetId, newView));
-    this.updateUrlWithConfig(null);
+    this.updateUrlWithConfig(null, {viewBy: newView});
   }
 
-  updateUrlWithConfig(filters) {
-    const { datasetId, viewBy } = this.props;
-    const config = {};
-    config.filters = filters;
-    config.config = {viewBy: viewBy};
+  updateUrlWithConfig(filters, config) {
+    const { datasetId } = this.props;
+    const allConfig = {};
+    allConfig.filters = filters;
+    allConfig.config = config;
 
-    const query = qs.stringify(config, {encode: true});
+    const query = qs.stringify(allConfig, {encode: true});
     hashHistory.replace({pathname: '/dataset/' + datasetId, search: '?' + query });
   }
 
   onFilterChange(newFilters) {
-    const { dispatch } = this.props;
+    const { dispatch, viewBy } = this.props;
 
-    this.updateUrlWithConfig(newFilters);
+    this.updateUrlWithConfig(newFilters, {viewBy: viewBy});
     dispatch(this.changeActiveFilters(newFilters));
   }
 
