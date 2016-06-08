@@ -9,15 +9,14 @@ import {
   DATASET_RECEPTOR_PROFILE_CHANGE_CELL_LINE_SORT_BY
 } from '../actions/datasetReceptorProfile';
 
-// Ensure the dataset filter is set to this dataset
-const baseCellLineDatasetFilter = {
-  id: 'dataset',
-  values: ['receptor_profile']
-};
-
 const INITIAL_STATE = {
+  baseFilters: {
+    cellLineFilters: [
+      { id: 'dataset', values: ['receptor_profile'] }
+    ]
+  },
+
   activeFilters: {
-    cellLineFilters: [baseCellLineDatasetFilter],
     byReceptorConfig: [
       {id:'receptor', values: ['src']}
     ],

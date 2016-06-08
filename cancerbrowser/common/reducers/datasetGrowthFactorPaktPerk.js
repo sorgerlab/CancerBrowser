@@ -12,16 +12,14 @@ import {
 
 } from '../actions/datasetGrowthFactorPaktPerk';
 
-// Ensure the dataset filter is set to this dataset
-const baseCellLineDatasetFilter = {
-  id: 'dataset',
-  values: ['growth_factor_pakt_perk']
-};
-
 const INITIAL_STATE = {
-  activeFilters: {
-    cellLineFilters: [baseCellLineDatasetFilter],
+  baseFilters: {
+    cellLineFilters: [
+      { id: 'dataset', values: ['growth_factor_pakt_perk'] }
+    ]
+  },
 
+  activeFilters: {
     growthFactorConfig: [
       { id: 'concentration', values: ['1'] },
       { id: 'parameter', values: ['paktFoldChange'] },
