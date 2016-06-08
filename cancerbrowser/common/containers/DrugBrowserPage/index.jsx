@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ButtonGroup, Button } from 'react-bootstrap';
+import { hashHistory } from 'react-router';
 import classNames from 'classnames';
+import qs from 'qs';
 
 import FilterPanel from '../../components/FilterPanel';
 import FilterGroupSummary from '../../components/FilterGroupSummary';
@@ -23,6 +25,7 @@ import {
 const propTypes = {
   dispatch: React.PropTypes.func,
   params: React.PropTypes.object,
+  location: React.PropTypes.object,
   filteredDrugs: React.PropTypes.array,
   activeFilters: React.PropTypes.object,
   drugView: React.PropTypes.string,
@@ -82,6 +85,13 @@ class DrugBrowserPage extends React.Component {
 
     dispatch(fetchDrugsIfNeeded({}, {}));
     dispatch(fetchDrugFilters());
+
+    // see if filters have changed.
+    const filterString = this.props.location.search.replace(/^\?/,'');
+    if(filterString.length > 0) {
+      const newFilters = qs.parse(filterString);
+      this.props.dispatch(changeActiveFilters(newFilters));
+    }
   }
 
   /*
@@ -92,10 +102,15 @@ class DrugBrowserPage extends React.Component {
     this.props.dispatch(resetActiveFilters());
   }
 
+  updateFilterUrl(newFilters) {
+    const query = qs.stringify(newFilters, {encode: true});
+    hashHistory.replace({pathname: '/drugs', search: '?' + query });
+  }
 
   onFilterChange(newFilters) {
     const { dispatch } = this.props;
 
+    this.updateFilterUrl(newFilters);
     dispatch(changeActiveFilters(newFilters));
     dispatch(fetchDrugsIfNeeded(newFilters, this.filterGroups));
   }
@@ -103,6 +118,8 @@ class DrugBrowserPage extends React.Component {
   onDrugFilterChange(newDrugFilters) {
     const { dispatch, activeFilters } = this.props;
     const newActiveFilters = Object.assign({}, activeFilters, { drugFilters: newDrugFilters });
+
+    this.updateFilterUrl(newActiveFilters);
 
     dispatch(changeActiveFilters(newActiveFilters));
     dispatch(fetchDrugsIfNeeded(newActiveFilters, this.filterGroups));
