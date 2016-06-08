@@ -48,6 +48,7 @@
     "lodash": "^4.13.1",
     "mocha": "^2.5.1",
     "node-sass": "^3.7.0",
+    "qs": "^6.2.0",
     "react": "^15.1.0",
     "react-addons-shallow-compare": "^15.1.0",
     "react-autosuggest": "^3.7.4",
