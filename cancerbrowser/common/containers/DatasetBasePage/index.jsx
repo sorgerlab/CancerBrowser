@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { hashHistory } from 'react-router';
 import qs from 'qs';
+import _ from 'lodash';
 
 import { getFilteredCellLines, getFilteredCellLineCounts } from '../../selectors/cell_line';
 
@@ -89,9 +90,25 @@ class DatasetBasePage extends React.Component {
     // see if filters have changed.
     const filterString = this.props.location.search.replace(/^\?/,'');
     if(filterString.length > 0) {
-      const newFilters = qs.parse(filterString);
-      this.props.dispatch(this.changeActiveFilters(newFilters));
+      const allConfig = qs.parse(filterString);
+      // hack for when filters is not passed in.
+      if(_.isString(allConfig.filters)) {
+        allConfig.filters = null;
+      }
+      this.initFromConfig(allConfig.config);
+      this.props.dispatch(this.changeActiveFilters(allConfig.filters));
     }
+  }
+
+  initFromConfig(config) {
+    const { dispatch } = this.props;
+
+    if(config) {
+      if(config.viewBy) {
+        dispatch(this.changeViewBy(config.viewBy));
+      }
+    }
+
   }
 
   handleViewByChange(newView) {
@@ -99,11 +116,16 @@ class DatasetBasePage extends React.Component {
     dispatch(this.changeViewBy(newView));
     dispatch(this.changeActiveFilters(null));
     dispatch(fetchDatasetIfNeeded(datasetId, newView));
+    this.updateUrlWithConfig(null);
   }
 
   updateUrlWithConfig(filters) {
-    const { datasetId } = this.props;
-    const query = qs.stringify(filters, {encode: true});
+    const { datasetId, viewBy } = this.props;
+    const config = {};
+    config.filters = filters;
+    config.config = {viewBy: viewBy};
+
+    const query = qs.stringify(config, {encode: true});
     hashHistory.replace({pathname: '/dataset/' + datasetId, search: '?' + query });
   }
 
