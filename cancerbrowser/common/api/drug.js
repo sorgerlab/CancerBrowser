@@ -79,25 +79,25 @@ export function getDrugFilters() {
       ]
     }, {
       id: 'targetGene',
-      label: 'Target Gene',
+      label: 'Gene',
       type: 'multi-select',
       // generate based on the data
       values: valuesFromLabelValueItems(drugData, 'targetGene')
     }, {
       id: 'targetRole',
-      label: 'Target Role',
+      label: 'Gene Class',
       type: 'multi-select',
       // generate based on the data
       values: valuesFromLabelValueItems(drugData, 'targetRole')
     }, {
       id: 'targetPathway',
-      label: 'Target Pathway',
+      label: 'Pathway',
       type: 'multi-select',
       // generate based on the data
       values: valuesFromLabelValueItems(drugData, 'targetPathway')
     }, {
       id: 'targetFunction',
-      label: 'Target Function',
+      label: 'Biological Function',
       type: 'multi-select',
       // generate based on the data
       values: valuesFromLabelValueItems(drugData, 'targetFunction')

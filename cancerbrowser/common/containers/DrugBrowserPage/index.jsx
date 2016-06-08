@@ -155,24 +155,30 @@ class DrugBrowserPage extends React.Component {
     return (
       <div>
         <div className='drug-view-controls'>
-          <label className='small-label'>View By</label>
+          <label className='small-label'>Group By</label>
           <div>
-            <ButtonGroup>
+            <ButtonGroup className='spaced-right'>
               <Button className={classNames({ active: drugView === 'class' })}
                  onClick={this.onDrugViewChange.bind(this, 'class')}>
                 Class
               </Button>
+            </ButtonGroup>
+            <ButtonGroup>
+              <Button className={classNames({ active: drugView === 'targetGene' })}
+                  onClick={this.onDrugViewChange.bind(this, 'targetGene')}>
+                Gene
+              </Button>
               <Button className={classNames({ active: drugView === 'targetRole' })}
                   onClick={this.onDrugViewChange.bind(this, 'targetRole')}>
-                Target Role
+                Gene Class
               </Button>
               <Button className={classNames({ active: drugView === 'targetPathway' })}
                   onClick={this.onDrugViewChange.bind(this, 'targetPathway')}>
-                Target Pathway
+                Pathway
               </Button>
               <Button className={classNames({ active: drugView === 'targetFunction' })}
                   onClick={this.onDrugViewChange.bind(this, 'targetFunction')}>
-                Target Function
+                Biological Function
               </Button>
             </ButtonGroup>
           </div>
