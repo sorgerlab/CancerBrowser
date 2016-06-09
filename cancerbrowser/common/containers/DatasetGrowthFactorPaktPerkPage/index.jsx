@@ -278,7 +278,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     } else {
       colorBy = this.props.cellLineColorBy;
       highlightId = this.props.highlightedGrowthFactor;
-      toggledId = this.props.toggledCellLine;
+      toggledId = this.props.toggledGrowthFactor;
     }
 
     const pointLabels = Object.keys(filteredData);
