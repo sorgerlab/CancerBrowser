@@ -3,7 +3,8 @@ import _ from 'lodash';
 
 
 /*
- * Creates a list of points to sample at based on a power scale
+ * Creates a list of points to sample at based on a power scale.
+ * This sampler works well when the x scale is a log scale
  *
  * @param {Number} exponent What exponent to use in the power scale
  * @param {Number} numSamples The number of samples to take

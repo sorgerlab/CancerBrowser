@@ -1,7 +1,6 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
-import d3 from 'd3';
 
 import FunctionPlotd3 from './function_plot';
 
@@ -10,13 +9,14 @@ import './function_plot.scss';
 const propTypes = {
   /* name to use on top of the plot */
   label: React.PropTypes.string,
+
   /* dataset should look something like (one object for each line)
-    [{id:string, label: 'line 1', values: [10, 15, 20] }, ...]
+    [{id:string, label: 'line 1', ... }, ...]
   */
   dataset: React.PropTypes.array,
 
-  /* array of labels for each point */
-  pointLabels: React.PropTypes.array,
+  /* function to plot. takes arguments (datum, x) */
+  func: React.PropTypes.func,
 
   /* width of the plot */
   width: React.PropTypes.number,
@@ -32,17 +32,26 @@ const propTypes = {
   /* function mapping data items to colors */
   colorScale: React.PropTypes.func,
 
-  /* function that formats values e.g. d3.format('0.2f') */
-  valueFormatter: React.PropTypes.func,
+  /* label for the y axis */
+  yAxisLabel: React.PropTypes.string,
 
-  // label for the y axis
-  yAxisLabel: React.PropTypes.string
+  /* label for the x axis */
+  xAxisLabel: React.PropTypes.string,
+
+  /* extent for the y axis and the x axis */
+  yExtent: React.PropTypes.array,
+  xExtent: React.PropTypes.array,
+
+  /* key in a datum to use as an id (default: 'id') */
+  identifier: React.PropTypes.string,
+
+  /* key in a datum to use as an id (default: 'label') */
+  label: React.PropTypes.string
 };
 
 const defaultProps = {
   width: 500,
   height: 200,
-  valueFormatter: d3.format('0.2f'),
   colorScale: () => '#bbb',
   identifier: 'id',
   labelKey: 'label'
@@ -92,9 +101,9 @@ class FunctionPlot extends React.Component {
    * Handler for selecting a highlighted line
    */
   onToggle(d) {
-    const { onChangeToggle } = this.props;
+    const { onChangeToggle, identifier } = this.props;
     if (onChangeToggle) {
-      onChangeToggle(d.id);
+      onChangeToggle(d[identifier]);
     }
   }
 
@@ -112,10 +121,10 @@ class FunctionPlot extends React.Component {
    * Handler for selecting a highlighted line
    */
   onHighlight(d) {
-    const { onChangeHighlight } = this.props;
+    const { onChangeHighlight, identifier } = this.props;
 
     if (onChangeHighlight) {
-      onChangeHighlight(d.id);
+      onChangeHighlight(d[identifier]);
     }
   }
 
