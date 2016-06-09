@@ -229,7 +229,7 @@ const filters = {
     filter: labelContainsIgnoreCase
   }
 };
-const initialSortBy = { prop: 'cellLine', order: 'descending' };
+const initialSortBy = { prop: 'cellLine', order: 'ascending' };
 const keys = ['id'];
 
 /** A way to render options in react-select that includes a bar and count */
