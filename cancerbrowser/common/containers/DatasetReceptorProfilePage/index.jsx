@@ -6,7 +6,7 @@ import './dataset_receptor_profile_page.scss';
 import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetReceptorProfile';
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 import { colorScales } from '../../config/colors';
-import { sortByValueAndId, sortByKey } from '../../utils/sort';
+import { sortByKeysWithDisabled, sortByKey } from '../../utils/sort';
 
 import {
   getFilterValue,
@@ -98,7 +98,7 @@ const mappedColorScales = {
 };
 
 const sortsMap = {
-  magnitude: sortByValueAndId,
+  magnitude: sortByKeysWithDisabled(['-value', 'label'], ['label']),
   cellLine: sortByKey('label'),
   receptor: sortByKey('label')
 };

@@ -5,7 +5,7 @@ import d3 from 'd3';
 
 import Waterfall from './waterfall';
 
-import { sortByValueAndId } from '../../utils/sort';
+import { sortByKeysWithDisabled } from '../../utils/sort';
 
 import './waterfall_plot.scss';
 
@@ -64,7 +64,7 @@ const defaultProps = {
   width: 400,
   height: null, // null height means set height based on max bar size
   labelLocation: 'left',
-  dataSort: sortByValueAndId,
+  dataSort: sortByKeysWithDisabled(['-value', 'label'], ['label']),
   useThresholds: true,
   colorScale: () => '#aaa',
   valueFormatter: d3.format('.2f'),
