@@ -44,7 +44,10 @@ const propTypes = {
 
   // function to use for sorting. takes sortByValues (prop, order),
   // the data to sort as args, and the column definitions
-  sort: React.PropTypes.func
+  sort: React.PropTypes.func,
+
+  // A message to show when the table is empty
+  emptyMessage: React.PropTypes.string
 };
 
 let sortableTableIds = 0;
@@ -209,7 +212,7 @@ class SortableTable extends React.Component {
   }
 
   render() {
-    const { columns, keys, buildRowOptions, className, tableClassName, paginate } = this.props;
+    const { columns, keys, buildRowOptions, className, tableClassName, paginate, emptyMessage } = this.props;
 
     let data, page;
     if (paginate) {
@@ -223,15 +226,19 @@ class SortableTable extends React.Component {
       <div className={classNames('SortableTable', className)}>
         {this.renderSearch()}
         {this.renderPager(page)}
-        <TableNoThWidth
-          className={classNames('table', tableClassName)}
-          dataArray={data}
-          columns={columns}
-          keys={keys}
-          buildRowOptions={buildRowOptions}
-          sortBy={this.state.sortBy}
-          onSort={this.onSort}
-        />
+        {(!data || !data.length) ? (
+          <p className='empty-message'>{emptyMessage}</p>
+        ) : (
+          <TableNoThWidth
+            className={classNames('table', tableClassName)}
+            dataArray={data}
+            columns={columns}
+            keys={keys}
+            buildRowOptions={buildRowOptions}
+            sortBy={this.state.sortBy}
+            onSort={this.onSort}
+          />
+        )}
       </div>
     );
   }
