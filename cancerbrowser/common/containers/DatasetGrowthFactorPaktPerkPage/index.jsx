@@ -157,24 +157,24 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   initView(activeId) {
     const { dispatch, activeFilters } = this.props;
     dispatch(changeViewBy('cellLine'));
-    let newFilters = updateFilterValues(activeFilters, 'cellLineConfig', 'cellLine', [activeId]);
+    let newFilters = updateFilterValues(activeFilters, 'datasetConfig', 'cellLine', [activeId]);
     dispatch(changeActiveFilters(newFilters));
   }
 
   getActiveGrowthFactor() {
     const { filterGroups, activeFilters } = this.props;
-    return getFilterValueItem(filterGroups, activeFilters, 'growthFactorConfig', 'growthFactor');
+    return getFilterValueItem(filterGroups, activeFilters, 'datasetConfig', 'growthFactor');
   }
 
   getActiveCellLine() {
     const { filterGroups, activeFilters } = this.props;
-    return getFilterValueItem(filterGroups, activeFilters, 'cellLineConfig', 'cellLine');
+    return getFilterValueItem(filterGroups, activeFilters, 'datasetConfig', 'cellLine');
   }
 
   getActiveParameter() {
-    const { filterGroups, activeFilters, viewBy } = this.props;
+    const { filterGroups, activeFilters } = this.props;
 
-    const filterGroupId = `${viewBy}Config`;
+    const filterGroupId = 'datasetConfig';
     return getFilterValueItem(filterGroups, activeFilters, filterGroupId, 'parameter');
   }
 
@@ -214,8 +214,8 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   }
 
   getActiveConcentration() {
-    const { activeFilters, viewBy } = this.props;
-    const filterGroupId = `${viewBy}Config`;
+    const { activeFilters } = this.props;
+    const filterGroupId = 'datasetConfig';
 
     return getFilterValue(activeFilters, filterGroupId, 'concentration');
   }

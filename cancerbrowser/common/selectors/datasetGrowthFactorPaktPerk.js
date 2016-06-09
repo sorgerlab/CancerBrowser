@@ -17,24 +17,22 @@ const datasetKey = 'datasetGrowthFactorPaktPerk';
 
 function getActiveGrowthFactor(state) {
   const activeFilters = state.datasets[datasetKey].activeFilters;
-  return getFilterValue(activeFilters, 'growthFactorConfig', 'growthFactor');
+  return getFilterValue(activeFilters, 'datasetConfig', 'growthFactor');
 }
 
 function getActiveCellLine(state) {
   const activeFilters = state.datasets[datasetKey].activeFilters;
-  return getFilterValue(activeFilters, 'cellLineConfig', 'cellLine');
+  return getFilterValue(activeFilters, 'datasetConfig', 'cellLine');
 }
 
 function getActiveParameter(state) {
-  const viewBy = getViewBy(datasetKey, state);
   const activeFilters = state.datasets[datasetKey].activeFilters;
-  return getFilterValue(activeFilters, `${viewBy}Config`, 'parameter');
+  return getFilterValue(activeFilters, 'datasetConfig', 'parameter');
 }
 
 function getActiveConcentration(state) {
-  const viewBy = getViewBy(datasetKey, state);
   const activeFilters = state.datasets[datasetKey].activeFilters;
-  return getFilterValue(activeFilters, `${viewBy}Config`, 'concentration');
+  return getFilterValue(activeFilters, 'datasetConfig', 'concentration');
 }
 
 function getActiveMetricAndType(state) {
@@ -273,8 +271,11 @@ export const getFilterGroups = createSelector(
         concentration
       ];
 
+
+      // important that in this view and in cell line view they use the same ID to share state
+      // (i.e., the selected parameter and concentration)
       filterGroups.push({
-        id: 'growthFactorConfig',
+        id: 'datasetConfig',
         label: 'Configure',
         clearable: false,
         filters: growthFactorConfiguration
@@ -315,7 +316,7 @@ export const getFilterGroups = createSelector(
       ];
 
       filterGroups.push({
-        id: 'cellLineConfig',
+        id: 'datasetConfig',
         label: 'Configure',
         clearable: false,
         filters: cellLineConfiguration
