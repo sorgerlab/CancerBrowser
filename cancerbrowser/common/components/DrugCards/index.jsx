@@ -132,7 +132,15 @@ class DrugCards extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.data !== this.props.data || nextProps.groupBy !== this.props.groupBy) {
-      this.setState({ groups: groupDrugs(nextProps.data, nextProps.groupBy) });
+      let data = nextProps.data;
+
+      // re-apply existing search
+      const { search } = this.state;
+      if (search) {
+        data = data.filter(drug => matchDrug(search, drug));
+      }
+
+      this.setState({ groups: groupDrugs(data, nextProps.groupBy) });
     }
   }
 

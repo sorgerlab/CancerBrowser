@@ -1,22 +1,16 @@
-import { filterData, countMatchedFilterGroups } from './util';
-
 import _ from 'lodash';
 
 //TODO async load drug data.
 import drugData from  './data/drugs.json';
 
 /**
- * Returns all drugs filtered by filterGroups
+ * Returns all drugs
+ *
+ * @return {Promise} resolves to an array of drugs
  */
-export function getDrugs(filterGroups = {}) {
+export function getDrugs() {
   return new Promise(function(resolve) {
-
-    let filteredDrugData = _.clone(drugData);
-    Object.keys(filterGroups).forEach(function(key) {
-      const filterGroup = filterGroups[key];
-      filteredDrugData = filterData(filteredDrugData, filterGroup);
-    });
-    resolve(filteredDrugData);
+    resolve(_.clone(drugData));
   });
 }
 
@@ -27,82 +21,4 @@ export function getDrugInfo(drugId) {
   return getDrugs().then(function(drugs) {
     return drugs.filter((d) => d.id === drugId)[0];
   });
-}
-
-/**
- * Provides counts for each filter group in the allFilterGroup
- *
- * @param {Array} cellLines array of cell line data to match
- * @param {Object} filter groups for the cell line data.
- *
- */
-export function getDrugCounts(drugs, allFilterGroups) {
-  return countMatchedFilterGroups(drugs, allFilterGroups);
-}
-
-/**
- * Creates a list of values from items of form { value, label }
- * sorted by label and with missing values removed
- *
- * @param {Array} collection Collection of items to iterate over
- * @param {String} labelValueKey Key to map collection on to get { value, label }
- * @return {Array}
- */
-function valuesFromLabelValueItems(collection, labelValueKey) {
-  return _.chain(collection)
-    .map(d => d[labelValueKey])
-    .keyBy('value') // keyBy value then get values to eliminate duplicates
-    .values()
-    .compact()
-    .sortBy('label')
-    .value();
-}
-
-/**
- * Provides the filter definition for drugs, generated based on
- * values in the data.
- *
- * @return {Array}
- */
-export function getDrugFilters() {
-  const drugFilters = [
-    {
-      id: 'class',
-      label: 'Class',
-      type: 'multi-select',
-      values: [
-        { value: '00-preclinical', label: 'Preclinical' },
-        { value: '10-phase1', label: 'Phase 1' },
-        { value: '20-phase2', label: 'Phase 2' },
-        { value: '30-phase3', label: 'Phase 3' },
-        { value: '40-approved', label: 'Approved' }
-      ]
-    }, {
-      id: 'targetGene',
-      label: 'Gene',
-      type: 'multi-select',
-      // generate based on the data
-      values: valuesFromLabelValueItems(drugData, 'targetGene')
-    }, {
-      id: 'targetRole',
-      label: 'Gene Class',
-      type: 'multi-select',
-      // generate based on the data
-      values: valuesFromLabelValueItems(drugData, 'targetRole')
-    }, {
-      id: 'targetPathway',
-      label: 'Pathway',
-      type: 'multi-select',
-      // generate based on the data
-      values: valuesFromLabelValueItems(drugData, 'targetPathway')
-    }, {
-      id: 'targetFunction',
-      label: 'Biological Function',
-      type: 'multi-select',
-      // generate based on the data
-      values: valuesFromLabelValueItems(drugData, 'targetFunction')
-    }
-  ];
-
-  return drugFilters;
 }

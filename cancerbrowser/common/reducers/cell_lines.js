@@ -10,8 +10,6 @@ const INITIAL_STATE = {
   isFetching: false,
   items: [],
 
-  filtered: [],
-  counts: {},
   info: {}
 };
 
