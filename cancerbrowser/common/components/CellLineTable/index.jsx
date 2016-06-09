@@ -120,9 +120,9 @@ const mutationGenesColumns = mutationGenes.map(gene => ({
   title: gene,
   className(val) {
     if (val) {
-      return `mutation-${val.toLowerCase().replace(/\s/g, '-').replace(/[*]/g, '')}`;
+      return `mutation-col mutation-${val.toLowerCase().replace(/\s/g, '-').replace(/[*]/g, '')}`;
     } else {
-      return 'no-data';
+      return 'mutation-col no-data';
     }
   }
 }));
