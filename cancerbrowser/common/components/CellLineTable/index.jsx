@@ -264,6 +264,7 @@ class CellLineTable extends React.Component {
         searchable={true}
         initialSortBy={initialSortBy}
         filters={filters}
+        emptyMessage={'No cell lines match the set filters.'}
       />
     );
   }

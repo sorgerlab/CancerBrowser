@@ -216,9 +216,15 @@ class DrugCards extends React.Component {
       orderedGroupKeys.push('unknown');
     }
 
+    let emptyMessage;
+    if (!groups || !Object.keys(groups).length) {
+      emptyMessage = <p className='empty-message'>No drugs match the set filters.</p>;
+    }
+
     return (
       <div className='DrugCards'>
         {this.renderSearch()}
+        {emptyMessage}
         {orderedGroupKeys.map((key, index) => this.renderGroup(groups[key], index))}
       </div>
     );
