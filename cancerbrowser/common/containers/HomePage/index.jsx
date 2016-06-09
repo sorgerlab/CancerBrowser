@@ -65,9 +65,12 @@ class HomePage extends React.Component {
     return (
       <PageLayout className="HomePage">
         <h1>HMS LINCS Cancer Browser</h1>
+        <p className='subtitle'>Select a Specific Cell Line or Drug to Explore</p>
         <div className='omni-search-container'>
           {this.renderSearch()}
         </div>
+
+        <p className='subtitle'>Browse All Cell Lines or Drugs</p>
 
         <Link to="/cell_lines" className="btn btn-default spaced-right" role="button">Cell Line Browser</Link>
         <Link to="/drugs" className="btn btn-default" role="button">Drug Browser</Link>
