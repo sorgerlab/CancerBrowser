@@ -56,9 +56,19 @@ class Waterfall {
    */
   updateScales(data, props) {
     const { dataExtent, colorScale } = props;
+
+    let xMin = 0, xMax = this.width;
+    // add some space for infinity triangles if needed
+    if (data.some(d => d.value === Number.NEGATIVE_INFINITY)) {
+      xMin += 10;
+    }
+    if (data.some(d => d.value === Number.POSITIVE_INFINITY)) {
+      xMax -= 10;
+    }
+
     // scales recomputed each draw
     const xScale = d3.scale.linear()
-      .range([0, this.width])
+      .range([xMin, this.width])
       .clamp(true);
 
     if(dataExtent) {
@@ -103,6 +113,36 @@ class Waterfall {
     const barWidth = d => Math.max(rightEdge(d) - leftEdge(d), MINIMUM_BAR_SIZE);
 
     return { leftEdge, rightEdge, barWidth };
+  }
+
+  // function to generate bar path that handles infinity
+  makeBar(d, leftEdge, rightEdge, barHeight, triangleWidth) {
+    const left = leftEdge(d);
+    const right = rightEdge(d);
+    const height = barHeight;
+    const triangleMid = height / 2;
+
+    if (d.value === Number.POSITIVE_INFINITY) {
+      const triangleStart = right;
+      const trianglePoint = right + triangleWidth;
+      return `M ${left} 0
+        H ${triangleStart}
+        L ${trianglePoint} ${triangleMid}
+        L ${triangleStart} ${height}
+        H ${left}
+        Z`;
+    }  else if (d.value === Number.NEGATIVE_INFINITY) {
+      const triangleStart = left;
+      const trianglePoint = left - triangleWidth;
+      return `M ${right} 0
+        H ${triangleStart}
+        L ${trianglePoint} ${triangleMid}
+        L ${triangleStart} ${height}
+        H ${right}
+        Z`;
+    }
+
+    return `M ${left} 0 H ${right} V ${height} H ${left} Z`;
   }
 
   /**
@@ -277,6 +317,7 @@ class Waterfall {
 
     // minus 2 to make room for the stroke
     const barHeight = scales.y.rangeBand() - 2;
+    const infinityTriangleWidth = 10;
 
     const bars = this.g
       .selectAll('.bar-container')
@@ -290,18 +331,16 @@ class Waterfall {
       .classed('clickable', true)
       .attr('transform', d => `translate(0 ${scales.y(d.id)})`);
 
-    const { leftEdge, rightEdge, barWidth } = this.getRectFunctions(centerValue, scales.x, 'value');
+    const { leftEdge, rightEdge } = this.getRectFunctions(centerValue, scales.x, 'value');
     const { leftEdge: leftEdgeThreshold, barWidth: barWidthThreshold } =
       this.getRectFunctions(centerValue, scales.x, 'threshold');
 
     // add in value bars
     barsEnter
-      .append('rect')
-        .classed('bar', true)
-        .style('fill', (d) => scales.color(d))
-        .attr('height', barHeight)
-        .attr('x', leftEdge)
-        .attr('width', barWidth);
+      .append('path')
+      .classed('bar', true)
+      .style('fill', d => scales.color(d))
+      .attr('d', d => this.makeBar(d, leftEdge, rightEdge, barHeight, infinityTriangleWidth));
 
     // add in threshold bars -- always add them even if not using
     // thresholds in case we change to using thresholds later (in
@@ -321,7 +360,7 @@ class Waterfall {
       .classed('bar-value', true)
       .attr('text-anchor', 'start')
       .attr('x', rightEdge)
-      .attr('dx', 5)
+      .attr('dx', d => d.value === Number.POSITIVE_INFINITY ? infinityTriangleWidth + 5 : 5)
       .attr('dy', barHeight - 4);
 
     // UPDATE bars
@@ -334,18 +373,30 @@ class Waterfall {
     bars.select('.bar')
       .classed('highlight', (d) => d.id === highlightId)
       .classed('toggled', (d) => d.id === toggledId)
-      .attr('height', barHeight)
       .style('fill', (d) => scales.color(d))
       .transition()
       .duration(transitionDuration)
       .delay(transitionDelay)
-      .attr('x', leftEdge)
-      .attr('width', barWidth);
+      .attr('d', d => this.makeBar(d, leftEdge, rightEdge, barHeight, infinityTriangleWidth));
 
     // bar values (text)
     bars.select('.bar-value')
       .style('opacity', d => (d.id === highlightId || d.id === toggledId) ? 1 : 0)
-      .text(d => valueFormatter ? valueFormatter(d.value) : d.value)
+      .text(d => {
+        // for disabled values show n/a
+        if (d.disabled) {
+          return 'N/A';
+        }
+
+        // for infinity, show the infinity symbol instead of the word
+        if (d.value === Number.POSITIVE_INFINITY) {
+          return '∞';
+        } else if (d.value === Number.NEGATIVE_INFINITY) {
+          return '-∞';
+        }
+
+        return valueFormatter ? valueFormatter(d.value) : d.value;
+      })
       .transition()
       .duration(transitionDuration)
       .delay(transitionDelay)

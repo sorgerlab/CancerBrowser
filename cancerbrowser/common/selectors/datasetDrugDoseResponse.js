@@ -64,9 +64,6 @@ export const getFilteredViewData = createSelector(
     // NOTE sometimes GR50 can be -Inf or Inf
     const filteredData = datasetFilteredByCellLines.filter(d => d[idFilterKey] === idFilterValue);
 
-    console.log('dataset', dataset);
-    console.log('datasetFilteredByCellLines', datasetFilteredByCellLines);
-    console.log('filtered data', idFilterKey, idFilterValue, filteredData);
     return filteredData;
   }
 );
@@ -161,7 +158,6 @@ export const getFilterGroups = createSelector(
           .map(d => ({ label: d.label, value: d.id }))
           .value();
       }
-      console.log('dataset=', dataset);
 
       const cellLineConfiguration = [
         {
