@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import d3 from 'd3';
 import { Row, Col } from 'react-bootstrap';
 
 import { getFilteredViewData, getFilterGroups, getWaterfallPlotData } from '../../selectors/datasetDrugDoseResponse';
@@ -104,6 +105,10 @@ const sortsMap = {
   drug: sortByKey('label')
 };
 
+
+// define this array once
+const grMaxExtent = [-1, 1];
+
 /**
  * React container for a dataset page page - Drug Dose Response dataset page
  */
@@ -180,7 +185,7 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
     dispatch(changeCellLineSortBy(value));
   }
 
-  renderWaterfall(label, dataset) {
+  renderWaterfall(label, dataset, extent) {
     const { viewBy } = this.props;
     let highlightId;
 
@@ -212,6 +217,7 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
           highlightId={highlightId}
           toggledId={toggledId}
           useThresholds={false}
+          dataExtent={extent}
           colorScale={mappedColorScales[colorBy]}
           dataSort={sortBy}
           onChangeHighlight={this.onChangeHighlight}
@@ -234,17 +240,19 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
 
     const { gr50, grMax } = waterfallPlotData;
 
+    const gr50Extent = d3.extent(gr50.map(d => d.value).concat([0]));
+
     return (
       <div className='waterfalls-container'>
         <Row>
           <Col md={6}>
             <AutoWidth>
-              {this.renderWaterfall('GR50', gr50)}
+              {this.renderWaterfall('GR50', gr50, gr50Extent)}
             </AutoWidth>
           </Col>
           <Col md={6}>
             <AutoWidth>
-              {this.renderWaterfall('GRMax', grMax)}
+              {this.renderWaterfall('GRMax', grMax, grMaxExtent)}
             </AutoWidth>
           </Col>
         </Row>
