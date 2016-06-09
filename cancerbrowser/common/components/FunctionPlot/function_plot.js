@@ -98,8 +98,8 @@ class FunctionPlot {
    *
    */
   update(props) {
-    const { dataset, pointLabels, width, height, highlightId,
-      toggledId, valueFormatter, yAxisLabel, func, identifier } = props;
+    const { dataset, width, height, highlightId, toggledId,
+      valueFormatter, yAxisLabel, xAxisLabel, func, identifier } = props;
 
     // Early out
     if(!dataset) {
@@ -141,6 +141,18 @@ class FunctionPlot {
     this.xAxisGroup
       .call(xAxis);
 
+    // add in x axis label if provided
+    this.g.select('.x-axis-label').remove();
+    if (xAxisLabel) {
+      this.g.append('text')
+        .classed('x-axis-label axis-label', true)
+        .attr('text-anchor', 'middle')
+        .attr('x', this.width / 2)
+        .attr('y', this.height)
+        .attr('dy', 40)
+        .text(xAxisLabel);
+    }
+
     const yAxis = d3.svg.axis()
       .scale(scales.y)
       .orient('left')
@@ -149,11 +161,11 @@ class FunctionPlot {
     this.yAxisGroup
       .call(yAxis);
 
-    // add in value axis label if provided
+    // add in y axis label if provided
     this.g.select('.y-axis-label').remove();
     if (yAxisLabel) {
       this.g.append('text')
-        .classed('y-axis-label', true)
+        .classed('y-axis-label axis-label', true)
         .attr('text-anchor', 'middle')
         .attr('transform', `translate(0 ${this.height / 2}) rotate(-90)`)
         .attr('dy', -40)
