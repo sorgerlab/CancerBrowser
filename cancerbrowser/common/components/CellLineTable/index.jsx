@@ -2,7 +2,6 @@ import React from 'react';
 import _ from 'lodash';
 import { Link } from 'react-router';
 import shallowCompare from 'react-addons-shallow-compare';
-import { DropdownButton, MenuItem } from 'react-bootstrap';
 import { Icon } from 'react-fa';
 
 import * as StringUtils from '../../utils/string_utils';

@@ -135,6 +135,7 @@ class SortableTable extends React.Component {
 
     return (
       <div className='search-container'>
+        <label className='small-label'>Search</label>
         <input
           className='form-control'
           type="search"

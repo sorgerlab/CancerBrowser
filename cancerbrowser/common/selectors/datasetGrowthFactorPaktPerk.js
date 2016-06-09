@@ -106,7 +106,12 @@ export const getFilteredViewData = createSelector(
   (dataset, viewBy, activeGrowthFactor, activeCellLine, { metric: activeMetric, type: activeType },
     activeConcentration, filteredCellLines) => {
 
-    const datasetFilteredByCellLines = filterDataByCellLines(dataset, filteredCellLines);
+
+
+    let filteredData = dataset;
+    if(viewBy === 'growthFactor') {
+      filteredData = filterDataByCellLines(dataset, filteredCellLines);
+    }
 
     let idFilterKey, idFilterValue, idKey, labelKey;
 
@@ -132,7 +137,7 @@ export const getFilteredViewData = createSelector(
     }
 
     // filter to just the selected growth factor and concentration first
-    const filteredData = datasetFilteredByCellLines.filter(d =>
+    filteredData = filteredData.filter(d =>
       d[idFilterKey] === idFilterValue &&
       String(d['Ligand Concentration']) === String(activeConcentration));
 
@@ -295,7 +300,7 @@ export const getFilterGroups = createSelector(
       const cellLineConfiguration = [
         {
           id: 'cellLine',
-          label: 'Cell Lines',
+          label: 'Cell Line',
           type: 'select',
           values: cellLines,
           options: {

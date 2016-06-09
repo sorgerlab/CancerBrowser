@@ -5,7 +5,10 @@ import d3 from 'd3';
 import { Row, Col } from 'react-bootstrap';
 
 import { getFilteredViewData, getFilterGroups, getParallelCoordinatesPlotData } from '../../selectors/datasetGrowthFactorPaktPerk';
-import { getFilterValue, getFilterValueItem } from '../../utils/filter_utils';
+import {
+  getFilterValue,
+  getFilterValueItem,
+  updateFilterValues } from '../../utils/filter_utils';
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 import { colorScales } from '../../config/colors';
 import { sortByValueAndId, sortByKey } from '../../utils/sort';
@@ -41,6 +44,7 @@ const datasetKey = 'datasetGrowthFactorPaktPerk';
 
 const propTypes = {
   dispatch: React.PropTypes.func,
+  params: React.PropTypes.object,
   datasetData: React.PropTypes.array,
   datasetInfo: React.PropTypes.object,
   highlightedCellLine: React.PropTypes.string,
@@ -119,6 +123,7 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     super(props, viewOptions, changeViewBy, changeActiveFilters);
     this.renderWaterfall = this.renderWaterfall.bind(this);
     this.renderWaterfalls = this.renderWaterfalls.bind(this);
+    this.renderHelpMessage = this.renderHelpMessage.bind(this);
     this.renderGrowthFactorChartControls = this.renderGrowthFactorChartControls.bind(this);
     this.onChangeHighlight = this.onChangeHighlight.bind(this);
     this.onChangeToggle = this.onChangeToggle.bind(this);
@@ -134,11 +139,26 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
+    const { dispatch, params } = this.props;
     super.componentDidMount();
 
     // get the extra dataset file
     dispatch(fetchDatasetIfNeeded(datasetRawId));
+
+    if(params.entityId) {
+      this.initView(params.entityId);
+    }
+  }
+
+  /**
+   * Set initial display to focus on the activeId
+   * @param {String} activeId id of the cell line to display
+   */
+  initView(activeId) {
+    const { dispatch, activeFilters } = this.props;
+    dispatch(changeViewBy('cellLine'));
+    let newFilters = updateFilterValues(activeFilters, 'cellLineConfig', 'cellLine', [activeId]);
+    dispatch(changeActiveFilters(newFilters));
   }
 
   getActiveGrowthFactor() {
@@ -330,11 +350,22 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     }
   }
 
+  renderHelpMessage() {
+    const { viewBy } = this.props;
+    const entityName = (viewBy === 'cellLine') ? 'Cell Line' : 'Growth Factor';
+    return (
+      <div className="help">
+        <p>Use the <strong>{entityName}</strong> filter on the left to show pAKT / pERK data for that {entityName.toLowerCase()}.</p>
+        <p>The metric and concentration visualized can be switched using the <strong>Assay Parameter</strong> and <strong>Growth Factor Concentration</strong> filters. </p>
+      </div>
+    );
+  }
+
   renderWaterfalls() {
     const { filteredData } = this.props;
 
     if (!filteredData || _.isEmpty(filteredData)) {
-      return null;
+      return this.renderHelpMessage();
     }
 
     const times = Object.keys(filteredData);
