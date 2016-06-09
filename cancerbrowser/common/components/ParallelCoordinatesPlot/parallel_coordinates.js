@@ -5,7 +5,7 @@ class ParallelCoordinates {
   /**
    * Constructor. Sets up container location and scales for visual.
    *
-   * @param {Object} container Container DOM element. Expected to be a table.
+   * @param {Object} container Container DOM element.
    */
   constructor(container) {
     this.svg = d3.select(container)
@@ -59,12 +59,12 @@ class ParallelCoordinates {
 
 
     const yScale = d3.scale.linear()
-      .range([0, this.height]);
+      .range([this.height, 0]);
 
     if(dataExtent) {
       yScale.domain(dataExtent);
     } else {
-      yScale.domain(d3.extent(_.flatten(dataset.map(d => d.values))).reverse());
+      yScale.domain(d3.extent(_.flatten(dataset.map(d => d.values))));
     }
 
     return { x: xScale, y: yScale, color: colorScale };

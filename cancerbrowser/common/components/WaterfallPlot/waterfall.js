@@ -9,7 +9,7 @@ class Waterfall {
   /**
    * Constructor. Sets up container location and scales for visual.
    *
-   * @param {Object} container Container DOM element. Expected to be a table.
+   * @param {Object} container Container DOM element.
    */
   constructor(container) {
     this.svg = d3.select(container)
