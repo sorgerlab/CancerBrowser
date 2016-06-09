@@ -240,7 +240,9 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
 
     const { gr50, grMax } = waterfallPlotData;
 
-    const gr50Extent = d3.extent(gr50.map(d => d.value).concat([0]));
+    const gr50Extent = d3.extent(gr50.map(d => d.value)
+      .filter(d => d !== Number.POSITIVE_INFINITY && d !== Number.NEGATIVE_INFINITY)
+      .concat([0]));
 
     return (
       <div className='waterfalls-container'>
