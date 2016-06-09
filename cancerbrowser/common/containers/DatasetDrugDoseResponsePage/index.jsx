@@ -26,7 +26,7 @@ import AutoWidth from '../../components/AutoWidth';
 import WaterfallPlot from '../../components/WaterfallPlot';
 import FunctionPlot from '../../components/FunctionPlot';
 
-// import './dataset_drug_dose_response_page.scss';
+import './dataset_drug_dose_response_page.scss';
 
 /// Specify the dataset ID here: ////
 const datasetId = 'drug_dose_response';
@@ -310,6 +310,7 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
       <div className='dosage-curve-container'>
         <Row>
           <Col md={6}>
+            <h4>Dosage Curve</h4>
             <FunctionPlot
               dataset={filteredData}
               func={dosageCurveFunction}
