@@ -345,7 +345,13 @@ class Waterfall {
     // bar values (text)
     bars.select('.bar-value')
       .style('opacity', d => (d.id === highlightId || d.id === toggledId) ? 1 : 0)
-      .text(d => valueFormatter ? valueFormatter(d.value) : d.value)
+      .text(d => {
+        if (d.disabled) {
+          return 'N/A';
+        }
+
+        return valueFormatter ? valueFormatter(d.value) : d.value;
+      })
       .transition()
       .duration(transitionDuration)
       .delay(transitionDelay)
