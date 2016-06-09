@@ -2,8 +2,7 @@ import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import _ from 'lodash';
 import classNames from 'classnames';
-import { DataMixin, Table, Pagination } from 'react-data-components';
-
+import { DataMixin, Table, Pagination, utils } from 'react-data-components';
 import './sortable_table.scss';
 
 // Note many of these properties are matched to react-data-components/DataTable
@@ -106,7 +105,6 @@ class SortableTable extends React.Component {
     this.onSort = this.onSort.bind(this);
 
     // add in the DataMixin functions since ES6 classes do not support mixins
-    this.componentWillReceiveProps = DataMixin.componentWillReceiveProps.bind(this);
     this.componentWillMount = DataMixin.componentWillMount.bind(this);
     this.onFilter = DataMixin.onFilter.bind(this);
     this.buildPage = DataMixin.buildPage.bind(this);
@@ -117,6 +115,29 @@ class SortableTable extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
+
+  // slighlty modified from react-data-components since we do not want filterValues to reset
+  // each time new props are received.
+  componentWillReceiveProps(nextProps) {
+    const newState = {
+      data: nextProps.initialData && nextProps.initialData.slice(0),
+      currentPage: 0,
+      pageLength: nextProps.initialPageLength
+    };
+
+    if (this.props.initialSortBy !== nextProps.initialSortBy) {
+      newState.sortBy = nextProps.initialSortBy;
+    }
+
+    if (newState.data && this.state.filterValues.globalSearch) {
+      // duplicated from DataMixin.onFilter to maintain filter/sort state when data is filtered externally
+      newState.data = utils.filter(nextProps.filters, this.state.filterValues, newState.data);
+      newState.data = utils.sort(this.state.sortBy || newState.sortBy, newState.data);
+    }
+
+    this.setState(newState);
+  }
+
 
   handleSearchChange(evt) {
     this.onFilter('globalSearch', evt.target.value);
