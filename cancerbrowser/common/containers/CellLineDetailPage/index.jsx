@@ -74,7 +74,7 @@ class CellLineDetailPage extends React.Component {
   */
   renderDatasets(cellLine) {
     const links = cellLine.dataset.map((dataset) => {
-      return <Link to={`/dataset/${dataset.value}/${cellLine.id}`} className="" >{dataset.label}</Link>;
+      return <Link to={`/dataset/${dataset.value}/${cellLine.id}/cellLine`} className="" >{dataset.label}</Link>;
     });
 
     return (

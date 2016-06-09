@@ -94,7 +94,7 @@ const allColumns = {
     title: 'Dataset',
     render(val, data) {
       return (
-        <DatasetSelector datasets={val} entityId={data.id} />
+        <DatasetSelector datasets={val} entityId={data.id} entityType={'cellLine'} />
       );
     }
   }
@@ -145,7 +145,7 @@ function getDatasetColumns(datasets) {
       },
       render(val, data) {
         if (val.find(d => d.value === datasetId)) {
-          return <Link to={`/dataset/${datasetId}/${data.id}`}><Icon name='bar-chart'/></Link>;
+          return <Link to={`/dataset/${datasetId}/${data.id}/cellLine`}><Icon name='bar-chart'/></Link>;
         }
 
         return '';

@@ -31,11 +31,11 @@ export default (
     <Route path="/drug/:drugId" component={DrugDetailPage} />
     <Route path="datasets" component={DatasetSummaryPage} />
     <Route path="dataset">
-      <Route path="receptor_profile(/:entityId)" component={DatasetReceptorProfilePage} />
-      <Route path="basal_phospho(/:entityId)" component={DatasetBasalPhosphoPage} />
-      <Route path="basal_total(/:entityId)" component={DatasetBasalTotalPage} />
-      <Route path="growth_factor_pakt_perk(/:entityId)" component={DatasetGrowthFactorPaktPerkPage} />
-      <Route path="drug_dose_response(/:entityId)" component={DatasetDrugDoseResponsePage} />
+      <Route path="receptor_profile(/:entityId)(/:entityType)" component={DatasetReceptorProfilePage} />
+      <Route path="basal_phospho(/:entityId)(/:entityType)" component={DatasetBasalPhosphoPage} />
+      <Route path="basal_total(/:entityId)(/:entityType)" component={DatasetBasalTotalPage} />
+      <Route path="growth_factor_pakt_perk(/:entityId)(/:entityType)" component={DatasetGrowthFactorPaktPerkPage} />
+      <Route path="drug_dose_response(/:entityId)(/:entityType)" component={DatasetDrugDoseResponsePage} />
     </Route>
     <Route path="about" component={About} />
   </Route>
