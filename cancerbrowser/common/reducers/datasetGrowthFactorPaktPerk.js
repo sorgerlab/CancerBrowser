@@ -20,11 +20,7 @@ const INITIAL_STATE = {
   },
 
   activeFilters: {
-    growthFactorConfig: [
-      { id: 'concentration', values: ['1'] },
-      { id: 'parameter', values: ['paktFoldChange'] }
-    ],
-    cellLineConfig: [
+    datasetConfig: [
       { id: 'concentration', values: ['1'] },
       { id: 'parameter', values: ['paktFoldChange'] }
     ]
