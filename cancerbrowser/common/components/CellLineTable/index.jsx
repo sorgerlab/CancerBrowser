@@ -35,7 +35,7 @@ const allColumns = {
   },
 
   cellLineGlyph: {
-    title: '',
+    title: 'Mutation Summary',
     className: 'cell-line-td',
     render(val, row) {
       return (
@@ -106,7 +106,6 @@ const summaryColumns = [
   allColumns.cellLineGlyph,
   allColumns.receptorStatus,
   allColumns.molecularSubtype,
-  allColumns.mutationStatusSummary,
   allColumns.dataset
 ];
 
