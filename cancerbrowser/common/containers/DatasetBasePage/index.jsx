@@ -182,7 +182,7 @@ class DatasetBasePage extends React.Component {
 
     return (
       <div className='cell-line-view-controls'>
-        <label className='small-label'>View By</label>
+        <label className='small-label'>View Across</label>
         <div>
           <ButtonGroup>
             {this.viewOptions.map((option, i) => {
