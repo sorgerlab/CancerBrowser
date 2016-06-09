@@ -109,3 +109,26 @@ h1 {
     }
   }
 }
+
+.color-icon {
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  border-radius: 100%;
+  margin-right: 0.3em;
+  margin-bottom: 1px;
+  background-color: #eee;
+}
+
+.bg-nm {
+  background-color: $nm-color;
+}
+.bg-her2amp {
+  background-color: $her2amp-color;
+}
+.bg-tnbc {
+  background-color: $tnbc-color;
+}
+.bg-hrplus {
+  background-color: $hrplus-color;
+}
