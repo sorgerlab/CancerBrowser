@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import _ from 'lodash';
 import { Link } from 'react-router';
 import shallowCompare from 'react-addons-shallow-compare';
@@ -26,16 +27,20 @@ const allColumns = {
     // since render doesn't result in a simple string, we can't use it for sorting
     // so we provide sortValue
     sortValue: (val) => val.label,
-    render(val) {
+    render(val, row) {
       return (
-        <Link to={`/cell_line/${val.value}`}>{val.label}</Link>
+        <Link to={`/cell_line/${val.value}`}>
+          <span className={classNames('color-icon', `bg-${row.receptorStatus.value}`)}
+              title={`Receptor Status: ${row.receptorStatus.label}`} />
+          {val.label}
+        </Link>
       );
     },
     className: 'cell-line-td'
   },
 
   cellLineGlyph: {
-    title: '',
+    title: 'Mutation Summary',
     className: 'cell-line-td',
     render(val, row) {
       return (
@@ -106,7 +111,6 @@ const summaryColumns = [
   allColumns.cellLineGlyph,
   allColumns.receptorStatus,
   allColumns.molecularSubtype,
-  allColumns.mutationStatusSummary,
   allColumns.dataset
 ];
 
@@ -116,9 +120,9 @@ const mutationGenesColumns = mutationGenes.map(gene => ({
   title: gene,
   className(val) {
     if (val) {
-      return `mutation-${val.toLowerCase().replace(/\s/g, '-').replace(/[*]/g, '')}`;
+      return `mutation-col mutation-${val.toLowerCase().replace(/\s/g, '-').replace(/[*]/g, '')}`;
     } else {
-      return 'no-data';
+      return 'mutation-col no-data';
     }
   }
 }));
