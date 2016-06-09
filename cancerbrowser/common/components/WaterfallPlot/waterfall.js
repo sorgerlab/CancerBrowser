@@ -441,7 +441,7 @@ class Waterfall {
       .attr('x', 0)
       .attr('y', (d) => scales.y(d.id))
       .attr('width', this.width)
-      .attr('height', barHeight)
+      .attr('height', scales.y.rangeBand() + 1)
       .style('fill', '#fff')
       .on('mouseenter', this.onMouseEnter)
       .on('mouseleave', this.onMouseLeave)
