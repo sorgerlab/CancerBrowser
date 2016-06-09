@@ -9,7 +9,7 @@ class Waterfall {
   /**
    * Constructor. Sets up container location and scales for visual.
    *
-   * @param {Object} container Container DOM element. Expected to be a table.
+   * @param {Object} container Container DOM element.
    */
   constructor(container) {
     this.svg = d3.select(container)
@@ -441,7 +441,7 @@ class Waterfall {
       .attr('x', 0)
       .attr('y', (d) => scales.y(d.id))
       .attr('width', this.width)
-      .attr('height', barHeight)
+      .attr('height', scales.y.rangeBand() + 1)
       .style('fill', '#fff')
       .on('mouseenter', this.onMouseEnter)
       .on('mouseleave', this.onMouseLeave)

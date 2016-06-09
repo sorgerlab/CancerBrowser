@@ -61,7 +61,7 @@ class DrugDetailPage extends React.Component {
    */
   renderDatasets(drugInfo) {
     const links = drugInfo.dataset.map((dataset) => {
-      return <Link to={`/dataset/${dataset.value}/${drugInfo.id}`} className="" >{dataset.label}</Link>;
+      return <Link to={`/dataset/${dataset.value}/${drugInfo.id}/drug`} className="" >{dataset.label}</Link>;
     });
 
     return (

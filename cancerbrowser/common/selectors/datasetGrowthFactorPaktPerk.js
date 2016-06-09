@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { getDataset, getViewBy } from './dataset';
 import { cellLinesFilterGroup, getFilteredCellLines } from './cell_line';
 import { getFilterValue } from '../utils/filter_utils';
+import { sortByKey } from '../utils/sort';
 
 const datasetId = 'growth_factor_pakt_perk';
 const datasetRawId = 'growth_factor_pakt_perk_raw';
@@ -295,6 +296,8 @@ export const getFilterGroups = createSelector(
           .values()
           .map(d => ({ label: d['Cell Line Name'], value: d['id'] }))
           .value();
+
+        cellLines.sort(sortByKey('value'));
       }
 
       const cellLineConfiguration = [

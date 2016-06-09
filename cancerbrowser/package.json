@@ -17,6 +17,11 @@
     ]
   },
   "author": "Douglas P.W. Russell",
+  "contributors": [
+    {"name": "Douglas Russel", "email":"Douglas_Russell@hms.harvard.edu"},
+    {"name": "Peter Beshai", "email":"peter@bocoup.com"},
+    {"name": "Jim Vallandingham", "email":"jim@bocoup.com"}
+  ],
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.5.2",

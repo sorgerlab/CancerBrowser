@@ -117,7 +117,7 @@ class DrugCard extends React.Component {
           {target && target.label}
         </div>
         <div className='drug-datasets'>
-          <DatasetSelector datasets={data.dataset} bsSize='xs' entityId={data.id} />
+          <DatasetSelector datasets={data.dataset} bsSize='xs' entityId={data.id} entityType={'drug'} />
         </div>
       </div>
     );
