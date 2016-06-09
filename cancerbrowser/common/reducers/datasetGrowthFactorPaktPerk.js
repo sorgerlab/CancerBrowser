@@ -22,13 +22,11 @@ const INITIAL_STATE = {
   activeFilters: {
     growthFactorConfig: [
       { id: 'concentration', values: ['1'] },
-      { id: 'parameter', values: ['paktFoldChange'] },
-      { id: 'growthFactor', values: ['200852.0'] }
+      { id: 'parameter', values: ['paktFoldChange'] }
     ],
     cellLineConfig: [
       { id: 'concentration', values: ['1'] },
-      { id: 'parameter', values: ['paktFoldChange'] },
-      { id: 'cellLine', values: ['mcf7'] }
+      { id: 'parameter', values: ['paktFoldChange'] }
     ]
   },
   viewBy: 'growthFactor',

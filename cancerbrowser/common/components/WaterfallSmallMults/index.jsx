@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { sortByKey } from '../../utils/sort';
 
 import SmallWaterfallPlot from './SmallWaterfallPlot';
 
@@ -51,7 +52,7 @@ class WaterfallSmallMults extends React.Component {
   render() {
     return (
       <div>
-        {this.props.datasets.map((d) => this.renderSmallMult(d) )}
+        {this.props.datasets.sort(sortByKey('id')).map((d) => this.renderSmallMult(d) )}
       </div>
     );
   }

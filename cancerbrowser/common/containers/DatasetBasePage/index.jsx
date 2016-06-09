@@ -86,6 +86,12 @@ class DatasetBasePage extends React.Component {
     this.initFromUrl();
   }
 
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch(this.changeActiveFilters(null));
+    // TODO: reset other config values (might need to be done at top level page?)
+  }
+
   initFromUrl() {
     // see if filters have changed.
     const filterString = this.props.location.search.replace(/^\?/,'');
@@ -112,21 +118,35 @@ class DatasetBasePage extends React.Component {
   }
 
   handleViewByChange(newView) {
-    const { datasetId, dispatch } = this.props;
+    const { datasetId, dispatch, activeFilters } = this.props;
     dispatch(this.changeViewBy(newView));
-    dispatch(this.changeActiveFilters(null));
     dispatch(fetchDatasetIfNeeded(datasetId, newView));
-    this.updateUrlWithConfig(null, {viewBy: newView});
+    this.updateUrlWithConfig(activeFilters, {viewBy: newView});
   }
 
-  updateUrlWithConfig(filters, config) {
+  /**
+   * Set filters and configs in the URL for sharing and persistence.
+   *
+   * @param {Object} fiters FilterGroups Object
+   * @param {Object} config other configs to store using config name as key
+   *    and config value as value. Currently only used to store viewBy config.
+   * @param {String} mode How to modify the history. Either a push or replace.
+   *    defaults to replace
+   *
+   */
+  updateUrlWithConfig(filters, config, mode = 'replace') {
     const { datasetId } = this.props;
     const allConfig = {};
     allConfig.filters = filters;
     allConfig.config = config;
 
     const query = qs.stringify(allConfig, {encode: true});
-    hashHistory.replace({pathname: '/dataset/' + datasetId, search: '?' + query });
+    const newPath = {pathname: '/dataset/' + datasetId, search: '?' + query };
+    if(mode === 'replace') {
+      hashHistory.replace(newPath);
+    } else {
+      hashHistory.push(newPath);
+    }
   }
 
   onFilterChange(newFilters) {
@@ -162,7 +182,7 @@ class DatasetBasePage extends React.Component {
 
     return (
       <div className='cell-line-view-controls'>
-        <label className='small-label'>View By</label>
+        <label className='small-label'>View Across</label>
         <div>
           <ButtonGroup>
             {this.viewOptions.map((option, i) => {

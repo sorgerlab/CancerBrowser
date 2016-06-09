@@ -151,6 +151,7 @@ class DrugCards extends React.Component {
     const { search } = this.state;
     return (
       <div className="search-container">
+        <label className='small-label'>Search</label>
         <input
           className="form-control"
           type="search"
