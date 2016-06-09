@@ -57,10 +57,13 @@ class Waterfall {
   updateScales(data, props) {
     const { dataExtent, colorScale } = props;
 
-    let xMin = 0;
-    // add some space for negative infinity triangle if needed
+    let xMin = 0, xMax = this.width;
+    // add some space for infinity triangles if needed
     if (data.some(d => d.value === Number.NEGATIVE_INFINITY)) {
-      xMin = 10;
+      xMin += 10;
+    }
+    if (data.some(d => d.value === Number.POSITIVE_INFINITY)) {
+      xMax -= 10;
     }
 
     // scales recomputed each draw
@@ -120,8 +123,8 @@ class Waterfall {
     const triangleMid = height / 2;
 
     if (d.value === Number.POSITIVE_INFINITY) {
-      const triangleStart = Math.max(left, right - triangleWidth);
-      const trianglePoint = right;
+      const triangleStart = right;
+      const trianglePoint = right + triangleWidth;
       return `M ${left} 0
         H ${triangleStart}
         L ${trianglePoint} ${triangleMid}
@@ -129,8 +132,8 @@ class Waterfall {
         H ${left}
         Z`;
     }  else if (d.value === Number.NEGATIVE_INFINITY) {
-      const triangleStart = Math.min(left + triangleWidth, right);
-      const trianglePoint = Math.min(left, right - triangleWidth);
+      const triangleStart = left;
+      const trianglePoint = left - triangleWidth;
       return `M ${right} 0
         H ${triangleStart}
         L ${trianglePoint} ${triangleMid}
@@ -357,7 +360,7 @@ class Waterfall {
       .classed('bar-value', true)
       .attr('text-anchor', 'start')
       .attr('x', rightEdge)
-      .attr('dx', 5)
+      .attr('dx', d => d.value === Number.POSITIVE_INFINITY ? infinityTriangleWidth + 5 : 5)
       .attr('dy', barHeight - 4);
 
     // UPDATE bars
