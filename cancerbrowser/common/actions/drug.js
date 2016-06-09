@@ -1,30 +1,11 @@
 import api from '../api';
 
-export const SET_FILTERED_DRUGS = 'SET_FILTERED_DRUGS';
 export const CHANGE_DRUG_VIEW = 'CHANGE_DRUG_VIEW';
-export const SET_DRUG_COUNTS = 'SET_DRUG_COUNTS';
-export const SET_DRUG_FILTERS = 'SET_DRUG_FILTERS';
 export const SET_DRUG_INFO = 'SET_DRUG_INFO';
-
-/**
- * Action creator for setting filtered cell lines
- */
-function setFilteredDrugs(drugs) {
-  return {
-    type: SET_FILTERED_DRUGS,
-    drugs
-  };
-}
-
-/**
- * Action creator for setting filtered cell lines
- */
-function setDrugCounts(counts) {
-  return {
-    type: SET_DRUG_COUNTS,
-    counts: counts
-  };
-}
+export const REQUEST_DRUGS = 'REQUEST_DRUGS';
+export const RECEIVE_DRUGS = 'RECEIVE_DRUGS';
+export const DRUGS_CHANGE_ACTIVE_FILTERS = 'DRUGS_CHANGE_ACTIVE_FILTERS';
+export const DRUGS_RESET_FILTERS = 'DRUGS_RESET_FILTERS';
 
 /**
  * Action creator for setting drug info
@@ -37,41 +18,57 @@ function setDrugInfo(info) {
 }
 
 
-/**
- * Helper function to determine if the
- * drugs need to be acquired.
- * Right now always returns true.
- * @return true
- */
-function shouldFetchDrugs(state) {
-  return true;
-}
-
-/**
- * Helper function to get cellines given a set of filterGroups
- * @return {Function}
- */
-function fetchDrugs(filterGroups, allFilterGroups) {
-  return dispatch => {
-    api.getDrugs(filterGroups)
-    .then((data) => {
-      dispatch(setFilteredDrugs(data));
-      return data;
-    })
-    //TODO: should this be split into 2 different action creators?
-    .then(data => api.getDrugCounts(data, allFilterGroups))
-    .then(counts => dispatch(setDrugCounts(counts)));
+function requestDrugs() {
+  return {
+    type: REQUEST_DRUGS
   };
 }
 
+function receiveDrugs(drugs) {
+  return {
+    type: RECEIVE_DRUGS,
+    drugs
+  };
+}
+
+
 /**
- * Helper function to get cellines given a set of filterGroups
+ * Helper function to determine if the
+ * drugs need to be acquired.
+ * @return {Boolean}
+ */
+function shouldFetchDrugs(state) {
+  const { drugs } = state;
+
+  // no drugs state defined
+  if (!drugs) {
+    return true;
+  }
+
+  // If this drugs are already being fetched
+  if (drugs.isFetching) {
+    return false;
+  }
+
+  // If drugs state exists, but is not populated
+  if (!drugs.items || !drugs.items.length) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Helper function to get drugs
  * @return {Function}
  */
-function fetchDrugInfo(drugId) {
+function fetchDrugs() {
   return dispatch => {
-    api.getDrugInfo(drugId)
-    .then((data) => dispatch(setDrugInfo(data)));
+    dispatch(requestDrugs());
+    api.getDrugs().then((data) => {
+      dispatch(receiveDrugs(data));
+      return data;
+    });
   };
 }
 
@@ -79,11 +76,23 @@ function fetchDrugInfo(drugId) {
  * Public function to acquire drug data
  * and create action to store it.
  */
-export function fetchDrugsIfNeeded(activeFilterGroups, allFilterGroups) {
+export function fetchDrugsIfNeeded() {
   return (dispatch, getState) => {
     if (shouldFetchDrugs(getState())) {
-      return dispatch(fetchDrugs(activeFilterGroups, allFilterGroups));
+      return dispatch(fetchDrugs());
     }
+  };
+}
+
+
+/**
+ * Helper function to get drug info
+ * @return {Function}
+ */
+function fetchDrugInfo(drugId) {
+  return dispatch => {
+    api.getDrugInfo(drugId)
+    .then((data) => dispatch(setDrugInfo(data)));
   };
 }
 
@@ -111,7 +120,7 @@ export function fetchDrugInfoIfNeeded(drugId) {
 
 
 /**
- * Action creator for changing the cell line view the table shows
+ * Action creator for changing the drug view the table shows
  */
 export function changeDrugView(drugView) {
   return {
@@ -121,21 +130,20 @@ export function changeDrugView(drugView) {
 }
 
 /**
- * Action creator for setting drug filter definition and autocomplete values
+ * Action creator changing the active filters
  */
-export function setDrugFilters(drugFilters) {
+export function changeActiveFilters(activeFilters) {
   return {
-    type: SET_DRUG_FILTERS,
-    drugFilters
+    type: DRUGS_CHANGE_ACTIVE_FILTERS,
+    activeFilters
   };
 }
 
 /**
- * Public function to get drug filter definition based on the drug data
+ * Action creator for resetting active filtesr
  */
-export function fetchDrugFilters() {
-  return dispatch => {
-    const drugFilters = api.getDrugFilters();
-    return dispatch(setDrugFilters(drugFilters));
+export function resetActiveFilters() {
+  return {
+    type: DRUGS_RESET_FILTERS
   };
 }

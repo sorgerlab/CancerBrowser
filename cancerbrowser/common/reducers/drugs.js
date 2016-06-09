@@ -1,39 +1,45 @@
 
 import {
-  SET_FILTERED_DRUGS,
+  DRUGS_CHANGE_ACTIVE_FILTERS,
+  DRUGS_RESET_FILTERS,
   CHANGE_DRUG_VIEW,
-  SET_DRUG_COUNTS,
-  SET_DRUG_FILTERS,
+  REQUEST_DRUGS,
+  RECEIVE_DRUGS,
   SET_DRUG_INFO } from '../actions/drug';
 
 const INITIAL_STATE = {
-  filtered: [],
   isFetching: false,
-  counts: {},
+  items: [],
+
+  activeFilters: {},
   info: {}
 };
 
 function drugs(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case SET_FILTERED_DRUGS:
+    case DRUGS_CHANGE_ACTIVE_FILTERS:
+      return Object.assign({}, state, {
+        activeFilters: action.activeFilters
+      });
+
+    case DRUGS_RESET_FILTERS:
+      return Object.assign({}, state, {
+        activeFilters: INITIAL_STATE.activeFilters
+      });
+
+    case REQUEST_DRUGS:
+      return Object.assign({}, state, {
+        isFetching: true
+      });
+    case RECEIVE_DRUGS:
       return Object.assign({}, state, {
         isFetching: false,
-        filtered: action.drugs
+        items: action.drugs
       });
 
     case CHANGE_DRUG_VIEW:
       return Object.assign({}, state, {
         drugView: action.drugView
-      });
-
-    case SET_DRUG_COUNTS:
-      return Object.assign({}, state, {
-        counts: action.counts
-      });
-
-    case SET_DRUG_FILTERS:
-      return Object.assign({}, state, {
-        drugFilters: action.drugFilters
       });
 
     case SET_DRUG_INFO:

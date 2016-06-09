@@ -10,17 +10,19 @@ import FilterGroupSummary from '../../components/FilterGroupSummary';
 import PageLayout from '../../components/PageLayout';
 import DrugCards from '../../components/DrugCards';
 
+import {
+  getFilteredDrugs,
+  getFilteredDrugCounts,
+  getFilterGroups
+} from '../../selectors/drug';
+
 
 import {
   fetchDrugsIfNeeded,
   changeDrugView,
-  fetchDrugFilters
-} from '../../actions/drug';
-
-import {
   changeActiveFilters,
   resetActiveFilters
-} from '../../actions/filter';
+} from '../../actions/drug';
 
 const propTypes = {
   dispatch: React.PropTypes.func,
@@ -30,7 +32,7 @@ const propTypes = {
   activeFilters: React.PropTypes.object,
   drugView: React.PropTypes.string,
   drugCounts: React.PropTypes.object,
-  drugFilters: React.PropTypes.array
+  filterGroups: React.PropTypes.array
 };
 
 const defaultProps = {
@@ -40,22 +42,13 @@ const defaultProps = {
 function mapStateToProps(state) {
   return {
     drugView: state.drugs.drugView,
-    filteredDrugs: state.drugs.filtered,
-    activeFilters: state.filters.active,
-    drugCounts: state.drugs.counts,
-    drugFilters: state.drugs.drugFilters
+    activeFilters: state.drugs.activeFilters,
+    filterGroups: getFilterGroups(state),
+    filteredDrugs: getFilteredDrugs(state),
+    drugCounts: getFilteredDrugCounts(state)
   };
 }
 
-// create the filter groups using the externally provided drugFilters definition
-// since we need to make use of all drug data to generate the proper definition
-function createFilterGroups(drugFilters) {
-  return [{
-    id: 'drugFilters',
-    label: 'Drug Filters',
-    filters: drugFilters
-  }];
-}
 
 /**
  * Container component for contents of Drug Browser page content.
@@ -64,17 +57,9 @@ class DrugBrowserPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.filterGroups = createFilterGroups(props.drugFilters);
-
     this.onFilterChange = this.onFilterChange.bind(this);
     this.onDrugViewChange = this.onDrugViewChange.bind(this);
     this.onDrugFilterChange = this.onDrugFilterChange.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.drugFilters !== nextProps.drugFilters) {
-      this.filterGroups = createFilterGroups(nextProps.drugFilters);
-    }
   }
 
   /**
@@ -83,8 +68,7 @@ class DrugBrowserPage extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
 
-    dispatch(fetchDrugsIfNeeded({}, {}));
-    dispatch(fetchDrugFilters());
+    dispatch(fetchDrugsIfNeeded());
 
     // see if filters have changed.
     const filterString = this.props.location.search.replace(/^\?/,'');
@@ -112,7 +96,6 @@ class DrugBrowserPage extends React.Component {
 
     this.updateFilterUrl(newFilters);
     dispatch(changeActiveFilters(newFilters));
-    dispatch(fetchDrugsIfNeeded(newFilters, this.filterGroups));
   }
 
   onDrugFilterChange(newDrugFilters) {
@@ -120,9 +103,7 @@ class DrugBrowserPage extends React.Component {
     const newActiveFilters = Object.assign({}, activeFilters, { drugFilters: newDrugFilters });
 
     this.updateFilterUrl(newActiveFilters);
-
     dispatch(changeActiveFilters(newActiveFilters));
-    dispatch(fetchDrugsIfNeeded(newActiveFilters, this.filterGroups));
   }
 
   onDrugViewChange(newView) {
@@ -137,7 +118,7 @@ class DrugBrowserPage extends React.Component {
   renderSidebar() {
     return (
       <FilterPanel
-        filterGroups={this.filterGroups}
+        filterGroups={this.props.filterGroups}
         activeFilters={this.props.activeFilters}
         counts={this.props.drugCounts}
         onFilterChange={this.onFilterChange} />
@@ -196,10 +177,10 @@ class DrugBrowserPage extends React.Component {
    * @return {React.Component}
    */
   renderFilterSummary() {
-    const { activeFilters } = this.props;
+    const { activeFilters, filterGroups } = this.props;
 
     const drugActiveFilters = activeFilters && activeFilters.drugFilters;
-    const drugFilterGroup = this.filterGroups.find(filterGroup => filterGroup.id === 'drugFilters');
+    const drugFilterGroup = filterGroups.find(filterGroup => filterGroup.id === 'drugFilters');
 
     return (
       <div className='drug-filters-summary'>
