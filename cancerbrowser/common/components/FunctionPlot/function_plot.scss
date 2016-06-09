@@ -54,6 +54,12 @@ $highlight-color: $chart-highlight-color;
   }
 
 
+  &.many-lines {
+    .series .series-line {
+      stroke-width: 1px;
+    }
+  }
+
   .series {
     .mouse-handler {
       fill: none;

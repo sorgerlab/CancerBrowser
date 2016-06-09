@@ -115,7 +115,8 @@ class FunctionPlot {
 
     this.svg
       .attr('width', this.width + (this.margins.left + this.margins.right))
-      .attr('height', this.height + (this.margins.top + this.margins.bottom));
+      .attr('height', this.height + (this.margins.top + this.margins.bottom))
+      .classed('many-lines', dataset.length > 10);
 
     this.g
       .attr('transform', `translate(${this.margins.left},${this.margins.top})`);
@@ -183,8 +184,9 @@ class FunctionPlot {
       .attr('x2', this.width);
 
 
-    // define the sampler to use
-    const sampler = powerSampler.bind(this, 10, 50, scales.x.domain());
+    // define the sampler to use -- could eventually be a parameter
+    const exponent = 10, numSamples = 50, sampleRange = scales.x.domain();
+    const sampler = powerSampler.bind(this, exponent, numSamples, sampleRange);
 
     // draw the lines
     const lines = this.linesGroup.selectAll('.series')
@@ -209,6 +211,13 @@ class FunctionPlot {
       .transition()
       .duration(transitionDuration)
       .attr('d', d => line(this.sampleData(d, func, sampler)));
+
+    // ensure highlighted and toggled lines are moved to front
+    lines.each(function (d) {
+      if (d[identifier] === highlightId || d[identifier] === toggledId) {
+        this.parentNode.appendChild(this);
+      }
+    });
 
     // EXIT lines
     lines.exit().remove();
