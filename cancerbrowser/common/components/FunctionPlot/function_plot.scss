@@ -1,0 +1,92 @@
+@import "../../assets/variables";
+
+$reference-line-color: #ddd;
+$axis-line-color: #ddd;
+$series-line-color: #888;
+
+$toggled-color: $chart-toggled-color;
+$highlight-color: $chart-highlight-color;
+
+.function-plot {
+  .axis {
+    shape-rendering: crispEdges;
+
+    .tick {
+      font-size: 12px;
+    }
+
+    line {
+      stroke: $axis-line-color;
+    }
+
+    .minor {
+      stroke-opacity: 0.5;
+    }
+
+    path {
+      fill: none;
+      stroke: $axis-line-color;
+      display: none;
+    }
+  }
+
+  .axis-label {
+    font-size: 12px;
+    font-weight: 400;
+    color: #333;
+  }
+
+  .reference-lines {
+    shape-rendering: crispEdges;
+    stroke: $reference-line-color;
+  }
+
+
+  .highlight-group {
+    pointer-events: none;
+    text {
+      fill: #666;
+
+      &.highlighted-label {
+        font-weight: 400;
+      }
+    }
+  }
+
+
+  &.many-lines {
+    .series .series-line {
+      stroke-width: 1px;
+    }
+  }
+
+  .series {
+    .mouse-handler {
+      fill: none;
+      stroke: blue;
+      stroke-width: 10px;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .series-line {
+      fill: none;
+      stroke: $series-line-color;
+      stroke-width: 2px;
+      opacity: 0.5;
+      pointer-events: none;
+
+      &.highlight {
+        stroke: $highlight-color !important;
+        stroke-width: 4px;
+        opacity: 1;
+      }
+
+      &.toggled {
+        stroke: $toggled-color !important;
+        stroke-width: 4px;
+        opacity: 1;
+      }
+    }
+  }
+}
