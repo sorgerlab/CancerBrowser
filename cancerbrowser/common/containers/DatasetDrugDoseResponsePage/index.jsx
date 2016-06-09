@@ -24,6 +24,7 @@ import {
 
 import AutoWidth from '../../components/AutoWidth';
 import WaterfallPlot from '../../components/WaterfallPlot';
+import FunctionPlot from '../../components/FunctionPlot';
 
 // import './dataset_drug_dose_response_page.scss';
 
@@ -106,8 +107,28 @@ const sortsMap = {
 };
 
 
-// define this array once
+// define these arrays once
 const grMaxExtent = [-1, 1];
+const xExtentDosageCurve = [10e-3, 30];
+const yExtentDosageCurve = [-1, 1];
+
+/* Compute the dosage curve at a given concentration
+ *
+ * @param {Object} datum The drug dose response data point
+ * @param {Number} concentration The point at which to evaluate the function
+ * @return {Number} The value of the function
+ */
+function dosageCurveFunction(datum, concentration) {
+  if (!datum) {
+    return undefined;
+  }
+  const c = concentration;
+  const { GRinf: GR_inf, EC50: GEC_50, Hill: h_GR } = datum;
+
+  const GR = GR_inf + ((1 - GR_inf) / (1 + Math.pow(c / GEC_50, h_GR)));
+
+  return GR;
+}
 
 /**
  * React container for a dataset page page - Drug Dose Response dataset page
@@ -262,6 +283,52 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
     );
   }
 
+
+  renderDosageCurve() {
+    const { filteredData, viewBy } = this.props;
+
+    if (!filteredData) {
+      return null;
+    }
+
+    console.log(filteredData[0]);
+
+    let colorBy, highlightId, toggledId;
+    if (viewBy === 'drug') {
+      colorBy = this.props.drugColorBy;
+      highlightId = this.props.highlightedCellLine;
+      toggledId = this.props.toggledCellLine;
+    } else {
+      colorBy = this.props.cellLineColorBy;
+      highlightId = this.props.highlightedDrug;
+      toggledId = this.props.toggledDrug;
+    }
+
+    return (
+      <div className='dosage-curve-container'>
+        <Row>
+          <Col md={6}>
+            <FunctionPlot
+              dataset={filteredData}
+              func={dosageCurveFunction}
+              onChangeHighlight={this.onChangeHighlight}
+              onChangeToggle={this.onChangeToggle}
+              colorScale={mappedColorScales[colorBy]}
+              highlightId={highlightId}
+              toggledId={toggledId}
+              height={300}
+              width={400}
+              xExtent={xExtentDosageCurve}
+              yExtent={yExtentDosageCurve}
+              yAxisLabel={'GR Value'}
+              xAxisLabel={'Concentration'}
+            />
+          </Col>
+        </Row>
+      </div>
+    );
+  }
+
   renderDrugChartControls() {
     const { drugColorBy, drugSortBy } = this.props;
     return (
@@ -340,7 +407,6 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
         <header className='view-heading'>
           <h3>{label}</h3>
         </header>
-        {this.renderChartControls()}
       </div>
     );
   }
@@ -349,6 +415,8 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
     return (
       <div>
         {this.renderSubheaders()}
+        {this.renderDosageCurve()}
+        {this.renderChartControls()}
         {this.renderWaterfalls()}
       </div>
     );
