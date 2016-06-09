@@ -99,7 +99,7 @@ class FunctionPlot {
    */
   update(props) {
     const { dataset, pointLabels, width, height, highlightId,
-      toggledId, valueFormatter, yAxisLabel, func } = props;
+      toggledId, valueFormatter, yAxisLabel, func, identifier } = props;
 
     // Early out
     if(!dataset) {
@@ -188,7 +188,7 @@ class FunctionPlot {
 
     // draw the lines
     const lines = this.linesGroup.selectAll('.series')
-      .data(dataset, d => d.id);
+      .data(dataset, d => d[identifier]);
 
     // ENTER lines
     const linesEnter = lines.enter()
@@ -203,12 +203,15 @@ class FunctionPlot {
 
     // UPDATE lines
     lines.select('.series-line')
-      .classed('highlight', d => d.id === highlightId)
-      .classed('toggled', d => d.id === toggledId)
+      .classed('highlight', d => d[identifier] === highlightId)
+      .classed('toggled', d => d[identifier] === toggledId)
       .style('stroke', d => scales.color ? scales.color(d) : undefined)
       .transition()
       .duration(transitionDuration)
       .attr('d', d => line(this.sampleData(d, func, sampler)));
+
+    // EXIT lines
+    lines.exit().remove();
   }
 
   onMouseEnter(d) {
