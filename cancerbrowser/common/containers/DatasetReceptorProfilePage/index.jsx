@@ -490,14 +490,17 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
 
     let leftData = undefined;
     let rightData = undefined;
+    let smallMultTitle = '';
 
     if(viewBy === 'receptor') {
       leftData = this.getData(filteredData, this.getActiveReceptor());
       rightData = this.getData(filteredData, this.getCompareReceptor());
+      smallMultTitle = 'All Receptors';
 
     } else {
       leftData = this.getData(filteredData, this.getActiveCellLine());
       rightData = this.getData(filteredData, this.getCompareCellLine());
+      smallMultTitle = 'All Cell Lines';
     }
 
 
@@ -512,7 +515,15 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
 
     return (
       <div>
-        {controls}
+        <div className='row'>
+          <div className='col-md-8'>
+            {controls}
+          </div>
+          <div className='col-md-4'>
+            <h3>{smallMultTitle}</h3>
+          </div>
+
+        </div>
         <div className='row'>
           <div className='col-md-4 left-waterfall-container'>
             {this.renderWaterfall(leftData, 'left')}
