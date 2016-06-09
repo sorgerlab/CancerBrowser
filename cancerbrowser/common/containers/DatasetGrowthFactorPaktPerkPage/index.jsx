@@ -11,7 +11,7 @@ import {
   updateFilterValues } from '../../utils/filter_utils';
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 import { colorScales } from '../../config/colors';
-import { sortByValueAndId, sortByKey } from '../../utils/sort';
+import { sortByKeys, sortByKey } from '../../utils/sort';
 
 import {
   changeActiveFilters,
@@ -110,7 +110,7 @@ const mappedColorScales = {
 };
 
 const sortsMap = {
-  magnitude: sortByValueAndId,
+  magnitude: sortByKeys(['-value', 'label']),
   cellLine: sortByKey('label'),
   growthFactor: sortByKey('label')
 };

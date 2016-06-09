@@ -4,7 +4,7 @@ import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
 import d3 from 'd3';
 
-import { sortByValueAndId } from '../../utils/sort';
+import { sortByKeysWithDisabled } from '../../utils/sort';
 
 import './small_waterfall.scss';
 
@@ -24,7 +24,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  dataSort: sortByValueAndId,
+  dataSort: sortByKeysWithDisabled(['-value', 'label'], ['label']),
   width: 100,
   height: 100,
   fillColor: '#cccccc',
