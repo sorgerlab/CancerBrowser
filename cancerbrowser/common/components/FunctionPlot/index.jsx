@@ -44,7 +44,8 @@ const defaultProps = {
   height: 200,
   valueFormatter: d3.format('0.2f'),
   colorScale: () => '#bbb',
-  identifier: 'id'
+  identifier: 'id',
+  labelKey: 'label'
 };
 
 

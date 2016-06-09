@@ -291,14 +291,16 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
       return null;
     }
 
-    let colorBy, highlightId, toggledId, identifier;
+    let colorBy, highlightId, toggledId, identifier, labelKey;
     if (viewBy === 'drug') {
       identifier = 'id';
+      labelKey = 'label';
       colorBy = this.props.drugColorBy;
       highlightId = this.props.highlightedCellLine;
       toggledId = this.props.toggledCellLine;
     } else {
       identifier = 'small_molecule_HMSLID';
+      labelKey = 'small_molecule';
       colorBy = this.props.cellLineColorBy;
       highlightId = this.props.highlightedDrug;
       toggledId = this.props.toggledDrug;
@@ -323,6 +325,7 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
               yAxisLabel={'GR Value'}
               xAxisLabel={'Concentration'}
               identifier={identifier}
+              labelKey={labelKey}
             />
           </Col>
         </Row>

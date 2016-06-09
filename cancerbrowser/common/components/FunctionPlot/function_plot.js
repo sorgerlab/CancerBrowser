@@ -94,12 +94,27 @@ class FunctionPlot {
     return sampler(datum, func).map(x => ({ x, y: func(datum, x) }));
   }
 
+  drawValues(datum, labelKey) {
+    if (!datum) {
+      return;
+    }
+
+    this.highlightGroup.append('text')
+      .classed('highlighted-label', true)
+      .attr('text-anchor', 'middle')
+      .attr('x', this.width / 2)
+      .attr('y', 0)
+      .attr('dy', -8)
+      .text(datum[labelKey]);
+  }
+
   /**
    *
    */
   update(props) {
     const { dataset, width, height, highlightId, toggledId,
-      valueFormatter, yAxisLabel, xAxisLabel, func, identifier } = props;
+      valueFormatter, yAxisLabel, xAxisLabel, func, identifier,
+      labelKey } = props;
 
     // Early out
     if(!dataset) {
@@ -233,6 +248,17 @@ class FunctionPlot {
 
     // EXIT lines
     lines.exit().remove();
+
+
+    // show values on highlighted item
+    this.highlightGroup.selectAll('*').remove();
+    if (highlightId) {
+      const highlightedDatum = dataset.find(d => d[identifier] === highlightId);
+      this.drawValues(highlightedDatum, labelKey);
+    } else if (toggledId) {
+      const toggledDatum = dataset.find(d => d[identifier] === toggledId);
+      this.drawValues(toggledDatum, labelKey);
+    }
   }
 
   onMouseEnter(d) {
