@@ -133,12 +133,12 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
       const activeIds = this.getActiveWaterfallPlots(viewBy);
       if(params.entityId !== activeIds[0])
       {
-        this.resetWaterfalls(params.entityId);
+        this.initDisplay(params.entityId);
       }
     }
   }
 
-  resetWaterfalls(activeId) {
+  initDisplay(activeId) {
     const { dispatch, activeFilters } = this.props;
     dispatch(changeViewBy('cellLine'));
     let newFilters = updateFilterValues(activeFilters, 'byCellLineConfig', 'cellLine', [activeId]);
@@ -208,7 +208,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
 
     dispatch(changeActiveFilters(newFilters));
     dispatch(changeSide(newActiveSide));
-    super.updateUrlWithConfig(newFilters);
+    super.updateUrlWithConfig(newFilters,  {viewBy: viewBy});
   }
 
   /**
@@ -257,8 +257,18 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
   handleViewByChange(newView) {
     const { dispatch } = this.props;
     super.handleViewByChange(newView);
+
     // reset the side we are toggling
-    dispatch(changeSide('right'));
+    let activeId = this.getActiveId(newView);
+    const activeSide = activeId ? 'right' : 'left';
+    dispatch(changeSide(activeSide));
+  }
+
+  /**
+   * Helper function to get Active Id of either cell line or receptr
+   */
+  getActiveId(viewBy) {
+    return (viewBy === 'cellLine')  ? this.getActiveCellLine() : this.getActiveReceptor();
   }
 
   /**
@@ -334,8 +344,9 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
   /**
    * Render waterfall for a given dataset
    * @param {Object} dataset Dataset to render.
+   * @param {String} position 'left' or 'right'
    */
-  renderWaterfall(dataset) {
+  renderWaterfall(dataset, position) {
     const { highlightId, viewBy, toggledId } = this.props;
     const dataExtent = [-6.5, 1];
 
@@ -381,10 +392,16 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
         </AutoWidth>
       );
     } else {
-      const entityName = viewBy === 'receptor' ? 'receptor' : 'cell line';
+      const entityName = viewBy === 'receptor' ? 'Receptor' : 'Cell Line';
+      let helpText = '';
+      if (position === 'left') {
+        helpText = <p>Use the <strong>{entityName}</strong> filter on the left or click a <strong>thumbnail</strong> on the right to display receptor data for a particular {entityName.toLowerCase()}.</p>;
+      } else {
+        helpText = <p>Use the <strong>{entityName}</strong> filter on the left or click a <strong>thumbnail</strong> on the right to add a {entityName.toLowerCase()} to compare.</p>;
+      }
       return (
         <div className="waterfall-help">
-          <p>Use the filters on the left or thumbnails on the right to add a {entityName} to compare.</p>
+          {helpText}
         </div>
       );
     }
@@ -498,10 +515,10 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
         {controls}
         <div className='row'>
           <div className='col-md-4 left-waterfall-container'>
-            {this.renderWaterfall(leftData)}
+            {this.renderWaterfall(leftData, 'left')}
           </div>
           <div className='col-md-4 right-waterfall-container'>
-            {this.renderWaterfall(rightData)}
+            {this.renderWaterfall(rightData, 'right')}
           </div>
           <div className='col-md-4 small-mults-container'>
             {this.renderSmallMults(filteredData)}

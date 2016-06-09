@@ -19,16 +19,6 @@ function getReceptors(state) {
 // Helpers
 /////////////////////
 
-/**
- * Filter the data based on a set of cell lines
- */
-function filterDataByCellLines(data, cellLines) {
-  if (!data) {
-    return data;
-  }
-
-  return data.filter(d => cellLines.find(cellLine => cellLine.id === d.cell_line.id));
-}
 
 
 /**
@@ -47,8 +37,6 @@ function convertToByReceptor(dataset) {
   let receptors = {};
 
   dataset.forEach(function(cellLine) {
-
-
     // iterate over receptor data
     cellLine.measurements.forEach(function(m) {
       // pull out receptor if it isn't in the receptors hash already.
@@ -124,7 +112,7 @@ export const getFilteredViewData = createSelector(
     if (viewBy === 'receptor') {
       return filterReceptorDataByCellLine(viewData, filteredCellLines);
     } else {
-      return filterDataByCellLines(viewData, filteredCellLines);
+      return viewData;
     }
   }
 );

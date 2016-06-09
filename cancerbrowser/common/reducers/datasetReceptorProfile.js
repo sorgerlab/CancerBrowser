@@ -17,12 +17,6 @@ const INITIAL_STATE = {
   },
 
   activeFilters: {
-    byReceptorConfig: [
-      {id:'receptor', values: ['src']}
-    ],
-    byCellLineConfig: [
-      {id: 'cellLine', values: ['184b5']}
-    ]
   },
 
   viewBy: 'cellLine',
