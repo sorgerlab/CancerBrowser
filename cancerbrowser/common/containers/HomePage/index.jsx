@@ -23,10 +23,6 @@ const propTypes = {
   drugs: React.PropTypes.array
 };
 
-
-/**
- *
- */
 function mapStateToProps(state) {
   return {
     cellLines: state.cellLines.items,
@@ -37,7 +33,8 @@ function mapStateToProps(state) {
 class HomePage extends React.Component {
 
   /**
-   *
+   * Lifecycle method.
+   * Fetch data if needed
    */
   componentDidMount() {
     const { dispatch } = this.props;
@@ -47,7 +44,7 @@ class HomePage extends React.Component {
   }
 
   /**
-   *
+   * Render search component
    */
   renderSearch() {
     const { cellLines, drugs } = this.props;
@@ -59,7 +56,7 @@ class HomePage extends React.Component {
 
 
   /**
-   *
+   * Main render method.
    */
   render() {
     return (

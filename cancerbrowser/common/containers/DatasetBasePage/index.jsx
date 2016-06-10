@@ -77,6 +77,10 @@ class DatasetBasePage extends React.Component {
 
   }
 
+  /**
+   * Lifecycle method.
+   * Get dataset data if needed.
+   */
   componentDidMount() {
     const { datasetId, dispatch } = this.props;
     dispatch(fetchDatasetIfNeeded(datasetId));
@@ -86,12 +90,20 @@ class DatasetBasePage extends React.Component {
     this.initFromUrl();
   }
 
+  /**
+   * Lifecycle method.
+   * Reset filters
+   */
   componentWillUnmount() {
     const { dispatch } = this.props;
     dispatch(this.changeActiveFilters(null));
     // TODO: reset other config values (might need to be done at top level page?)
   }
 
+  /**
+   * Parse filters from url if present and
+   * set page based on filters and config
+   */
   initFromUrl() {
     // see if filters have changed.
     const filterString = this.props.location.search.replace(/^\?/,'');
@@ -106,6 +118,11 @@ class DatasetBasePage extends React.Component {
     }
   }
 
+  /**
+   * Provided a {key: value} config object,
+   * set page parameters based on this config
+   * @param {Object} config Config options with settings.
+   */
   initFromConfig(config) {
     const { dispatch } = this.props;
 
@@ -117,6 +134,11 @@ class DatasetBasePage extends React.Component {
 
   }
 
+  /**
+   * Callback for viewby toggle.
+   *
+   * @param {String} newView New view to switch to
+   */
   handleViewByChange(newView) {
     const { datasetId, dispatch, activeFilters } = this.props;
     dispatch(this.changeViewBy(newView));
@@ -149,6 +171,11 @@ class DatasetBasePage extends React.Component {
     }
   }
 
+  /**
+   * Callback for filter change
+   *
+   * @param {Object} newFilters New filterGroups
+   */
   onFilterChange(newFilters) {
     const { dispatch, viewBy } = this.props;
 
@@ -173,6 +200,11 @@ class DatasetBasePage extends React.Component {
     );
   }
 
+  /**
+   * Renders the  top options
+   *
+   * @return {React.Component}
+   */
   renderViewOptions() {
     const { viewBy } = this.props;
 
@@ -199,8 +231,19 @@ class DatasetBasePage extends React.Component {
     );
   }
 
+  /**
+   * Renders the main content.
+   * implemented by sub-classes.
+   *
+   * @return {React.Component}
+   */
   renderMain() { /* template method */ }
 
+  /**
+   * Main render method.
+   *
+   * @return {React.Component}
+   */
   render() {
     const { datasetInfo, className } = this.props;
 

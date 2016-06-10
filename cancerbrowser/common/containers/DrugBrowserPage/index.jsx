@@ -78,7 +78,7 @@ class DrugBrowserPage extends React.Component {
     }
   }
 
-  /*
+  /**
    * Reset the active filters when leaving the page.
    * this prevents drugFilters set here affecting other pages
    */
@@ -86,11 +86,17 @@ class DrugBrowserPage extends React.Component {
     this.props.dispatch(resetActiveFilters());
   }
 
+  /**
+   * Store filter options in url
+   */
   updateFilterUrl(newFilters) {
     const query = qs.stringify(newFilters, {encode: true});
     hashHistory.replace({pathname: '/drugs', search: '?' + query });
   }
 
+  /**
+   * Callback for filter change
+   */
   onFilterChange(newFilters) {
     const { dispatch } = this.props;
 
@@ -98,6 +104,10 @@ class DrugBrowserPage extends React.Component {
     dispatch(changeActiveFilters(newFilters));
   }
 
+  /**
+   * Callback for drugFilters section of filters
+   * @param {Object} filters for drug parameters
+   */
   onDrugFilterChange(newDrugFilters) {
     const { dispatch, activeFilters } = this.props;
     const newActiveFilters = Object.assign({}, activeFilters, { drugFilters: newDrugFilters });
@@ -106,6 +116,10 @@ class DrugBrowserPage extends React.Component {
     dispatch(changeActiveFilters(newActiveFilters));
   }
 
+  /**
+   * Callback for drug viewby change
+   * @param {String} newView New view by state
+   */
   onDrugViewChange(newView) {
     this.props.dispatch(changeDrugView(newView));
   }

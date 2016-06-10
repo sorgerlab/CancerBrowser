@@ -8,7 +8,9 @@ const propTypes = {
   children: React.PropTypes.object
 };
 
-
+/**
+ * Root container
+ */
 class App extends React.Component {
   /**
   * Render out JSX for CancerBrowser.

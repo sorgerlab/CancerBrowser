@@ -139,6 +139,10 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     this.getActiveConcentration = this.getActiveConcentration.bind(this);
   }
 
+  /**
+   * Lifecycle method.
+   * Fetch data if needed
+   */
   componentDidMount() {
     const { dispatch, params } = this.props;
     super.componentDidMount();
@@ -161,16 +165,25 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     dispatch(batchActions([changeViewBy('cellLine'), changeActiveFilters(newFilters)]));
   }
 
+  /**
+   * Get active growth factor from filters prop
+   */
   getActiveGrowthFactor() {
     const { filterGroups, activeFilters } = this.props;
     return getFilterValueItem(filterGroups, activeFilters, 'datasetConfig', 'growthFactor');
   }
 
+  /**
+   * Get active cell line from filters prop
+   */
   getActiveCellLine() {
     const { filterGroups, activeFilters } = this.props;
     return getFilterValueItem(filterGroups, activeFilters, 'datasetConfig', 'cellLine');
   }
 
+  /**
+   * Get active parameter from filters prop
+   */
   getActiveParameter() {
     const { filterGroups, activeFilters } = this.props;
 
@@ -178,6 +191,9 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     return getFilterValueItem(filterGroups, activeFilters, filterGroupId, 'parameter');
   }
 
+  /**
+   * Get active metric from filters prop
+   */
   getActiveMetricAndType() {
     const parameter = this.getActiveParameter();
 
@@ -213,6 +229,9 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     return result;
   }
 
+  /**
+   * Get active concentration from filters prop
+   */
   getActiveConcentration() {
     const { activeFilters } = this.props;
     const filterGroupId = 'datasetConfig';
@@ -220,6 +239,9 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     return getFilterValue(activeFilters, filterGroupId, 'concentration');
   }
 
+  /**
+   * Callback for highlight change
+   */
   onChangeHighlight(highlightId) {
     const { dispatch, viewBy } = this.props;
     if (viewBy === 'growthFactor') {
@@ -229,6 +251,9 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     }
   }
 
+  /**
+   * Callback for click toggle change
+   */
   onChangeToggle(toggleId) {
     const { dispatch, viewBy } = this.props;
     if (viewBy === 'growthFactor') {
@@ -238,29 +263,44 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     }
   }
 
+  /**
+   * Callback for waterfall label click
+   */
   onWaterfallLabelClick(datum) {
     const path = `/cell_line/${datum.cell_line.id}`;
     this.context.router.push(path);
   }
 
+  /**
+   * Callback for color by change from growth factor viewby
+   */
   handleGrowthFactorColorByChange(evt) {
     const { value } = evt.target;
     const { dispatch } = this.props;
     dispatch(changeGrowthFactorColorBy(value));
   }
 
+  /**
+   * Callback for sort by change from growth factor viewby
+   */
   handleGrowthFactorSortByChange(evt) {
     const { value } = evt.target;
     const { dispatch } = this.props;
     dispatch(changeGrowthFactorSortBy(value));
   }
 
+  /**
+   * Callback for sort by change from cell lines viewby
+   */
   handleCellLineSortByChange(evt) {
     const { value } = evt.target;
     const { dispatch } = this.props;
     dispatch(changeCellLineSortBy(value));
   }
 
+  /**
+   * Render parallel coordinates component
+   */
   renderParallelCoordinatesPlot() {
     const { filteredData, parallelCoordinatesPlotData, viewBy } = this.props;
     if (!parallelCoordinatesPlotData || _.isEmpty(parallelCoordinatesPlotData) ||
@@ -301,6 +341,9 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     );
   }
 
+  /**
+   * Render waterfall component
+   */
   renderWaterfall(label, dataset, extent) {
     const { viewBy } = this.props;
     const { metric, unit } = this.getActiveMetricAndType();
@@ -350,6 +393,9 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     }
   }
 
+  /**
+   * Render help message when no plot is shown
+   */
   renderHelpMessage() {
     const { viewBy } = this.props;
     const entityName = (viewBy === 'cellLine') ? 'Cell Line' : 'Growth Factor';
@@ -361,6 +407,9 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     );
   }
 
+  /**
+   * Render waterfall plots
+   */
   renderWaterfalls() {
     const { filteredData } = this.props;
 
@@ -397,6 +446,9 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     );
   }
 
+  /**
+   * Render controls for growth factor viewby
+   */
   renderGrowthFactorChartControls() {
     const { growthFactorColorBy, growthFactorSortBy } = this.props;
     return (
@@ -428,6 +480,9 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     );
   }
 
+  /**
+   * Render controls for cell line viewby
+   */
   renderCellLineChartControls() {
     const { cellLineSortBy } = this.props;
     return (
@@ -448,6 +503,9 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     );
   }
 
+  /**
+   * Render controls for chart configuration
+   */
   renderChartControls() {
     const { viewBy } = this.props;
     if (viewBy === 'growthFactor') {
@@ -458,6 +516,9 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
   }
 
 
+  /**
+   * Render titles
+   */
   renderSubheaders() {
     const { viewBy } = this.props;
     const activeParameter = this.getActiveParameter();
@@ -492,7 +553,9 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     );
   }
 
-  // override to get parallel coordinates plot beside view options
+  /**
+   * Render titles
+   */
   renderViewOptions() {
     return (
       <div>
@@ -501,6 +564,9 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     );
   }
 
+  /**
+   * Main render function.
+   */
   renderMain() {
     return (
       <div>

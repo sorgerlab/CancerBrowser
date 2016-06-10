@@ -37,6 +37,9 @@ class DrugDetailPage extends React.Component {
     dispatch(fetchDrugInfoIfNeeded(params.drugId));
   }
 
+  /**
+   * Render info panel component with drug info. 
+   */
   renderInfo(drugInfo) {
     const details = [
       { label: 'Class', value: drugInfo.class ? drugInfo.class.label : '' },
