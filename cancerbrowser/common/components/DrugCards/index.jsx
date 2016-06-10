@@ -6,10 +6,10 @@ import DrugCard from '../DrugCard';
 import './drug_cards.scss';
 
 const propTypes = {
-  /** An array of drugs to render as table rows */
+  /* An array of drugs to render as table rows */
   data: React.PropTypes.array,
 
-  /** Key in the data by which to group the cards */
+  /* Key in the data by which to group the cards */
   groupBy: React.PropTypes.string
 };
 
@@ -111,7 +111,9 @@ function groupHeader(group, groupBy) {
   return 'Unknown';
 }
 
-/** Render all the filtered drugs as cards */
+/**
+ * Render all the filtered drugs as cards
+ */
 class DrugCards extends React.Component {
   constructor(props) {
     super(props);
@@ -126,10 +128,16 @@ class DrugCards extends React.Component {
     this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
+  /**
+   * Life cycle method to check if component needs to be updated
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
 
+  /**
+   * Life cycle method. Ensure search filter is still active.
+   */
   componentWillReceiveProps(nextProps) {
     if (nextProps.data !== this.props.data || nextProps.groupBy !== this.props.groupBy) {
       let data = nextProps.data;
@@ -144,6 +152,9 @@ class DrugCards extends React.Component {
     }
   }
 
+  /**
+   * Callback to handle when search is updated
+   */
   handleSearchChange(evt) {
     const { data, groupBy } = this.props;
     const { value } = evt.target;
@@ -155,6 +166,9 @@ class DrugCards extends React.Component {
     });
   }
 
+  /**
+   * Render Search component
+   */
   renderSearch() {
     const { search } = this.state;
     return (
@@ -202,6 +216,9 @@ class DrugCards extends React.Component {
     );
   }
 
+  /**
+   * Main render function
+   */
   render() {
     const { groups } = this.state;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { batchActions } from 'redux-batched-actions';
 import './dataset_receptor_profile_page.scss';
 
 import { getFilteredViewData, getFilterGroups } from '../../selectors/datasetReceptorProfile';
@@ -140,11 +140,10 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
 
   initDisplay(activeId) {
     const { dispatch, activeFilters } = this.props;
-    dispatch(changeViewBy('cellLine'));
     let newFilters = updateFilterValues(activeFilters, 'byCellLineConfig', 'cellLine', [activeId]);
     newFilters = updateFilterValues(newFilters, 'byCellLineConfig', 'compareTo', [undefined]);
-    dispatch(changeActiveFilters(newFilters));
 
+    dispatch(batchActions([changeViewBy('cellLine'), changeActiveFilters(newFilters)]));
   }
 
   onChangeHighlight(highlightId) {
@@ -206,8 +205,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
       newFilters = updateFilterValues(newFilters, subGroup, 'compareTo', [undefined]);
     }
 
-    dispatch(changeActiveFilters(newFilters));
-    dispatch(changeSide(newActiveSide));
+    dispatch(batchActions([changeActiveFilters(newFilters), changeSide(newActiveSide)]));
     super.updateUrlWithConfig(newFilters,  {viewBy: viewBy});
   }
 

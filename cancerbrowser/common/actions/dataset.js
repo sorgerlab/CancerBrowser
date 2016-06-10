@@ -8,12 +8,20 @@ export const REQUEST_DATASET = 'REQUEST_DATASET';
 export const RECEIVE_DATASET = 'RECEIVE_DATASET';
 
 // Action Creators
+
+/**
+ * Action creator to indicate dataset info has been requested
+ */
 function requestDatasetsInfo() {
   return {
     type: REQUEST_DATASETS_INFO
   };
 }
 
+/**
+ * Action creator for setting datasets info
+ * @param {Array} datasets All Datasets info
+ */
 function receiveDatasetsInfo(datasets) {
   return {
     type: RECEIVE_DATASETS_INFO,
@@ -21,6 +29,10 @@ function receiveDatasetsInfo(datasets) {
   };
 }
 
+/**
+ * Action creator for indicating dataset data has been requested
+ * @param {String} datasetId Id of the dataset
+ */
 function requestDataset(datasetId) {
   return {
     type: REQUEST_DATASET,
@@ -28,6 +40,11 @@ function requestDataset(datasetId) {
   };
 }
 
+/**
+ * Action creator for setting particular dataset data
+ * @param {String} datasetId Id of the dataset
+ * @param {Object} dataset New dataset data
+ */
 function receiveDataset(datasetId, dataset) {
   return {
     type: RECEIVE_DATASET,
@@ -37,6 +54,7 @@ function receiveDataset(datasetId, dataset) {
 }
 
 // Helpers
+
 export function fetchDatasetsInfo() {
   return dispatch => {
     dispatch(requestDatasetsInfo());
@@ -47,7 +65,11 @@ export function fetchDatasetsInfo() {
 }
 
 
-
+/**
+ * Helper function to get dataset data for a particular dataset
+ * @param {String} datasetId
+ * @return {Function}
+ */
 function fetchDataset(datasetId) {
   return dispatch => {
     dispatch(requestDataset(datasetId));
@@ -57,6 +79,13 @@ function fetchDataset(datasetId) {
   };
 }
 
+/**
+ * Helper function to determine if a particular
+ * dataset needs to be fetched from the API.
+ * @param {Object} state current state
+ * @param {String} datasetId id to check
+ * @return {Boolean}
+ */
 function shouldFetchDataset(state, datasetId) {
 
   const { datasetsById } = state.datasets;
@@ -86,11 +115,21 @@ function shouldFetchDataset(state, datasetId) {
   return false;
 }
 
+/**
+ * Helper function to get dataset info for a particular dataset
+ * @param {String} datasetId
+ * @return {Function}
+ */
 export function fetchDatasetInfo(datasetId) {
   // currently this can just fetch all dataset info
   return fetchDatasetsInfo();
 }
 
+/**
+ * Function to get dataset data for a particular dataset if needed
+ * @param {String} datasetId
+ * @return {Function}
+ */
 export function fetchDatasetIfNeeded(datasetId) {
   return (dispatch, getState) => {
     if (shouldFetchDataset(getState(), datasetId)) {

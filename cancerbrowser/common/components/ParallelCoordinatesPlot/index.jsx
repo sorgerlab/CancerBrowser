@@ -20,6 +20,7 @@ const propTypes = {
 
   /* width of the plot */
   width: React.PropTypes.number,
+
   /* height of the plot */
   height: React.PropTypes.number,
 
@@ -47,6 +48,9 @@ const defaultProps = {
 };
 
 
+/**
+ * Parallel Coordinate component for pakt/perk data.
+ */
 class ParallelCoordinatesPlot extends React.Component {
   constructor(props) {
     super(props);
@@ -58,7 +62,7 @@ class ParallelCoordinatesPlot extends React.Component {
   }
 
   /**
-   *
+   * Lifecycle method for checking update.
    */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
@@ -126,7 +130,6 @@ class ParallelCoordinatesPlot extends React.Component {
       onChangeHighlight(null);
     }
   }
-
 
   /**
    * Render the d3 component container and a header if provided

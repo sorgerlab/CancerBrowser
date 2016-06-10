@@ -14,17 +14,24 @@ const defaultProps = {
 };
 
 /**
- * Info Panel Component
+ * Info Panel Component.
+ * Displays table of info with title and value.
  */
 class InfoPanel extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  /**
+   * Lifecycle method to determine update
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
 
+  /**
+   * Render individual detail
+   */
   renderDetail(detail) {
     return (
       <tr key={detail.label}>
@@ -34,6 +41,9 @@ class InfoPanel extends React.Component {
     );
   }
 
+  /**
+   * Main render method
+   */
   render() {
 
     const { details } = this.props;

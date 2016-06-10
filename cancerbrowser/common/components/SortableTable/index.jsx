@@ -98,7 +98,9 @@ class TableNoThWidth extends Table {
   componentDidMount() {}
 }
 
-/** A way to render options in react-select that includes a bar and count */
+/**
+ * A way to render options in react-select that includes a bar and count
+ */
 class SortableTable extends React.Component {
   constructor(props) {
     super(props);
@@ -115,6 +117,9 @@ class SortableTable extends React.Component {
     this.onPageLengthChange = DataMixin.onPageLengthChange.bind(this);
   }
 
+  /**
+   * Lifecycle method for checking update.
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
@@ -211,6 +216,9 @@ class SortableTable extends React.Component {
     });
   }
 
+  /**
+   * Main render method
+   */
   render() {
     const { columns, keys, buildRowOptions, className, tableClassName, paginate, emptyMessage } = this.props;
 

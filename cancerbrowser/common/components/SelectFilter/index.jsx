@@ -47,6 +47,9 @@ class SelectFilter extends React.Component {
     this.handleAutocompleterChange = this.handleAutocompleterChange.bind(this);
   }
 
+  /**
+   * Lifecycle method to determine update
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
@@ -69,6 +72,9 @@ class SelectFilter extends React.Component {
     }
   }
 
+  /**
+   * Main render method
+   */
   render() {
     const { items, value, counts, countMax } = this.props;
 

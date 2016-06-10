@@ -9,7 +9,13 @@ const propTypes = {
   className: React.PropTypes.string
 };
 
+/**
+ * Overview component for positioning sidebar and main page content.
+ */
 class PageLayout extends React.Component {
+  /**
+   * Main render method
+   */
   render() {
     const { sidebar, children, className } = this.props;
     return (

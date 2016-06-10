@@ -69,12 +69,19 @@ const propTypes = {
   onFilterChange: React.PropTypes.func
 };
 
+/**
+ * Main Filter Panel Component.
+ * Responsible for rendering filter 
+ */
 class FilterPanel extends React.Component {
   constructor(props) {
     super(props);
     this.partial = createCachedPartial(this);
   }
 
+  /**
+   * Life cycle method to check if component needs to be updated
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }

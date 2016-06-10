@@ -59,6 +59,9 @@ class MultiSelectFilter extends React.Component {
     this.handleAutocompleterChange = this.handleAutocompleterChange.bind(this);
   }
 
+  /**
+   * Lifecycle method to determine update
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }

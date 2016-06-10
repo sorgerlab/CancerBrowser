@@ -34,12 +34,18 @@ const propTypes = {
   onFilterChange: React.PropTypes.func
 };
 
+/**
+ * Component for displaying a filter group
+ */
 class FilterGroupSummary extends React.Component {
   constructor(props) {
     super(props);
     this.partial = createCachedPartial(this);
   }
 
+  /**
+   * Life cycle method to check if component needs to be updated
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
@@ -87,6 +93,9 @@ class FilterGroupSummary extends React.Component {
     );
   }
 
+  /**
+   * Main render method
+   */
   render() {
     const { activeFilters, filterGroup } = this.props;
 

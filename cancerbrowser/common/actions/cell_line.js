@@ -3,13 +3,47 @@ import api from '../api';
 export const CHANGE_CELL_LINE_VIEW = 'CHANGE_CELL_LINE_VIEW';
 export const SET_CELL_LINE_INFO = 'SET_CELL_LINE_INFO';
 
-
 export const REQUEST_CELL_LINES = 'REQUEST_CELL_LINES';
 export const RECEIVE_CELL_LINES = 'RECEIVE_CELL_LINES';
 
+export const CELL_LINES_CHANGE_ACTIVE_FILTERS = 'CELL_LINES_CHANGE_ACTIVE_FILTERS';
+export const CELL_LINES_RESET_FILTERS = 'CELL_LINES_RESET_FILTERS';
+
+
+/**
+ * Action creator changing the active filters
+ */
+export function changeActiveFilters(activeFilters) {
+  return {
+    type: CELL_LINES_CHANGE_ACTIVE_FILTERS,
+    activeFilters
+  };
+}
+
+/**
+ * Action creator for resetting active filtesr
+ */
+export function resetActiveFilters() {
+  return {
+    type: CELL_LINES_RESET_FILTERS
+  };
+}
+
+
+/**
+ * Action creator for changing the cell line view the table shows
+ * @param {String} cellLineView new cell line view id.
+ */
+export function changeCellLineView(cellLineView) {
+  return {
+    type: CHANGE_CELL_LINE_VIEW,
+    cellLineView: cellLineView
+  };
+}
 
 /**
  * Action creator for setting cell line info
+ * @param {Object} Cell Line Info
  */
 function setCellLineInfo(info) {
   return {
@@ -18,12 +52,20 @@ function setCellLineInfo(info) {
   };
 }
 
+/**
+ * Action creator for indicating cell line data has been
+ * requested
+ */
 function requestCellLines() {
   return {
     type: REQUEST_CELL_LINES
   };
 }
 
+/**
+ * Action creator for setting all cel line data
+ * @param {Array} cell lines data array
+ */
 function receiveCellLines(cellLines) {
   return {
     type: RECEIVE_CELL_LINES,
@@ -87,6 +129,7 @@ export function fetchCellLinesIfNeeded() {
  * Helper function to determine if the
  * cell line info need to be acquired.
  * Right now always returns true.
+ * TODO: check if info has already been loaded.
  * @return true
  */
 function shouldFetchCellLineInfo(cellLineId, state) {
@@ -95,6 +138,7 @@ function shouldFetchCellLineInfo(cellLineId, state) {
 
 /**
  * Helper function to get cellines given a set of filterGroups
+ * @param {String} cellLineId id of cell line to get info for
  * @return {Function}
  */
 function fetchCellLineInfo(cellLineId) {
@@ -107,21 +151,13 @@ function fetchCellLineInfo(cellLineId) {
 /**
  * Public function to acquire cell line data
  * and create action to store it.
+ * @param {String} cellLineId id of cell line to get info for
+ * @return {Function}
  */
 export function fetchCellLineInfoIfNeeded(cellLineId) {
   return (dispatch, getState) => {
     if (shouldFetchCellLineInfo(cellLineId, getState())) {
       return dispatch(fetchCellLineInfo(cellLineId));
     }
-  };
-}
-
-/**
- * Action creator for changing the cell line view the table shows
- */
-export function changeCellLineView(cellLineView) {
-  return {
-    type: CHANGE_CELL_LINE_VIEW,
-    cellLineView: cellLineView
   };
 }

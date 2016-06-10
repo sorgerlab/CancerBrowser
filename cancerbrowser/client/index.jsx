@@ -12,6 +12,8 @@ import configureStore from '../common/utils/configureStore';
 import routes from '../common/routes';
 
 import '../common/assets/base.scss';
+import 'react-select/dist/react-select.css';
+
 
 // add in performance tooling in dev
 if (process.env.NODE_ENV !== 'production') {
