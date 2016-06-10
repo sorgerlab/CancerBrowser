@@ -1,7 +1,7 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import classNames from 'classnames';
-
+import { powerSampler } from './samplers';
 import FunctionPlotd3 from './function_plot';
 
 import './function_plot.scss';
@@ -17,6 +17,12 @@ const propTypes = {
 
   /* function to plot. takes arguments (datum, x) */
   func: React.PropTypes.func,
+
+  /* function to use to sample the data. Takes form function(options:Object, datum:Object, func:Function) */
+  sampler: React.PropTypes.func,
+
+  /* object specifying options (first arg) to sampler */
+  samplerOptions: React.PropTypes.object,
 
   /* width of the plot */
   width: React.PropTypes.number,
@@ -54,7 +60,9 @@ const defaultProps = {
   height: 200,
   colorScale: () => '#bbb',
   identifier: 'id',
-  labelKey: 'label'
+  labelKey: 'label',
+  sampler: powerSampler,
+  samplerOptions: { exponent: 10, numSamples: 50 }
 };
 
 /**
@@ -65,11 +73,60 @@ class FunctionPlot extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      sampledData: this.sampleData(props)
+    };
+
+    this.sampleData = this.sampleData.bind(this);
     this.onToggle = this.onToggle.bind(this);
     this.onUntoggle = this.onUntoggle.bind(this);
     this.onHighlight = this.onHighlight.bind(this);
     this.onUnhighlight = this.onUnhighlight.bind(this);
   }
+
+  // precompute the sampled data
+  sampleData(props = this.props) {
+    const { dataset, func, sampler, samplerOptions, xExtent } = props;
+
+    if (!dataset) {
+      return undefined;
+    }
+
+    let options = Object.assign({}, samplerOptions);
+    // use the x-extent as a default sample range
+    if (!options.sampleRange) {
+      options.sampleRange = xExtent;
+    }
+
+    return dataset.map(datum => ({
+      datum: datum,
+      samples: this.sampleDatum(options, datum, func, sampler)
+    }));
+  }
+
+  /**
+   * Produces [{x, y}, ...] from a function and sampler
+   * @param {Object} options The options to pass to the sampler
+   * @param {Object} datum The series data
+   * @param {Function} func The function to sample
+   * @param {Function} sampler Function that produces an array of x values to sample at
+   * @return {Array} Array of {x, y} points
+   */
+  sampleDatum(options, datum, func, sampler) {
+    return sampler(options, datum, func).map(x => ({ x, y: func(datum, x) }));
+  }
+
+  // only re-sample data when new data/sampler/function received
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.dataset !== this.props.dataset ||
+        nextProps.sampler !== this.props.sampler ||
+        nextProps.func !== this.props.func) {
+      this.setState({
+        sampledData: this.sampleData(nextProps)
+      });
+    }
+  }
+
 
   /**
    * Life cycle method to check if component needs to be updated
@@ -86,7 +143,7 @@ class FunctionPlot extends React.Component {
 
     this.chart = new FunctionPlotd3(this.refs.plotContainer);
 
-    this.chart.update(this.props);
+    this.chart.update(this.props, this.state);
     this.chart.on('highlight', this.onHighlight);
     this.chart.on('unhighlight', this.onUnhighlight);
     this.chart.on('toggle', this.onToggle);
@@ -97,7 +154,7 @@ class FunctionPlot extends React.Component {
    * When props update, update the d3 component
    */
   componentDidUpdate() {
-    this.chart.update(this.props);
+    this.chart.update(this.props, this.state);
   }
 
   /**

@@ -1,25 +1,4 @@
 import d3 from 'd3';
-import _ from 'lodash';
-
-
-/*
- * Creates a list of points to sample at based on a power scale.
- * This sampler works well when the x scale is a log scale
- *
- * @param {Number} exponent What exponent to use in the power scale
- * @param {Number} numSamples The number of samples to take
- * @param {Array} sampleRange The range from which the samples should be taken
- * @return {Array} Array of points to sample at
- */
-function powerSampler(exponent, numSamples, sampleRange) {
-  const sampleScale = d3.scale.pow().exponent(exponent).domain([1, numSamples]).range(sampleRange);
-  const samplePoints = _.range(numSamples).map(i => {
-    const x = sampleScale(i + 1);
-    return x;
-  });
-
-  return samplePoints;
-}
 
 /**
  * D3 specific code for the FunctionPlot component
@@ -87,17 +66,6 @@ class FunctionPlot {
     return { x: xScale, y: yScale, color: colorScale };
   }
 
-  /**
-   * Produces [{x, y}, ...] from a function and sampler
-   * @param {Object} datum The series data
-   * @param {Function} func The function to sample
-   * @param {Function} sampler Function that produces an array of x values to sample at
-   * @return {Array} Array of {x, y} points
-   */
-  sampleData(datum, func, sampler) {
-    return sampler(datum, func).map(x => ({ x, y: func(datum, x) }));
-  }
-
   drawValues(datum, labelKey) {
     if (!datum) {
       return;
@@ -115,13 +83,15 @@ class FunctionPlot {
   /**
    * callback to update
    */
-  update(props) {
-    const { dataset, width, height, highlightId, toggledId,
+  update(props, state) {
+    const { width, height, highlightId, toggledId,
       valueFormatter, yAxisLabel, xAxisLabel, func, identifier,
       labelKey } = props;
 
+    const { sampledData } = state;
+
     // Early out
-    if(!dataset) {
+    if(!sampledData) {
       return;
     }
 
@@ -135,7 +105,7 @@ class FunctionPlot {
     this.svg
       .attr('width', this.width + (this.margins.left + this.margins.right))
       .attr('height', this.height + (this.margins.top + this.margins.bottom))
-      .classed('many-lines', dataset.length > 10);
+      .classed('many-lines', sampledData.length > 10);
 
     this.g
       .attr('transform', `translate(${this.margins.left},${this.margins.top})`);
@@ -145,7 +115,7 @@ class FunctionPlot {
 
     const transitionDuration = 300;
 
-    const scales = this.updateScales(dataset, props);
+    const scales = this.updateScales(sampledData, props);
     const line = d3.svg.line()
       .x(d => scales.x(d.x))
       .y(d => scales.y(d.y))
@@ -215,13 +185,10 @@ class FunctionPlot {
       .attr('x2', this.width);
 
 
-    // define the sampler to use -- could eventually be a parameter
-    const exponent = 10, numSamples = 50, sampleRange = scales.x.domain();
-    const sampler = powerSampler.bind(this, exponent, numSamples, sampleRange);
 
     // draw the lines
     const lines = this.linesGroup.selectAll('.series')
-      .data(dataset, d => d[identifier]);
+      .data(sampledData, d => d.datum[identifier]);
 
     // ENTER lines
     const linesEnter = lines.enter()
@@ -232,20 +199,20 @@ class FunctionPlot {
     linesEnter
       .append('path')
       .classed('series-line', true)
-      .attr('d', d => line(this.sampleData(d, func, sampler)));
+      .attr('d', d => line(d.samples));
 
     // UPDATE lines
     lines.select('.series-line')
-      .classed('highlight', d => d[identifier] === highlightId)
-      .classed('toggled', d => d[identifier] === toggledId)
-      .style('stroke', d => scales.color ? scales.color(d) : undefined)
+      .classed('highlight', d => d.datum[identifier] === highlightId)
+      .classed('toggled', d => d.datum[identifier] === toggledId)
+      .style('stroke', d => scales.color ? scales.color(d.datum) : undefined)
       .transition()
       .duration(transitionDuration)
-      .attr('d', d => line(this.sampleData(d, func, sampler)));
+      .attr('d', d => line(d.samples));
 
     // ensure highlighted and toggled lines are moved to front
     lines.each(function (d) {
-      if (d[identifier] === highlightId || d[identifier] === toggledId) {
+      if (d.datum[identifier] === highlightId || d.datum[identifier] === toggledId) {
         this.parentNode.appendChild(this);
       }
     });
@@ -257,10 +224,10 @@ class FunctionPlot {
     // show values on highlighted item
     this.highlightGroup.selectAll('*').remove();
     if (highlightId) {
-      const highlightedDatum = dataset.find(d => d[identifier] === highlightId);
+      const highlightedDatum = sampledData.find(d => d.datum[identifier] === highlightId);
       this.drawValues(highlightedDatum, labelKey);
     } else if (toggledId) {
-      const toggledDatum = dataset.find(d => d[identifier] === toggledId);
+      const toggledDatum = sampledData.find(d => d.datum[identifier] === toggledId);
       this.drawValues(toggledDatum, labelKey);
     }
   }
@@ -269,28 +236,28 @@ class FunctionPlot {
    * Callback for hover in
    */
   onMouseEnter(d) {
-    this.dispatch.highlight(d);
+    this.dispatch.highlight(d.datum);
   }
 
   /**
    * Callback for hover out
    */
   onMouseLeave(d) {
-    this.dispatch.unhighlight(d);
+    this.dispatch.unhighlight(d.datum);
   }
 
   /**
    * Callback for click
    */
   onToggle(d) {
-    this.dispatch.toggle(d);
+    this.dispatch.toggle(d.datum);
   }
 
   /**
    * Callback for unclick
    */
   onUntoggle(d) {
-    this.dispatch.untoggle(d);
+    this.dispatch.untoggle(d.datum);
   }
 
   /**

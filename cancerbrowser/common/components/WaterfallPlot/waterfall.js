@@ -42,16 +42,6 @@ class Waterfall {
   }
 
   /**
-   * Extracts data from dataset and
-   * sorts data.
-   * @param {Object} dataset Measurement dataset
-   * @param (Function) sortFunc function indicating how to sort.
-   */
-  updateData(dataset, sortFunc) {
-    return dataset.sort(sortFunc);
-  }
-
-  /**
    *
    */
   updateScales(data, props) {
@@ -148,13 +138,15 @@ class Waterfall {
   /**
    *
    */
-  update(props) {
-    const {dataset, width, height, dataSort, labelLocation,
-      highlightId, useThresholds, valueFormatter, onLabelClick,
-      centerValue, toggledId, itemAxisLabel, valueAxisLabel } = props;
+  update(props, state) {
+    const { width, height, labelLocation, highlightId, useThresholds,
+      valueFormatter, onLabelClick, centerValue, toggledId, itemAxisLabel,
+      valueAxisLabel } = props;
+
+    const { sortedData } = state;
 
     // Early out
-    if(!dataset) {
+    if(!sortedData) {
       return;
     }
 
@@ -181,7 +173,7 @@ class Waterfall {
     if (outerHeight == null) {
       // base the height on the size of the bars instead of a predetermined value
       const barHeight = 22;
-      this.height = barHeight * dataset.length;
+      this.height = barHeight * sortedData.length;
     } else {
       this.height = outerHeight - (this.margins.top + this.margins.bottom);
     }
@@ -195,7 +187,8 @@ class Waterfall {
       .attr('transform', `translate(${this.margins.left},${this.margins.top})`);
 
 
-    const data = this.updateData(dataset, dataSort);
+
+    const data = sortedData;
 
     const scales = this.updateScales(data, props);
 
