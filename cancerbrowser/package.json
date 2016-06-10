@@ -18,9 +18,18 @@
   },
   "author": "Douglas P.W. Russell",
   "contributors": [
-    {"name": "Douglas Russel", "email":"Douglas_Russell@hms.harvard.edu"},
-    {"name": "Peter Beshai", "email":"peter@bocoup.com"},
-    {"name": "Jim Vallandingham", "email":"jim@bocoup.com"}
+    {
+      "name": "Douglas Russel",
+      "email": "Douglas_Russell@hms.harvard.edu"
+    },
+    {
+      "name": "Peter Beshai",
+      "email": "peter@bocoup.com"
+    },
+    {
+      "name": "Jim Vallandingham",
+      "email": "jim@bocoup.com"
+    }
   ],
   "license": "MIT",
   "devDependencies": {
@@ -66,6 +75,7 @@
     "react-router-redux": "^4.0.0",
     "react-select": "^1.0.0-beta10",
     "redux": "^3.3.1",
+    "redux-batched-actions": "^0.1.2",
     "redux-devtools": "^3.1.1",
     "redux-thunk": "^1.0.3",
     "reselect": "^2.5.1",

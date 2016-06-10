@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { batchActions } from 'redux-batched-actions';
 import _ from 'lodash';
 import d3 from 'd3';
 import { Row, Col } from 'react-bootstrap';
@@ -156,9 +157,8 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
    */
   initView(activeId) {
     const { dispatch, activeFilters } = this.props;
-    dispatch(changeViewBy('cellLine'));
     let newFilters = updateFilterValues(activeFilters, 'datasetConfig', 'cellLine', [activeId]);
-    dispatch(changeActiveFilters(newFilters));
+    dispatch(batchActions([changeViewBy('cellLine'), changeActiveFilters(newFilters)]));
   }
 
   getActiveGrowthFactor() {
