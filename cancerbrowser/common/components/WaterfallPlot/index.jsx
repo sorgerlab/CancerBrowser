@@ -77,11 +77,20 @@ class WaterfallPlot extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      sortedData: this.sortData(props)
+    };
+
+    this.sortData = this.sortData.bind(this);
     this.onToggle = this.onToggle.bind(this);
     this.onUntoggle = this.onUntoggle.bind(this);
     this.onHighlight = this.onHighlight.bind(this);
     this.onUnhighlight = this.onUnhighlight.bind(this);
     this.onLabelClick = this.onLabelClick.bind(this);
+  }
+
+  sortData(props = this.props) {
+    return props.dataset.slice(0).sort(props.dataSort);
   }
 
   /**
@@ -99,7 +108,7 @@ class WaterfallPlot extends React.Component {
 
     this.chart = new Waterfall(this.refs.waterfallContainer);
 
-    this.chart.update(this.props);
+    this.chart.update(this.props, this.state);
     this.chart.on('highlight', this.onHighlight);
     this.chart.on('unhighlight', this.onUnhighlight);
     this.chart.on('toggle', this.onToggle);
@@ -107,11 +116,21 @@ class WaterfallPlot extends React.Component {
     this.chart.on('labelClick', this.onLabelClick);
   }
 
+  componentWillReceiveProps(nextProps) {
+    // only sort when necessary (data changes or sort changes)
+    if (nextProps.dataSort !== this.props.dataSort ||
+        nextProps.dataset !== this.props.dataset) {
+      this.setState({
+        sortedData: this.sortData(nextProps)
+      });
+    }
+  }
+
   /**
    *
    */
   componentDidUpdate() {
-    this.chart.update(this.props);
+    this.chart.update(this.props, this.state);
   }
 
   /**
