@@ -50,6 +50,9 @@ function mapStateToProps(state) {
 
 const filterGroups = [cellLinesFilterGroup];
 
+/**
+ * Container for cell line browser page
+ */
 class CellLineBrowserPage extends React.Component {
   constructor(props) {
     super(props);
@@ -59,10 +62,13 @@ class CellLineBrowserPage extends React.Component {
     this.onCellLineFilterChange = this.onCellLineFilterChange.bind(this);
   }
 
+  /**
+   * Lifecycle method.
+   * Acquire data needed to display page
+   */
   componentDidMount() {
     this.props.dispatch(fetchCellLinesIfNeeded());
     this.props.dispatch(fetchDatasetsInfo());
-
 
     // see if filters have changed.
     const filterString = this.props.location.search.replace(/^\?/,'');
@@ -74,7 +80,7 @@ class CellLineBrowserPage extends React.Component {
   }
 
 
-  /*
+  /**
    * Reset the active filters when leaving the page.
    * this prevents cellLineFilters set here affecting other pages
    */
@@ -82,16 +88,28 @@ class CellLineBrowserPage extends React.Component {
     this.props.dispatch(resetActiveFilters());
   }
 
-  updateFilterUrl(newFilters) {
-    const query = qs.stringify(newFilters, {encode: true});
+  /**
+   * Encode filters in URL
+   * @param {Object} filters Filters to encode
+   */
+  updateFilterUrl(filters) {
+    const query = qs.stringify(filters, {encode: true});
     hashHistory.replace({pathname: '/cell_lines', search: '?' + query });
   }
 
+  /**
+   * Call back for filter change
+   * @param {Object} newFilters New filtergroups object
+   */
   onFilterChange(newFilters) {
     this.updateFilterUrl(newFilters);
     this.props.dispatch(changeActiveFilters(newFilters));
   }
 
+  /**
+   * Call back for filter change for specific cell line filters
+   * @param {Object} newCellLineFilters New cell line filters object
+   */
   onCellLineFilterChange(newCellLineFilters) {
     const { activeFilters } = this.props;
     const newActiveFilters = Object.assign({}, activeFilters, { cellLineFilters: newCellLineFilters });

@@ -15,12 +15,17 @@ export function plural(items, word, pluralSuffix = 's') {
 }
 
 
-// helper function to normalize a string for search comparison by lower casing and trimming
+/**
+ *  Helper function to normalize a string for search
+ *   comparison by lower casing, trimming, and removing dashes.
+ */
 export function normalize(str) {
   return String(str).toLowerCase().replace(/-/g,'').replace(/\s/g,'').trim();
 }
 
-// helper function to convert an array of strings to a comma separated list
+/**
+ * Helper function to convert an array of strings to a comma separated list
+ */
 export function toList(stringArray, accessor = (s) => s) {
   return stringArray.map((s) => String(accessor(s)).trim()).join(', ');
 }

@@ -150,16 +150,26 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
     this.getActiveCellLine = this.getActiveCellLine.bind(this);
   }
 
+  /**
+   * Return active drug id from filter props
+   */
   getActiveDrug() {
     const { filterGroups, activeFilters } = this.props;
     return getFilterValueItem(filterGroups, activeFilters, 'drugConfig', 'drug');
   }
 
+  /**
+   * Return active cell line id from filter props
+   */
   getActiveCellLine() {
     const { filterGroups, activeFilters } = this.props;
     return getFilterValueItem(filterGroups, activeFilters, 'cellLineConfig', 'cellLine');
   }
 
+  /**
+   * Callback for highlight change
+   * @param {String} highlightId
+   */
   onChangeHighlight(highlightId) {
     const { dispatch, viewBy } = this.props;
     if (viewBy === 'drug') {
@@ -169,6 +179,10 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
     }
   }
 
+  /**
+   * Callback for toggled value
+   * @param {String} toggleId
+   */
   onChangeToggle(toggleId) {
     const { dispatch, viewBy } = this.props;
     if (viewBy === 'drug') {
@@ -178,34 +192,58 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
     }
   }
 
+  /**
+   * Callback for label click on cell line label
+   * @param {Object} datum Data associated with label
+   */
   onWaterfallCellLineLabelClick(datum) {
     const path = `/cell_line/${datum.cell_line.id}`;
     this.context.router.push(path);
   }
 
+  /**
+   * Callback for label click on drug label
+   * @param {Object} datum Data associated with label
+   */
   onWaterfallDrugLabelClick(datum) {
     const path = `/drug/${datum.id}`;
     this.context.router.push(path);
   }
 
+  /**
+   * Callback for color change on drug viewby
+   */
   handleDrugColorByChange(evt) {
     const { value } = evt.target;
     const { dispatch } = this.props;
     dispatch(changeDrugColorBy(value));
   }
 
+  /**
+   * Callback for sort change on drug viewby
+   */
   handleDrugSortByChange(evt) {
     const { value } = evt.target;
     const { dispatch } = this.props;
     dispatch(changeDrugSortBy(value));
   }
 
+  /**
+   * Callback for sort change on cell line viewby
+   */
   handleCellLineSortByChange(evt) {
     const { value } = evt.target;
     const { dispatch } = this.props;
     dispatch(changeCellLineSortBy(value));
   }
 
+  /**
+   * Render waterfall plot component
+   *
+   * @param {String} label Label to display on waterfall plot
+   * @param {Array} dataset Dataset to display
+   * @param {Array} extent [Min, Max] of scales on plot
+   */
   renderWaterfall(label, dataset, extent) {
     const { viewBy } = this.props;
     let highlightId;
@@ -252,6 +290,9 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
     }
   }
 
+  /**
+   * Render multiple waterfall plots
+   */
   renderWaterfalls() {
     const { waterfallPlotData } = this.props;
 
@@ -284,6 +325,9 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
   }
 
 
+  /**
+   * Render function plot with dosage curves.
+   */
   renderDosageCurve() {
     const { filteredData, viewBy } = this.props;
 
@@ -334,6 +378,10 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
     );
   }
 
+  /**
+   * Render chart controls
+   * for drug viewby
+   */
   renderDrugChartControls() {
     const { drugColorBy, drugSortBy } = this.props;
     return (
@@ -365,6 +413,10 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
     );
   }
 
+  /**
+   * Render chart controls
+   * for cell line viewby
+   */
   renderCellLineChartControls() {
     const { cellLineSortBy } = this.props;
     return (
@@ -385,6 +437,9 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
     );
   }
 
+  /**
+   * Render either cell line or drug viewby chart controls
+   */
   renderChartControls() {
     const { viewBy } = this.props;
     if (viewBy === 'drug') {
@@ -395,6 +450,9 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
   }
 
 
+  /**
+   * Render titles
+   */
   renderSubheaders() {
     const { viewBy } = this.props;
 
@@ -416,6 +474,9 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
     );
   }
 
+  /**
+   * Main render function
+   */
   renderMain() {
     return (
       <div>

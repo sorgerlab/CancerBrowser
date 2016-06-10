@@ -38,8 +38,8 @@ class CellLineDetailPage extends React.Component {
   }
 
   /**
-  * Display general info
-  */
+   * Display general info
+   */
   renderInfo(cellLine) {
     const details = [
       {label: 'Collections', value: toList(cellLine.collection, (s) => s.label)},
@@ -53,8 +53,8 @@ class CellLineDetailPage extends React.Component {
   }
 
   /**
-  * Display Aux info
-  */
+   * Display Aux info
+   */
   renderMediaInfo(cellLine) {
     const details = [
       {label: 'Media Base', value: cellLine.info['Media base']},
@@ -70,8 +70,8 @@ class CellLineDetailPage extends React.Component {
   }
 
   /**
-  * Display list of datasets
-  */
+   * Display list of datasets
+   */
   renderDatasets(cellLine) {
     const links = cellLine.dataset.map((dataset) => {
       return <Link to={`/dataset/${dataset.value}/${cellLine.id}/cellLine`} className="" >{dataset.label}</Link>;
@@ -86,9 +86,9 @@ class CellLineDetailPage extends React.Component {
   }
 
   /**
-  * Render out JSX for CellDetail.
-  * @return {ReactElement} JSX markup.
-  */
+   * Render out JSX for CellDetail.
+   * @return {ReactElement} JSX markup.
+   */
   render() {
 
     const cellLine = this.props.cellLineInfo;

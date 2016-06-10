@@ -72,7 +72,12 @@ const defaultProps = {
   onChangeToggle: () => {}
 };
 
-
+/**
+ * Waterfall Plot component.
+ * Here a waterfall plot is defined as a bar chart width
+ * a default ordering based on magnitude, so the bars
+ * are ordered from greatest amount to least amount.
+ */
 class WaterfallPlot extends React.Component {
   constructor(props) {
     super(props);
@@ -85,7 +90,7 @@ class WaterfallPlot extends React.Component {
   }
 
   /**
-   *
+   * Lifecycle method to check if component needs to update
    */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
@@ -108,40 +113,46 @@ class WaterfallPlot extends React.Component {
   }
 
   /**
-   *
+   * Lifecycle method. update D3 portion of the chart with new props.
    */
   componentDidUpdate() {
     this.chart.update(this.props);
   }
 
   /**
-   *
+   * Callback for highlight event.
+   * @param {Object} d Data of object being highlighted.
    */
   onHighlight(d) {
     this.props.onChangeHighlight(d.id);
   }
 
   /**
-   *
+   * Callback for unhighlight event.
    */
   onUnhighlight() {
     this.props.onChangeHighlight(null);
   }
 
   /**
-   *
+   * Callback for click event.
+   * @param {Object} d Data of object being toggled.
    */
   onToggle(d) {
     this.props.onChangeToggle(d.id);
   }
 
   /**
-   *
+   * Callback for unclick event.
    */
   onUntoggle() {
     this.props.onChangeToggle(null);
   }
 
+  /**
+   * Callback for entity label click
+   * @param {Object} d Data of object being clicked.
+   */
   onLabelClick(d) {
     const { onLabelClick } = this.props;
 
@@ -151,7 +162,7 @@ class WaterfallPlot extends React.Component {
   }
 
   /**
-   *
+   * main render method
    */
   render() {
     const { label, labelLocation } = this.props;

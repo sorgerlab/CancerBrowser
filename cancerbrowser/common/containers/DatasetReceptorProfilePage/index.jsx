@@ -124,6 +124,10 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     this.handleCellLineSortByChange = this.handleCellLineSortByChange.bind(this);
   }
 
+  /**
+   * Lifecycle method.
+   * Fetch data if needed
+   */
   componentDidMount() {
     super.componentDidMount();
     const { dispatch, params, viewBy} = this.props;
@@ -138,6 +142,11 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     }
   }
 
+  /**
+   * Setup initial display if a active cell line id
+   * has been passed in.
+   * @param {String} activeId Id of cell line to view
+   */
   initDisplay(activeId) {
     const { dispatch, activeFilters } = this.props;
     let newFilters = updateFilterValues(activeFilters, 'byCellLineConfig', 'cellLine', [activeId]);
@@ -146,11 +155,17 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     dispatch(batchActions([changeViewBy('cellLine'), changeActiveFilters(newFilters)]));
   }
 
+  /**
+   * Callback for highlight event.
+   */
   onChangeHighlight(highlightId) {
     const { dispatch } = this.props;
     dispatch(changeHighlight(highlightId));
   }
 
+  /**
+   * Callback for click toggle event.
+   */
   onChangeToggle(toggledId) {
     const { dispatch } = this.props;
     dispatch(changeToggled(toggledId));
@@ -230,17 +245,26 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
   }
 
 
+  /**
+   * Callback for label click.
+   */
   onWaterfallLabelClick(datum) {
     const path = `/cell_line/${datum.cell_line.id}`;
     this.context.router.push(path);
   }
 
+  /**
+   * Callback for sort by change from receptor viewby
+   */
   handleReceptorSortByChange(evt) {
     const { value } = evt.target;
     const { dispatch } = this.props;
     dispatch(changeReceptorSortBy(value));
   }
 
+  /**
+   * Callback for sort by change from cell line viewby
+   */
   handleCellLineSortByChange(evt) {
     const { value } = evt.target;
     const { dispatch } = this.props;
@@ -321,7 +345,9 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     }
   }
 
-  // gets the metric shown in the data
+  /**
+   * Helper function to get metric value from dataset.
+   */
   getMetric(dataset) {
     if (!dataset) {
       return undefined;
@@ -424,7 +450,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
   }
 
   /**
-   * Render JSX for controls on receptor side of visual
+   * Render controls for receptor viewby
    */
   renderReceptorChartControls() {
     const { receptorColorBy, receptorSortBy } = this.props;
@@ -459,6 +485,9 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
     );
   }
 
+  /**
+   * Render controls for cell line viewby
+   */
   renderCellLineChartControls() {
     const { cellLineSortBy } = this.props;
     return (

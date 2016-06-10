@@ -5,12 +5,20 @@ const receptorStatusColors = ['#c85f61', '#4dab9b', '#ca7832', '#7da245'];
 const molecularSubtypeColors = ['#49b4be', '#cb645f', '#6ba463', '#b2973a'];
 
 
+/**
+ * Helper function to light a color
+ * @param {String} color Hex value of color
+ * @param {Number} amount Amount to ligthen by
+ */
 function lighten(color, amount) {
   const hsl = d3.rgb(color).hsl();
   hsl.l = Math.min(1, hsl.l * amount);
   return hsl.toString();
 }
 
+/**
+ * Color scales shared across the site
+ */
 export const colorScales = {
   // receptor status colors
   cellLineReceptorStatus: d3.scale.ordinal()

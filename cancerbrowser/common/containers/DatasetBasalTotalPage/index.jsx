@@ -28,8 +28,6 @@ const defaultProps = {
 };
 
 function mapStateToProps(state) {
-  // const { datasets } = state;
-  // const { datasetBasalPhospho } = datasets;
 
   const baseProps = baseMapStateToProps(state, { datasetId, datasetKey,
     getFilteredViewData, getFilterGroups });
@@ -48,6 +46,9 @@ class DatasetBasalTotalPage extends DatasetBasePage {
   }
 
 
+  /**
+   * Render Heatmap component
+   */
   renderHeatmap() {
 
     const { filteredData } = this.props;
@@ -60,6 +61,9 @@ class DatasetBasalTotalPage extends DatasetBasePage {
     );
   }
 
+  /**
+   * Main render function
+   */
   renderMain() {
 
     return (
