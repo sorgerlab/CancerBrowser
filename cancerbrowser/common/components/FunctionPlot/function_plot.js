@@ -205,7 +205,7 @@ class FunctionPlot {
     lines.select('.series-line')
       .classed('highlight', d => d.datum[identifier] === highlightId)
       .classed('toggled', d => d.datum[identifier] === toggledId)
-      .style('stroke', d => scales.color ? scales.color(d) : undefined)
+      .style('stroke', d => scales.color ? scales.color(d.datum) : undefined)
       .transition()
       .duration(transitionDuration)
       .attr('d', d => line(d.samples));
@@ -236,28 +236,28 @@ class FunctionPlot {
    * Callback for hover in
    */
   onMouseEnter(d) {
-    this.dispatch.highlight(d);
+    this.dispatch.highlight(d.datum);
   }
 
   /**
    * Callback for hover out
    */
   onMouseLeave(d) {
-    this.dispatch.unhighlight(d);
+    this.dispatch.unhighlight(d.datum);
   }
 
   /**
    * Callback for click
    */
   onToggle(d) {
-    this.dispatch.toggle(d);
+    this.dispatch.toggle(d.datum);
   }
 
   /**
    * Callback for unclick
    */
   onUntoggle(d) {
-    this.dispatch.untoggle(d);
+    this.dispatch.untoggle(d.datum);
   }
 
   /**
