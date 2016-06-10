@@ -64,6 +64,7 @@
     "node-sass": "^3.7.0",
     "qs": "^6.2.0",
     "react": "^15.1.0",
+    "react-addons-perf": "^15.1.0",
     "react-addons-shallow-compare": "^15.1.0",
     "react-autosuggest": "^3.7.4",
     "react-bootstrap": "^0.29.4",
