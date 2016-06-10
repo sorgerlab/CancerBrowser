@@ -18,13 +18,10 @@ import qs from 'qs';
 
 import {
   fetchCellLinesIfNeeded,
-  changeCellLineView
-} from '../../actions/cell_line';
-
-import {
+  changeCellLineView,
   changeActiveFilters,
   resetActiveFilters
-} from '../../actions/filter';
+} from '../../actions/cell_line';
 
 const propTypes = {
   dispatch: React.PropTypes.func,
@@ -45,7 +42,7 @@ function mapStateToProps(state) {
   return {
     datasets: state.datasets.info.primaryDatasets,
     cellLineView: state.cellLines.cellLineView, // TODO: move to .browser.
-    activeFilters: state.filters.active,
+    activeFilters: state.cellLines.activeFilters,
     filteredCellLines: getFilteredCellLines(state),
     cellLineCounts: getFilteredCellLineCounts(state)
   };

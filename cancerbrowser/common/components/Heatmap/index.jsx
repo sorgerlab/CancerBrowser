@@ -23,12 +23,18 @@ const defaultProps = {
   dataExtent: [-2.9, 2.9]
 };
 
-
+/**
+ * Heatmap component. Uses canvas to display Heatmap
+ * Use SVG for labels.
+ */
 class Heatmap extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  /**
+   * Lifecycle method to determine update
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
@@ -47,6 +53,9 @@ class Heatmap extends React.Component {
     this.updateVisuals();
   }
 
+  /**
+   * Update scales
+   */
   updateScales(data, width, height, props) {
     // const minVal = d3.min(data, (d) => d.extent[0]);
     // const maxVal = d3.max(data, (d) => d.extent[1]);
@@ -67,10 +76,6 @@ class Heatmap extends React.Component {
     const colorScale = d3.scale.linear()
       .domain(dataExtent)
       .range(['white', '#FA6900']);
-
-    // const colorScale = d3.scale.threshold()
-    //   .range(['#8b0000','#b61d39','#d84765','#ef738b','#fea0ac','#ffd1c9','#ffffe0','#c7f0ba','#9edba4','#7ac696','#5aaf8c','#399785','#008080'])
-    //   .domain(d3.range(-2.9, 2.9, 0.4));
 
     return {x:xScale, y:yScale, color:colorScale};
   }
@@ -124,7 +129,6 @@ class Heatmap extends React.Component {
     }
 
     // SVG Stuff
-
     const svg = d3.select(this.refs.svg);
     const g = svg.select('g');
     const mData = dataset[0].measurements;
@@ -145,8 +149,9 @@ class Heatmap extends React.Component {
 
   }
 
-
-
+  /**
+   * Main render method
+   */
   render() {
     const { width, height, margins } = this.props;
 

@@ -20,12 +20,13 @@ const contextTypes = {
 
 /**
  * Omni Search component.
+ * Allows for auto completing Cell Lines or Drugs
  */
 class OmniSearch extends React.Component {
 
   /**
-  * constructor sets up search value.
-  */
+   * constructor sets up search value.
+   */
   constructor(props) {
     super(props);
 
@@ -45,6 +46,9 @@ class OmniSearch extends React.Component {
     this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
   }
 
+  /**
+   * Merge cell line and drug data together for display and search.
+   */
   combineData(cellLines, drugs) {
     return [
       {
@@ -62,6 +66,9 @@ class OmniSearch extends React.Component {
     ];
   }
 
+  /**
+   * Lifecycle method. Updates state with the combined data.
+   */
   componentWillReceiveProps(nextProps) {
     if(nextProps.cellLines && nextProps.drugs &&
       (nextProps.cellLines !== this.props.cellLines || nextProps.drugs !== this.props.drugs)) {
@@ -73,6 +80,9 @@ class OmniSearch extends React.Component {
     }
   }
 
+  /**
+   * Lifecycle method for checking update
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }

@@ -69,7 +69,7 @@ const allColumns = {
      *  - "All WT" if all genes are wild type
      *  - Otherwise a comma separated list of mutated genes
      *
-     * @param {Array} array of mutated gene values
+     * @param {Array} val array of mutated gene values
      * @return {String}
      */
     render(val) {
@@ -236,16 +236,24 @@ const filters = {
 const initialSortBy = { prop: 'cellLine', order: 'ascending' };
 const keys = ['id'];
 
-/** A way to render options in react-select that includes a bar and count */
+/**
+ * A way to render options in react-select that includes a bar and count
+ */
 class CellLineTable extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  /**
+   * Life cycle method to check if component needs to be updated
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
 
+  /**
+   * Main render method
+   */
   render() {
     const { data, view, datasets } = this.props;
 
