@@ -18,9 +18,18 @@
   },
   "author": "Douglas P.W. Russell",
   "contributors": [
-    {"name": "Douglas Russel", "email":"Douglas_Russell@hms.harvard.edu"},
-    {"name": "Peter Beshai", "email":"peter@bocoup.com"},
-    {"name": "Jim Vallandingham", "email":"jim@bocoup.com"}
+    {
+      "name": "Douglas Russel",
+      "email": "Douglas_Russell@hms.harvard.edu"
+    },
+    {
+      "name": "Peter Beshai",
+      "email": "peter@bocoup.com"
+    },
+    {
+      "name": "Jim Vallandingham",
+      "email": "jim@bocoup.com"
+    }
   ],
   "license": "MIT",
   "devDependencies": {
@@ -55,6 +64,7 @@
     "node-sass": "^3.7.0",
     "qs": "^6.2.0",
     "react": "^15.1.0",
+    "react-addons-perf": "^15.1.0",
     "react-addons-shallow-compare": "^15.1.0",
     "react-autosuggest": "^3.7.4",
     "react-bootstrap": "^0.29.4",
