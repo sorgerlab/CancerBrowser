@@ -12,6 +12,8 @@ import configureStore from '../common/utils/configureStore';
 import routes from '../common/routes';
 
 import '../common/assets/base.scss';
+import 'react-select/dist/react-select.css';
+
 
 // Enable/Disable Redux Devtools
 window.$REDUX_DEVTOOL = false;

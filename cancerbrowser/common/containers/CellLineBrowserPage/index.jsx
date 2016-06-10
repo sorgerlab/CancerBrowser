@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import 'react-select/dist/react-select.css';
 import { ButtonGroup, Button } from 'react-bootstrap';
 import classNames from 'classnames';
 import { hashHistory } from 'react-router';
