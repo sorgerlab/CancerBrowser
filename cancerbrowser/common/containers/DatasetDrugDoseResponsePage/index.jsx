@@ -1,11 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { batchActions } from 'redux-batched-actions';
 import _ from 'lodash';
 import d3 from 'd3';
 import { Row, Col } from 'react-bootstrap';
 
-import { getFilteredViewData, getFilterGroups, getWaterfallPlotData } from '../../selectors/datasetDrugDoseResponse';
-import { getFilterValueItem } from '../../utils/filter_utils';
+import {
+  getFilteredViewData,
+  getFilterGroups,
+  getWaterfallPlotData } from '../../selectors/datasetDrugDoseResponse';
+
+import {
+  getFilterValueItem,
+  updateFilterValues } from '../../utils/filter_utils';
+
 import DatasetBasePage, { baseMapStateToProps } from '../DatasetBasePage';
 import { colorScales } from '../../config/colors';
 import { sortByKeys, sortByKey } from '../../utils/sort';
@@ -148,6 +156,31 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
     this.handleCellLineSortByChange = this.handleCellLineSortByChange.bind(this);
     this.getActiveDrug = this.getActiveDrug.bind(this);
     this.getActiveCellLine = this.getActiveCellLine.bind(this);
+  }
+
+  /**
+   * Lifecycle method.
+   * Fetch data if needed
+   */
+  componentDidMount() {
+    const { params } = this.props;
+    super.componentDidMount();
+    
+    if(params.entityId && params.entityType) {
+      this.initView(params.entityId, params.entityType);
+    }
+  }
+
+  /**
+   * Set initial display to focus on the activeId
+   * @param {String} entityId id of the active entity to display
+   * @param {String} entityType either 'drug' or 'cellLine'
+   */
+  initView(entityId, entityType) {
+    const { dispatch, activeFilters } = this.props;
+    const configId = (entityType === 'drug') ? 'drugConfig' : 'cellLineConfig';
+    let newFilters = updateFilterValues(activeFilters, configId, entityType, [entityId]);
+    dispatch(batchActions([changeViewBy(entityType), changeActiveFilters(newFilters)]));
   }
 
   /**
