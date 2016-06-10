@@ -18,12 +18,21 @@ function setDrugInfo(info) {
 }
 
 
+/**
+ * Action creator for indicating drug data has been
+ * requested
+ */
 function requestDrugs() {
   return {
     type: REQUEST_DRUGS
   };
 }
 
+/**
+ * Action creator for indicating drug data has been
+ * set
+ * @param {Array} drugs Drugs dataset
+ */
 function receiveDrugs(drugs) {
   return {
     type: RECEIVE_DRUGS,

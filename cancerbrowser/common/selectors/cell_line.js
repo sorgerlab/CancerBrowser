@@ -21,7 +21,7 @@ function getActiveFilters(state, substate) {
     return substate.activeFilters;
   }
 
-  return state.filters.active;
+  return state.cellLines.activeFilters;
 }
 
 
@@ -36,7 +36,7 @@ function getBaseFilters(state, substate) {
     return substate.baseFilters;
   }
 
-  return state.filters.base;
+  return state.cellLines.activeFilters.base;
 }
 
 /////////////////////
