@@ -55,6 +55,9 @@ class MultiSelectList extends React.Component {
     super(props);
   }
 
+  /**
+   * Lifecycle method to determine update
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
@@ -143,6 +146,9 @@ class MultiSelectList extends React.Component {
     return barScale;
   }
 
+  /**
+   * Main render method
+   */
   render() {
     const { items, counts } = this.props;
 

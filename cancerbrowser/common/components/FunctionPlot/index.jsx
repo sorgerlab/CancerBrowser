@@ -46,7 +46,7 @@ const propTypes = {
   identifier: React.PropTypes.string,
 
   /* key in a datum to use as an id (default: 'label') */
-  label: React.PropTypes.string
+  labelKey: React.PropTypes.string
 };
 
 const defaultProps = {
@@ -57,7 +57,10 @@ const defaultProps = {
   labelKey: 'label'
 };
 
-
+/**
+ * Component to plot a given function
+ * using lines.
+ */
 class FunctionPlot extends React.Component {
   constructor(props) {
     super(props);
@@ -69,7 +72,7 @@ class FunctionPlot extends React.Component {
   }
 
   /**
-   *
+   * Life cycle method to check if component needs to be updated
    */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);

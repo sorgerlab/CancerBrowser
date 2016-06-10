@@ -132,7 +132,6 @@ class WaterfallPlot extends React.Component {
    *
    */
   onToggle(d) {
-    console.log('toggling', d);
     this.props.onChangeToggle(d.id);
   }
 

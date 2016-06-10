@@ -6,7 +6,7 @@ import { Icon } from 'react-fa';
 import './dataset_selector.scss';
 
 const propTypes = {
-  /** Array of datasets [{value, label}] to render in the list */
+  /* Array of datasets [{value, label}] to render in the list */
   datasets: React.PropTypes.array,
   entityId: React.PropTypes.string,
   entityType: React.PropTypes.string
@@ -25,7 +25,10 @@ const defaultProps = {
 // needed for accessibility
 let datasetSelectorId = 0;
 
-/** A way to render options in react-select that includes a bar and count */
+/**
+ * Componet to render options in a react-select
+ * component that includes a bar and count.
+ */
 class DatasetSelector extends React.Component {
   constructor(props) {
     super(props);
@@ -34,10 +37,17 @@ class DatasetSelector extends React.Component {
     this.handleDatasetSelect = this.handleDatasetSelect.bind(this);
   }
 
+  /**
+   * Life cycle method to check if component needs to be updated
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
 
+  /**
+   * Callback when data select button is clicked
+   * @param {String} datasetId dataset id.
+   */
   handleDatasetSelect(datasetId) {
     const { entityId, entityType } = this.props;
     let path = `/dataset/${datasetId}`;
@@ -50,6 +60,9 @@ class DatasetSelector extends React.Component {
     this.context.router.push(path);
   }
 
+  /**
+   * Main render method
+   */
   render() {
     const { datasets, ...other } = this.props;
     // only show the dropdown if data is available

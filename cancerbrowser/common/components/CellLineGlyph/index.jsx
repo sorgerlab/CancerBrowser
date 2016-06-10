@@ -13,6 +13,9 @@ const propTypes = {
   cellLine: React.PropTypes.object.isRequired
 };
 
+/**
+ * Componet to display interactive Cell Line Glyph.
+ */
 class CellLineGlyph extends React.Component {
   constructor(props) {
     super(props);
@@ -84,12 +87,16 @@ class CellLineGlyph extends React.Component {
     return this.cachedVisComponents;
   }
 
+  /**
+   * Life cycle method to check if component needs to be updated
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
 
   /**
    * On hover, store the gene hovered on in state as `highlightGene`
+   * @param {String} gene id of gene.
    */
   handleHoverGene(gene) {
     this.setState({ highlightGene: gene });
@@ -178,6 +185,9 @@ class CellLineGlyph extends React.Component {
     );
   }
 
+  /**
+   * Main render method.
+   */
   render() {
     const { cellLine } = this.props;
     const { width, height, innerMargin } = this.visComponents();

@@ -23,12 +23,17 @@ const propTypes = {
 };
 
 
-/** A way to render options in react-select that includes a bar and count */
+/**
+ * A way to render options in react-select that includes a bar and count
+ */
 class NumberedSelectOption extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  /**
+   * Lifecycle method to check if update is needed.
+   */
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
@@ -68,6 +73,9 @@ class NumberedSelectOption extends React.Component {
     );
   }
 
+  /**
+   * Main Render method
+   */
   render() {
     const { option } = this.props;
 

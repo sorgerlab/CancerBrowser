@@ -21,6 +21,9 @@ function powerSampler(exponent, numSamples, sampleRange) {
   return samplePoints;
 }
 
+/**
+ * D3 specific code for the FunctionPlot component
+ */
 class FunctionPlot {
   /**
    * Constructor. Sets up container location and scales for visual.
@@ -67,7 +70,7 @@ class FunctionPlot {
   }
 
   /**
-   *
+   * Update scales
    */
   updateScales(dataset, props) {
     const { colorScale, xExtent, yExtent } = props;
@@ -110,7 +113,7 @@ class FunctionPlot {
   }
 
   /**
-   *
+   * callback to update
    */
   update(props) {
     const { dataset, width, height, highlightId, toggledId,
@@ -262,18 +265,30 @@ class FunctionPlot {
     }
   }
 
+  /**
+   * Callback for hover in
+   */
   onMouseEnter(d) {
     this.dispatch.highlight(d);
   }
 
+  /**
+   * Callback for hover out
+   */
   onMouseLeave(d) {
     this.dispatch.unhighlight(d);
   }
 
+  /**
+   * Callback for click
+   */
   onToggle(d) {
     this.dispatch.toggle(d);
   }
 
+  /**
+   * Callback for unclick
+   */
   onUntoggle(d) {
     this.dispatch.untoggle(d);
   }
