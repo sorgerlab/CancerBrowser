@@ -52,7 +52,7 @@ export const getFilteredDrugs = createSelector(
   (drugs, activeFilters) => {
     const activeDrugFilters = activeFilters.drugFilters;
     const filteredDrugs = filterData(drugs, activeDrugFilters);
-    return filteredDrugs;
+    return _.sortBy(filteredDrugs, 'name.label');
   }
 );
 
