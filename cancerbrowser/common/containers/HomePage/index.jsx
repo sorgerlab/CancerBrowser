@@ -26,7 +26,7 @@ const propTypes = {
 function mapStateToProps(state) {
   return {
     cellLines: state.cellLines.items,
-    drugs: state.drugs.filtered
+    drugs: state.drugs.items
   };
 }
 
