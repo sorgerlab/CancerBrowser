@@ -182,6 +182,7 @@ export const getFilterGroups = createSelector(
           .keyBy('small_molecule_HMSLID')
           .values()
           .map(d => ({ label: d.small_molecule, value: d.small_molecule_HMSLID }))
+          .sortBy('label')
           .value();
       }
 
@@ -222,6 +223,7 @@ export const getFilterGroups = createSelector(
           .keyBy('id')
           .values()
           .map(d => ({ label: d.label, value: d.id }))
+          .sortBy('label')
           .value();
       }
 
