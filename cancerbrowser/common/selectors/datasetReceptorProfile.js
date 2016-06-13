@@ -10,23 +10,19 @@ const datasetKey = 'datasetReceptorProfile';
 /////////////////////
 // Input Selectors
 /////////////////////
-function getReceptors(state) {
-  return state.receptors.items;
-}
 
 
 /////////////////////
 // Helpers
 /////////////////////
 
-
-
 /**
  * Transform Receptor data to be oriented by receptor instead of
  * cell line data.
  * @param {Array} dataset Dataset expected to be processed by
- * transformReceptorData already.
- *
+ * transformReceptorData already (in api dataset code).
+*
+ * @return {Array}
  */
 function convertToByReceptor(dataset) {
   if (!dataset) {
@@ -55,7 +51,13 @@ function convertToByReceptor(dataset) {
 }
 
 
-/** Filters data organized by receptor based on provided cell lines */
+/**
+ * Filter the receptor data based on a set of cell lines
+ *
+ * @param {Array} data the data to filter
+ * @param {Array} cellLines the list of cell lines to filter the data by
+ * @return {Array} A subset of `data` that contains only cell lines in `cellLines`
+ */
 function filterReceptorDataByCellLine(data, cellLines) {
   if (!data) {
     return data;
@@ -73,6 +75,10 @@ function filterReceptorDataByCellLine(data, cellLines) {
 /**
  * For 1 cell line x all receptors view, we don't want to display AU
  * values - so filter them.
+ *
+ * @param {Array} dataset The 1 cell line x all recetors dataset
+ * @param {String} metricToKeep the metric type to keep
+ * @return {Array} A subset of dataset
  */
 function filterByMetric(dataset, metricToKeep) {
   if (!dataset) {
@@ -92,7 +98,16 @@ function filterByMetric(dataset, metricToKeep) {
 // Selectors
 /////////////////////
 
-/** Converts the dataset to be by cell line or by receptor */
+/**
+ * A selector that returns the data organized by receptor or by cell line
+ * depending on the view by.
+ *
+ * Input selectors:
+ *   - getDataset
+ *   - getViewBy
+ *
+ * @return {Array} The dataset for the current view
+ */
 export const getViewData = createSelector(
   [ getDataset(datasetId), getViewBy(datasetKey) ],
   (dataset, viewBy) => {
@@ -105,7 +120,17 @@ export const getViewData = createSelector(
 );
 
 
-/** Filters the dataset */
+/**
+ * A selector that filters the dataset to match the configuration
+ * of the page (filtered cell lines)
+ *
+ * Input selectors:
+ *   - getViewData (a selector)
+ *   - getViewBy
+ *   - getFilteredCellLines
+ *
+ * @return {Array} The filtered dataset
+ */
 export const getFilteredViewData = createSelector(
   [ getViewData, getViewBy(datasetKey), getFilteredCellLines ],
   (viewData, viewBy, filteredCellLines) => {
@@ -118,13 +143,33 @@ export const getFilteredViewData = createSelector(
 );
 
 
-/** Gets the filter group definition based on what is in the data */
+/**
+ * A selector that creates the filter groups based on what values are in the
+ * data. Note that this does not use the filtered data since we need all the
+ * potential values.
+ *
+ * Input selectors:
+ *   - getViewData
+ *   - getViewBy
+ * @return {Array} The filter groups definition
+ */
 export const getFilterGroups = createSelector(
-  [ getViewData, getViewBy(datasetKey), getReceptors ],
-  (viewData, viewBy, receptors) => {
+  [ getViewData, getViewBy(datasetKey) ],
+  (viewData, viewBy) => {
     const filterGroups = [];
 
+
+    // VIEW BY: receptor
+    // ------------------------------------
     if (viewBy === 'receptor') {
+      // read the list of receptors from the data
+      let receptors;
+      if (viewData) {
+        receptors = _.sortBy(viewData.map(d => ({ value: d.id, label: d.label })), 'label');
+      } else {
+        receptors = [];
+      }
+
       const byReceptorConfig = [
         {
           id: 'receptor',
@@ -160,11 +205,17 @@ export const getFilterGroups = createSelector(
         filters: cellLinesFilterGroup.filters.filter(filter => filter.id !== 'dataset')
       });
 
+
+    // VIEW BY: cell line
+    // ------------------------------------
     } else {
-      let cellLines = [];
+      let cellLines;
       if(viewData) {
         cellLines = _.map(viewData,(d) => { return {value:d.id, label:d.label}; });
+      } else {
+        cellLines = [];
       }
+
       // put by cell line filters here
       const byCellLineConfig = [
         {

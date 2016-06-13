@@ -5,14 +5,22 @@ import { filterData, countMatchedFilterGroup } from '../api/util';
 /////////////////////
 // Input Selectors
 /////////////////////
+
+/**
+ * An input selector for getting all drugs
+ *
+ * @param {Object} state The Redux state
+ * @return {Array} The drugs
+ */
 function getDrugs(state) {
   return state.drugs.items;
 }
 
-/* Get the active filters
+/**
+ * An input selector for getting active drug filters
  *
  * @param {Object} state The Redux state
- * @return The active filters
+ * @return {Object} The active filters
  */
 function getActiveFilters(state) {
   return state.drugs.activeFilters;
@@ -47,6 +55,16 @@ function valuesFromLabelValueItems(collection, labelValueKey) {
 // Selectors
 /////////////////////
 
+/**
+ * A selector that filters the collection of drugs to match the
+ * active filters.
+ *
+ * Input selectors:
+ *   - getDrugs
+ *   - getActiveFilters
+ *
+ * @return {Array} The filtered drugs
+ */
 export const getFilteredDrugs = createSelector(
   [ getDrugs, getActiveFilters ],
   (drugs, activeFilters) => {
@@ -56,11 +74,16 @@ export const getFilteredDrugs = createSelector(
   }
 );
 
-/**
- * Provides the filter definition for drugs, generated based on
- * values in the data.
+
+ /**
+ * A selector that creates the filter groups based on what values are in the
+ * data. Note that this does not use the filtered data since we need all the
+ * potential values.
  *
- * @return {Array}
+ * Input selectors:
+ *   - getDrugs
+ *
+ * @return {Array} The filter groups definition
  */
 export const getFilterGroups = createSelector(
   [ getDrugs ],
@@ -113,7 +136,15 @@ export const getFilterGroups = createSelector(
   }
 );
 
-
+/**
+ * A selector for the count information for a set of drugs
+ *
+ * Input selectors:
+ *   - getFilteredDrugs (a selector)
+ *   - getFilterGroups (a selector)
+ *
+ * @return {Object} An object defining counts for drugFilters
+ */
 export const getFilteredDrugCounts = createSelector(
   [ getFilteredDrugs, getFilterGroups ],
   (filteredDrugs, filterGroups) => {

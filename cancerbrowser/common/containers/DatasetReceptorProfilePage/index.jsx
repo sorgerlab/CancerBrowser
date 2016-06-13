@@ -14,11 +14,6 @@ import {
 
 
 import {
-  fetchReceptorsIfNeeded
-} from '../../actions/receptor';
-
-
-import {
   changeHighlight,
   changeToggled,
   changeActiveFilters,
@@ -49,7 +44,6 @@ const propTypes = {
   filterGroups: React.PropTypes.array,
   filteredCellLines: React.PropTypes.array,
   cellLineCounts: React.PropTypes.object,
-  receptors: React.PropTypes.array,
   viewBy: React.PropTypes.string,
   filteredData: React.PropTypes.array,
   receptorColorBy: React.PropTypes.string,
@@ -66,14 +60,13 @@ const defaultProps = {
 };
 
 function mapStateToProps(state) {
-  const { datasets, receptors } = state;
+  const { datasets } = state;
   const { datasetReceptorProfile } = datasets;
 
   const baseProps = baseMapStateToProps(state, { datasetId, datasetKey,
     getFilteredViewData, getFilterGroups });
 
   const props = Object.assign(baseProps, {
-    receptors: receptors.items,
     highlightId: datasetReceptorProfile.highlight,
     toggledId: datasetReceptorProfile.toggled,
     receptorColorBy: datasetReceptorProfile.receptorColorBy,
@@ -130,8 +123,7 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
    */
   componentDidMount() {
     super.componentDidMount();
-    const { dispatch, params, viewBy} = this.props;
-    dispatch(fetchReceptorsIfNeeded());
+    const { params, viewBy} = this.props;
 
     if(params.entityId) {
       const activeIds = this.getActiveWaterfallPlots(viewBy);
