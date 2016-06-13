@@ -13,7 +13,7 @@ function getCellLines(state) {
  *
  * @param {Object} state The Redux state
  * @param {Object} substate A subsection of the Redux state to browse if provided instead
- * @return The active filters
+ * @return {Object} The active filters
  */
 function getActiveFilters(state, substate) {
   // allow overriding the default filters location
@@ -127,9 +127,21 @@ export const cellLinesFilterGroup = {
 // Selectors
 /////////////////////
 
-// NOTE: we keep getBaseFilters separate from getActiveFilters so that
-// if we encode activeFilters in the URL the base filters do not show up
-// and they do not show up in the filter summary either.
+/**
+ * A selector for getting filtered cell lines based on a combination of
+ * active filters and base filters provided by the state.
+ *
+ * Input selectors:
+ *   - getCellLines
+ *   - getActiveFilters
+ *   - getBaseFilters
+ *
+ * @return {Array} The filtered cell lines
+ *
+ * NOTE: we keep getBaseFilters separate from getActiveFilters so that
+ * if we encode activeFilters in the URL the base filters do not show up
+ * and they do not show up in the filter summary either.
+ */
 export const getFilteredCellLines = createSelector(
   [ getCellLines, getActiveFilters, getBaseFilters ],
   (cellLines, activeFilters, baseFilters) => {
@@ -154,6 +166,14 @@ export const getFilteredCellLines = createSelector(
   }
 );
 
+/**
+ * A selector for the count information for a set of cell lines
+ *
+ * Input selectors:
+ *   - getFilteredCellLines (a selector)
+ *
+ * @return {Object} An object defining counts for cellLineFilters
+ */
 export const getFilteredCellLineCounts = createSelector(
   [ getFilteredCellLines ],
   (filteredCellLines) => {

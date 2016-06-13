@@ -14,27 +14,58 @@ const datasetKey = 'datasetGrowthFactorPaktPerk';
 // Input Selectors
 /////////////////////
 
-
+/**
+ * An input selector for getting the active growth factor
+ *
+ * @param {Object} The redux state
+ * @return {String} The ID of the active growth factor
+ */
 function getActiveGrowthFactor(state) {
   const activeFilters = state.datasets[datasetKey].activeFilters;
   return getFilterValue(activeFilters, 'datasetConfig', 'growthFactor');
 }
 
+/**
+ * An input selector for getting the active cell line
+ *
+ * @param {Object} The redux state
+ * @return {String} The ID of the active cell line
+ */
 function getActiveCellLine(state) {
   const activeFilters = state.datasets[datasetKey].activeFilters;
   return getFilterValue(activeFilters, 'datasetConfig', 'cellLine');
 }
 
+/**
+ * An input selector for getting the active parameter ('pAKT fold change', etc.)
+ * Often easier to use the parsed getActiveMetricAndType below
+ *
+ * @param {Object} The redux state
+ * @return {String} The ID of the active parameter
+ */
 function getActiveParameter(state) {
   const activeFilters = state.datasets[datasetKey].activeFilters;
   return getFilterValue(activeFilters, 'datasetConfig', 'parameter');
 }
 
+/**
+ * An input selector for getting the active concentration (1ng/mL, 100ng/mL)
+ *
+ * @param {Object} The redux state
+ * @return {String} The ID of the active concentration
+ */
 function getActiveConcentration(state) {
   const activeFilters = state.datasets[datasetKey].activeFilters;
   return getFilterValue(activeFilters, 'datasetConfig', 'concentration');
 }
 
+/**
+ * An input selector for getting the active metric (raw, fold change)
+ * and type (pERK, pAKT)
+ *
+ * @param {Object} The redux state
+ * @return {String} The ID of the active metric and type
+ */
 function getActiveMetricAndType(state) {
   const parameter = getActiveParameter(state);
 
@@ -66,7 +97,14 @@ function getActiveMetricAndType(state) {
   return result;
 }
 
-
+/**
+ * An input selector for getting the active dataset file
+ * This is necessary since there are two dataset files associated
+ * with this data page -- one for fold change, and one for raw values.
+ *
+ * @param {Object} The redux state
+ * @return {String} The ID of the active drug
+ */
 function getActiveDataset(state) {
   const activeParameter = getActiveParameter(state);
   if (activeParameter === 'perkFoldChange' || activeParameter === 'paktFoldChange') {
@@ -83,6 +121,10 @@ function getActiveDataset(state) {
 
 /**
  * Filter the data based on a set of cell lines
+ *
+ * @param {Array} data the data to filter
+ * @param {Array} cellLines the list of cell lines to filter the data by
+ * @return {Array} A subset of `data` that contains only cell lines in `cellLines`
  */
 function filterDataByCellLines(data, cellLines) {
   if (!data) {
@@ -96,7 +138,21 @@ function filterDataByCellLines(data, cellLines) {
 // Selectors
 /////////////////////
 
-/** Filters the dataset */
+/**
+ * A selector that filters the dataset to match the configuration
+ * of the page (cell lines, parameter, concentration, etc.)
+ *
+ * Input selectors:
+ *   - getActiveDataset
+ *   - getViewBy
+ *   - getActiveGrowthFactor
+ *   - getActiveCellLine
+ *   - getActiveMetricAndType
+ *   - getActiveConcentration
+ *   - getFilteredCellLines
+ *
+ * @return {Array} The filtered dataset
+ */
 export const getFilteredViewData = createSelector(
   [ getActiveDataset, getViewBy(datasetKey),
     getActiveGrowthFactor, getActiveCellLine,
@@ -105,15 +161,16 @@ export const getFilteredViewData = createSelector(
   (dataset, viewBy, activeGrowthFactor, activeCellLine, { metric: activeMetric, type: activeType },
     activeConcentration, filteredCellLines) => {
 
-
-
+    // filter by cell line first if we are viewing by growth factor
     let filteredData = dataset;
     if(viewBy === 'growthFactor') {
       filteredData = filterDataByCellLines(dataset, filteredCellLines);
     }
 
+    // use different IDs and labels for different view bys
     let idFilterKey, idFilterValue, idKey, labelKey;
 
+    // by growth factor, filter using growth factor ID then use cell line ID for the data points
     if (viewBy === 'growthFactor') {
       // for reducing the data set
       idFilterKey = 'Protein HMS LINCS ID';
@@ -122,6 +179,8 @@ export const getFilteredViewData = createSelector(
       // on the derived data points
       labelKey = 'Cell Line Name';
       idKey = 'id';
+
+    // by cell line, filter using cell line ID then use growth factor ID for the data points
     } else {
       idFilterKey = 'id';
       idFilterValue = activeCellLine;
@@ -135,18 +194,18 @@ export const getFilteredViewData = createSelector(
       return dataset;
     }
 
-    // filter to just the selected growth factor and concentration first
+    // filter to just the selected concentration
     filteredData = filteredData.filter(d =>
       d[idFilterKey] === idFilterValue &&
       String(d['Ligand Concentration']) === String(activeConcentration));
 
     /* group by time if it matches the metric and type
      * ends up with form:
-     * { 10m: [{id, label, value, d}, ...], 30m: ... }
+     * { 0min: [{id, label, value, d}, ...], 10min: ... }
      */
     const byTime = filteredData.reduce((byTime, d) => {
 
-      // add in control values first
+      // add in control values first as 0min
       if (activeMetric === 'raw values') {
         if (!byTime['0min']) {
           byTime['0min'] = [];
@@ -189,7 +248,15 @@ export const getFilteredViewData = createSelector(
   }
 );
 
-
+/**
+ * A selector that derives the parallel coordinates plot data. Each
+ * x point gets its own item in the array.
+ *
+ * Input selectors:
+ *   - getFilteredViewData (a selector)
+ *
+ * @return {Array} The plot data `[{ label, id, cell_line, values }, ...]`
+ */
 export const getParallelCoordinatesPlotData = createSelector(
   [ getFilteredViewData ],
   (viewData) => {
@@ -212,12 +279,23 @@ export const getParallelCoordinatesPlotData = createSelector(
   }
 );
 
-/** Gets the filter group definition based on what is in the data */
+/**
+ * A selector that creates the filter groups based on what values are in the
+ * data. Note that this does not use the filtered data since we need all the
+ * potential values.
+ *
+ * Input selectors:
+ *   - getDataset
+ *   - getViewBy
+ *
+ * @return {Array} The filter groups definition
+ */
 export const getFilterGroups = createSelector(
   [ getDataset(datasetId), getViewBy(datasetKey) ],
   (viewData, viewBy) => {
     const filterGroups = [];
 
+    // define shared filters (parameter, concentration)
     const parameter = {
       id: 'parameter',
       label: 'Assay Parameter',
@@ -246,6 +324,8 @@ export const getFilterGroups = createSelector(
       }
     };
 
+    // VIEW BY: growth factor
+    // ------------------------------------
     // get the list of growth factors to choose from
     if (viewBy === 'growthFactor') {
       let growthFactors = [];
@@ -288,6 +368,8 @@ export const getFilterGroups = createSelector(
         filters: cellLinesFilterGroup.filters.filter(filter => filter.id !== 'dataset')
       });
 
+    // VIEW BY: cell line
+    // ------------------------------------
     // configure cell lines config
     } else {
       let cellLines = [];

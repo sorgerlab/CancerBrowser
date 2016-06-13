@@ -8,11 +8,31 @@ const datasetKey = 'datasetBasalTotal';
 
 
 /////////////////////
+// Input Selectors
+/////////////////////
+
+/**
+ * An input selector for getting the active cell line
+ *
+ * @param {Object} The redux state
+ * @return {String} The ID of the active cell line
+ */
+function getActiveCellLines(state) {
+  const activeFilters = state.datasets[datasetKey].activeFilters;
+  return getFilterValues(activeFilters, 'basalTotal', 'cellLine');
+}
+
+
+/////////////////////
 // Helpers
 /////////////////////
 
 /**
  * Filter the data based on a set of cell lines
+ *
+ * @param {Array} data the data to filter
+ * @param {Array} cellLines the list of cell lines to filter the data by
+ * @return {Array} A subset of `data` that contains only cell lines in `cellLines`
  */
 function filterDataByCellLines(data, cellLines) {
   if (!data) {
@@ -31,45 +51,49 @@ function filterDataByCellLines(data, cellLines) {
   return nData;
 }
 
-function getActiveCellLines(state) {
-  const activeFilters = state.datasets[datasetKey].activeFilters;
-  // console.log(getFilterValueItem(activeFilters, 'basalPhospho',  ))
-  return getFilterValues(activeFilters, 'basalTotal', 'cellLine');
-}
-
-
 
 /////////////////////
 // Selectors
 /////////////////////
 
-/** Converts the dataset to be by cell line or by receptor */
-export const getViewData = createSelector(
+
+/**
+ * A selector that filters the dataset to match the selected cell lines
+ *
+ * Input selectors:
+ *   - getDataset
+ *   - getActiveCellLines
+ *
+ * @return {Array} The filtered dataset
+ */
+export const getFilteredViewData = createSelector(
+  [ getDataset(datasetId), getActiveCellLines ],
+  (dataset, activeCellLines) => {
+    return filterDataByCellLines(dataset, activeCellLines);
+  }
+);
+
+
+
+/**
+ * A selector that creates the filter groups based on what values are in the
+ * data. Note that this does not use the filtered data since we need all the
+ * potential values.
+ *
+ * Input selectors:
+ *   - getDataset
+ *
+ * @return {Array} The filter groups definition
+ */
+export const getFilterGroups = createSelector(
   [ getDataset(datasetId) ],
   (dataset) => {
-    return dataset;
-  }
-);
-
-/** Filters the dataset */
-export const getFilteredViewData = createSelector(
-  [ getViewData, getActiveCellLines ],
-  (viewData, activeCellLines) => {
-    return filterDataByCellLines(viewData, activeCellLines);
-  }
-);
-
-
-/** Gets the filter group definition based on what is in the data */
-export const getFilterGroups = createSelector(
-  [ getViewData ],
-  (viewData) => {
     const filterGroups = [];
 
     let cellLines = [];
 
-    if(viewData) {
-      cellLines = _.map(viewData[0].measurements, (d) => { return {value:d.id, label:d.label}; });
+    if(dataset) {
+      cellLines = _.map(dataset[0].measurements, (d) => { return {value:d.id, label:d.label}; });
     }
     const basalPhospho = [
       {
