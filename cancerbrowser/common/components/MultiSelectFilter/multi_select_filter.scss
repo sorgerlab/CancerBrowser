@@ -4,7 +4,7 @@ $icon-width: 20px;
 .MultiSelectFilter {
 
   // style the chiclets
-  .Select-value {
+  .Select--multi .Select-value {
     position: relative;
     padding-right: $icon-width;
     color: #fff;
