@@ -4,7 +4,16 @@
         "node": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
+
+    "plugins": [
+        "react"
+    ],
+
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+
     "parserOptions": {
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
@@ -17,13 +26,7 @@
       "it": true
     },
 
-    "plugins": [
-        "react"
-    ],
-    "extends": ["eslint:recommended", "plugin:react/recommended"],
     "rules": {
-        "eqeqeq": ["error", "smart"],
-        "no-var": "error",
         "indent": [
             "error",
             2,
