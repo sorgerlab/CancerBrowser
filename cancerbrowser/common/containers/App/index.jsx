@@ -56,6 +56,7 @@ class App extends React.Component {
         </div>
 
         <footer className="main-footer">
+          <p>Notice: This website is in beta</p>
           <p>© 2016 Sorger Lab, Harvard Medical School</p>
         </footer>
 
