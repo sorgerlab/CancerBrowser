@@ -2,8 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Row, Col } from 'react-bootstrap';
+import markdown from 'markdown-to-jsx';
 
 import './dataset_summary_page.scss';
+
+const datasetImageContext = require.context('../../assets/img/datasets');
+export function datasetImageUrl(dataset) {
+  const filename = `${dataset.id}.jpg`;
+  // All datasets are expected to have an image.
+  return datasetImageContext(`./${filename}`);
+}
 
 const propTypes = {
   dispatch: React.PropTypes.func,
@@ -35,9 +43,10 @@ class DatasetSummaryPage extends React.Component {
     let dataset = this.props.datasets[key];
 
     return (
-      <li key={key} className='dataset-item'>
+      <li key={key} className='dataset-item clearfix'>
+        <img className='dataset-thumbnail' src={datasetImageUrl(dataset)} />
         <h4>{dataset.label}</h4>
-        {dataset.description ? <p>{dataset.description}</p> : null}
+        {dataset.description ? markdown(dataset.description) : null}
         <Link to={`/dataset/${dataset.id}`}>View Dataset Page</Link>
       </li>
     );

@@ -4,15 +4,6 @@ var fs = require('fs');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlPlugin = require('html-webpack-plugin');
 
-var nodeModules = {};
-fs.readdirSync('node_modules')
-    .filter(function(x) {
-      return ['.bin'].indexOf(x) === -1;
-    })
-    .forEach(function(mod) {
-      nodeModules[mod] = 'commonjs ' + mod;
-    });
-
 module.exports = [
   // Client build
   {
@@ -49,13 +40,12 @@ module.exports = [
         },
         {
           test: /\.json$/,
-          exclude: /node_modules/,
           loader: 'json-loader'
         },
         { test: /\.(css|scss)$/,
           loader: 'style-loader!css-loader!sass-loader'
         },
-        { test: /\.png$/,
+        { test: /\.(png|jpg)$/,
           loader: 'file-loader?name=img/[hash].[ext]'
         },
         { test: /\.tsv$/,
