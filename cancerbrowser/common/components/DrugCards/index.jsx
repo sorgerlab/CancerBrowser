@@ -14,7 +14,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  groupBy: 'class'
+  groupBy: 'developmentStage'
 };
 
 /**

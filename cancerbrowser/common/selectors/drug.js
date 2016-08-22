@@ -90,8 +90,8 @@ export const getFilterGroups = createSelector(
   (drugs) => {
     const drugFilters = [
       {
-        id: 'class',
-        label: 'Class',
+        id: 'developmentStage',
+        label: 'Development Stage',
         type: 'multi-select',
         values: [
           { value: '00-preclinical', label: 'Preclinical' },

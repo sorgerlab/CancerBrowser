@@ -40,7 +40,8 @@ class DrugDetailPage extends React.Component {
    */
   renderInfo(drugInfo) {
     const details = [
-      { label: 'Class', value: drugInfo.class ? drugInfo.class.label : '' },
+      { label: 'Development Stage',
+        value: drugInfo.developmentStage ? drugInfo.developmentStage.label : '' },
       { label: 'LINCS ID', value: drugInfo.hmsLincsId },
       { label: 'Synonyms', value: toList(drugInfo.synonyms) },
       { label: 'Target Gene', value: drugInfo.targetGene ? drugInfo.targetGene.label : '' },

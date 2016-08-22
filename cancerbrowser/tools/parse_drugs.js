@@ -28,7 +28,7 @@ function labelValue(str, valueOverrides) {
 }
 
 // overrides to the value that enable proper sort with no effort
-const classValues = {
+const developmentStageValues = {
   'preclinical': '00-preclinical',
   'phase1': '10-phase1',
   'phase2': '20-phase2',
@@ -58,7 +58,7 @@ function parse_drugs() {
       targetRole: labelValue(d['Target - role']),
       targetPathway: labelValue(d['Target - pathway']),
       targetFunction: labelValue(d['Target - function']),
-      class: labelValue(d['Class'], classValues),
+      developmentStage: labelValue(d['Class'], developmentStageValues),
       synonyms: _.compact(_.split(d['Synonyms'], ';')),
       searchIndexOnlyNames: _.compact(_.split(d['Search-index-only names'], ';'))
     };

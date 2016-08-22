@@ -33,7 +33,7 @@ const propTypes = {
 const defaultProps = {
 };
 
-const drugClassConfig = {
+const developmentStageConfig = {
   '00-preclinical': 'P',
   '10-phase1': '1',
   '20-phase2': '2',
@@ -82,20 +82,21 @@ class DrugCard extends React.Component {
   }
 
   /**
-   * Renders the class badge (Preclinical, phase1, etc)
+   * Renders the development stage badge (Preclinical, phase1, etc)
    *
    * @return {React.Component}
    */
-  renderDrugClass(drugClass) {
-    if (!drugClass) {
+  renderDevelopmentStage(developmentStage) {
+    if (!developmentStage) {
       return null;
     }
 
-    const classLetter = drugClassConfig[drugClass.value] || '?';
+    const stageLetter = developmentStageConfig[developmentStage.value] || '?';
 
     return (
-      <div title={drugClass.label} className={classNames('drug-class', `drug-class-${drugClass.value}`)}>
-        {classLetter}
+      <div title={developmentStage.label}
+           className={classNames('drug-stage', `drug-stage-${developmentStage.value}`)}>
+        {stageLetter}
       </div>
     );
   }
@@ -159,7 +160,7 @@ class DrugCard extends React.Component {
       <div className={classNames('DrugCard', { 'has-synonyms': hasSynonyms })}>
         <div className='drug-diagram'
           style={{ backgroundImage: `url(${drugImageUrl(data)})`}} />
-        {this.renderDrugClass(data.class)}
+        {this.renderDevelopmentStage(data.developmentStage)}
         {this.renderDrugDetails(data)}
         <div className='drug-bottom-bar'>
           {hasSynonyms ? this.renderSynonyms(data, searchQuery) : null}

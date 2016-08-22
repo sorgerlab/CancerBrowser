@@ -35,7 +35,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  drugView: 'class'
+  drugView: 'developmentStage'
 };
 
 function mapStateToProps(state) {
@@ -150,9 +150,9 @@ class DrugBrowserPage extends React.Component {
           <label className='small-label'>Group By</label>
           <div>
             <ButtonGroup className='spaced-right'>
-              <Button className={classNames({ active: drugView === 'class' })}
-                 onClick={this.onDrugViewChange.bind(this, 'class')}>
-                Class
+              <Button className={classNames({ active: drugView === 'developmentStage' })}
+                 onClick={this.onDrugViewChange.bind(this, 'developmentStage')}>
+                Development Stage
               </Button>
             </ButtonGroup>
             <ButtonGroup>
