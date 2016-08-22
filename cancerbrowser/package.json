@@ -1,7 +1,7 @@
 {
   "name": "cancerbrowser",
   "version": "0.0.1",
-  "description": "HMS Lincs Cancer Browser",
+  "description": "HMS LINCS Breast Cancer Browser",
   "main": "webpack.config.js",
   "scripts": {
     "prestart": "npm run data",

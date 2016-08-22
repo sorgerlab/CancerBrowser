@@ -1,4 +1,4 @@
-# HMS Cancer Browser
+# HMS LINCS Breast Cancer Browser
 
 ## About
 
