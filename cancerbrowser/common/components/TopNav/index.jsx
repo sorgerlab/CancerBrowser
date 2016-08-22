@@ -28,6 +28,7 @@ class TopNav extends React.Component {
             <li role="presentation"><NavLink to="/cell_lines">Cell Lines</NavLink></li>
             <li role="presentation"><NavLink to="/drugs">Drugs</NavLink></li>
             <li role="presentation"><NavLink to="/datasets">Datasets</NavLink></li>
+            <li role="presentation"><NavLink to="/about">About</NavLink></li>
           </ul>
         </nav>
       </div>
