@@ -1,44 +1,44 @@
-Cell Line,Collection,Receptor Status,Molecular Subtype,BRCA1,BRCA2,CDH1,MAP3K1,MLL3,PIK3CA,PTEN,TP53,GATA3*,MAP2K4,Media Base,Media Additives,Atcc Number,Link
-184B5,ICBP43,NM,"Non malignant, Basal",No data,No data,No data,No data,No data,No data,No data,No data,No data,No data,MEBM ,1 ng/ml cholera toxin (unfiltered),CRL-8799,http://www.atcc.org/Products/All/CRL-8799.aspx
-AU-565,ICBP43,HER2amp,Luminal,WT,WT,WT,WT,MUT,WT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2351,http://www.atcc.org/Products/All/CRL-2351.aspx
-BT-20,ICBP43; Core 6,TNBC,Basal A,WT,MUT,WT,WT,WT,MUT,WT,MUT,WT,WT,EMEM ,10% FBS  +  1% P/S,HTB-19,http://www.atcc.org/Products/All/HTB-19.aspx
-BT-474,ICBP43,HER2amp,Luminal,WT,MUT,WT,WT,WT,MUT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,HTB-20,http://www.atcc.org/Products/All/HTB-20.aspx
-BT-483,ICBP43,HR+,Luminal,WT,WT,WT,WT,WT,MUT,WT,MUT,MUT*,WT,RPMI-1640 ,20% FBS  +  10 ug/ml bovine insulin +  1% P/S ,HTB-121,http://www.atcc.org/Products/All/HTB-121.aspx
-BT-549,ICBP43,TNBC,"Claudin low, Basal B",WT,WT,WT,WT,WT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1 ug/ml insulin  +  1% P/S,HTB-122,http://www.atcc.org/Products/All/HTB-122.aspx
-CAMA-1,ICBP43,HR+,Luminal,WT,WT,MUT,MUT,WT,WT,MUT,MUT,WT,WT,EMEM ,10% FBS  +  1% P/S,HTB-21,http://www.atcc.org/Products/All/HTB-21.aspx
-DU4475,ICBP43,TNBC,No data,WT,WT,WT,WT,MUT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,HTB-123,http://www.atcc.org/Products/All/HTB-123.aspx
-HCC38,ICBP43,TNBC,"Claudin low, Basal B",WT,WT,WT,WT,MUT,MUT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2314,http://www.atcc.org/Products/All/CRL-2314.aspx
-HCC70,ICBP43,TNBC,Basal A,WT,WT,WT,WT,WT,WT,MUT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2315,http://www.atcc.org/Products/All/CRL-2315.aspx
-HCC202,ICBP43,HER2amp,Luminal,WT,WT,WT,WT,MUT,MUT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2316,http://www.atcc.org/Products/All/CRL-2316.aspx
-HCC1187,ICBP43,TNBC,Basal A,WT,WT,WT,WT,MUT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2322,http://www.atcc.org/Products/All/CRL-2322.aspx
-HCC1395,ICBP43,TNBC,"Claudin low, Basal B",MUT,MUT,WT,WT,WT,WT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2324,http://www.atcc.org/Products/All/CRL-2324.aspx
-HCC1419,ICBP43,HER2amp,Luminal,WT,WT,WT,WT,WT,WT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2326,http://www.atcc.org/Products/All/CRL-2326.aspx
-HCC1428,ICBP43,HR+,Luminal,WT,WT,WT,WT,WT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2327,http://www.atcc.org/Products/All/CRL-2327.aspx
-HCC1500,ICBP43,HR+,Luminal,WT,WT,WT,WT,MUT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2329,http://www.atcc.org/Products/All/CRL-2329.aspx
-HCC1569,ICBP43,HER2amp,Basal A,WT,MUT,WT,WT,MUT,WT,MUT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2330,http://www.atcc.org/Products/All/CRL-2330.aspx
-HCC1599,ICBP43,TNBC,Basal A,WT,MUT,WT,WT,WT,WT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2331,http://www.atcc.org/Products/All/CRL-2331.aspx
-HCC1806,ICBP43,TNBC,Basal A,WT,WT,WT,WT,WT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2335,http://www.atcc.org/Products/All/CRL-2335.aspx
-HCC1937,ICBP43,TNBC,Basal A,MUT*,WT,WT,WT,WT,WT,MUT*,MUT*,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2336,http://www.atcc.org/Products/All/CRL-2336.aspx
-HCC1954,ICBP43,HER2amp,Basal A,WT,WT,WT,WT,WT,MUT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2338,http://www.atcc.org/Products/All/CRL-2338.aspx
-HCC2157,ICBP43,TNBC,Basal A,WT,WT,WT,WT,WT,WT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2340,http://www.atcc.org/Products/All/CRL-2340.aspx
-HCC2218,ICBP43,HER2amp,Luminal,WT,WT,WT,WT,WT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2343,http://www.atcc.org/Products/All/CRL-2343.aspx
-Hs 578T,ICBP43; Core 6,TNBC,"Claudin low, Basal B",WT,WT,WT,WT,WT,WT,WT,MUT,WT,WT,DMEM ,10% FBS  +  10 ug/ml bovine insulin +  1% P/S ,HTB-126,http://www.atcc.org/Products/All/HTB-126.aspx
-MCF7,ICBP43; Core 6,HR+,Luminal,WT,WT,WT,WT,WT,MUT,WT,WT,MUT*,WT,DMEM ,10% FBS  +  1% P/S,HTB-22,http://www.atcc.org/Products/All/HTB-22.aspx
-MCF 10A,ICBP43; Core 6,NM,"Non malignant, Basal",No data,No data,No data,No data,No data,No data,No data,No data,No data,No data,"1:1 mixture of DMEM/Ham's F12 (with L-glutamine, 15 mM Hepes) ", 5% horse serum + 20 ng/ml human EGF + 100 ng/ml cholera toxin + 10 ug/ml bovine insulin + 500 ng/ml hydrocortisone + 1% P/S,CRL-10317,http://www.atcc.org/Products/All/CRL-10317.aspx
-MCF 10F,ICBP43,NM,"Non malignant, Basal",No data,No data,No data,No data,No data,No data,No data,No data,No data,No data,"1:1 mixture of DMEM/Ham's F12 (with L-glutamine, 15 mM Hepes) ", 5% horse serum + 20 ng/ml human EGF + 100 ng/ml cholera toxin + 10 ug/ml bovine insulin + 500 ng/ml hydrocortisone + 1% P/S,CRL-10318,http://www.atcc.org/Products/All/CRL-10318.aspx
-MCF-12A,ICBP43,NM,"Non malignant, Basal",No data,No data,No data,No data,No data,No data,No data,No data,No data,No data,"1:1 mixture of DMEM/Ham's F12 (with L-glutamine, 15 mM Hepes) ", 5% horse serum + 20 ng/ml human EGF + 100 ng/ml cholera toxin + 10 ug/ml bovine insulin + 500 ng/ml hydrocortisone + 1% P/S,CRL-10782,http://www.atcc.org/Products/All/CRL-10782.aspx
-MDA-MB-134-VI,ICBP43,HR+,Luminal,WT,WT,WT,WT,WT,WT,WT,WT,WT,MUT,Leibovitz's L-15 ,"20% FBS (not heat-inactivated)  +  1% P/S, no CO2",HTB-23,http://www.atcc.org/Products/All/HTB-23.aspx
-MDA-MB-157,ICBP43,TNBC,"Claudin low, Basal B",WT,WT,WT,MUT*,WT,WT,WT,MUT*,WT,WT,Leibovitz's L-15 ,"10% FBS (not heat-inactivated)  +  1% P/S, no CO2",HTB-24,http://www.atcc.org/Products/All/HTB-24.aspx
-MDA-MB-175-VII,ICBP43,HR+,Luminal,WT,WT,WT,WT,MUT*,WT,WT,WT,WT,WT,Leibovitz's L-15 ,"10% FBS (not heat-inactivated)  +  1% P/S, no CO2",HTB-25,http://www.atcc.org/Products/All/HTB-25.aspx
-MDA-MB-231,ICBP43; Core 6,TNBC,"Claudin low, Basal B",WT,WT,WT,WT,WT,WT,WT,MUT,WT,WT,Leibovitz's L-15 ,10% FBS  +  1% P/S,HTB-26,http://www.atcc.org/Products/All/HTB-26.aspx
-MDA-MB-361,ICBP43,HER2amp,Luminal,WT,MUT,WT,WT,WT,MUT,WT,MUT,WT,WT,Leibovitz's L-15 ,"20% FBS (not heat-inactivated)  +  1% P/S, no CO2",HTB-27,http://www.atcc.org/Products/All/HTB-27.aspx
-MDA-MB-415,ICBP43,HR+,Luminal,WT,WT,WT,MUT,MUT,WT,MUT,MUT,WT,MUT,Leibovitz's L-15 ,"15% FBS (not heat-inactivated)  +  1% P/S  +  10 ug/ml insulin, no CO2",HTB-128,http://www.atcc.org/Products/All/HTB-128.aspx
-MDA-MB-436,ICBP43,TNBC,"Claudin low, Basal B",MUT,WT,WT,WT,MUT,WT,WT,WT,WT,WT,Leibovitz's L-15 ,"10% FBS (not heat-inactivated)  +  1% P/S  +  10 ug/ml insulin, no CO2",HTB-130,http://www.atcc.org/Products/All/HTB-130.aspx
-MDA-MB-453,ICBP43,TNBC,Luminal,WT,WT,MUT,WT,MUT,MUT,MUT,WT,WT,WT,Leibovitz's L-15 ,"10% FBS (not heat-inactivated)  +  1% P/S, no CO2",HTB-131,http://www.atcc.org/Products/All/HTB-131.aspx
-MDA-MB-468,ICBP43,TNBC,Basal A,WT,WT,WT,WT,MUT,WT,MUT,WT,WT,WT,Leibovitz's L-15 ,"10% FBS (not heat-inactivated)  +  1% P/S, no CO2",HTB-132,http://www.atcc.org/Products/All/HTB-132.aspx
-SK-BR-3,ICBP43; Core 6,HER2amp,Luminal,WT,WT,WT,WT,MUT,WT,WT,MUT,WT,WT,McCoy's 5a ,10% FBS  +  1% P/S,HTB-30,http://www.atcc.org/Products/All/HTB-30.aspx
-T47D,ICBP43,HR+,Luminal,WT,WT,WT,WT,MUT,MUT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S  +  10 ug/ml bovine insulin,HTB-133,http://www.atcc.org/Products/All/HTB-133.aspx
-UACC-812,ICBP43,HER2amp,Luminal,WT,WT,MUT,WT,WT,WT,WT,WT,WT,WT,Leibovitz's L-15 ,"20% FBS (not heat-inactivated) + 2 mM L-glutamine + 20 ng/ml human EGF + 1% P/S, no CO2",CRL-1897,http://www.atcc.org/Products/All/CRL-1897.aspx
-UACC-893,ICBP43,HER2amp,Luminal,WT,WT,WT,WT,WT,MUT,WT,MUT,WT,WT,Leibovitz's L-15 ,"10% FBS (not heat-inactivated)  +  1% P/S, no CO2",CRL-1902,http://www.atcc.org/Products/All/CRL-1902.aspx
-ZR-75-1,ICBP43,HR+,Luminal,WT,WT,WT,WT,WT,WT,MUT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-1500,http://www.atcc.org/Products/All/CRL-1500.aspx
-ZR-75-30,ICBP43,HER2amp,Luminal,WT,MUT,MUT,WT,MUT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-1504,http://www.atcc.org/Products/All/CRL-1504.aspx
+Cell Line,Collection,Receptor Status,Molecular Subtype,BRCA1,BRCA2,CDH1,MAP3K1,MLL3,PIK3CA,PTEN,TP53,GATA3*,MAP2K4,Media Base,Media Additives,Atcc Number,Link,omero_id_4x,omero_id_10x,omero_id_20x,omero_id_40x
+184B5,ICBP43,NM,"Non malignant, Basal",No data,No data,No data,No data,No data,No data,No data,No data,No data,No data,MEBM ,1 ng/ml cholera toxin (unfiltered),CRL-8799,http://www.atcc.org/Products/All/CRL-8799.aspx,110054,110053,110051,110052
+AU-565,ICBP43,HER2amp,Luminal,WT,WT,WT,WT,MUT,WT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2351,http://www.atcc.org/Products/All/CRL-2351.aspx,110057,110055,110056,110058
+BT-20,ICBP43; Core 6,TNBC,Basal A,WT,MUT,WT,WT,WT,MUT,WT,MUT,WT,WT,EMEM ,10% FBS  +  1% P/S,HTB-19,http://www.atcc.org/Products/All/HTB-19.aspx,110060,110062,110061,110059
+BT-474,ICBP43,HER2amp,Luminal,WT,MUT,WT,WT,WT,MUT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,HTB-20,http://www.atcc.org/Products/All/HTB-20.aspx,110066,110063,110065,110064
+BT-483,ICBP43,HR+,Luminal,WT,WT,WT,WT,WT,MUT,WT,MUT,MUT*,WT,RPMI-1640 ,20% FBS  +  10 ug/ml bovine insulin +  1% P/S ,HTB-121,http://www.atcc.org/Products/All/HTB-121.aspx,110071,110067,110069,110073
+BT-549,ICBP43,TNBC,"Claudin low, Basal B",WT,WT,WT,WT,WT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1 ug/ml insulin  +  1% P/S,HTB-122,http://www.atcc.org/Products/All/HTB-122.aspx,110075,110078,110076,110077
+CAMA-1,ICBP43,HR+,Luminal,WT,WT,MUT,MUT,WT,WT,MUT,MUT,WT,WT,EMEM ,10% FBS  +  1% P/S,HTB-21,http://www.atcc.org/Products/All/HTB-21.aspx,110070,110074,110068,110072
+DU4475,ICBP43,TNBC,No data,WT,WT,WT,WT,MUT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,HTB-123,http://www.atcc.org/Products/All/HTB-123.aspx,,,,
+HCC38,ICBP43,TNBC,"Claudin low, Basal B",WT,WT,WT,WT,MUT,MUT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2314,http://www.atcc.org/Products/All/CRL-2314.aspx,357245,357246,357248,357247
+HCC70,ICBP43,TNBC,Basal A,WT,WT,WT,WT,WT,WT,MUT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2315,http://www.atcc.org/Products/All/CRL-2315.aspx,357250,357252,357251,357249
+HCC202,ICBP43,HER2amp,Luminal,WT,WT,WT,WT,MUT,MUT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2316,http://www.atcc.org/Products/All/CRL-2316.aspx,357241,357242,357244,357243
+HCC1187,ICBP43,TNBC,Basal A,WT,WT,WT,WT,MUT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2322,http://www.atcc.org/Products/All/CRL-2322.aspx,357208,357205,357207,357206
+HCC1395,ICBP43,TNBC,"Claudin low, Basal B",MUT,MUT,WT,WT,WT,WT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2324,http://www.atcc.org/Products/All/CRL-2324.aspx,357209,357211,357212,357210
+HCC1419,ICBP43,HER2amp,Luminal,WT,WT,WT,WT,WT,WT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2326,http://www.atcc.org/Products/All/CRL-2326.aspx,357216,357213,357214,357215
+HCC1428,ICBP43,HR+,Luminal,WT,WT,WT,WT,WT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2327,http://www.atcc.org/Products/All/CRL-2327.aspx,357219,357218,357217,357220
+HCC1500,ICBP43,HR+,Luminal,WT,WT,WT,WT,MUT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2329,http://www.atcc.org/Products/All/CRL-2329.aspx,357221,357224,357222,357223
+HCC1569,ICBP43,HER2amp,Basal A,WT,MUT,WT,WT,MUT,WT,MUT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2330,http://www.atcc.org/Products/All/CRL-2330.aspx,357227,357226,357225,357228
+HCC1599,ICBP43,TNBC,Basal A,WT,MUT,WT,WT,WT,WT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2331,http://www.atcc.org/Products/All/CRL-2331.aspx,,,,
+HCC1806,ICBP43,TNBC,Basal A,WT,WT,WT,WT,WT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2335,http://www.atcc.org/Products/All/CRL-2335.aspx,357231,357229,357232,357230
+HCC1937,ICBP43,TNBC,Basal A,MUT*,WT,WT,WT,WT,WT,MUT*,MUT*,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2336,http://www.atcc.org/Products/All/CRL-2336.aspx,357234,357233,357236,357235
+HCC1954,ICBP43,HER2amp,Basal A,WT,WT,WT,WT,WT,MUT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2338,http://www.atcc.org/Products/All/CRL-2338.aspx,357237,357239,357238,357240
+HCC2157,ICBP43,TNBC,Basal A,WT,WT,WT,WT,WT,WT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2340,http://www.atcc.org/Products/All/CRL-2340.aspx,,,,
+HCC2218,ICBP43,HER2amp,Luminal,WT,WT,WT,WT,WT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-2343,http://www.atcc.org/Products/All/CRL-2343.aspx,,,,
+Hs 578T,ICBP43; Core 6,TNBC,"Claudin low, Basal B",WT,WT,WT,WT,WT,WT,WT,MUT,WT,WT,DMEM ,10% FBS  +  10 ug/ml bovine insulin +  1% P/S ,HTB-126,http://www.atcc.org/Products/All/HTB-126.aspx,357255,357254,357256,357253
+MCF7,ICBP43; Core 6,HR+,Luminal,WT,WT,WT,WT,WT,MUT,WT,WT,MUT*,WT,DMEM ,10% FBS  +  1% P/S,HTB-22,http://www.atcc.org/Products/All/HTB-22.aspx,357270,357272,357269,357271
+MCF 10A,ICBP43; Core 6,NM,"Non malignant, Basal",No data,No data,No data,No data,No data,No data,No data,No data,No data,No data,"1:1 mixture of DMEM/Ham's F12 (with L-glutamine, 15 mM Hepes) ", 5% horse serum + 20 ng/ml human EGF + 100 ng/ml cholera toxin + 10 ug/ml bovine insulin + 500 ng/ml hydrocortisone + 1% P/S,CRL-10317,http://www.atcc.org/Products/All/CRL-10317.aspx,357259,357258,357260,357257
+MCF 10F,ICBP43,NM,"Non malignant, Basal",No data,No data,No data,No data,No data,No data,No data,No data,No data,No data,"1:1 mixture of DMEM/Ham's F12 (with L-glutamine, 15 mM Hepes) ", 5% horse serum + 20 ng/ml human EGF + 100 ng/ml cholera toxin + 10 ug/ml bovine insulin + 500 ng/ml hydrocortisone + 1% P/S,CRL-10318,http://www.atcc.org/Products/All/CRL-10318.aspx,357264,357263,357261,357262
+MCF-12A,ICBP43,NM,"Non malignant, Basal",No data,No data,No data,No data,No data,No data,No data,No data,No data,No data,"1:1 mixture of DMEM/Ham's F12 (with L-glutamine, 15 mM Hepes) ", 5% horse serum + 20 ng/ml human EGF + 100 ng/ml cholera toxin + 10 ug/ml bovine insulin + 500 ng/ml hydrocortisone + 1% P/S,CRL-10782,http://www.atcc.org/Products/All/CRL-10782.aspx,357267,357265,357266,357268
+MDA-MB-134-VI,ICBP43,HR+,Luminal,WT,WT,WT,WT,WT,WT,WT,WT,WT,MUT,Leibovitz's L-15 ,"20% FBS (not heat-inactivated)  +  1% P/S, no CO2",HTB-23,http://www.atcc.org/Products/All/HTB-23.aspx,357280,357277,357279,357278
+MDA-MB-157,ICBP43,TNBC,"Claudin low, Basal B",WT,WT,WT,MUT*,WT,WT,WT,MUT*,WT,WT,Leibovitz's L-15 ,"10% FBS (not heat-inactivated)  +  1% P/S, no CO2",HTB-24,http://www.atcc.org/Products/All/HTB-24.aspx,357282,357283,357284,357281
+MDA-MB-175-VII,ICBP43,HR+,Luminal,WT,WT,WT,WT,MUT*,WT,WT,WT,WT,WT,Leibovitz's L-15 ,"10% FBS (not heat-inactivated)  +  1% P/S, no CO2",HTB-25,http://www.atcc.org/Products/All/HTB-25.aspx,357288,357286,357285,357287
+MDA-MB-231,ICBP43; Core 6,TNBC,"Claudin low, Basal B",WT,WT,WT,WT,WT,WT,WT,MUT,WT,WT,Leibovitz's L-15 ,10% FBS  +  1% P/S,HTB-26,http://www.atcc.org/Products/All/HTB-26.aspx,357289,357291,357292,357290
+MDA-MB-361,ICBP43,HER2amp,Luminal,WT,MUT,WT,WT,WT,MUT,WT,MUT,WT,WT,Leibovitz's L-15 ,"20% FBS (not heat-inactivated)  +  1% P/S, no CO2",HTB-27,http://www.atcc.org/Products/All/HTB-27.aspx,357295,357293,357296,357294
+MDA-MB-415,ICBP43,HR+,Luminal,WT,WT,WT,MUT,MUT,WT,MUT,MUT,WT,MUT,Leibovitz's L-15 ,"15% FBS (not heat-inactivated)  +  1% P/S  +  10 ug/ml insulin, no CO2",HTB-128,http://www.atcc.org/Products/All/HTB-128.aspx,357297,357300,357298,357299
+MDA-MB-436,ICBP43,TNBC,"Claudin low, Basal B",MUT,WT,WT,WT,MUT,WT,WT,WT,WT,WT,Leibovitz's L-15 ,"10% FBS (not heat-inactivated)  +  1% P/S  +  10 ug/ml insulin, no CO2",HTB-130,http://www.atcc.org/Products/All/HTB-130.aspx,357302,357304,357303,357301
+MDA-MB-453,ICBP43,TNBC,Luminal,WT,WT,MUT,WT,MUT,MUT,MUT,WT,WT,WT,Leibovitz's L-15 ,"10% FBS (not heat-inactivated)  +  1% P/S, no CO2",HTB-131,http://www.atcc.org/Products/All/HTB-131.aspx,357307,357308,357306,357305
+MDA-MB-468,ICBP43,TNBC,Basal A,WT,WT,WT,WT,MUT,WT,MUT,WT,WT,WT,Leibovitz's L-15 ,"10% FBS (not heat-inactivated)  +  1% P/S, no CO2",HTB-132,http://www.atcc.org/Products/All/HTB-132.aspx,,,,
+SK-BR-3,ICBP43; Core 6,HER2amp,Luminal,WT,WT,WT,WT,MUT,WT,WT,MUT,WT,WT,McCoy's 5a ,10% FBS  +  1% P/S,HTB-30,http://www.atcc.org/Products/All/HTB-30.aspx,357313,357316,357315,357314
+T47D,ICBP43,HR+,Luminal,WT,WT,WT,WT,MUT,MUT,WT,MUT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S  +  10 ug/ml bovine insulin,HTB-133,http://www.atcc.org/Products/All/HTB-133.aspx,357351,357350,357352,357349
+UACC-812,ICBP43,HER2amp,Luminal,WT,WT,MUT,WT,WT,WT,WT,WT,WT,WT,Leibovitz's L-15 ,"20% FBS (not heat-inactivated) + 2 mM L-glutamine + 20 ng/ml human EGF + 1% P/S, no CO2",CRL-1897,http://www.atcc.org/Products/All/CRL-1897.aspx,357356,357354,357355,357353
+UACC-893,ICBP43,HER2amp,Luminal,WT,WT,WT,WT,WT,MUT,WT,MUT,WT,WT,Leibovitz's L-15 ,"10% FBS (not heat-inactivated)  +  1% P/S, no CO2",CRL-1902,http://www.atcc.org/Products/All/CRL-1902.aspx,357358,357357,357360,357359
+ZR-75-1,ICBP43,HR+,Luminal,WT,WT,WT,WT,WT,WT,MUT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-1500,http://www.atcc.org/Products/All/CRL-1500.aspx,357363,357364,357362,357361
+ZR-75-30,ICBP43,HER2amp,Luminal,WT,MUT,MUT,WT,MUT,WT,WT,WT,WT,WT,RPMI-1640 ,10% FBS  +  1% P/S,CRL-1504,http://www.atcc.org/Products/All/CRL-1504.aspx,357367,357368,357366,357365

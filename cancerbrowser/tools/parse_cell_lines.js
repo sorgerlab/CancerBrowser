@@ -22,6 +22,9 @@ const GENES = [
   'MAP2K4'
 ];
 
+const MAGNIFICATION_LEVELS = ['4', '10', '20', '40'];
+
+
 function getMutations(row) {
   const mutations = [];
   GENES.forEach(function(gene) {
@@ -45,6 +48,19 @@ function getSubtypes(subtypeString, delim) {
       return {label: _.trim(s), value:_.trim(s).replace(' ', '').toLowerCase()};
     });
   }
+}
+
+
+function getImages(row) {
+  const images = {};
+  MAGNIFICATION_LEVELS.forEach(function(level) {
+    const magnification = level + 'x';
+    const column_name = 'omero_id_' + magnification;
+    if (_.has(row, column_name) && row[column_name].value !== '') {
+      images[magnification] = row[column_name].value;
+    }
+  });
+  return images;
 }
 
 
@@ -86,6 +102,10 @@ function parse_cell_lines() {
 
     d.mutation = getMutations(d);
     d.collection = getSubtypes(d.collection.label, ';');
+    d.omero_image_ids = getImages(d);
+    MAGNIFICATION_LEVELS.forEach((level) => {
+      delete d[`omero_id_${level}x`];
+    });
 
     // pull up cellLine.value to be the ID
     d.id = utils.getId(d.cellLine.label);
