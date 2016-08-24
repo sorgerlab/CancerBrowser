@@ -6,9 +6,11 @@ import { DATA_PATH,
 
 import { getCellLines } from './cell_line';
 
-import datasetInfo from './data/dataset_info.json';
+import datasetInfo from '../assets/data/datasets.json';
 
 import { normalize } from '../../common/utils/string_utils';
+
+const datasetContext = require.context('../assets/data/datasets');
 
 /** Returns Promise that resolves to information about
  * each dataset in an Object where
@@ -43,7 +45,7 @@ export function getDataset(datasetId) {
   const info = datasetInfo[datasetId];
   return new Promise(function(resolve, reject) {
     if(info) {
-      const path = DATA_PATH + 'datasets/' + info.filename;
+      const path = datasetContext(info.filename);
 
       d3.tsv(path, function(error, data) {
         if(error) {

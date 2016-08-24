@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 //TODO async load drug data.
-import drugData from  './data/drugs.json';
+import drugData from  '../assets/data/drugs.json';
 
 /**
  * Returns all drugs

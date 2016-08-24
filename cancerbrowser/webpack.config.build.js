@@ -69,6 +69,9 @@ module.exports = [
         { test: /\.png$/,
           loader: 'file-loader?name=img/[hash].[ext]'
         },
+        { test: /\.tsv$/,
+          loader: 'file-loader?name=data/[hash].[ext]'
+        },
 
         // Bootstrap
         {

@@ -56,7 +56,7 @@ function parse_datasets() {
 
     info.cellLines = cellLines;
     info.drugs = drugs;
-});
+  });
 
   return dataSets;
 }

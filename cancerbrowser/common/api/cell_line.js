@@ -8,7 +8,7 @@ import {
 
 
 //TODO async load cell line data.
-import cellLinesData from  './data/cell_lines.json';
+import cellLinesData from  '../assets/data/cell_lines.json';
 
 import { normalize } from '../../common/utils/string_utils';
 
