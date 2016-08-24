@@ -1,3 +1,6 @@
+import d3 from 'd3';
+import _ from 'lodash';
+
 import datasetData from  '../assets/data/datasets.json';
 
 /**
@@ -12,10 +15,13 @@ export function getDatasets() {
   return Promise.resolve(datasetData);
 }
 
+export function getBasalPhosphoDataset(filename) {
+
+}
+
 // TODO DELETE BELOW HERE
 //
-// import d3 from 'd3';
-// import _ from 'lodash';
+
 //
 // import { DATA_PATH,
 //          mergeData } from './util';
@@ -24,47 +30,40 @@ export function getDatasets() {
 //
 // import datasetInfo from './data/dataset_info.json';
 //
-// import { normalize } from '../../common/utils/string_utils';
-//
-// const datasetContext = require.context('../assets/data/datasets');
-//
-// /** Returns Promise that resolves to data
-//  * for a particular dataset given its id
-//  * dataset values are stored in an array
-//  * Additional information about the dataset
-//  * can be acquired from getDatasetInfo
-//  * @param {String} id of dataset to get
-//  * @return {Promise} dataset array
-//  */
-// export function getDataset(datasetId) {
-//   const info = datasetInfo[datasetId];
-//   return new Promise(function(resolve, reject) {
-//     if(info) {
-//       const path = datasetContext(info.filename);
-//
-//       d3.tsv(path, function(error, data) {
-//         if(error) {
-//           reject(error);
-//         } else {
-//           resolve(transformData(data, info));
-//         }
-//       });
-//
-//     } else {
-//       reject('Not valid dataset Id ' + datasetId);
-//     }
-//   }).then(function(dataset) {
-//     // some datasets are not arranged by cell line.
-//     // TODO: this could be moved somewhere else, or
-//     // we could make mergeCellLines more robust.
-//     if(info.cell_line_id) {
-//       return mergeCellLines(dataset);
-//     } else {
-//       return dataset;
-//     }
-//
-//   });
-// }
+import { normalize } from '../../common/utils/string_utils';
+
+const datasetContext = require.context('../assets/data/datasets');
+
+/** Returns Promise that resolves to data
+ * for a particular dataset given its id
+ * dataset values are stored in an array
+ * Additional information about the dataset
+ * can be acquired from getDatasetInfo
+ * @param {String} id of dataset to get
+ * @return {Promise} dataset array
+ */
+export function getDataset(filename) {
+  return new Promise(function(resolve, reject) {
+    const path = datasetContext(filename);
+
+    d3.tsv(path, function(error, data) {
+      if(error) {
+        reject(error);
+      }
+    });
+
+  }).then(function(dataset) {
+    // some datasets are not arranged by cell line.
+    // TODO: this could be moved somewhere else, or
+    // we could make mergeCellLines more robust.
+    if(info.cell_line_id) {
+      return mergeCellLines(dataset);
+    } else {
+      return dataset;
+    }
+
+  });
+}
 //
 // /**
 //  * Merge in cell line data for each row in the dataset.
@@ -222,61 +221,61 @@ export function getDatasets() {
 // }
 //
 //
-// /**
-//  * Transform Basal Phospho data to be used in visualizations
-//  * @param {Array} dataset Dataset
-//  * @return {Array} transformed dataset
-//  */
-// function transformBasalPhospho(dataset, info) {
-//   let totalMin = Number.MAX_VALUE;
-//   let totalMax = Number.MIN_VALUE;
-//
-//   dataset.forEach(function(row) {
-//     // phospho has a secondary string i.e: (K.GFINDDDDEDEGEEDEGS#DS#GDS#EDDVGHKK.R)
-//     // in the id column.
-//     const idFields = row[info.row_id].split(' ');
-//     row.label = idFields[0];
-//     row.id = normalize(row.label);
-//     row.descriptor = idFields[1];
-//
-//     let minVal = Number.MAX_VALUE;
-//     let maxVal = Number.MIN_VALUE;
-//
-//     const measurements = [];
-//     _.keys(row).forEach(function(key) {
-//       const keyIndex = info.cell_line_labels.indexOf(key);
-//       if(keyIndex >= 0) {
-//         const cellLineId = info.cell_lines[keyIndex];
-//         const measurement = {
-//           label: key,
-//           id: cellLineId,
-//           value: row[key]
-//         };
-//
-//         if (measurement.value > maxVal) {
-//           maxVal = measurement.value;
-//           if (maxVal > totalMax) {
-//             totalMax = maxVal;
-//           }
-//         } else if (measurement.value < minVal) {
-//           minVal = measurement.value;
-//           if (minVal < totalMin) {
-//             totalMin = minVal;
-//           }
-//         }
-//
-//         measurements.push(measurement);
-//       }
-//     });
-//
-//     row.extent = [minVal, maxVal];
-//     row.measurements = measurements;
-//   });
-//
-//   // dataset.extent = [totalMin, totalMax];
-//
-//   return dataset;
-// }
+/**
+ * Transform Basal Phospho data to be used in visualizations
+ * @param {Array} dataset Dataset
+ * @return {Array} transformed dataset
+ */
+function transformBasalPhospho(dataset, info) {
+  let totalMin = Number.MAX_VALUE;
+  let totalMax = Number.MIN_VALUE;
+
+  dataset.forEach(function(row) {
+    // phospho has a secondary string i.e: (K.GFINDDDDEDEGEEDEGS#DS#GDS#EDDVGHKK.R)
+    // in the id column.
+    const idFields = row[info.row_id].split(' ');
+    row.label = idFields[0];
+    row.id = normalize(row.label);
+    row.descriptor = idFields[1];
+
+    let minVal = Number.MAX_VALUE;
+    let maxVal = Number.MIN_VALUE;
+
+    const measurements = [];
+    _.keys(row).forEach(function(key) {
+      const keyIndex = info.cell_line_labels.indexOf(key);
+      if(keyIndex >= 0) {
+        const cellLineId = info.cell_lines[keyIndex];
+        const measurement = {
+          label: key,
+          id: cellLineId,
+          value: row[key]
+        };
+
+        if (measurement.value > maxVal) {
+          maxVal = measurement.value;
+          if (maxVal > totalMax) {
+            totalMax = maxVal;
+          }
+        } else if (measurement.value < minVal) {
+          minVal = measurement.value;
+          if (minVal < totalMin) {
+            totalMin = minVal;
+          }
+        }
+
+        measurements.push(measurement);
+      }
+    });
+
+    row.extent = [minVal, maxVal];
+    row.measurements = measurements;
+  });
+
+  // dataset.extent = [totalMin, totalMax];
+
+  return dataset;
+}
 //
 // /**
 //  * Convert receptor data to a useable form.
