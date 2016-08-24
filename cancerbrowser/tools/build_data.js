@@ -21,7 +21,9 @@ function copyPath(p) {
   return fs.copySync(inputPath, outputPath);
 }
 
+fs.mkdirSync(OUTPUT_PATH);
+
 writeFile(parse_cell_lines(), 'cell_lines.json');
 writeFile(parse_drugs(), 'drugs.json');
-copyPath('datasets.json')
-copyPath('datasets')
+copyPath('datasets.json');
+copyPath('datasets');

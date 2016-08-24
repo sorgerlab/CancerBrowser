@@ -43,10 +43,10 @@ function cellLines(state = INITIAL_STATE, action) {
         cellLineView: action.cellLineView
       });
 
-    case SET_CELL_LINE_INFO:
-      return Object.assign({}, state, {
-        info: action.info
-      });
+    // case SET_CELL_LINE_INFO:
+    //   return Object.assign({}, state, {
+    //     info: action.info
+    //   });
 
     default:
       return state;

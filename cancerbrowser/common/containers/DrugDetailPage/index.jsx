@@ -12,15 +12,21 @@ import {
   fetchDrugInfoIfNeeded
 } from '../../actions/drug';
 
+import {
+  getDrug
+} from '../../selectors/drug';
+
 const propTypes = {
   dispatch: React.PropTypes.func,
   params: React.PropTypes.object,
   drugInfo: React.PropTypes.object
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
+
+  const drug = getDrug(state, ownProps);
   return {
-    drugInfo: state.drugs.info
+    drugInfo: drug
   };
 }
 
@@ -30,15 +36,7 @@ function mapStateToProps(state) {
 class DrugDetailPage extends React.Component {
 
   /**
-   * Callback function called after this component has been mounted.
-   */
-  componentDidMount() {
-    const { dispatch, params } = this.props;
-    dispatch(fetchDrugInfoIfNeeded(params.drugId));
-  }
-
-  /**
-   * Render info panel component with drug info. 
+   * Render info panel component with drug info.
    */
   renderInfo(drugInfo) {
     const details = [
@@ -79,10 +77,11 @@ class DrugDetailPage extends React.Component {
    * @return {ReactElement} JSX markup.
    */
   render() {
+
     const { drugInfo } = this.props;
 
 
-    if(drugInfo.id) {
+    if(drugInfo) {
 
       return (
         <PageLayout className='DrugDetailPage'>

@@ -8,7 +8,8 @@
     "build": "NODE_ENV='production' webpack --config webpack.config.build.js",
     "lint": "eslint client common; true",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive; true",
-    "deploy": "gh-pages-deploy"
+    "deploy": "gh-pages-deploy",
+    "data": "./tools/build_data.js"
   },
   "gh-pages-deploy": {
     "staticpath": "dist",

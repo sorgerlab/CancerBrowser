@@ -183,3 +183,23 @@ export const getFilteredCellLineCounts = createSelector(
     return { cellLineFilters: counts };
   }
 );
+
+/**
+ * A selector for getting the current cell line ID from the route
+ *
+ * @return {String} An object of info for a single cell line
+ */
+const getCellLineIdFromRoute = (state, props) => props.params.cellLineId;
+
+/**
+ * A selector for a specific cell line
+ *
+ * Input selectors:
+ *   - getCellLines
+ *
+ * @return {Object} An object of info for a single cell line
+ */
+export const getCellLine = createSelector(
+  [ getCellLines, getCellLineIdFromRoute ],
+  ( cellLines, cellLineId ) => cellLines.find(cellLine => cellLine.id === cellLineId)
+);

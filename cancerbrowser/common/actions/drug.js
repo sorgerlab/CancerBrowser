@@ -1,22 +1,10 @@
 import api from '../api';
 
 export const CHANGE_DRUG_VIEW = 'CHANGE_DRUG_VIEW';
-export const SET_DRUG_INFO = 'SET_DRUG_INFO';
 export const REQUEST_DRUGS = 'REQUEST_DRUGS';
 export const RECEIVE_DRUGS = 'RECEIVE_DRUGS';
 export const DRUGS_CHANGE_ACTIVE_FILTERS = 'DRUGS_CHANGE_ACTIVE_FILTERS';
 export const DRUGS_RESET_FILTERS = 'DRUGS_RESET_FILTERS';
-
-/**
- * Action creator for setting drug info
- */
-function setDrugInfo(info) {
-  return {
-    type: SET_DRUG_INFO,
-    info
-  };
-}
-
 
 /**
  * Action creator for indicating drug data has been
@@ -92,41 +80,6 @@ export function fetchDrugsIfNeeded() {
     }
   };
 }
-
-
-/**
- * Helper function to get drug info
- * @return {Function}
- */
-function fetchDrugInfo(drugId) {
-  return dispatch => {
-    api.getDrugInfo(drugId)
-    .then((data) => dispatch(setDrugInfo(data)));
-  };
-}
-
-/**
- * Helper function to determine if the
- * drugs need to be acquired.
- * Right now always returns true.
- * @return true
- */
-function shouldFetchDrugInfo(state, drugId) {
-  return true;
-}
-
-/**
- * Public function to acquire single drug info
- * and create action to store it.
- */
-export function fetchDrugInfoIfNeeded(drugId) {
-  return (dispatch, getState) => {
-    if (shouldFetchDrugInfo(getState(), drugId)) {
-      return dispatch(fetchDrugInfo(drugId));
-    }
-  };
-}
-
 
 /**
  * Action creator for changing the drug view the table shows
