@@ -40,7 +40,8 @@ module.exports = [
     },
     output: {
       path: './dist',
-      filename: '[name].js'
+      filename: '[name].js',
+      publicPath: '/'
     },
     module: {
       loaders: [

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
-import { Router, hashHistory } from 'react-router';
+import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 // import Immutable from 'immutable';
@@ -47,7 +47,7 @@ if ( window.$REDUX_STATE ) {
 const store = configureStore(state);
 // TODO I'm not sure if this is the right place to do this. Maybe should be in
 // configureStore
-const history = syncHistoryWithStore(hashHistory, store);
+const history = syncHistoryWithStore(browserHistory, store);
 
 // Watch routing in console
 // history.listen(location => console.log(location.pathname));
