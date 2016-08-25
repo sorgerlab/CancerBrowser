@@ -1,5 +1,5 @@
-
 .CellLineDetailPage {
+
   .name {
     float: left;
   }
@@ -8,4 +8,15 @@
     padding: 20px 0 0 20px;
     float: left;
   }
+
+  .images {
+
+    figure {
+      display: inline-block;
+      margin-right: 20px;
+      margin-bottom: 15px;
+    }
+
+  }
+
 }
