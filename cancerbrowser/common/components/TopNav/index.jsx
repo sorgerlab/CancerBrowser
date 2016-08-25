@@ -21,7 +21,7 @@ class TopNav extends React.Component {
       <div className="header clearfix">
         <IndexLink className='navbar-brand' to='/'>
           <img className='logo' src={logoImage} />
-          <span className='site-title'>HMS Cancer Browser</span>
+          <span className='site-title'>Home</span>
         </IndexLink>
         <nav>
           <ul className="nav-links list-inline">
