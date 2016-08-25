@@ -4,8 +4,7 @@ import {
   DRUGS_RESET_FILTERS,
   CHANGE_DRUG_VIEW,
   REQUEST_DRUGS,
-  RECEIVE_DRUGS,
-  SET_DRUG_INFO } from '../actions/drug';
+  RECEIVE_DRUGS } from '../actions/drug';
 
 const INITIAL_STATE = {
   isFetching: false,
@@ -40,11 +39,6 @@ function drugs(state = INITIAL_STATE, action) {
     case CHANGE_DRUG_VIEW:
       return Object.assign({}, state, {
         drugView: action.drugView
-      });
-
-    case SET_DRUG_INFO:
-      return Object.assign({}, state, {
-        info: action.info
       });
 
     default:

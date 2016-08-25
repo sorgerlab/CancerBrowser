@@ -12,7 +12,7 @@ export const RECEIVE_DATASET = 'RECEIVE_DATASET';
 /**
  * Action creator to indicate dataset info has been requested
  */
-function requestDatasetsInfo() {
+function requestDatasets() {
   return {
     type: REQUEST_DATASETS_INFO
   };
@@ -22,7 +22,7 @@ function requestDatasetsInfo() {
  * Action creator for setting datasets info
  * @param {Array} datasets All Datasets info
  */
-function receiveDatasetsInfo(datasets) {
+function receiveDatasets(datasets) {
   return {
     type: RECEIVE_DATASETS_INFO,
     datasets: datasets
@@ -55,15 +55,48 @@ function receiveDataset(datasetId, dataset) {
 
 // Helpers
 
-export function fetchDatasetsInfo() {
+function fetchDatasetsInfo() {
   return dispatch => {
-    dispatch(requestDatasetsInfo());
-    api.getDatasetsInfo().then(
-      data => dispatch(receiveDatasetsInfo(data))
+    dispatch(requestDatasets());
+    api.getDatasets().then(
+      data => dispatch(receiveDatasets(data))
     );
   };
 }
 
+/**
+ * Helper function to determine if a datasets info
+ * needs to be fetched from the API.
+ * @param {Object} state current state
+ * @return {Boolean}
+ */
+function shouldFetchDatasetsInfo(state) {
+
+  const datasetsInfo = state.datasets.info;
+
+  if (Object.keys(datasetsInfo.items).length > 0) {
+    return false;
+  }
+
+  // If this is already fetching
+  if (datasetsInfo.isFetching) {
+    return false;
+  }
+
+  return true;
+}
+
+/**
+ * Function to get datasets info if needed
+ * @return {Function}
+ */
+export function fetchDatasetsInfoIfNeeded() {
+  return (dispatch, getState) => {
+    if (shouldFetchDatasetsInfo(getState())) {
+      return dispatch(fetchDatasetsInfo());
+    }
+  };
+}
 
 /**
  * Helper function to get dataset data for a particular dataset
@@ -113,16 +146,6 @@ function shouldFetchDataset(state, datasetId) {
   }
 
   return false;
-}
-
-/**
- * Helper function to get dataset info for a particular dataset
- * @param {String} datasetId
- * @return {Function}
- */
-export function fetchDatasetInfo(datasetId) {
-  // currently this can just fetch all dataset info
-  return fetchDatasetsInfo();
 }
 
 /**

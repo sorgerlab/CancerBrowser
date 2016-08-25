@@ -11,8 +11,8 @@ import InfoPanel from '../../components/InfoPanel';
 import './cell_line_detail_page.scss';
 
 import {
-  fetchCellLineInfoIfNeeded
-} from '../../actions/cell_line';
+  getCellLine
+} from '../../selectors/cell_line';
 
 const propTypes = {
   dispatch: React.PropTypes.func,
@@ -21,21 +21,19 @@ const propTypes = {
 };
 
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
+
+  const cellLine = getCellLine(state, ownProps);
   return {
-    cellLineInfo: state.cellLines.info
+    cellLineInfo: cellLine
   };
+
 }
 
 /**
  * Cell Line Details Container Component
  */
 class CellLineDetailPage extends React.Component {
-
-  componentDidMount() {
-    const cellLineId = this.props.params.cellLineId;
-    this.props.dispatch(fetchCellLineInfoIfNeeded(cellLineId));
-  }
 
   /**
    * Display general info
@@ -57,11 +55,11 @@ class CellLineDetailPage extends React.Component {
    */
   renderMediaInfo(cellLine) {
     const details = [
-      {label: 'Media Base', value: cellLine.info['Media base']},
-      {label: 'Media Additives', value: cellLine.info['Media additives']},
-      {label: 'ATTC Number', value: cellLine.info['ATTC #']},
-      {label: 'ATTC Link',
-       value: <a target={"_blank"} href={cellLine.info['Link']}>{cellLine.cellLine.label}</a>}
+      {label: 'Media Base', value: cellLine.mediaBase.label},
+      {label: 'Media Additives', value: cellLine.mediaAdditives.label},
+      {label: 'ATCC Number', value: cellLine.atccNumber.label},
+      {label: 'ATCC Link',
+       value: <a target={"_blank"} href={cellLine.link.label}>{cellLine.cellLine.label}</a>}
     ];
 
     return (
@@ -93,7 +91,7 @@ class CellLineDetailPage extends React.Component {
 
     const cellLine = this.props.cellLineInfo;
 
-    if(cellLine.id) {
+    if(cellLine) {
 
       return (
         <PageLayout className='CellLineDetailPage'>

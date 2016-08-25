@@ -154,3 +154,24 @@ export const getFilteredDrugCounts = createSelector(
     return { drugFilters: counts };
   }
 );
+
+/**
+ * A selector for getting the current drug ID from the route
+ *
+ * @return {String} An object of info for a single drug
+ */
+const getDrugIdFromRoute = (state, props) => props.params.drugId;
+
+/**
+ * A selector for a specific drug
+ *
+ * Input selectors:
+ *   - getDrugs
+ *   - getDrugIdFromRoute
+ *
+ * @return {Object} An object for a single drug
+ */
+export const getDrug = createSelector(
+  [ getDrugs, getDrugIdFromRoute ],
+  ( drugs, drugId ) => drugs.find(drug => drug.id === drugId)
+);

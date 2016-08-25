@@ -1,5 +1,6 @@
 import {
-  DATASET_BASAL_PHOSPHO_CHANGE_ACTIVE_FILTERS
+  DATASET_BASAL_PHOSPHO_CHANGE_ACTIVE_FILTERS,
+  RECEIVE_DATASET_BASAL_PHOSPHO
 } from '../actions/datasetBasalPhospho';
 
 
@@ -15,6 +16,12 @@ function datasetBasalPhospho(state = INITIAL_STATE, action) {
       return Object.assign({}, state, {
         activeFilters: action.activeFilters == null ? INITIAL_STATE.activeFilters : action.activeFilters
       });
+
+    case RECEIVE_DATASET_BASAL_PHOSPHO:
+      return Object.assign({}, state, {
+        data: action.data
+      });
+
     default:
       return state;
   }

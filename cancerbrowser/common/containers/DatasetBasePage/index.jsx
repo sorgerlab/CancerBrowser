@@ -7,14 +7,8 @@ import _ from 'lodash';
 import { getFilteredCellLines, getFilteredCellLineCounts } from '../../selectors/cell_line';
 
 import {
-  fetchDatasetIfNeeded,
-  fetchDatasetInfo
+  fetchDatasetIfNeeded
 } from '../../actions/dataset';
-
-import {
-  fetchCellLinesIfNeeded
-} from '../../actions/cell_line';
-
 
 import { ButtonGroup, Button } from 'react-bootstrap';
 import PageLayout from '../../components/PageLayout';
@@ -84,8 +78,6 @@ class DatasetBasePage extends React.Component {
   componentDidMount() {
     const { datasetId, dispatch } = this.props;
     dispatch(fetchDatasetIfNeeded(datasetId));
-    dispatch(fetchDatasetInfo(datasetId));
-    dispatch(fetchCellLinesIfNeeded());
 
     this.initFromUrl();
   }

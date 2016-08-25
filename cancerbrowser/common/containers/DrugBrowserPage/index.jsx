@@ -18,7 +18,6 @@ import {
 
 
 import {
-  fetchDrugsIfNeeded,
   changeDrugView,
   changeActiveFilters,
   resetActiveFilters
@@ -67,8 +66,6 @@ class DrugBrowserPage extends React.Component {
    */
   componentDidMount() {
     const { dispatch } = this.props;
-
-    dispatch(fetchDrugsIfNeeded());
 
     // see if filters have changed.
     const filterString = this.props.location.search.replace(/^\?/,'');

@@ -1,35 +1,31 @@
+import datasetData from  '../assets/data/datasets.json';
+
+/**
+ * Returns dataset data
+ * Data is imported directly from JSON file, but for future compatability with
+ * an asynchronous retrieveal mechanism, this returns a
+ * Promise
+ *
+ * @return {Promise}
+ */
+export function getDatasets() {
+  return Promise.resolve(datasetData);
+}
+
+// TODO DELETE BELOW HERE
+
 import d3 from 'd3';
 import _ from 'lodash';
 
-import { DATA_PATH,
-         mergeData } from './util';
+import { mergeData } from './util';
 
 import { getCellLines } from './cell_line';
 
-import datasetInfo from './data/dataset_info.json';
+import datasetInfo from '../assets/data/datasets.json';
 
 import { normalize } from '../../common/utils/string_utils';
 
-/** Returns Promise that resolves to information about
- * each dataset in an Object where
- * each attribute is a dataset key.
- * @return {Promise} datasets info
- */
-export function getDatasetsInfo() {
-  return new Promise(function(resolve) {
-    resolve(datasetInfo);
-  });
-}
-
-/** Returns Promise that resolves to information about
- * particular dataset.
- * @param {String} id of dataset to get
- * @return {Promise} datasets info object
- */
-export function getDatasetInfo(datasetId) {
-  return getDatasetsInfo()
-    .then(datasets => datasets[datasetId]);
-}
+const datasetContext = require.context('../assets/data/datasets/');
 
 /** Returns Promise that resolves to data
  * for a particular dataset given its id
@@ -43,8 +39,7 @@ export function getDataset(datasetId) {
   const info = datasetInfo[datasetId];
   return new Promise(function(resolve, reject) {
     if(info) {
-      const path = DATA_PATH + 'datasets/' + info.filename;
-
+      const path = datasetContext(`./${info.filename}`);
       d3.tsv(path, function(error, data) {
         if(error) {
           reject(error);

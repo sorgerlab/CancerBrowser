@@ -1,23 +1,11 @@
-#!/usr/bin/env node
-/*
- Sample output:
-  [{
-    hmsLincsId: '10001-101',
-    name: { value: 'someName', label: 'Some Name' },
-    nominalTarget: { value: 'someTarget', label: 'Some Target' },
-    parentTargets: ['someOtherTargetValue', 'someOtherParentTargetValue', ...],
-    class: { value: 'phase1', label: 'Phase 1 '},
-    synonyms: ['someName', 'someOtherName', ...],
-    searchIndexOnlyNames: ['hiddenName', 'hiddenOtherName', ...],
-  }, ...]
-*/
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 const d3 = require('d3');
 const _  = require('lodash');
-require('./utils');
 
+const parse_datasets = require('./parse_datasets');
 
 function normalize(str) {
   return _.trim(str).replace(/[\s-]/g, '').toLowerCase();
@@ -48,16 +36,19 @@ const classValues = {
   'approved': '40-approved'
 };
 
-const filename = process.argv[2];
 
-// TODO: specify output filename?
-const outputFilename = './drugs.json';
+function parse_drugs() {
 
-fs.readFile(filename, 'utf8', function(error, data) {
-  data = d3.csv.parse(data);
+  const filename = path.join(__dirname, '..', 'data', 'drugs.csv');
 
-  const transformed = data.map(function(d) {
-    return {
+  const file_data = fs.readFileSync(filename, 'utf8');
+
+  const drugInfo = d3.csv.parse(file_data);
+  const dataSets = parse_datasets();
+
+  const drugs = drugInfo.map(function(d) {
+
+    const drug = {
       id: d['HMS LINCS ID'],
       hmsLincsId: d['HMS LINCS ID'],
       name: labelValue(d['Name']),
@@ -71,7 +62,22 @@ fs.readFile(filename, 'utf8', function(error, data) {
       synonyms: _.compact(_.split(d['Synonyms'], ';')),
       searchIndexOnlyNames: _.compact(_.split(d['Search-index-only names'], ';'))
     };
+
+    drug.dataset = [];
+    dataSets.forEach(function(info) {
+      // For each dataset, if the dataset had this drug in it. then add the
+      // datset's id to this drug's dataset array.
+      if(_.includes(info.drugs, drug.id)) {
+        drug.dataset.push({value:info.id, label:info.label});
+      }
+    });
+
+    return drug;
+
   });
 
-  fs.writeFileSync(outputFilename, JSON.stringify(transformed, null, 2));
-});
+  return drugs;
+};
+
+
+module.exports = parse_drugs;

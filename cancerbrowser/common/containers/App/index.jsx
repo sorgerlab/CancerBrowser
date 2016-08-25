@@ -1,17 +1,45 @@
-
 import React from 'react';
+import {connect} from 'react-redux';
 
 import TopNav from '../../components/TopNav';
 
+import {
+  fetchCellLinesIfNeeded
+} from '../../actions/cell_line';
+
+import {
+  fetchDrugsIfNeeded
+} from '../../actions/drug';
+
+import {
+  fetchDatasetsInfoIfNeeded
+} from '../../actions/dataset';
 
 const propTypes = {
+  dispatch: React.PropTypes.func,
   children: React.PropTypes.object
 };
+
+function mapStateToProps() {
+  return {};
+}
 
 /**
  * Root container
  */
 class App extends React.Component {
+
+  componentDidMount() {
+    const {dispatch} = this.props;
+
+    // The data in this application is very small and can be loaded
+    // up-front. The loading mechanism ensures that this does not reoccur
+    dispatch(fetchCellLinesIfNeeded());
+    dispatch(fetchDrugsIfNeeded());
+    dispatch(fetchDatasetsInfoIfNeeded());
+  }
+
+
   /**
   * Render out JSX for CancerBrowser.
   * @return {ReactElement} JSX markup.
@@ -38,4 +66,4 @@ class App extends React.Component {
 
 App.propTypes = propTypes;
 
-export default App;
+export default connect(mapStateToProps)(App);
