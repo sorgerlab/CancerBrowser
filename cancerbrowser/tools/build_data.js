@@ -21,7 +21,13 @@ function copyPath(p) {
   return fs.copySync(inputPath, outputPath);
 }
 
-fs.mkdirSync(OUTPUT_PATH);
+try {
+    fs.mkdirSync(OUTPUT_PATH);
+} catch (err) {
+    if (err.code !== 'EEXIST') {
+        throw err;
+    }
+}
 
 writeFile(parse_cell_lines(), 'cell_lines.json');
 writeFile(parse_drugs(), 'drugs.json');
