@@ -11,6 +11,10 @@ import {
   fetchDrugsIfNeeded
 } from '../../actions/drug';
 
+import {
+  fetchDatasetsInfoIfNeeded
+} from '../../actions/dataset';
+
 const propTypes = {
   dispatch: React.PropTypes.func,
   children: React.PropTypes.object
@@ -32,6 +36,7 @@ class App extends React.Component {
     // up-front. The loading mechanism ensures that this does not reoccur
     dispatch(fetchCellLinesIfNeeded());
     dispatch(fetchDrugsIfNeeded());
+    dispatch(fetchDatasetsInfoIfNeeded());
   }
 
 

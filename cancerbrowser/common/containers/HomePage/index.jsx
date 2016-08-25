@@ -7,16 +7,6 @@ import OmniSearch from '../../components/OmniSearch';
 
 import './home_page.scss';
 
-import {
-  fetchCellLinesIfNeeded
-} from '../../actions/cell_line';
-
-import {
-  fetchDrugsIfNeeded
-} from '../../actions/drug';
-
-
-
 const propTypes = {
   dispatch: React.PropTypes.func,
   cellLines: React.PropTypes.array,
@@ -31,17 +21,6 @@ function mapStateToProps(state) {
 }
 
 class HomePage extends React.Component {
-
-  /**
-   * Lifecycle method.
-   * Fetch data if needed
-   */
-  componentDidMount() {
-    const { dispatch } = this.props;
-
-    dispatch(fetchCellLinesIfNeeded());
-    dispatch(fetchDrugsIfNeeded({}, {}));
-  }
 
   /**
    * Render search component

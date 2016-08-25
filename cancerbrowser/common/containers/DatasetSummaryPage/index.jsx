@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Row, Col } from 'react-bootstrap';
 
-import { fetchDatasetsInfo } from '../../actions/dataset';
-
 import './dataset_summary_page.scss';
 
 const propTypes = {
@@ -28,13 +26,6 @@ function mapStateToProps(state) {
  * Container component for contents of Dataset Summary page content.
  */
 class DatasetSummaryPage extends React.Component {
-
-  /**
-   * Callback function called after this component has been mounted.
-   */
-  componentDidMount() {
-    this.props.dispatch(fetchDatasetsInfo());
-  }
 
   /**
    * Render individual dataset.

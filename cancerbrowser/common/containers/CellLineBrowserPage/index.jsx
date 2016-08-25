@@ -11,9 +11,6 @@ import CellLineTable from '../../components/CellLineTable';
 
 import { getFilteredCellLines, getFilteredCellLineCounts, cellLinesFilterGroup } from '../../selectors/cell_line';
 
-import { fetchDatasets } from '../../actions/dataset';
-
-
 import qs from 'qs';
 
 import {
@@ -66,7 +63,6 @@ class CellLineBrowserPage extends React.Component {
    * Acquire data needed to display page
    */
   componentDidMount() {
-    this.props.dispatch(fetchDatasets());
 
     // see if filters have changed.
     const filterString = this.props.location.search.replace(/^\?/,'');
