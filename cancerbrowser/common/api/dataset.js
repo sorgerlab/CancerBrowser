@@ -39,10 +39,7 @@ export function getDataset(datasetId) {
   const info = datasetInfo[datasetId];
   return new Promise(function(resolve, reject) {
     if(info) {
-      console.log('About to build path');
-      // console.log(datasetContext(''));
-      const path = datasetContext(info.filename);
-      console.log('About to get ', path);
+      const path = datasetContext(`./${info.filename}`);
       d3.tsv(path, function(error, data) {
         if(error) {
           reject(error);

@@ -3,7 +3,6 @@ var webpack = require('webpack');
 var fs = require('fs');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlPlugin = require('html-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var nodeModules = {};
 fs.readdirSync('node_modules')
@@ -31,10 +30,7 @@ module.exports = [
       new webpack.optimize.UglifyJsPlugin({
         include: /\.min\.js$/,
         minimize: true
-      }),
-      new CopyWebpackPlugin([
-        { from: 'data', to: 'data' }
-      ])
+      })
     ],
     entry: {
       'bundle.min': [

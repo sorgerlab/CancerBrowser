@@ -3,7 +3,6 @@ var webpack = require('webpack');
 var fs = require('fs');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlPlugin = require('html-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var nodeModules = {};
 fs.readdirSync('node_modules')
@@ -22,10 +21,7 @@ module.exports = [
       new HtmlPlugin({
         template: './common/index.html',
         filename: 'index.html'
-      }),
-      new CopyWebpackPlugin([
-        { from: 'data', to: 'data' }
-      ])
+      })
     ],
     devtool: 'eval-cheap-module-source-map',
     entry: {
