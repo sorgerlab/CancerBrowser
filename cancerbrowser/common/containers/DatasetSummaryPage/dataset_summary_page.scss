@@ -9,6 +9,18 @@
       &:nth-child(odd) {
         background: #f6f6f6;
       }
+
+      .dataset-thumbnail {
+        $img-width: 300px;
+        $border-width: 1px;
+        $padding-width: 3px;
+        width: $img-width + $border-width * 2 + $padding-width * 2;
+        float: right;
+        border: $border-width solid #cccccc;
+        padding: $padding-width;
+        margin-left: 10px;
+        background: #ffffff;
+      }
     }
   }
 }
