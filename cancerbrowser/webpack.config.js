@@ -52,6 +52,7 @@ module.exports = [
         },
         {
           test: /\.json$/,
+          exclude: /node_modules/,
           loader: 'json-loader'
         },
         { test: /\.(css|scss)$/,
@@ -82,7 +83,7 @@ module.exports = [
       ]
     },
     resolve: {
-      extensions: ['', '.js', '.jsx', '.json' ]
+      extensions: ['', '.js', '.jsx', '.json']
     }
-  },
+  }
 ];
