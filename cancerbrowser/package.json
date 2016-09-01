@@ -7,7 +7,7 @@
     "prestart": "npm run data",
     "start": "webpack-dev-server --progress --colors --inline --content-base dist/ --history-api-fallback --hot",
     "prebuild": "npm run data",
-    "build": "NODE_ENV='production' webpack --config webpack.config.build.js",
+    "build": "NODE_ENV='production' webpack --progress --config webpack.config.build.js",
     "lint": "eslint client common; true",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive; true",
     "deploy": "gh-pages-deploy",
