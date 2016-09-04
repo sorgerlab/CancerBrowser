@@ -2,7 +2,7 @@
   "receptor_profile": {
     "id": "receptor_profile",
     "label": "Basal Receptor (RTK) Profile",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vehicula nisl id odio accumsan facilisis. Proin sit amet lacus commodo, varius quam ut, volutpat felis. Etiam magna velit, dictum nec nisl ac, molestie facilisis urna. Nunc tempor ex nec libero imperdiet pulvinar. Vestibulum nec blandit nunc. Fusc sagittis consequat porttitor. Nulla sit amet tristique justo.",
+    "description": "Thirty-nine breast cancer cell lines were profiled by ELISA in the absence of stimulation to assess the abundance and phosphorylation state of 22 receptor tyrosine kinases (RTKs) as well as the abundance of 2 downstream kinases (Akt and ERK1/2) and of the intracellular receptors estrogen receptor (ER) and progesterone receptor (PR). These measurements serve as an indicator of the baseline activity state and activation potential of these cells in the context of several signaling pathways of relevance to breast cancer progression and therapeutic drug sensitivity.",
     "filename": "receptor_profiling_with_thresholds.tsv",
     "cell_line_id": "Cell Line Name",
     "text_fields": ["Cell Line HMSLID", "Cell Line Name"]
@@ -10,7 +10,7 @@
   "growth_factor_pakt_perk": {
     "id": "growth_factor_pakt_perk",
     "label": "Growth Factor-Induced pAKT/pERK Response",
-    "description": "Proin malesuada, velit eu finibus facilisis, enim velit venenatis sem, sit amet congue quam erat et felis. Vestibulum pharetra gravida felis id dapibus. Fusce vestibulum quam sed laoreet imperdiet. Donec efficitur erat eget sapien tincidunt, in lobortis ligula consectetur. Nunc ornare ante venenatis quam molestie ultricies. Donec at porta ex, a molestie tellus. Integer eget lectus sed lectus porttitor blandit eget nec lacus. Aliquam sollicitudin malesuada turpis, non cursus eros elementum sit amet. Nam condimentum faucibus neque, non consectetur lorem convallis nec. Vivamus neque quam, bibendum in tincidunt et, interdum eu odio. Suspendisse tincidunt, justo non pellentesque tempor, ante justo mollis nunc, mollis maximus arcu sapien vitae erat. Etiam magna metus, elementum eget leo non, volutpat dapibus quam. Vivamus lacinia dolor neque, sed euismod sapien accumsan non. Ut lobortis ligula sed risus rutrum, ut elementum erat congue. Nunc et sodales dui. Cras vitae hendrerit mi, eu fermentum tellus.",
+    "description": "Thirty-nine breast cancer cell lines were profiled by ELISA for the phosphorylation state of ERK1/2 and Akt following stimulation with 15 different growth factors (protein ligands) for 10, 30, or 90 min at intermediate and saturating doses. These measurements serve both as an indicator of the sensitivity of different cell lines to various stimuli and as a demonstration of the variable utilization of downstream signaling pathways in the different cell lines.",
     "filename": "pERK-pAKT_fold_change_20160606.tsv",
     "cell_line_id": "Cell Line Name",
     "row_id": "Cell Line Name",
@@ -29,7 +29,7 @@
   "basal_total": {
     "id": "basal_total",
     "label": "Basal Total Protein Mass Spectrometry",
-    "description": "Quisque eleifend nisl et aliquam varius. Nullam elementum aliquam nibh, et pulvinar magna semper vitae. Praesent vehicula fringilla velit. Sed ullamcorper nibh id massa convallis, vel fermentum enim elementum. Vestibulum sodales, ex vel ultrices gravida, orci purus maximus magna, ut mollis lectus massa id ligula. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean placerat, augue ac blandit pharetra, tellus sem sodales mauris, vitae semper felis nibh id lectus.",
+    "description": "Six breast cancer cell lines were profiled by mass spectrometry in the absence of stimulation to assess protein abundance and phosphorylation state across the proteome. This dataset establishes a reference profile of global protein composition and activity in these cell lines under basal conditions.",
     "filename": "basal_total_proteome-numerical_view.tsv",
     "cell_lines": ["hcc1806", "mcf10a", "hcc38", "bt549", "hs578t", "mdamb231", "skbr3", "mcf7", "hcc70", "bt20"],
     "cell_line_labels": ["HCC1806", "MCF10A", "HCC38", "BT549", "HS578T", "MDAMB231", "SKBR3", "MCF7", "HCC70", "BT20"],
@@ -39,7 +39,7 @@
   "basal_phospho": {
     "id": "basal_phospho",
     "label": "Basal Phosphoprotein Mass Spectrometry",
-    "description": "Nulla pretium purus eget elementum volutpat. Etiam facilisis non dui id congue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque auctor metus sit amet libero ultrices, eget cursus turpis dapibus. Morbi sit amet aliquet nisi, vel facilisis ipsum. Maecenas ultricies semper ante a fermentum. Donec feugiat euismod dapibus. Suspendisse at magna a metus mollis tincidunt in eget mi. Integer gravida leo sed diam ullamcorper lacinia.",
+    "description": "Six breast cancer cell lines were profiled by mass spectrometry in the absence of stimulation to assess phosphoprotein abundance across the proteome. This dataset establishes a reference profile of global phosphoprotein composition in these cell lines under basal conditions.",
     "filename": "basal_phosphoproteome-numerical_view.tsv",
     "cell_lines": ["bt549","hs578t","mdamb231","skbr3","hcc70","mcf7","bt20","hcc38","hcc1806","mcf10a"],
     "cell_line_labels": ["BT549","HS578T","MDAMB231","SKBR3","HCC70","MCF7","BT20","HCC38","HCC1806","MCF10A"],
@@ -49,7 +49,7 @@
   "drug_dose_response": {
     "id":"drug_dose_response",
     "label": "Drug Dose-Response Growth Rate Profiling",
-    "description": "Donec sit amet nunc rhoncus, hendrerit orci non, varius nibh. Fusce dolor lacus, bibendum et tincidunt nec, posuere vitae dui. Sed rhoncus dapibus accumsan. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in dapibus dui. Sed ac gravida mauris. Fusce efficitur nec leo sit amet bibendum.\n\n[Visit the GR Browser](http://grbrowser.org/)",
+    "description": "The growth over time of 6 breast cancer cell lines treated with a library of 107 small molecules was measured by microscopy, and normalized growth rate inhibition metrics (GR value, GR50, and GRmax) were calculated for each drug-cell line combination. This dataset illustrates the variablity of dose-dependent drug responses in these breast cancer cell lines across different classes of small molecule perturbagens.",
     "filename": "dose_response-GR50_GRmax_060116.tsv",
     "cell_line_id": "cell_line",
     "row_id": "cell_line",

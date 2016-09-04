@@ -10,9 +10,10 @@ import {
   fetchDatasetIfNeeded
 } from '../../actions/dataset';
 
-import { ButtonGroup, Button } from 'react-bootstrap';
+import { ButtonGroup, Button, Row, Col } from 'react-bootstrap';
 import PageLayout from '../../components/PageLayout';
 import FilterPanel from '../../components/FilterPanel';
+import HelpBox from '../../components/HelpBox';
 
 const propTypes = {
   datasetId: React.PropTypes.string,
@@ -232,6 +233,29 @@ class DatasetBasePage extends React.Component {
   renderMain() { /* template method */ }
 
   /**
+   * Renders any extra help box content.
+   * implemented by sub-classes.
+   *
+   * @return {React.Component}
+   */
+  renderExtraHelp() { /* template method */ }
+
+  /**
+   * Renders the help box.
+   *
+   * @return {React.Component}
+   */
+  renderHelpBox() {
+    const { description } = this.props.datasetInfo;
+    return (
+      <HelpBox>
+        <p>{ description }</p>
+        { this.renderExtraHelp() }
+      </HelpBox>
+    )
+  }
+
+  /**
    * Main render method.
    *
    * @return {React.Component}
@@ -241,7 +265,15 @@ class DatasetBasePage extends React.Component {
 
     return (
       <PageLayout className={className} sidebar={this.renderSidebar()}>
-        <h1>{datasetInfo && datasetInfo.label}</h1>
+        <Row>
+          <Col lg={8}>
+            <h1>{datasetInfo && datasetInfo.label}</h1>
+          </Col>
+          <Col lg={4}>
+            <div /* vertical padding layout hack */ className="visible-lg-block" style={{height: '28px'}}></div>
+            { this.renderHelpBox() }
+          </Col>
+        </Row>
         {this.renderViewOptions()}
         {this.renderMain()}
       </PageLayout>

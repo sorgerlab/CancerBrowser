@@ -1,0 +1,49 @@
+@import "../../assets/variables";
+
+.help-box {
+
+  position: relative;
+
+  .help-content {
+
+    position: absolute;
+    top: -22px;
+    z-index: 100;
+    padding: 20px;
+    border-radius: $border-radius-base;
+    border: 1px solid #eee;
+    background: #f6f6f6;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+
+    h2 {
+        font-size: 1.4em;
+        margin-top: 0;
+    }
+
+    h3 {
+        font-size: 100%;
+    }
+
+  }
+
+  .toggle {
+    float: right;
+    position: relative; /* just to make z-index take effect */
+    cursor: pointer;
+    font-style: italic;
+    margin-right: 20px;
+    border-bottom: 1px dashed #ccc;
+    z-index: 101;
+  }
+
+  .help-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: 0.5;
+    z-index: 99;
+  }
+}

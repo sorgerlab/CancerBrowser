@@ -507,6 +507,19 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
     );
   }
 
+  renderExtraHelp() {
+    return (
+      <div>
+        <h3>GR Browser</h3>
+
+        <p>The GR Browser is a separate online tool for learning more about growth
+          rate inhibition metrics, for calculating growth rate inhibition metrics
+          from your own data, and for browsing LINCS dose-response datasets.</p>
+        <p><a href="http://grbrowser.org/">Visit the GR Browser</a></p>
+      </div>
+    );
+  }
+
   /**
    * Main render function
    */
