@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Row, Col } from 'react-bootstrap';
-import markdown from 'markdown-to-jsx';
 
 import './dataset_summary_page.scss';
 
@@ -44,10 +43,11 @@ class DatasetSummaryPage extends React.Component {
 
     return (
       <li key={key} className='dataset-item clearfix'>
-        <img className='dataset-thumbnail' src={datasetImageUrl(dataset)} />
-        <h4>{dataset.label}</h4>
-        {dataset.description ? markdown(dataset.description) : null}
-        <Link to={`/dataset/${dataset.id}`}>View Dataset Page</Link>
+        <Link to={`/dataset/${dataset.id}`}>
+          <img className='dataset-thumbnail' src={datasetImageUrl(dataset)} />
+        </Link>
+        <h4><Link to={`/dataset/${dataset.id}`}>{dataset.label}</Link></h4>
+        { dataset.description }
       </li>
     );
   }
