@@ -78,6 +78,7 @@
     "react-redux": "^4.4.0",
     "react-router": "^2.0.0",
     "react-router-redux": "^4.0.0",
+    "react-router-scroll": "^0.3.2",
     "react-select": "^1.0.0-beta10",
     "redbox-react": "^1.2.6",
     "redux": "^3.3.1",
