@@ -168,6 +168,7 @@ class OmniSearch extends React.Component {
   * @param {Object} suggestion Suggestion selected
   */
   getSuggestionValue(suggestion) {
+    let name;
     if (suggestion.cellLine) {
       name = suggestion.cellLine.label;
     } else if (suggestion.name) {
@@ -205,9 +206,9 @@ class OmniSearch extends React.Component {
   * @param {Object} suggestion Suggestion object to display
   */
   renderSuggestion(suggestion, { value: search }) {
-    let name = this.getSuggestionValue(suggestion);
+    const name = this.getSuggestionValue(suggestion);
 
-    let synonymsToUse = suggestion.synonyms ? [...suggestion.synonyms] : [];
+    const synonymsToUse = suggestion.synonyms ? [...suggestion.synonyms] : [];
 
     // include searchIndexOnlyName if it matches
     if (suggestion.searchIndexOnlyNames && suggestion.searchIndexOnlyNames.length) {
@@ -252,6 +253,7 @@ class OmniSearch extends React.Component {
         renderSectionTitle={this.renderSectionTitle}
         getSectionSuggestions={this.getSectionSuggestions}
         onSuggestionSelected={this.onSuggestionSelected}
+        focusFirstSuggestion={true}
       />
     );
 
