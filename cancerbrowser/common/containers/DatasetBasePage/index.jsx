@@ -247,12 +247,17 @@ class DatasetBasePage extends React.Component {
    */
   renderHelpBox() {
     const { description } = this.props.datasetInfo;
+    const extraHelp = this.renderExtraHelp();
+
+    if (!description && !extraHelp) {
+      return null;
+    }
     return (
       <HelpBox>
         <p>{ description }</p>
-        { this.renderExtraHelp() }
+        { extraHelp }
       </HelpBox>
-    )
+    );
   }
 
   /**
