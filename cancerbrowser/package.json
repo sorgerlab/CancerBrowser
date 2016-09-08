@@ -22,8 +22,16 @@
   "author": "Douglas P.W. Russell",
   "contributors": [
     {
-      "name": "Douglas Russel",
-      "email": "Douglas_Russell@hms.harvard.edu"
+      "name": "Douglas P.W. Russell",
+      "email": "douglas_russell@hms.harvard.edu"
+    },
+    {
+      "name": "Jeremy Muhlich",
+      "email": "jeremy_muhlich@hms.harvard.edu"
+    },
+    {
+      "name": "Liz Williams",
+      "email": "elizabeth_williams@hms.harvard.edu"
     },
     {
       "name": "Peter Beshai",
@@ -83,7 +91,6 @@
     "redbox-react": "^1.2.6",
     "redux": "^3.3.1",
     "redux-batched-actions": "^0.1.2",
-    "redux-devtools": "^3.1.1",
     "redux-thunk": "^1.0.3",
     "reselect": "^2.5.1",
     "sass-loader": "^3.2.0",
