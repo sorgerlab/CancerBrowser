@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { Row, Col } from 'react-bootstrap';
 
 import { toList } from '../../utils/string_utils';
 
@@ -125,25 +126,37 @@ class DrugDetailPage extends React.Component {
 
       return (
         <PageLayout className='DrugDetailPage'>
-          <h1 className='name'>{ drugInfo.name ? drugInfo.name.label : '' }</h1>
-          <img src={drugImageUrl(drugInfo)} />
-          <div>
-            <h3>General Information</h3>
-            {this.renderInfo(drugInfo)}
-          </div>
-          <div>
-            <h3>Target Information</h3>
-            {this.renderTarget(drugInfo)}
-          </div>
-          <div>
-            <h3>Dataset Displays</h3>
-            {this.renderDatasets(drugInfo)}
-          </div>
+          <Row>
+            <Col lg={12}>
+              <h1 className='name'>{ drugInfo.name ? drugInfo.name.label : '' }</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={3} lg={3}>
+              <img className="structure" src={drugImageUrl(drugInfo)} />
+            </Col>
+            <Col md={9}>
+              <Row>
+                <Col md={7} lg={4}>
+                  <h3>General Information</h3>
+                  {this.renderInfo(drugInfo)}
+                </Col>
+                <Col md={5} lg={4}>
+                  <h3>Target Information</h3>
+                  {this.renderTarget(drugInfo)}
+                </Col>
+                <Col md={7} lg={4}>
+                  <h3>Dataset Displays</h3>
+                  {this.renderDatasets(drugInfo)}
+                </Col>
+              </Row>
+            </Col>
+          </Row>
         </PageLayout>
       );
     } else {
       return(
-        <PageLayout className="CellLineDetailPage">
+        <PageLayout className="DrugDetailPage">
         </PageLayout>
       );
     }

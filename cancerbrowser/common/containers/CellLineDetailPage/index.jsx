@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { Row, Col } from 'react-bootstrap';
 
 import { toList } from '../../utils/string_utils';
 
@@ -78,9 +79,13 @@ class CellLineDetailPage extends React.Component {
   renderImages(cellLine) {
     let figures;
     if (Object.keys(cellLine.omero_image_ids).length) {
-      figures = ['4x', '10x', '20x', '40x'].map((magnification) => {
-        return <Figure key={cellLine.id + magnification} caption={magnification} width={300}
-          imageUrl={ omeroImageUrl(cellLine.omero_image_ids[magnification], 300) } />;
+      figures = [['4x', '10x'], ['20x', '40x']].map((pair) => {
+        const rendered_pair = pair.map((magnification) => {
+          const url = omeroImageUrl(cellLine.omero_image_ids[magnification], 300);
+          return <Figure key={cellLine.id + magnification} caption={magnification}
+                         width={300} imageUrl={url} />;
+        });
+        return <div className="pair">{ rendered_pair }</div>;
       });
     } else {
       figures = <p><em>Images are not available for this cell line.</em></p>;
@@ -96,7 +101,7 @@ class CellLineDetailPage extends React.Component {
    */
   renderDatasets(cellLine) {
     const links = cellLine.dataset.map((dataset) => {
-      return <Link to={`/dataset/${dataset.value}/${cellLine.id}/cellLine`} className="" >{dataset.label}</Link>;
+      return <Link to={`/dataset/${dataset.value}/${cellLine.id}/cellLine`}>{dataset.label}</Link>;
     });
 
     return (
@@ -119,21 +124,34 @@ class CellLineDetailPage extends React.Component {
 
       return (
         <PageLayout className='CellLineDetailPage'>
-          <h1 className='name'>{ cellLine.cellLine.label }</h1>
-          <div className='glyph'>
-            <CellLineGlyph cellLine={cellLine} />
-          </div>
-
-          <div className='clearfix'></div>
-
-          <h3>General Information</h3>
-          {this.renderInfo(cellLine)}
-          <h3>Media &amp; ATTC Information</h3>
-          {this.renderMediaInfo(cellLine)}
-          <h3>Images</h3>
-          {this.renderImages(cellLine)}
-          <h3>Dataset Displays</h3>
-          {this.renderDatasets(cellLine)}
+          <Row>
+            <Col lg={12}>
+              <h1 className='name'>{ cellLine.cellLine.label }</h1>
+              <div className='glyph'>
+                <CellLineGlyph cellLine={cellLine} />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col lg={4}>
+              <h3>General Information</h3>
+              {this.renderInfo(cellLine)}
+            </Col>
+            <Col lg={4}>
+              <h3>Media &amp; ATCC Information</h3>
+              {this.renderMediaInfo(cellLine)}
+            </Col>
+            <Col lg={4}>
+              <h3>Dataset Displays</h3>
+              {this.renderDatasets(cellLine)}
+            </Col>
+          </Row>
+          <Row>
+            <Col lg={12}>
+              <h3>Images</h3>
+              {this.renderImages(cellLine)}
+            </Col>
+          </Row>
         </PageLayout>
       );
     } else {
