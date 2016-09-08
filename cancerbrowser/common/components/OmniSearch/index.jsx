@@ -106,7 +106,7 @@ class OmniSearch extends React.Component {
   onSuggestionSelected(event, {suggestion, sectionIndex}) {
     this.setState({value: ''});
     const suggestionId = suggestion.id;
-    const suggestionType = this.state.combinedData[sectionIndex].id;
+    const suggestionType = this.state.suggestions[sectionIndex].id;
     const path = `/${suggestionType}/${suggestionId}`;
     this.context.router.push(path);
   }
