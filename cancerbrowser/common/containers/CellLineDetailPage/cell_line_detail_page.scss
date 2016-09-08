@@ -1,4 +1,5 @@
 .CellLineDetailPage {
+  max-width: 1350px;
 
   .name {
     float: left;
@@ -7,6 +8,10 @@
   .glyph {
     padding: 20px 0 0 20px;
     float: left;
+  }
+
+  .pair {
+    display: inline-block;
   }
 
   .images {

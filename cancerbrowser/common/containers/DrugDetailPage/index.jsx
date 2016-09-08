@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { Row, Col } from 'react-bootstrap';
 
 import { toList } from '../../utils/string_utils';
 
@@ -16,6 +17,8 @@ import {
   getDrug
 } from '../../selectors/drug';
 
+import './drug_detail_page.scss';
+
 const propTypes = {
   dispatch: React.PropTypes.func,
   params: React.PropTypes.object,
@@ -30,6 +33,32 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
+function hmslincsDrugLink(drug) {
+  const id = drug.hmsLincsId;
+  return (
+    <div className="db-link">
+      <div><a href={`http://lincs.hms.harvard.edu/db/sm/${id}`}>{id}</a></div>
+      <div className="more-details">More details available at the HMS LINCS Database</div>
+    </div>
+  );
+}
+
+
+function targetInfo(drug, property, doLink) {
+  doLink = doLink === undefined ? true : doLink;
+  let content;
+  const info = drug[property];
+  if (info) {
+    const url = `/drugs?drugFilters[0][id]=${property}&drugFilters[0][values][0]=${info.value}`;
+    content = info.label;
+    if (doLink) {
+      content = <Link to={url}>{content}</Link>;
+    }
+  } else {
+    content = <em>Unknown</em>;
+  }
+  return content;
+}
 /**
  * Container component for contents of Company page content.
  */
@@ -41,17 +70,28 @@ class DrugDetailPage extends React.Component {
   renderInfo(drugInfo) {
     const details = [
       { label: 'Development Stage',
-        value: drugInfo.developmentStage ? drugInfo.developmentStage.label : '' },
-      { label: 'LINCS ID', value: drugInfo.hmsLincsId },
-      { label: 'Synonyms', value: toList(drugInfo.synonyms) },
-      { label: 'Target Gene', value: drugInfo.targetGene ? drugInfo.targetGene.label : '' },
-      { label: 'Target Role', value: drugInfo.targetRole ? drugInfo.targetRole.label : '' },
-      { label: 'Target Pathway', value: drugInfo.targetPathway ? drugInfo.targetPathway.label : ''},
-      { label: 'Target Function', value: drugInfo.targetFunction ? drugInfo.targetFunction.label : '' },
-      { label: 'Target Protein', value: drugInfo.targetProtein ? drugInfo.targetProtein.label : ''},
-      { label: 'Target Protein Class', value: drugInfo.targetProteinClass ? drugInfo.targetProteinClass.label : ''}
+        value: drugInfo.developmentStage ? drugInfo.developmentStage.label : <em>Unknown</em> },
+      { label: 'HMS LINCS ID', value: hmslincsDrugLink(drugInfo) },
+      { label: 'Synonyms', value: drugInfo.synonyms.length ? toList(drugInfo.synonyms) :
+          <em>None known</em> }
     ];
+    return (
+      <InfoPanel details={details} />
+    );
+  }
 
+  /**
+   * Render info panel component with target info.
+   */
+  renderTarget(drugInfo) {
+    const details = [
+      { label: 'Gene', value: targetInfo(drugInfo, 'targetGene') },
+      { label: 'Gene class', value: targetInfo(drugInfo, 'targetRole') },
+      { label: 'Pathway', value: targetInfo(drugInfo, 'targetPathway') },
+      { label: 'Biological function', value: targetInfo(drugInfo, 'targetFunction') },
+      { label: 'Protein', value: targetInfo(drugInfo, 'targetProtein', false) },
+      { label: 'Protein class', value: targetInfo(drugInfo, 'targetProteinClass', false) }
+    ];
     return (
       <InfoPanel details={details} />
     );
@@ -86,21 +126,37 @@ class DrugDetailPage extends React.Component {
 
       return (
         <PageLayout className='DrugDetailPage'>
-          <h1 className='name'>{ drugInfo.name ? drugInfo.name.label : '' }</h1>
-          <img src={drugImageUrl(drugInfo)} />
-          <div>
-            <h3>General Information</h3>
-            {this.renderInfo(drugInfo)}
-          </div>
-          <div>
-            <h3>Dataset Displays</h3>
-            {this.renderDatasets(drugInfo)}
-          </div>
+          <Row>
+            <Col lg={12}>
+              <h1 className='name'>{ drugInfo.name ? drugInfo.name.label : '' }</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={3} lg={3}>
+              <img className="structure" src={drugImageUrl(drugInfo)} />
+            </Col>
+            <Col md={9}>
+              <Row>
+                <Col md={7} lg={4}>
+                  <h3>General Information</h3>
+                  {this.renderInfo(drugInfo)}
+                </Col>
+                <Col md={5} lg={4}>
+                  <h3>Target Information</h3>
+                  {this.renderTarget(drugInfo)}
+                </Col>
+                <Col md={7} lg={4}>
+                  <h3>Dataset Displays</h3>
+                  {this.renderDatasets(drugInfo)}
+                </Col>
+              </Row>
+            </Col>
+          </Row>
         </PageLayout>
       );
     } else {
       return(
-        <PageLayout className="CellLineDetailPage">
+        <PageLayout className="DrugDetailPage">
         </PageLayout>
       );
     }
