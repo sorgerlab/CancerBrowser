@@ -146,7 +146,7 @@ class OmniSearch extends React.Component {
         });
 
         return filteredData;
-      });
+      }).filter(section => section.values.length > 0);
 
     } else {
       return [];
