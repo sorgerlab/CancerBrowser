@@ -21,9 +21,6 @@ if (process.env.NODE_ENV !== 'production') {
   window.Perf = require('react-addons-perf');
 }
 
-// Enable/Disable Redux Devtools
-window.$REDUX_DEVTOOL = false;
-
 let state = undefined;
 if ( window.$REDUX_STATE ) {
 
