@@ -96,7 +96,7 @@ const allColumns = {
   },
   dataset: {
     prop: 'dataset',
-    title: 'Dataset',
+    title: 'Datasets',
     render(val, data) {
       return (
         <DatasetSelector datasets={val} entityId={data.id} entityType={'cellLine'} />

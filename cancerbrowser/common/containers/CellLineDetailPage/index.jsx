@@ -142,7 +142,7 @@ class CellLineDetailPage extends React.Component {
               {this.renderMediaInfo(cellLine)}
             </Col>
             <Col lg={4}>
-              <h3>Dataset Displays</h3>
+              <h3>Relevant Datasets</h3>
               {this.renderDatasets(cellLine)}
             </Col>
           </Row>

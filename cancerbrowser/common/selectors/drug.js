@@ -102,25 +102,25 @@ export const getFilterGroups = createSelector(
         ]
       }, {
         id: 'targetGene',
-        label: 'Gene',
+        label: 'Target Gene',
         type: 'multi-select',
         // generate based on the data
         values: valuesFromLabelValueItems(drugs, 'targetGene')
       }, {
         id: 'targetRole',
-        label: 'Gene Class',
+        label: 'Target Gene Class',
         type: 'multi-select',
         // generate based on the data
         values: valuesFromLabelValueItems(drugs, 'targetRole')
       }, {
         id: 'targetPathway',
-        label: 'Pathway',
+        label: 'Target Pathway',
         type: 'multi-select',
         // generate based on the data
         values: valuesFromLabelValueItems(drugs, 'targetPathway')
       }, {
         id: 'targetFunction',
-        label: 'Biological Function',
+        label: 'Target Biological Function',
         type: 'multi-select',
         // generate based on the data
         values: valuesFromLabelValueItems(drugs, 'targetFunction')

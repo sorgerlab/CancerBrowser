@@ -2,6 +2,10 @@ import React from 'react';
 
 import './help_box.scss';
 
+const propTypes = {
+  title: React.PropTypes.string
+};
+
 class HelpBox extends React.Component {
 
   constructor(props) {
@@ -22,14 +26,14 @@ class HelpBox extends React.Component {
   }
 
   renderExpanded() {
-    const { children } = this.props;
+    const { title, children } = this.props;
     return (
       <div>
       <div className="toggle" onClick={ this.handleCollapseClick }>
         hide help
       </div>
       <aside className="help-content">
-        <h2>Learn more</h2>
+        <h2>{ !!title ? title : 'Learn more' }</h2>
         { children }
       </aside>
       <div className="hidden-lg help-backdrop" onClick={ this.handleCollapseClick }></div>
@@ -55,5 +59,7 @@ class HelpBox extends React.Component {
   }
 
 }
+
+HelpBox.propTypes = propTypes;
 
 export default HelpBox;

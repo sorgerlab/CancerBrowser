@@ -236,7 +236,7 @@ class OmniSearch extends React.Component {
     const { value, suggestions } = this.state;
     // const suggestions = this.getSuggestions(value);
     const inputProps = {
-      placeholder: 'Search for a cell line or drug',
+      placeholder: 'Search for a cell line or drug, e.g. bt-20 or imatinib',
       value,
       onChange: this.onChange
     };

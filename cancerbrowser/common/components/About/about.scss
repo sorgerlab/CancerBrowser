@@ -3,11 +3,20 @@
 .about {
 
   .logo {
-    width: 300px;
-    display: inline-block;
-    margin-left: 150px;
-    margin-right: 150px;
-    margin-bottom: 50px;
+
+    float: right;
+
+    a {
+      display: block;
+      margin-left: 20px;
+      margin-bottom: 20px;
+
+      img {
+        width: 200px;
+      }
+
+    }
+
   }
 
 }

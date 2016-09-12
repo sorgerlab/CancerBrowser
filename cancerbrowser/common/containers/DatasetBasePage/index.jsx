@@ -253,7 +253,7 @@ class DatasetBasePage extends React.Component {
       return null;
     }
     return (
-      <HelpBox>
+      <HelpBox title="About this dataset">
         <p>{ description }</p>
         { extraHelp }
       </HelpBox>

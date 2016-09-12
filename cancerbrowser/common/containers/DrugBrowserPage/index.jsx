@@ -158,19 +158,19 @@ class DrugBrowserPage extends React.Component {
             <ButtonGroup>
               <Button className={classNames({ active: drugView === 'targetGene' })}
                   onClick={this.onDrugViewChange.bind(this, 'targetGene')}>
-                Gene
+                Target Gene
               </Button>
               <Button className={classNames({ active: drugView === 'targetRole' })}
                   onClick={this.onDrugViewChange.bind(this, 'targetRole')}>
-                Gene Class
+                Target Gene Class
               </Button>
               <Button className={classNames({ active: drugView === 'targetPathway' })}
                   onClick={this.onDrugViewChange.bind(this, 'targetPathway')}>
-                Pathway
+                Target Pathway
               </Button>
               <Button className={classNames({ active: drugView === 'targetFunction' })}
                   onClick={this.onDrugViewChange.bind(this, 'targetFunction')}>
-                Biological Function
+                Target Biological Function
               </Button>
             </ButtonGroup>
           </div>
