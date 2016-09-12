@@ -36,10 +36,7 @@ function mapStateToProps(state, ownProps) {
 function hmslincsDrugLink(drug) {
   const id = drug.hmsLincsId;
   return (
-    <div className="db-link">
-      <div><a href={`http://lincs.hms.harvard.edu/db/sm/${id}`}>{id}</a></div>
-      <div className="more-details">More details available at the HMS LINCS Database</div>
-    </div>
+    <a href={`http://lincs.hms.harvard.edu/db/sm/${id}`}>{id}</a>
   );
 }
 
@@ -68,12 +65,14 @@ class DrugDetailPage extends React.Component {
    * Render info panel component with drug info.
    */
   renderInfo(drugInfo) {
+    const { developmentStage, synonyms } = drugInfo;
     const details = [
       { label: 'Development Stage',
-        value: drugInfo.developmentStage ? drugInfo.developmentStage.label : <em>Unknown</em> },
-      { label: 'HMS LINCS ID', value: hmslincsDrugLink(drugInfo) },
-      { label: 'Synonyms', value: drugInfo.synonyms.length ? toList(drugInfo.synonyms) :
-          <em>None known</em> }
+        value: developmentStage ? developmentStage.label : <em>Unknown</em> },
+      { label: 'Synonyms',
+        value: synonyms.length ? toList(synonyms) : <em>None known</em> },
+      { label: 'HMS LINCS ID',
+        value: hmslincsDrugLink(drugInfo) }
     ];
     return (
       <InfoPanel details={details} />
@@ -137,16 +136,16 @@ class DrugDetailPage extends React.Component {
             </Col>
             <Col md={9}>
               <Row>
-                <Col md={7} lg={4}>
+                <Col md={6} lg={4}>
                   <h3>General Information</h3>
                   {this.renderInfo(drugInfo)}
                 </Col>
-                <Col md={5} lg={4}>
+                <Col md={6} lg={4}>
                   <h3>Target Information</h3>
                   {this.renderTarget(drugInfo)}
                 </Col>
-                <Col md={7} lg={4}>
-                  <h3>Dataset Displays</h3>
+                <Col md={6} lg={4}>
+                  <h3>Relevant Datasets</h3>
                   {this.renderDatasets(drugInfo)}
                 </Col>
               </Row>

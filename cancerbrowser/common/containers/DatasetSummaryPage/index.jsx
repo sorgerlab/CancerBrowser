@@ -57,16 +57,16 @@ class DatasetSummaryPage extends React.Component {
    * @return {ReactElement} JSX markup.
    */
   render() {
+    /* This is not really a "page with sidebar", but we want to push the content
+       over to line up with the nav menu as though there *were* a sidebar. */
     return (
-      <div className='DatasetSummaryPage'>
-        <Row>
-          <Col md={6}>
-            <h1>Datasets</h1>
-            <ul className='datasets-listing list-unstyled'>
-              {Object.keys(this.props.datasets).map((key) => this.renderDataset(key))}
-            </ul>
-          </Col>
-        </Row>
+      <div className='DatasetSummaryPage page-with-sidebar'>
+        <div className="page-main constrained-width-text">
+          <h1>Datasets</h1>
+          <ul className='datasets-listing list-unstyled'>
+            {Object.keys(this.props.datasets).map((key) => this.renderDataset(key))}
+          </ul>
+        </div>
       </div>
     );
   }
