@@ -564,6 +564,14 @@ class DatasetGrowthFactorPaktPerkPage extends DatasetBasePage {
     );
   }
 
+  renderExtraHelp() {
+    return (
+      <div>
+        <p><a href="http://lincs.hms.harvard.edu/db/datasets/20140">Download source data</a></p>
+      </div>
+    );
+  }
+
   /**
    * Main render function.
    */

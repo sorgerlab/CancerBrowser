@@ -501,6 +501,14 @@ class DatasetReceptorProfilePage extends DatasetBasePage {
   }
 
 
+  renderExtraHelp() {
+    return (
+      <div>
+        <p><a href="http://lincs.hms.harvard.edu/db/datasets/20137">Download source data</a></p>
+      </div>
+    );
+  }
+
   /**
    * Called by parent class to populatate main body of page.
    */
