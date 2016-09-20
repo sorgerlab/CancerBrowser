@@ -510,6 +510,10 @@ class DatasetDrugDoseResponsePage extends DatasetBasePage {
   renderExtraHelp() {
     return (
       <div>
+        <p><a href="http://lincs.hms.harvard.edu/data/dose_response_gr_profiling.zip">
+          Download source data
+        </a></p>
+
         <h3>Other tools for dose-response studies</h3>
 
         <p>The <a href="http://grbrowser.org/">GR Browser</a> is an additional

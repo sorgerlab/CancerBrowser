@@ -61,6 +61,16 @@ class DatasetBasalTotalPage extends DatasetBasePage {
     );
   }
 
+  renderExtraHelp() {
+    return (
+      <div>
+        <p><a href="http://lincs.hms.harvard.edu/data/basal_total_proteome-numerical_view.tsv">
+          Download source data
+        </a></p>
+      </div>
+    );
+  }
+
   /**
    * Main render function
    */
