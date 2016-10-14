@@ -29,7 +29,7 @@
   "basal_total": {
     "id": "basal_total",
     "label": "Basal Total Protein Mass Spectrometry",
-    "description": "Six breast cancer cell lines were profiled by mass spectrometry in the absence of stimulation to assess protein abundance and phosphorylation state across the proteome. This dataset establishes a reference profile of global protein composition and activity in these cell lines under basal conditions.",
+    "description": "Ten breast cancer cell lines were profiled by mass spectrometry in the absence of stimulation to assess protein abundance and phosphorylation state across the proteome. This dataset establishes a reference profile of global protein composition and activity in these cell lines under basal conditions.",
     "filename": "basal_total_proteome-numerical_view.tsv",
     "cell_lines": ["hcc1806", "mcf10a", "hcc38", "bt549", "hs578t", "mdamb231", "skbr3", "mcf7", "hcc70", "bt20"],
     "cell_line_labels": ["HCC1806", "MCF10A", "HCC38", "BT549", "HS578T", "MDAMB231", "SKBR3", "MCF7", "HCC70", "BT20"],
@@ -39,7 +39,7 @@
   "basal_phospho": {
     "id": "basal_phospho",
     "label": "Basal Phosphoprotein Mass Spectrometry",
-    "description": "Six breast cancer cell lines were profiled by mass spectrometry in the absence of stimulation to assess phosphoprotein abundance across the proteome. This dataset establishes a reference profile of global phosphoprotein composition in these cell lines under basal conditions.",
+    "description": "Ten breast cancer cell lines were profiled by mass spectrometry in the absence of stimulation to assess phosphoprotein abundance across the proteome. This dataset establishes a reference profile of global phosphoprotein composition in these cell lines under basal conditions.",
     "filename": "basal_phosphoproteome-numerical_view.tsv",
     "cell_lines": ["bt549","hs578t","mdamb231","skbr3","hcc70","mcf7","bt20","hcc38","hcc1806","mcf10a"],
     "cell_line_labels": ["BT549","HS578T","MDAMB231","SKBR3","HCC70","MCF7","BT20","HCC38","HCC1806","MCF10A"],
