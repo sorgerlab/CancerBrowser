@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ButtonGroup, Button } from 'react-bootstrap';
 import classNames from 'classnames';
-import { hashHistory } from 'react-router';
+import { replace } from 'react-router-redux';
 
 import FilterPanel from '../../components/FilterPanel';
 import FilterGroupSummary from '../../components/FilterGroupSummary';
@@ -87,8 +87,9 @@ class CellLineBrowserPage extends React.Component {
    * @param {Object} filters Filters to encode
    */
   updateFilterUrl(filters) {
-    const query = qs.stringify(filters, {encode: true});
-    hashHistory.replace({pathname: '/cell_lines', search: '?' + query });
+    const pathname = this.props.location.pathname;
+    const search = '?' + qs.stringify(filters, {encode: true});
+    this.props.dispatch(replace({pathname: pathname, search: search}));
   }
 
   /**

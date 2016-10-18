@@ -16,7 +16,8 @@ module.exports = [
       new webpack.DefinePlugin({
         'process.env':{
           'NODE_ENV': JSON.stringify('production')
-        }
+        },
+        GA_TRACKING_CODE: JSON.stringify('UA-28987198-3')
       }),
       new webpack.optimize.UglifyJsPlugin({
         include: /\.min\.js$/,
