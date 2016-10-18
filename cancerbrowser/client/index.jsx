@@ -23,7 +23,7 @@ if ( window.$REDUX_STATE ) {
   state = window.$REDUX_STATE;
 }
 
-const store = configureStore(state);
+const store = configureStore(browserHistory, state);
 const history = syncHistoryWithStore(browserHistory, store);
 
 // Watch routing in console

@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { hashHistory } from 'react-router';
+import { replace, push } from 'react-router-redux';
 import qs from 'qs';
 import _ from 'lodash';
 
@@ -158,9 +158,9 @@ class DatasetBasePage extends React.Component {
     const query = qs.stringify(allConfig, {encode: true});
     const newPath = {pathname: '/dataset/' + datasetId, search: '?' + query };
     if(mode === 'replace') {
-      hashHistory.replace(newPath);
+      this.props.dispatch(replace(newPath));
     } else {
-      hashHistory.push(newPath);
+      this.props.dispatch(push(newPath));
     }
   }
 

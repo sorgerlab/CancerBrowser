@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ButtonGroup, Button } from 'react-bootstrap';
-import { hashHistory } from 'react-router';
+import { replace } from 'react-router-redux';
 import classNames from 'classnames';
 import qs from 'qs';
 
@@ -87,8 +87,9 @@ class DrugBrowserPage extends React.Component {
    * Store filter options in url
    */
   updateFilterUrl(newFilters) {
-    const query = qs.stringify(newFilters, {encode: true});
-    hashHistory.replace({pathname: '/drugs', search: '?' + query });
+    const pathname = this.props.location.pathname;
+    const search = '?' + qs.stringify(filters, {encode: true});
+    this.props.dispatch(replace({pathname: pathname, search: search}));
   }
 
   /**
