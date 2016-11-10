@@ -41,6 +41,10 @@ class HomePage extends React.Component {
     return (
       <PageLayout className="HomePage">
         <h1>HMS LINCS Breast Cancer Browser</h1>
+        <h2>
+          A public portal for exploring breast cancer cell biology and drug
+          response
+        </h2>
         <div className='omni-search-container'>
           {this.renderSearch()}
         </div>
