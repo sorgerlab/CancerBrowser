@@ -233,6 +233,20 @@ class DatasetBasePage extends React.Component {
   renderMain() { /* template method */ }
 
   /**
+   * Renders any help box content.
+   *
+   * @return {React.Component}
+   */
+  renderHelp() {
+    const { datasetInfo } = this.props;
+    if (datasetInfo && datasetInfo.description) {
+      return (
+        <p>{ datasetInfo.description }</p>
+      );
+    }
+  }
+
+  /**
    * Renders any extra help box content.
    * implemented by sub-classes.
    *
@@ -246,18 +260,18 @@ class DatasetBasePage extends React.Component {
    * @return {React.Component}
    */
   renderHelpBox() {
-    const { description } = this.props.datasetInfo;
+    const help = this.renderHelp();
     const extraHelp = this.renderExtraHelp();
 
-    if (!description && !extraHelp) {
-      return null;
+    if (help || extraHelp) {
+      return (
+        <HelpBox title="About this dataset">
+          { help }
+          { extraHelp }
+        </HelpBox>
+      );
     }
-    return (
-      <HelpBox title="About this dataset">
-        <p>{ description }</p>
-        { extraHelp }
-      </HelpBox>
-    );
+    return null;
   }
 
   /**
